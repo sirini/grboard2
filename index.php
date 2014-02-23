@@ -1,7 +1,7 @@
 <?php
 define('GR_BOARD_2', true);
-define('GR2_VERSION_NUM', 2002);
-define('GR2_VERSION_STATE', 'alpha2');
+define('GR2_VERSION_NUM', 2003);
+define('GR2_VERSION_STATE', 'alpha3');
 define('GR2_VERSION_STR', 'v2.0.0');
 
 $grboardArr = explode(DIRECTORY_SEPARATOR, dirname(__FILE__));
