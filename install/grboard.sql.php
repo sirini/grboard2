@@ -133,6 +133,19 @@ $queBoardArr[] = 'CREATE TABLE `'.$db_prefix_board.'member_list` (
   PRIMARY KEY (`no`),
   KEY `id` (`id`)
 ) DEFAULT CHARSET=utf8';
+$queBoardArr[] = 'DROP TABLE IF EXISTS `'.$db_prefix_board.'message_box`';
+$queBoardArr[] = 'CREATE TABLE `'.$db_prefix_board.'message_box` (
+  `no` int(11) NOT NULL AUTO_INCREMENT,
+  `from_uid` int(11) NOT NULL DEFAULT \'0\',
+  `to_uid` int(11) NOT NULL DEFAULT \'0\',
+  `memo` varchar(255) NOT NULL DEFAULT \'\',
+  `signdate` int(11) NOT NULL DEFAULT \'0\',
+  `status` tinyint(2) NOT NULL DEFAULT \'0\',
+  PRIMARY KEY (`no`),
+  KEY `from_uid` (`from_uid`),
+  KEY `to_uid` (`to_uid`),
+  KEY `status` (`status`)
+) DEFAULT CHARSET=utf8';
 $queBoardArr[] = 'INSERT INTO `'.$db_prefix_board.'board_list` (
 	`no`,`id`,`head_file`,`foot_file`,`head_form`,`foot_form`,`category`,`make_time`,`page_num`,`page_per_list`,`enter_level`,
 	`master`,`theme`,`comment_page_num`,`comment_page_per_list`,`num_file`,`view_level`,`write_level`,`comment_write_level`,

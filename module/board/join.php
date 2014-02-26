@@ -33,7 +33,7 @@ $skin = 'basic';
 $skinResourcePath = '/' . $grboard . '/module/' . $ext_module . '/join/skin/' . $skin;
 $skinPath = 'module/board/join/skin/' . $skin;
 
-include 'join/skin/basic/index.php';
+include 'join/skin/'.$basic.'/index.php';
 
 unset($Model, $skinResourcePath, $skinPath, $query);
 ?>

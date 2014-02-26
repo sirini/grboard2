@@ -1,0 +1,48 @@
+<div class="table-responsive">
+<table role="table" class="table table-striped table-hover">
+	<colgroup>
+		<col class="col-md-1" />
+		<col class="col-md-6" />
+		<col class="col-md-2" />
+		<col class="col-md-1" />
+		<col class="col-md-1" />
+		<col class="col-md-1" />
+	</colgroup>
+	<thead>
+		<tr>
+			<th class="text-center">No</th>
+			<th class="text-center">Message</th>
+			<th class="text-center">From</th>
+			<th class="text-center">Date</th>
+			<th class="text-center">Status</th>
+			<th class="text-center">Action</th>
+		</tr>
+	</thead>
+	<tbody>
+		<?php if(isset($memoList[0])): foreach($memoList as &$memo): ?>
+		<tr>
+			<td class="text-center"><?php echo $memo['no']; ?></td>
+			<td><?php echo nl2br($memo['memo']); ?></td>
+			<td class="text-center"><?php echo $memo['from']; ?></td>
+			<td class="text-center"><?php echo date('m.d H:i', $memo['signdate']); ?></td>
+			<td class="text-center"><?php echo $memo['status']; ?></td>
+			<td class="text-center"><a href="<?php echo $prePath; ?>/memo/write/<?php echo $memo['no']; ?>" class="btn btn-sm btn-primary">Reply</a></td>
+		</tr>
+		<?php endforeach; unset($memo); endif; ?>
+	</tbody>
+</table>
+</div>
+
+<ul class="pagination">
+	<?php if($memoNowBlock > 1): ?>
+		<li><a href="<?php echo $prevLink; ?>">&laquo;</a></li>
+	<?php endif; ?>
+
+	<?php foreach($memoPaging as &$pageNo): ?>
+		<li <?php echo (($pageNo==$page)?'class="active"':''); ?>><a href="<?php echo $pageLink . $pageNo; ?>"><?php echo $pageNo; ?></a></li>
+	<?php endforeach; unset($pageNo); ?>
+
+	<?php if($memoNowBlock < $memoTotalBlock): ?>
+		<li><a href="<?php echo $nextLink; ?>">&raquo;</a></li>
+	<?php endif; ?>
+</ul>

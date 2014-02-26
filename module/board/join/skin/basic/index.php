@@ -31,7 +31,7 @@
 						<span class="glyphicon glyphicon-ok"></span> Login</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="#" title="Powered by GR Board 2 | sirini.net"> 
+					<li><a href="#" title="Powered by GR Board 2 | grboard.com"> 
 						<span class="glyphicon glyphicon-link"></span> GR Board <sup>2</sup></a></li>
 				</ul>
 			</div>
