@@ -13,7 +13,7 @@ if(!defined('GR_BOARD_2')) {
 }
 
 $queArr = array(
-	'list' => 'select no, subject, name from ' . $db_prefix_board . 'bbs_{0} order by no {1} limit {2}'
+	'list' => 'select no, subject, name, comment_count from ' . $db_prefix_board . 'bbs_{0} order by no {1} limit {2}'
 );
 
 function gr2data($que, $colArr) {
@@ -34,7 +34,7 @@ function gr2data($que, $colArr) {
 function gr2list($id, $orderBy='desc', $limit=5, $cutstr=0) {
 	global $Common, $DB, $queArr;
 	$que = str_replace(array('{0}', '{1}', '{2}'), array($id, $orderBy, $limit), $queArr['list']);
-	$colArr = array('no', 'subject', 'name');
+	$colArr = array('no', 'subject', 'name', 'comment_count');
 	$data = gr2data($que, $colArr);
 	if($cutstr > 0) {
 		for($i=0; $i<$limit; $i++) {
