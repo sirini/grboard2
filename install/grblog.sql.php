@@ -113,11 +113,11 @@ $queBlogArr[] = 'CREATE TABLE `'.$db_prefix_blog.'tag` (
 $queBlogArr[] = 'INSERT INTO `'.$db_prefix_blog.'config` (
   uid,name,homepage,email,blog_title,blog_info,theme,num_view_post,num_rss_post,use_comment,use_rss,num_rss_content,num_per_page) 
   VALUES (NULL,\'Admin\',\'\',\'\',\'GR Board 2 Blog\',\'Welcome my blog\',\'basic\',5,10,1,1,300,5)';
-$queBlogArr[] = 'INSERT INTO  `test`.`'.$db_prefix_blog.'post` (
+$queBlogArr[] = 'INSERT INTO `'.$db_prefix_blog.'post` (
   `uid`,`category`,`signdate`,`subject`,`content`,`post_condition`,`comment_condition`,`trackback`,`open_rss`,`comment_count`,
   `trackback_count`,`tag`,`writer`,`make_html`) VALUES (
   NULL, \'0\', '.time().', \'Welcome to the GR Board 2 Blog!\', \'Hi, this is sample content of blog.\', 0, 0, \'\', 0, 0, 0, \'\', \'GR Board 2\', 1)';
-$queBlogArr[] = 'INSERT INTO `test`.`'.$db_prefix_blog.'guestbook` (
+$queBlogArr[] = 'INSERT INTO '.$db_prefix_blog.'guestbook` (
   `uid`, `name`, `password`, `homepage`, `content`, `is_secret`, `is_reply`, `signdate`, `email`) VALUES (
   NULL, \'GR Board 2\', MD5(\'GR Board 2\'), \'http://sirini.net\', \'Welcome to the GR Board 2 Blog! This is a  sample post.\', 0, 0, '.time().', \'\');'
 ?>
