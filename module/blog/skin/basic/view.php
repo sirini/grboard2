@@ -31,6 +31,7 @@
 				<?php if(!empty($blogReply[0]['uid'])): foreach($blogReply as &$reply): ?>
 					<div class="well">
 						<div id="blogContent_<?php echo $reply['uid']; ?>">
+							<?php if($reply['is_reply']): ?><span class="glyphicon glyphicon-chevron-right"></span><?php endif; ?>
 							<small><?php 
 							if($reply['is_secret'] && $Common->getSessionKey() != 1) echo '<span class="text-danger">비밀글 입니다</span>';
 							else echo nl2br(strip_tags($reply['content'])); 
@@ -62,7 +63,7 @@
 							<div class="form-group">
 								<label class="col-md-3 control-label" for="simplelock"><span class="glyphicon glyphicon-asterisk"></span> Spam</label>		
 								<div class="col-md-3">
-									<input id="simplelock" name="simplelock" type="text" placeholder="(필수) 우측의 4자리 키 값 입력!" required="true" autofocus="true" class="form-control input-md" />
+									<input id="simplelock" name="simplelock" type="text" placeholder="(필수) 우측의 4자리 키 값 입력!" required="true" class="form-control input-md" />
 								</div>
 								<span class="col-md-6 help-block"><span class="text-danger"><?php echo $simplelock; ?></span></span>
 							</div>
@@ -74,8 +75,7 @@
 								</div>
 								<span class="col-md-6 help-block">비밀번호를 입력해 주세요</span>
 							</div>
-							<?php endif; ?>
-							
+														
 							<div class="form-group">
 								<label class="col-md-3 control-label" for="email"> E-mail</label>		
 								<div class="col-md-3">
@@ -100,10 +100,12 @@
 								<span class="col-md-6 help-block">이름을 입력해 주세요</span>
 							</div>
 							
+							<?php endif; ?>
+							
 							<div class="form-group">
 								<label class="col-md-3 control-label" for="content"><span class="glyphicon glyphicon-asterisk"></span> Comment</label>		
 								<div class="col-md-9">
-									<textarea id="content" name="content" rows="10" placeholder="이 곳에 댓글을 입력해 주세요" class="form-control textarea-md"></textarea>
+									<textarea id="content" name="content" required="true" rows="10" placeholder="이 곳에 댓글을 입력해 주세요" class="form-control textarea-md"></textarea>
 									
 									<div class="checkbox">
 										<label>

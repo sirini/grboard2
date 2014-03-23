@@ -117,7 +117,7 @@ $queBlogArr[] = 'INSERT INTO `'.$db_prefix_blog.'post` (
   `uid`,`category`,`signdate`,`subject`,`content`,`post_condition`,`comment_condition`,`trackback`,`open_rss`,`comment_count`,
   `trackback_count`,`tag`,`writer`,`make_html`) VALUES (
   NULL, \'0\', '.time().', \'Welcome to the GR Board 2 Blog!\', \'Hi, this is sample content of blog.\', 0, 0, \'\', 0, 0, 0, \'\', \'GR Board 2\', 1)';
-$queBlogArr[] = 'INSERT INTO '.$db_prefix_blog.'guestbook` (
+$queBlogArr[] = 'INSERT INTO `'.$db_prefix_blog.'guestbook` (
   `uid`, `name`, `password`, `homepage`, `content`, `is_secret`, `is_reply`, `signdate`, `email`) VALUES (
   NULL, \'GR Board 2\', MD5(\'GR Board 2\'), \'http://sirini.net\', \'Welcome to the GR Board 2 Blog! This is a  sample post.\', 0, 0, '.time().', \'\');'
 ?>

@@ -26,23 +26,30 @@
 			<td class="text-center"><?php echo $memo['from']; ?></td>
 			<td class="text-center"><?php echo date('m.d H:i', $memo['signdate']); ?></td>
 			<td class="text-center"><?php echo $memo['status']; ?></td>
-			<td class="text-center"><a href="<?php echo $prePath; ?>/memo/write/<?php echo $memo['no']; ?>" class="btn btn-sm btn-primary">Reply</a></td>
+			<td class="text-center"><a href="<?php echo $prePath; ?>/memo/write/<?php echo $memo['no']; ?>" class="btn btn-sm btn-default">Reply</a></td>
 		</tr>
 		<?php endforeach; unset($memo); endif; ?>
 	</tbody>
 </table>
 </div>
-
-<ul class="pagination">
-	<?php if($memoNowBlock > 1): ?>
-		<li><a href="<?php echo $prevLink; ?>">&laquo;</a></li>
-	<?php endif; ?>
-
-	<?php foreach($memoPaging as &$pageNo): ?>
-		<li <?php echo (($pageNo==$page)?'class="active"':''); ?>><a href="<?php echo $pageLink . $pageNo; ?>"><?php echo $pageNo; ?></a></li>
-	<?php endforeach; unset($pageNo); ?>
-
-	<?php if($memoNowBlock < $memoTotalBlock): ?>
-		<li><a href="<?php echo $nextLink; ?>">&raquo;</a></li>
-	<?php endif; ?>
-</ul>
+	
+<div class="container">
+	<div class="col-md-8">
+		<ul class="pagination">
+			<?php if($memoNowBlock > 1): ?>
+				<li><a href="<?php echo $prevLink; ?>">&laquo;</a></li>
+			<?php endif; ?>
+		
+			<?php foreach($memoPaging as &$pageNo): ?>
+				<li <?php echo (($pageNo==$page)?'class="active"':''); ?>><a href="<?php echo $pageLink . $pageNo; ?>"><?php echo $pageNo; ?></a></li>
+			<?php endforeach; unset($pageNo); ?>
+		
+			<?php if($memoNowBlock < $memoTotalBlock): ?>
+				<li><a href="<?php echo $nextLink; ?>">&raquo;</a></li>
+			<?php endif; ?>
+		</ul>
+	</div>
+	<div class="col-md-4 text-right">
+		<a href="<?php echo $prePath; ?>/memo/write" class="btn btn-lg btn-primary">Write</a>
+	</div>
+</div>

@@ -6,7 +6,7 @@ if($postTarget == 0):
 endif;
 ?>
 
-<div id="GRBOARD2" rel="<?php echo $grboard; ?>">
+<div id="GRBOARD2" rel="<?php echo $grboard; ?>" class="container">
 
 <h2 class="title">Write</h2>
 

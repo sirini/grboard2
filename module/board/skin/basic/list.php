@@ -1,6 +1,6 @@
 <?php if(!defined('GR_BOARD_2')) exit(); ?>
 
-<div id="GRBOARD2" rel="<?php echo $grboard; ?>">
+<div id="GRBOARD2" rel="<?php echo $grboard; ?>" class="container">
 
 <?php if(isset($boardCategory[0])): ?>
 <header>
@@ -15,6 +15,7 @@
 </header>
 <?php endif; ?>
 
+<div class="table-responsive">
 <table rules="none">
 <colgroup>
 	<col class="no" />
@@ -79,6 +80,7 @@ endif;
 ?>
 </tbody>
 </table>
+</div>
 
 <?php
 $prevLink = $boardLink . '/list/' . ($ext_page - $boardInfo['page_per_list']);
@@ -114,6 +116,7 @@ if(isset($option)) {
 		<?php elseif($Common->getSessionKey() == 1): ?>
 			<li><a href="/<?php echo $grboard; ?>/board/admin/modify2board/<?php echo $boardInfo['no']; ?>">Admin</a></li>
 		<?php endif; if($Common->getSessionKey() > 0): ?>
+			<li><a href="<?php echo $boardLink; ?>/memo">Memo</a></li>
 			<li><a href="<?php echo $boardLink; ?>/logout">Logout</a></li>
 		<?php endif; ?>
 

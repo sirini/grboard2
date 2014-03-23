@@ -12,10 +12,11 @@ $(function(){
 		writeForm: $("#boardWriteForm").get(0),
 
 		previewImage: function(file) {
-		    var imgTag = "<img src=\"" + file + "\" border=\"0\" />";
+		    var imgTag = "<img class=\"preview\" src=\"" + file + "\" border=\"0\" title=\"더블 클릭 시 삭제\" />";
 			gr2write.jDropzone.append(imgTag);
             var oldContent = gr2write.content.html();
             oldContent += "<br /><br />" + imgTag + "<br /><br />";
+            gr2write.content.html(oldContent);
             tinymce.activeEditor.execCommand('mceInsertContent', false, oldContent);
 		},
 		
@@ -29,7 +30,7 @@ $(function(){
 		},
 
 		readFile: function(files) {
-			var formData = new FormData();
+		    var formData = new FormData();
 			for(var i=0; i<files.length; i++) {
 				formData.append("file[]", files[i]);
                 gr2write.jDropzone.css("padding", "5px").css("height", "90px").css("width", "500px");
@@ -48,9 +49,9 @@ $(function(){
 			            var msg = "에러 없음";
 			            switch(err) {
 			                case 1: 
-			                case 2: msg = "파일 크기가 너무 큽니다."; break;
-			                case 4: msg = "파일이 업로드 되지 않았습니다."; break;
-			                case 6: msg = "임시 폴더를 잃어버렸습니다."; break;
+			                case 2: msg = "파일 크기가 너무 큽니다. (ERROR: 2)"; break;
+			                case 4: msg = "파일이 업로드 되지 않았습니다. (ERROR: 4)"; break;
+			                case 6: msg = "임시 폴더를 잃어버렸습니다. (ERROR: 6)"; break;
 			                default: msg = err; break;
 			            }
 			            alert(msg);
@@ -74,6 +75,25 @@ $(function(){
 			}
 		}
 	};
+	
+	$(document).on("dblclick", "img.preview", function(){
+	    if(confirm("정말로 삭제 하시겠습니까?")) {
+	        var img = $(this);
+	        var path = img.attr("src");
+	        var pathArr = path.split("/");
+	        var pathName = pathArr[ pathArr.length - 1 ];
+	        $.ajax({
+	            url: "/" + gr2write.grboard + "/module/board/upload/delete.php",
+	            data: "path="+pathName,
+	            type: "POST",
+	            dataType: "text",
+	            success: function(data) {
+	                img.remove();
+	                alert("본문에 삽입 되었던 그림은 직접 삭제해 주세요.");
+	            }
+	        });
+	    }
+	});
 		
 	gr2write.dropzone.ondragover = function() {
 		this.className = "hover"; 
