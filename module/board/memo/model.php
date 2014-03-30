@@ -29,6 +29,11 @@ class Model {
 		return $result;
 	}
 	
+	public function getUserId($userKey) {
+		$result = $this->getData('{0}', (int)$userKey, 'get_user_id');
+		return $result['id'];
+	}
+	
 	public function sendMemo($userKey, $post) {
 		$target = $this->getData('{0}', $post['userId'], 'get_target_uid');
 		if(!isset($target['no'])) return -1;
@@ -49,12 +54,13 @@ class Model {
 		if($queList == true) {
 			while($f = $this->db->fetch($queList)) {
 				$from = $this->getData('{0}', $f['from_uid'], 'get_from_nick');
+				$isMine = ($f['from_uid'] == $this->common->getSessionKey());
 				$result[$index]['no'] = $f['no'];
 				$result[$index]['from'] = stripslashes($from['nickname']);
 				$result[$index]['memo'] = stripslashes($f['memo']);
 				$result[$index]['signdate'] = $f['signdate'];
-				$result[$index]['status'] = ($f['status'] == 0) ? '-' : 'read';
-				$result[$index]['no'] = $f['no'];
+				$result[$index]['status'] = ($isMine) ? 'send' : (($f['status'] == 0) ? '-' : 'read');
+				$result[$index]['is_mine'] = $isMine;
 				++$index;
 			}
 			$this->db->free($queList);

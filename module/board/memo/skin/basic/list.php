@@ -1,5 +1,5 @@
 <div class="table-responsive">
-<table role="table" class="table table-striped table-hover">
+<table role="table" class="table table-hover">
 	<colgroup>
 		<col class="col-md-1" />
 		<col class="col-md-6" />
@@ -19,14 +19,18 @@
 		</tr>
 	</thead>
 	<tbody>
-		<?php if(isset($memoList[0])): foreach($memoList as &$memo): ?>
+		<?php if(isset($memoList[0]['no'])): foreach($memoList as &$memo): ?>
 		<tr>
 			<td class="text-center"><?php echo $memo['no']; ?></td>
 			<td><?php echo nl2br($memo['memo']); ?></td>
 			<td class="text-center"><?php echo $memo['from']; ?></td>
 			<td class="text-center"><?php echo date('m.d H:i', $memo['signdate']); ?></td>
 			<td class="text-center"><?php echo $memo['status']; ?></td>
-			<td class="text-center"><a href="<?php echo $prePath; ?>/memo/write/<?php echo $memo['no']; ?>" class="btn btn-sm btn-default">Reply</a></td>
+			<td class="text-center">
+				<?php if(!$memo['is_mine']): ?>
+				<a href="<?php echo $prePath; ?>/memo/write/<?php echo $memo['no']; ?>" class="btn btn-sm btn-default">Reply</a>
+				<?php endif; ?>
+			</td>
 		</tr>
 		<?php endforeach; unset($memo); endif; ?>
 	</tbody>
@@ -50,6 +54,6 @@
 		</ul>
 	</div>
 	<div class="col-md-4 text-right">
-		<a href="<?php echo $prePath; ?>/memo/write" class="btn btn-lg btn-primary">Write</a>
+		<a href="<?php echo $prePath; ?>/memo/write/0" class="btn btn-lg btn-primary">Write</a>
 	</div>
 </div>

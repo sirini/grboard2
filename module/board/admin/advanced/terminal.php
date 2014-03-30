@@ -11,6 +11,7 @@ $(function(){
 	logBox.append("Connecting to the GR Board 2 API server at grboard2.mooo.com ... ");
 	
 	var socket = io.connect('http://grboard2.mooo.com');
+	socket.emit('enter', {});
 	socket.on('welcome', function(data) { logBox.append("Done.<br /><br />" + data.hello); });
 	socket.on('response', function(data) { logBox.append(data.response).animate({scrollTop: logBox.prop("scrollHeight")}, 500) });
 	

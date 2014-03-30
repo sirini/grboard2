@@ -53,6 +53,11 @@
 	
 	<script src="/<?php echo $grboard; ?>/lib/jquery.js"></script>
 	<script src="/<?php echo $grboard; ?>/lib/bootstrap/js/bootstrap.min.js"></script>
+	<script>
+		setTimeout(function(){
+			location.href='<?php echo $moveBackPath; ?>';
+		}, <?php echo $delay; ?>);
+	</script>
 	
 	</body>
 </html>

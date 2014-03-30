@@ -6,6 +6,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link href="/<?php echo $grboard; ?>/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen" />
 		<link href="/<?php echo $grboard; ?>/lib/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet" media="screen" />
+		<link rel="stylesheet" type="text/css" href="/<?php echo $grboard; ?>/lib/gritter/css/jquery.gritter.css" />
 	</head>
 	<body>
 	
@@ -36,12 +37,16 @@
 		</div>
 	</nav>	
 	
-	<div id="gr2memoPageBody" class="container" rel="<?php echo $grboard; ?>">
+	<div id="gr2memoPageBody" class="container" rel="<?php echo $grboard; ?>" 
+		data-push-userkey="<?php echo $Model->getUserId($Common->getSessionKey()); ?>"
+		data-push-roomid="<?php echo $_SERVER['HTTP_HOST']; ?>">
 		<?php include $mode . '.php'; ?>
 	</div>
 	
 	<script src="/<?php echo $grboard; ?>/lib/jquery.js"></script>
 	<script src="/<?php echo $grboard; ?>/lib/bootstrap/js/bootstrap.min.js"></script>
+	<script src="http://grboard2.mooo.com/socket.io/socket.io.js"></script>
+	<script src="/<?php echo $grboard; ?>/lib/gritter/js/jquery.gritter.min.js"></script>
 	<script src="<?php echo $skinResourcePath; ?>/memo.js"></script>
 	
 	</body>
