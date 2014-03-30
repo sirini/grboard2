@@ -8,7 +8,7 @@ include $skinResourcePath . '/terminal.php';
 <script>
 $(function(){
 	var logBox = $("#cmdLog");
-	logBox.append("Connecting to the GR Board 2 API server at grboard2.mooo.com ... ");
+	logBox.append("Connecting to the GR Board 2 API server at grboard2.mooo.com ... (Please input the \"enter\" command)");
 	
 	var socket = io.connect('http://grboard2.mooo.com');
 	socket.emit('enter', {});
