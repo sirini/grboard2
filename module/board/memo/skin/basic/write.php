@@ -25,7 +25,7 @@
 	</fieldset>
 	
 	<div class="form-group text-right">
-		<input type="submit" class="btn btn-lg btn-primary" role="button" value="<?php echo ($oldData['id']) ? 'Reply' : 'Send'; ?>" />
+		<input id="gr2sendMsgBtn" type="submit" class="btn btn-lg btn-primary" role="button" value="<?php echo ($oldData['id']) ? 'Reply' : 'Send'; ?>" />
 	</div>
 	
 </form>

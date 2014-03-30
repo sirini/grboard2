@@ -25,7 +25,7 @@ class Common {
 		return $string[0];
 	}
 
-	public function error($msg, $moveBackPath='', $type='error') {
+	public function error($msg, $moveBackPath='', $type='error', $delay=10000) {
 		if( !strlen($moveBackPath) && array_key_exists('HTTP_REFERER', $_SERVER) ) $moveBackPath = $_SERVER['HTTP_REFERER'];
 		if( !strlen($moveBackPath) ) $moveBackPath = 'http://' . $_SERVER['HTTP_HOST'];
 		$grboard = $this->grboard;
