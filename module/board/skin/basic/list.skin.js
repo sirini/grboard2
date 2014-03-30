@@ -10,6 +10,6 @@ $(function(){
            alert("검색어가 비어 있습니다. 다시 확인해 주세요!");
            return;
        }       
-       location.href = "/" + grboard + "/board-" + id + "/" + option + "/" + value + "/" + page;
+       location.href = "/" + grboard + "/board-" + id + "/" + option + "/:" + value + "/" + page;
    });  
 });

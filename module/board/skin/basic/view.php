@@ -18,7 +18,7 @@
 <h2 class="title"><?php echo $boardPost['subject']; ?></h2>
 
 <div class="info">
-	<?php echo $boardPost['name']; ?>
+	<?php echo $boardPost['name']; ?> (<?php echo $boardPost['writer_id']; ?>)
 	<ul class="info">
 		<?php if($boardPost['homepage']): ?><li><a href="<?php echo $boardPost['homepage']; ?>" onclick="window.open(this.href, '_blank'); return false">(home)</a></li><?php endif; ?>
 		<li><?php echo date('Y.m.d H:i:s', $boardPost['signdate']); ?></li>
