@@ -114,10 +114,6 @@
 #GRBOARD2 ul.buttons {
 	margin: 0;
 	padding: 10px 5px;
-	position: absolute;
-	top: 0;
-	right: 0;
-	width: 290px;
 	text-align: right;
 }
 

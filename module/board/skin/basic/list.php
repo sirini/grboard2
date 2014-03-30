@@ -116,7 +116,7 @@ if(isset($option)) {
 		<?php elseif($Common->getSessionKey() == 1): ?>
 			<li><a href="/<?php echo $grboard; ?>/board/admin/modify2board/<?php echo $boardInfo['no']; ?>">Admin</a></li>
 		<?php endif; if($Common->getSessionKey() > 0): ?>
-			<li><a href="<?php echo $boardLink; ?>/memo">Memo</a></li>
+			<li><a href="<?php echo $boardLink; ?>/memo">Message</a></li>
 			<li><a href="<?php echo $boardLink; ?>/logout">Logout</a></li>
 		<?php endif; ?>
 
