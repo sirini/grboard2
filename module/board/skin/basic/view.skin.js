@@ -16,5 +16,31 @@ $(function(){
 	        return false;
 	    });
 	});
-
+	
+	var bbs = $("#GRBOARD2");
+	var grboard = bbs.attr("rel");
+	var bbsid = bbs.attr("data-board-id");
+	$("head").append("<script src=\"http://grboard2.mooo.com/socket.io/socket.io.js\"></script>");
+	$("head").append("<link rel=\"stylesheet\" type=\"text/css\" href=\"/"+grboard+"/lib/gritter/css/jquery.gritter.css\" />");
+	$("head").append("<script src=\"/"+grboard+"/lib/gritter/js/jquery.gritter.min.js\"></script>");
+	setTimeout(function(){
+        var socket = io.connect('http://grboard2.mooo.com/message');
+        var viewBody = $("#gr2viewContent");
+        var userkey = viewBody.attr("data-push-userkey");
+        var roomid = viewBody.attr("data-push-roomid");
+        var joinSuccess = false;
+        
+        socket.emit('join', {room: roomid});
+        socket.on('joined', function(data){
+            joinSuccess = true;
+        });
+        socket.on('msg ' + userkey, function(data){
+            if(!joinSuccess) return;
+            $.gritter.add({ 
+                title: "New message", 
+                text: "You got a new message right now. Please check it. <a href=\"/"+grboard+"/board-"+bbsid+"/memo\" style=\"color: #fff; font-weight: bold\">(Click to move)</a>", 
+                time: 10000
+            }); 
+        });	    
+	}, 3000);
 });

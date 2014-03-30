@@ -1,6 +1,6 @@
 <?php if(!defined('GR_BOARD_2')) exit(); ?>
 
-<div id="GRBOARD2" rel="<?php echo $grboard; ?>">
+<div id="GRBOARD2" rel="<?php echo $grboard; ?>" data-board-id="<?php echo $ext_id; ?>">
 
 <?php if(isset($boardCategory[0])): ?>
 <header>
@@ -27,7 +27,9 @@
 	</ul>
 </div>
 
-<div class="content">
+<div id="gr2viewContent" class="content"
+	data-push-userkey="<?php echo $userInfo['id']; ?>"
+	data-push-roomid="<?php echo $_SERVER['HTTP_HOST']; ?>">
 	<?php if($fileList != false): ?>
 	<ul class="fileList">
 		<?php foreach($fileList as &$file): ?>

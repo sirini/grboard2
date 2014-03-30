@@ -139,7 +139,7 @@ if(isset($option)) {
 					<option value="name" <?php echo (isset($option) && $option == 'name') ? 'selected="true"':''; ?>>Name</option>
 				</select>
 				<input type="search" name="value" value="<?php echo (isset($value)) ? $value:''; ?>" />
-				<input type="submit" value="Submit" />
+				<input type="submit" value="Search" />
 			</form>
 		</div>
 	</div>
