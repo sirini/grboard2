@@ -64,9 +64,13 @@ if(isset($boardPost[0]['no'])):
 ?>
 <tr class="list">
 	<td class="no"><?php echo $post['no']; ?></td>
-	<td class="subject"><a href="<?php echo $link; ?>"><?php echo $post['subject']; ?></a>
+	<td class="subject">
+		<?php if(strlen($post['category']) > 0): ?>
+			<span class="category">[<?php echo $post['category']; ?>]</span>
+		<?php endif; ?>
+		<a href="<?php echo $link; ?>"><?php echo $post['subject']; ?></a>
 		<?php if($post['comment_count'] > 0): ?>
-			<span>[<?php echo $post['comment_count']; ?>]</span>
+			<span class="comment">[<?php echo $post['comment_count']; ?>]</span>
 		<?php endif; ?>	
 	</td>
 	<td class="name"><?php echo $post['name']; ?></td>

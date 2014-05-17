@@ -3,7 +3,7 @@ $query = array(
 	'get_user_info' => 'select * from ' . $db_prefix_board . 'member_list where no = {0}' ,
 	'get_board_info' => 'select * from ' . $db_prefix_board . 'board_list where id = \'{0}\'' ,
 	'get_writer_info' => 'select {0} from ' . $db_prefix_board . 'member_list where no = {1} limit 1' ,
-	'get_board_info' => 'select * from ' . $db_prefix_board . 'board_list where id = \'{0}\'',
+	'get_category_list' => 'select category from ' . $db_prefix_board . 'board_list where id = \'{0}\'' ,
 	'get_old_data' => 'select * from ' . $db_prefix_board . 'bbs_{0} where no = {1} limit 1' ,
 	'get_old_file_list' => 'select uid as fid, real_name from ' . $db_prefix_board . 'file_store where board_id = \'{0}\' and board_no = {1}' ,
 	'get_delete_file_path' => 'select hash_name from ' . $db_prefix_board . 'file_store where uid = {0} limit 1' ,

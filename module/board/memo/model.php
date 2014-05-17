@@ -80,5 +80,6 @@ class Model {
 		$result['memo'] = stripslashes($result['memo']);
 		return $result;
 	}
+
 }
 ?>

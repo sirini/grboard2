@@ -19,13 +19,26 @@
 		</tr>
 	</thead>
 	<tbody>
-		<?php if(isset($memoList[0]['no'])): foreach($memoList as &$memo): ?>
+		<?php 
+		if(isset($memoList[0]['no'])): 
+			foreach($memoList as &$memo):
+				$content = nl2br($memo['memo']);
+				$from = $memo['from'];
+				$date = date('m.d H:i', $memo['signdate']);
+				$status = $memo['status'];
+				if($memo['status'] == 'send'):
+					$content = '<span class="text-muted">' . $content . '</span>';
+					$from = '<span class="text-muted">' . $from . '</span>';
+					$date = '<span class="text-muted">' . $date . '</span>';
+					$status = '<span class="text-primary">' . $status . '</span>';
+				endif;
+		?>
 		<tr>
 			<td class="text-center"><?php echo $memo['no']; ?></td>
-			<td><?php echo nl2br($memo['memo']); ?></td>
-			<td class="text-center"><?php echo $memo['from']; ?></td>
-			<td class="text-center"><?php echo date('m.d H:i', $memo['signdate']); ?></td>
-			<td class="text-center"><?php echo $memo['status']; ?></td>
+			<td><?php echo $content; ?></td>
+			<td class="text-center"><?php echo $from; ?></td>
+			<td class="text-center"><?php echo $date; ?></td>
+			<td class="text-center"><?php echo $status; ?></td>
 			<td class="text-center">
 				<?php if(!$memo['is_mine']): ?>
 				<a href="<?php echo $prePath; ?>/memo/write/<?php echo $memo['no']; ?>" class="btn btn-sm btn-default">Reply</a>

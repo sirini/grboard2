@@ -135,6 +135,7 @@ class Model {
 			$post['gr2subject'] = htmlspecialchars($post['gr2subject']);
 			$post['gr2content'] = $puri->purify($post['gr2content']);
 		}
+		$post['gr2category'] = $this->escape($post['gr2category']);
 		$post['gr2subject'] = $this->escape($post['gr2subject']);
 		$post['gr2content'] = $this->escape($post['gr2content']);
 		$post['gr2tag'] = $this->escape(strip_tags($post['gr2tag']));
@@ -158,16 +159,16 @@ class Model {
 				}
 			}				
 			$valueStr = 'name = \'' . $post['gr2name'] . '\', email = \''.$post['gr2email'].'\', homepage = \'' . $post['gr2homepage'] . 
-				'\', is_notice = \'' . $isNotice . '\', is_secret = \'' . $isSecret . '\', subject = \'' . $post['gr2subject'] . 
-				'\', content = \'' . $post['gr2content'] . '\', tag = \'' . $post['gr2tag'] . '\'';
+				'\', is_notice = \'' . $isNotice . '\', is_secret = \'' . $isSecret . '\', category = \'' . $post['gr2category'] . 
+				'\', subject = \'' . $post['gr2subject'] . '\', content = \'' . $post['gr2content'] . '\', tag = \'' . $post['gr2tag'] . '\'';
 			$quePostStr = str_replace(array('{0}', '{1}', '{2}'), array($id, $valueStr, $target), $this->queArr['modify_post']);
 			$result = $this->db->query($quePostStr);
 			$insertID = $target;
 		} else {
 			$valueStr = '\'\',' . $sessionKey . ',\'' . $post['gr2name'] . '\',\'' . $post['gr2password'] . '\',\'' . 
 				$post['gr2email'] . '\',\'' . $post['gr2homepage'] . '\',\'' . $_SERVER['REMOTE_ADDR'] . '\',' . time() . 
-				',0,0,0,' . $isNotice . ',' . $isSecret . ',\'\',\'' . $post['gr2subject'] . '\',\'' . $post['gr2content'] . 
-				'\',\'' . $post['gr2tag'] . '\'';
+				',0,0,0,' . $isNotice . ',' . $isSecret . ', \'' . $post['gr2category'] . '\',\''  . $post['gr2subject'] . 
+				'\',\'' . $post['gr2content'] . '\',\'' . $post['gr2tag'] . '\'';
 			$quePostStr = str_replace(array('{0}', '{1}'), array($id, $valueStr), $this->queArr['write_post']);
 			$result = $this->db->query($quePostStr);
 			$insertID = $this->db->getInsertID();						
@@ -187,6 +188,20 @@ class Model {
 		}
 
 		return $insertID;
+	}
+
+	public function getCategoryList($id) {
+		$queStr = str_replace('{0}', $id, $this->queArr['get_category_list']);
+		$que = $this->db->query($queStr);
+		$result = $this->db->fetch($que);
+		$this->db->free($que);
+		$categoryStr = trim($result['category']);
+		if(strlen($categoryStr) > 0) {
+			$catArr = explode('|', $categoryStr);
+			return $catArr;	
+		} else {
+			return false;			
+		}
 	}
 }
 ?>

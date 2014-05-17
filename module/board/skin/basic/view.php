@@ -15,7 +15,12 @@
 </header>
 <?php endif; ?>
 
-<h2 class="title"><?php echo $boardPost['subject']; ?></h2>
+<h2 class="title">
+	<?php if(strlen($boardPost['category']) > 0): ?>
+		<span class="category">[<?php echo $boardPost['category']; ?>]</span>
+	<?php endif; ?>
+	<?php echo $boardPost['subject']; ?>
+</h2>
 
 <div class="info">
 	<?php echo $boardPost['name']; ?> (<?php echo $boardPost['writer_id']; ?>)
