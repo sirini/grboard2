@@ -25,7 +25,8 @@ if(isset($_POST['writeProceed'])) {
 	if( array_key_exists('articleNo', $_GET)) {
 		$target = $_GET['articleNo'];
 	}
-	$insertID = $Model->writePost($ext_id, $_POST, $target); 	
+	
+	$insertID = $Model->writePost($ext_id, $_POST, $_FILES, $target); 	
 	if( $insertID > 0 ) {
 		header('Location: ' . $boardLink . '/view/' . $insertID);
 	} else {

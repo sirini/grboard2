@@ -13,7 +13,7 @@ endif;
 <div class="boardWrite">
 	
 	<div class="boardWriteBox">
-	<form id="boardWriteForm" method="post" action="<?php echo $boardLink; ?>/write/<?php echo $postTarget; ?>">
+	<form id="boardWriteForm" method="post" action="<?php echo $boardLink; ?>/write/<?php echo $postTarget; ?>" enctype="multipart/form-data">
 	<div id="hiddenInputs">
 		<input type="hidden" name="grboard" value="<?php echo $grboard; ?>" />
 		<input type="hidden" name="writeProceed" value="yes" />
@@ -53,9 +53,11 @@ endif;
 					<div id="gr2dndMsg">이 곳에 업로드 할 파일을 끌어다 놓으세요</div>
 				</div>
 				<div class="clear"></div>
+				<input type="file" name="gr2files[]" title="첨부할 파일들을 직접 선택해 보세요" class="longWidth" multiple="true" />
 			</li>
+			
 			<li>
-				<?php if(array_key_exists('fid', $oldFile[0])): ?>
+				<?php if(isset($oldFile[0]['fid'])): ?>
 				<ul class="gr2fileList">
 				<?php foreach($oldFile as &$list): 
 					$fid = $list['fid'];

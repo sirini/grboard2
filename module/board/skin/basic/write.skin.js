@@ -72,7 +72,7 @@ $(function(){
 			            }
 			        }
 			    } 
-			}
+			};
 		}
 	};
 	
@@ -124,6 +124,7 @@ $(function(){
         setup: function(ed) {
             ed.on('submit', function(e) {
                 e.preventDefault();
+                
                 var subject = $("input[name=gr2subject]");
                 var content = ed.getContent();
                 if(subject.val() == "") {

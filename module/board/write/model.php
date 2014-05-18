@@ -68,11 +68,11 @@ class Model {
 		return $result;
 	}
 	
-	public function writePost($id, $post, $target) {
+	public function writePost($id, $post, $files, $target) {
 		if( !strlen(trim($post['gr2subject'])) || !strlen(trim($post['gr2content'])) ) {
 			return false;
 		}
-		
+				
 		$sessionKey = $this->common->getSessionKey();
 		if($target > 0) {
 			$oldData = $this->getOldData($id, $target);
@@ -186,7 +186,24 @@ class Model {
 				$this->db->query($queFileStr);
 			}
 		}
-
+		
+		if(strlen($files['gr2files']['name'][0]) > 0) {		
+			foreach($files['gr2files']['error'] as $key => $error) {
+				if($error == UPLOAD_ERR_OK) {
+					$tmpName = $files['gr2files']['tmp_name'][$key];
+					$name = str_replace(' ', '_', $files['gr2files']['name'][$key]);
+					$real = $moveDir . $name;
+					$hash = md5($name . time());
+					if(move_uploaded_file($tmpName, 'data/board/' . $id . date('/Y/m/d/') . $hash)) {
+						$hash = $moveDir . $hash;
+						$fileValueStr = '\'\',\'' . $id . '\',' . $insertID . ',' . $sessionKey . ',\'' . $real . '\',\'' . $hash . '\',' . time() . ',0';
+						$queFileStr = str_replace('{0}', $fileValueStr, $this->queArr['file_update']);
+						$this->db->query($queFileStr);	
+					}
+				}
+			}
+		}
+		
 		return $insertID;
 	}
 
