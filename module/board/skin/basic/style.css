@@ -403,7 +403,7 @@
 	border: #ddd 1px solid;
 	padding: 5px;
 	font-size: 12px;
-	width: 98%;
+	width: 100%;
 	height: 100px;
 	margin: 10px 0 10px 0;
 }
@@ -486,7 +486,7 @@
 /* DELETE */
 
 #GRBOARD2 div.boardDeleteBox div.deleteMsg {
-	padding: 20px;
+	padding: 10px;
 	margin: 0 0 20px 0;
 }
 
@@ -496,23 +496,8 @@
 	background-color: #ffffe7;
 	padding: 10px;
 	line-height: 160%;
-}
-
-#GRBOARD2 div.boardDeleteBox input[type=submit],
-#GRBOARD2 div.boardDeleteBox a {
-	border: #2aa 1px solid;
-	padding: 10px;
-	background-color: #2cc;
-	color: #fff;
-	width: 100px;
-	vertical-align: middle;
-	cursor: pointer;
-	height: 34px;
-}
-
-#GRBOARD2 div.boardDeleteBox a {
-	vertical-align: middle;
-	background-color: #499;
+	border-radius: 4px;
+	box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
 }
 
 /* COMMON CLASS */

@@ -18,7 +18,7 @@
 			<a href="#boardCommentForm" class="checkReply" rel="<?php echo $reply['no']; ?>" title="클릭 하시면 이 댓글에 대한 답글을 입력 하실 수 있습니다">&middot; reply</a>
 			
 			<?php if(isPermitted($reply['member_key'], $Common->getSessionKey())): ?>
-				<a href="<?php echo $boardLink; ?>/deletecomment/<?php echo $reply['no']; ?>" class="remove">&middot; remove</a>
+				<a href="<?php echo $boardLink; ?>/deletecomment/<?php echo $reply['no']; ?>" class="remove" title="클릭 하시면 이 댓글을 삭제 합니다.">&middot; remove</a>
 			<?php endif; ?>
 		</div>
 

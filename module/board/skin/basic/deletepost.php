@@ -21,8 +21,8 @@ $deleteTarget = (int)$_GET['articleNo'];
 			<div class="originalMsg"><?php echo $content; ?></div>		
 		</div>
 		
-		<input type="submit" value="OK" />
-		<a href="<?php echo $boardLink; ?>/list">Cancel</a>
+		<input type="submit" value="OK" class="gr-btn gr-btn-primary" />
+		<a href="<?php echo $boardLink; ?>/list" class="gr-btn gr-btn-danger">Cancel</a>
 	</form>
 	</div>
 
