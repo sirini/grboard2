@@ -6,6 +6,7 @@ $error = array(
 	'msg_write_fail' => '글 작성 실패!' ,
 	'msg_no_permission' => '글 작성 권한이 없습니다!' ,
 	'msg_modify_fail' => '글 수정 실패!' ,
-	'msg_spam_filter' => '스팸 방지 키가 틀림!'
+	'msg_spam_filter' => '스팸 방지 키가 틀림!' ,
+	'msg_file_size_exceeded' => '첨부 파일의 크기가 허용 용량을 초과 하였습니다.'
 );
 ?>

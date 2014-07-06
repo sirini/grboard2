@@ -72,7 +72,12 @@ class Model {
 		if( !strlen(trim($post['gr2subject'])) || !strlen(trim($post['gr2content'])) ) {
 			return false;
 		}
-				
+		
+		if(!is_dir('data/board/'.$id)) mkdir('data/board/'.$id, 0707);
+		if(!is_dir('data/board/'.$id.date('/Y'))) mkdir('data/board/'.$id.date('/Y'), 0707);
+		if(!is_dir('data/board/'.$id.date('/Y/m'))) mkdir('data/board/'.$id.date('/Y/m'), 0707);
+		if(!is_dir('data/board/'.$id.date('/Y/m/d'))) mkdir('data/board/'.$id.date('/Y/m/d'), 0707);
+						
 		$sessionKey = $this->common->getSessionKey();
 		if($target > 0) {
 			$oldData = $this->getOldData($id, $target);
@@ -135,7 +140,7 @@ class Model {
 			$post['gr2subject'] = htmlspecialchars($post['gr2subject']);
 			$post['gr2content'] = $puri->purify($post['gr2content']);
 		}
-		$post['gr2category'] = $this->escape($post['gr2category']);
+		if(isset($post['gr2category'])) $post['gr2category'] = $this->escape($post['gr2category']);
 		$post['gr2subject'] = $this->escape($post['gr2subject']);
 		$post['gr2content'] = $this->escape($post['gr2content']);
 		$post['gr2tag'] = $this->escape(strip_tags($post['gr2tag']));
@@ -186,9 +191,12 @@ class Model {
 				$this->db->query($queFileStr);
 			}
 		}
-		
+				
 		if(strlen($files['gr2files']['name'][0]) > 0) {		
 			foreach($files['gr2files']['error'] as $key => $error) {
+				if($files['gr2files']['size'][$key] > $this->getMaxUploadSize()) {
+					return -1;
+				}
 				if($error == UPLOAD_ERR_OK) {
 					$tmpName = $files['gr2files']['tmp_name'][$key];
 					$name = str_replace(' ', '_', $files['gr2files']['name'][$key]);
@@ -219,6 +227,26 @@ class Model {
 		} else {
 			return false;			
 		}
+	}
+	
+	public function getBytes($val) {
+		$val = trim($val);
+		$last = strtolower($val[strlen($val)-1]);
+		$num = (int)substr($val, 0, -1);
+		
+		switch($last) {
+			case 'g': $num *= 1024;
+			case 'm': $num *= 1024;
+			case 'k': $num *= 1024;
+		}
+		return $num;
+	}
+	
+	public function getMaxUploadSize() {
+		$maxUpload = $this->getBytes(ini_get('upload_max_filesize'));
+		$maxPost = $this->getBytes(ini_get('post_max_size'));
+		$memoryLimit = $this->getBytes(ini_get('memory_limit'));
+		return min($maxUpload, $maxPost, $memoryLimit);
 	}
 }
 ?>

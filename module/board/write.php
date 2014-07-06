@@ -27,11 +27,9 @@ if(isset($_POST['writeProceed'])) {
 	}
 	
 	$insertID = $Model->writePost($ext_id, $_POST, $_FILES, $target); 	
-	if( $insertID > 0 ) {
-		header('Location: ' . $boardLink . '/view/' . $insertID);
-	} else {
-		$Common->error($error['msg_write_fail']);
-	}
+	if( $insertID > 0 ) header('Location: ' . $boardLink . '/view/' . $insertID);
+	else if($insertID == -1) $Common->error($error['msg_file_size_exceeded']);
+	else $Common->error($error['msg_write_fail']);
 }
 
 $simplelock = substr(md5('GR_BOARD_2' . date('YmdHis') . $_SERVER['HTTP_HOST']), -5);
@@ -53,7 +51,7 @@ if(array_key_exists('articleNo', $_GET)) {
 	$oldFile = $Model->getOldFileList($ext_id, $postTarget);
 	
 	if($oldData['is_secret'] && !isPermitted($oldData['member_key'], $Common->getSessionKey())) {
-		$oldData['content'] = '<p class="red">비밀글 입니다.</p>';	
+		$oldData['content'] = '<p class="red">Secret post.</p>';	
 	}
 }
 

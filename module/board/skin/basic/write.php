@@ -18,6 +18,7 @@ endif;
 		<input type="hidden" name="grboard" value="<?php echo $grboard; ?>" />
 		<input type="hidden" name="writeProceed" value="yes" />
 		<input type="hidden" name="boardId" id="boardId" value="<?php echo $ext_id; ?>" />
+		<input type="hidden" name="MAX_FILE_SIZE" value="<?php echo $Model->getMaxUploadSize(); ?>" />
 	</div>
 		<ul>
 			<li>
