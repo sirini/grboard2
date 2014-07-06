@@ -23,22 +23,23 @@
 </h2>
 
 <div class="info">
-	<?php echo $boardPost['name']; ?> (<?php echo $boardPost['writer_id']; ?>)
+	&nbsp;&nbsp;&middot; <?php echo $boardPost['name']; ?> (<?php echo $boardPost['writer_id']; ?>)
 	<ul class="info">
-		<?php if($boardPost['homepage']): ?><li><a href="<?php echo $boardPost['homepage']; ?>" onclick="window.open(this.href, '_blank'); return false">(home)</a></li><?php endif; ?>
-		<li><?php echo date('Y.m.d H:i:s', $boardPost['signdate']); ?></li>
-		<li>hit(<?php echo $boardPost['hit']; ?>)</li>
-		<li>good(<?php echo $boardPost['good']; ?>)</li>
+		<?php if($boardPost['homepage']): ?><li>&middot; <a href="<?php echo $boardPost['homepage']; ?>" onclick="window.open(this.href, '_blank'); return false">homepage</a></li><?php endif; ?>
+		<li>&middot; <?php echo date('Y.m.d H:i:s', $boardPost['signdate']); ?></li>
+		<li>&middot; hit (<?php echo $boardPost['hit']; ?>)</li>
+		<li>&middot; good (<?php echo $boardPost['good']; ?>)</li>
 	</ul>
 </div>
 
 <div id="gr2viewContent" class="content"
-	data-push-userkey="<?php echo $userInfo['id']; ?>"
+	data-push-userkey="<?php echo (isset($userInfo['id']))?$userInfo['id']:''; ?>"
 	data-push-roomid="<?php echo $_SERVER['HTTP_HOST']; ?>">
 	<?php if($fileList != false): ?>
 	<ul class="fileList">
 		<?php foreach($fileList as &$file): ?>
-			<li> - <a href="/<?php echo $grboard; ?>/board/download/<?php echo $file['uid']; ?>" title="클릭 하시면 파일을 내려 받습니다"><?php echo $file['real_name']; ?></a></li>
+			<li>&middot; <?php echo $file['real_name']; ?>
+				&nbsp; <a href="/<?php echo $grboard; ?>/board/download/<?php echo $file['uid']; ?>" class="btn btn-info btn-sm" title="클릭 하시면 파일을 내려 받습니다">Download</a></li>
 		<?php endforeach; unset($file); ?>
 	</ul>
 	<?php endif; ?>
@@ -59,16 +60,15 @@ include 'view.comment.write.php';
 endif; ?>
 
 <ul class="viewBottoms">
-	<li><a href="<?php echo $boardLink; ?>/list/1">List</a></li>
-	<li><a href="<?php echo $boardLink; ?>/write">Write</a></li>
-	<?php if(isPermitted($boardPost['member_key'], $Common->getSessionKey())): ?>
-		<li><a href="<?php echo $boardLink; ?>/deletepost/<?php echo $boardPost['no']; ?>">Delete</a></li>
-		<li><a href="<?php echo $boardLink; ?>/write/<?php echo $boardPost['no']; ?>">Modify</a></li>
-	<?php endif; ?>
+	<li><a href="<?php echo $boardLink; ?>/list/1" class="btn btn-default">List</a></li>
+	<li><a href="<?php echo $boardLink; ?>/write" class="btn btn-default">Write</a></li>
 	<?php if (!$Common->getSessionKey()): ?>
-		<li><a href="<?php echo $boardLink; ?>/login">Login</a></li>
+		<li><a href="<?php echo $boardLink; ?>/login" class="btn btn-default">Login</a></li>
 	<?php else: ?>
-		<li><a href="<?php echo $boardLink; ?>/logout">Logout</a></li>
+		<li><a href="<?php echo $boardLink; ?>/logout" class="btn btn-default">Logout</a></li>
+	<?php endif; if(isPermitted($boardPost['member_key'], $Common->getSessionKey())): ?>
+		<li><a href="<?php echo $boardLink; ?>/write/<?php echo $boardPost['no']; ?>" class="btn btn-default">Modify</a></li>
+		<li><a href="<?php echo $boardLink; ?>/deletepost/<?php echo $boardPost['no']; ?>" class="btn btn-danger">Delete</a></li>
 	<?php endif; ?>
 </ul>
 

@@ -16,7 +16,7 @@
 <?php endif; ?>
 
 <div class="table-responsive">
-<table rules="none">
+<table rules="none" class="table">
 <colgroup>
 	<col class="no" />
 	<col class="subject" />
@@ -44,7 +44,7 @@ if(isset($boardNotice[0]['no'])):
 	<td class="no"><?php echo $notice['no']; ?></td>
 	<td class="subject"><a href="<?php echo $link; ?>"><?php echo $notice['subject']; ?></a> 
 		<?php if($notice['comment_count'] > 0): ?>
-			<span>[<?php echo $notice['comment_count']; ?>]</span>
+			<span class="badge"><?php echo $notice['comment_count']; ?></span>
 		<?php endif; ?>
 	</td>
 	<td class="name"><?php echo $notice['name']; ?></td>
@@ -70,7 +70,7 @@ if(isset($boardPost[0]['no'])):
 		<?php endif; ?>
 		<a href="<?php echo $link; ?>"><?php echo $post['subject']; ?></a>
 		<?php if($post['comment_count'] > 0): ?>
-			<span class="comment">[<?php echo $post['comment_count']; ?>]</span>
+			<span class="badge"><?php echo $post['comment_count']; ?></span>
 		<?php endif; ?>	
 	</td>
 	<td class="name"><?php echo $post['name']; ?></td>
@@ -98,7 +98,7 @@ if(isset($option)) {
 ?>
 
 <footer>
-	<ul class="pages">
+	<ul class="pagination">
 		<?php if($boardNowBlock > 1): ?>
 			<li><a href="<?php echo $prevLink; ?>" class="prevPage">Prev</a></li>
 		<?php endif; ?>
@@ -114,24 +114,24 @@ if(isset($option)) {
 
 	<ul class="buttons">
 		
+		<li><a href="<?php echo $boardLink; ?>/write" class="btn btn-primary">Write</a></li>
 		<?php if($Common->getSessionKey() == 0): ?>
-			<li><a href="<?php echo $boardLink; ?>/login">Login</a></li>
-			<li><a href="<?php echo $boardLink; ?>/join">Join</a></li>
-		<?php elseif($Common->getSessionKey() == 1): ?>
-			<li><a href="/<?php echo $grboard; ?>/board/admin/modify2board/<?php echo $boardInfo['no']; ?>">Admin</a></li>
+			<li><a href="<?php echo $boardLink; ?>/login" class="btn btn-default">Login</a></li>
+			<li><a href="<?php echo $boardLink; ?>/join" class="btn btn-default">Join</a></li>
 		<?php endif; if($Common->getSessionKey() > 0): ?>
-			<li><a href="<?php echo $boardLink; ?>/memo">Message</a></li>
-			<li><a href="<?php echo $boardLink; ?>/logout">Logout</a></li>
+			<li><a href="<?php echo $boardLink; ?>/memo" class="btn btn-default">Message</a></li>
+			<li><a href="<?php echo $boardLink; ?>/logout" class="btn btn-default">Logout</a></li>
 		<?php endif; ?>
-
-		<li><a href="<?php echo $boardLink; ?>/list/1">List</a></li>
-		<li><a href="<?php echo $boardLink; ?>/write">Write</a></li>
+		<li><a href="<?php echo $boardLink; ?>/list/1" class="btn btn-default">List</a></li>
+		<?php if($Common->getSessionKey() == 1): ?>
+			<li><a href="/<?php echo $grboard; ?>/board/admin/modify2board/<?php echo $boardInfo['no']; ?>" class="btn btn-info">Admin</a></li>
+		<?php endif; ?>
 
 	</ul>
 	
 	<div class="searchBox">
 		<div class="searchInput">
-			<form id="gr2searchForm" method="get" action="./">
+			<form id="gr2searchForm" method="get" action="./" class="form">
 				<div class="hiddenInputs">
 					<input type="hidden" name="boardId" value="<?php echo $ext_id; ?>" />
 					<input type="hidden" name="page" value="<?php echo $ext_page; ?>" />
@@ -142,8 +142,8 @@ if(isset($option)) {
 					<option value="tag" <?php echo (isset($option) && $option == 'tag') ? 'selected="true"':''; ?>>Tag</option>
 					<option value="name" <?php echo (isset($option) && $option == 'name') ? 'selected="true"':''; ?>>Name</option>
 				</select>
-				<input type="search" name="value" value="<?php echo (isset($value)) ? $value:''; ?>" />
-				<input type="submit" value="Search" />
+				<input type="search" name="value" class="form-control" value="<?php echo (isset($value)) ? $value:''; ?>" />
+				<input type="submit" value="Search" class="btn btn-default" />
 			</form>
 		</div>
 	</div>

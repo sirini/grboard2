@@ -40,7 +40,7 @@ class Model {
 		$result = $this->db->fetch($que);
 		$this->db->free($que);
 		$writer = $this->getUserInfo($result['member_key']);
-		$result['writer_id'] = $writer['id'];
+		$result['writer_id'] = (isset($writer['id']))?$writer['id']:'';
 		foreach($result as &$column) {
 			$column = stripslashes($column);
 		}
