@@ -9,7 +9,7 @@
 		</div>
 		<ul class="inputs">
 			<?php if (!$Common->getSessionKey()): ?>
-			<li><input type="text" name="simplelock" placeholder="(필수) 우측의 4자리 키 값 입력!" class="gr-form-input" /> &middot;&middot;&middot; <strong>Spam</strong> [<strong><?php echo $simplelock; ?></strong>]</li>
+			<li><input type="text" name="simplelock" placeholder="(필수) 우측의 4자리 키 값 입력!" class="gr-form-input" /> &middot;&middot;&middot; [<strong><?php echo $simplelock; ?></strong>]</li>
 			<li><input type="text" name="name" placeholder="(필수) 이름" class="gr-form-input" /> &middot;&middot;&middot; <strong>Name</strong></li>
 			<li><input type="password" name="password" placeholder="(필수) 비밀번호" class="gr-form-input" /> &middot;&middot;&middot; <strong>Pass</strong></li>
 			<li><input type="email" name="email" placeholder="이메일" class="gr-form-input" /> &middot;&middot;&middot; email</li>

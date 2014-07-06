@@ -70,7 +70,7 @@ endif;
 				</ul>
 				<?php endif; ?>
 			</li>			
-			<li><textarea id="gr2content" class="form-input"><?php echo $oldData['content']; ?></textarea></li>
+			<li><textarea id="gr2content" class="gr-form-input"><?php echo $oldData['content']; ?></textarea></li>
 			<li><input type="text" name="gr2tag" value="<?php echo $oldData['tag']; ?>" placeholder="글의 핵심 단어들을 태킹 (쉼표로 구분: 공지,감사합니다,사랑)" class="gr-form-input longWidth" /></li>
 		</ul>
 		

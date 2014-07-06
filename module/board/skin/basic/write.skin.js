@@ -111,36 +111,39 @@ $(function(){
 		gr2write.readFile(e.dataTransfer.files);
 	};
 	
-    $("head").append("<script src=\"/" + gr2write.grboard + "/lib/tinymce/tinymce.min.js\"></script>");
-    tinymce.init({
-        selector: "textarea#gr2content",
-        plugins: [
-            "advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker",
-            "searchreplace visualblocks visualchars code fullscreen insertdatetime media nonbreaking",
-            "save table contextmenu directionality emoticons template paste textcolor"      
-        ],
-        content_css: "/" + gr2write.grboard + "/module/board/skin/basic/editor.css",
-        forced_root_block : false,
-        setup: function(ed) {
-            ed.on('submit', function(e) {
-                e.preventDefault();
-                
-                var subject = $("input[name=gr2subject]");
-                var content = ed.getContent();
-                if(subject.val() == "") {
-                    alert("글 제목을 입력해 주세요");
-                    subject.focus();
-                    return false;
-                }
-                if(content == "") {
-                    alert("글 내용을 입력해 주세요");
-                    return false;
-                }
-                gr2write.hidden.append("<input type=\"hidden\" name=\"gr2content\" value=\"" + content.replace(/"/g, "[bigquote]") + "\" />");
-                gr2write.writeForm.submit();
-                return false;   
-            });
-        },
-        toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | print preview media fullpage | forecolor backcolor emoticons"
-    });
+	var winWidth = $(window).width();
+	if(winWidth > 640) {
+	    $("head").append("<script src=\"/" + gr2write.grboard + "/lib/tinymce/tinymce.min.js\"></script>");
+	    tinymce.init({
+	        selector: "textarea#gr2content",
+	        plugins: [
+	            "advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker",
+	            "searchreplace visualblocks visualchars code fullscreen insertdatetime media nonbreaking",
+	            "save table contextmenu directionality emoticons template paste textcolor"      
+	        ],
+	        content_css: "/" + gr2write.grboard + "/module/board/skin/basic/editor.css",
+	        forced_root_block : false,
+	        setup: function(ed) {
+	            ed.on('submit', function(e) {
+	                e.preventDefault();
+	                
+	                var subject = $("input[name=gr2subject]");
+	                var content = ed.getContent();
+	                if(subject.val() == "") {
+	                    alert("글 제목을 입력해 주세요");
+	                    subject.focus();
+	                    return false;
+	                }
+	                if(content == "") {
+	                    alert("글 내용을 입력해 주세요");
+	                    return false;
+	                }
+	                gr2write.hidden.append("<input type=\"hidden\" name=\"gr2content\" value=\"" + content.replace(/"/g, "[bigquote]") + "\" />");
+	                gr2write.writeForm.submit();
+	                return false;   
+	            });
+	        },
+	        toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | print preview media fullpage | forecolor backcolor emoticons"
+	    });
+	} 
 });
