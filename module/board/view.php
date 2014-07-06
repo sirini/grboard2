@@ -12,6 +12,7 @@ if($userInfo['level'] < $boardInfo['view_level']) {
 	$Common->error($error['msg_no_permission'], $boardLink . '/list/1');
 }
 $boardCategory = $Model->getBoardCategory($ext_id);
+$Model->updateHit($ext_id, $ext_articleNo);
 $boardPost = $Model->getPost($ext_id, $ext_articleNo);
 $replyList = $Model->getReplyList($ext_id, $ext_articleNo);
 $skinResourcePath = '/' . $grboard . '/module/board/skin/' . $boardInfo['theme'];
@@ -19,7 +20,6 @@ $skinPath = 'module/board/skin/' . $boardInfo['theme'];
 $boardLink = '/' . $grboard . '/board-' . $ext_id;
 $simplelock = substr(md5($boardPost['no'] . 'GR_BOARD_2' . date('YmdH')), -4);
 $fileList = $Model->getFileList($ext_id, $ext_articleNo);
-$Model->updateHit($ext_id, $ext_articleNo);
 
 function isPermitted($db_key, $now_session) {
 	if($now_session == 1) return true;

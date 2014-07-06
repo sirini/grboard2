@@ -21,7 +21,7 @@ endif;
 	</div>
 		<ul>
 			<li>
-				<?php if($Common->getSessionKey()): ?>
+				<?php if($Common->getSessionKey() == 1): ?>
 					<input type="checkbox" name="isNotice" value="1" <?php echo ($oldData['is_notice']) ? 'checked="true"':''; ?> />notice
 				<?php endif; ?>
 				<input type="checkbox" name="isSecret" value="1" <?php echo ($oldData['is_secret']) ? 'checked="true"':''; ?> />secret 
