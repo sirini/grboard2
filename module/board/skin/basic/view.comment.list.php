@@ -8,8 +8,8 @@
 			$reply['content'] = '<span class="red">비밀글 입니다</span>';
 		endif;
 	?>
-	<div class="panel panel-default" style="margin-left: <?php echo ($reply['thread'] * 40); ?>px">	
-		<div class="panel-heading">
+	<div class="gr-panel gr-panel-default" style="margin-left: <?php echo ($reply['thread'] * 40); ?>px">	
+		<div class="gr-panel-heading">
 			&middot; <?php if($reply['member_key'] > 0): ?><strong><?php echo $reply['name']; ?></strong>
 			<?php else: echo $reply['name']; endif; ?> 
 			<?php if($reply['homepage']): ?>&middot; <a href="<?php echo $reply['homepage']; ?>" onclick="window.open(this.href, '_blank'); return false">homepage</a><?php endif; ?>
@@ -22,7 +22,7 @@
 			<?php endif; ?>
 		</div>
 
-		<div id="boardReplyContent_<?php echo $reply['no']; ?>" class="panel-body"><?php echo $reply['content']; ?></div>
+		<div id="boardReplyContent_<?php echo $reply['no']; ?>" class="gr-panel-body"><?php echo $reply['content']; ?></div>
 		
 	</div>
 	<?php endforeach; unset($reply); ?>

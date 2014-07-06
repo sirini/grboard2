@@ -16,7 +16,7 @@
 <?php endif; ?>
 
 <div class="table-responsive">
-<table rules="none" class="table">
+<table rules="none" class="gr-table">
 <colgroup>
 	<col class="no" />
 	<col class="subject" />
@@ -44,7 +44,7 @@ if(isset($boardNotice[0]['no'])):
 	<td class="no"><?php echo $notice['no']; ?></td>
 	<td class="subject"><a href="<?php echo $link; ?>"><?php echo $notice['subject']; ?></a> 
 		<?php if($notice['comment_count'] > 0): ?>
-			<span class="badge"><?php echo $notice['comment_count']; ?></span>
+			<span class="gr-badge"><?php echo $notice['comment_count']; ?></span>
 		<?php endif; ?>
 	</td>
 	<td class="name"><?php echo $notice['name']; ?></td>
@@ -70,7 +70,7 @@ if(isset($boardPost[0]['no'])):
 		<?php endif; ?>
 		<a href="<?php echo $link; ?>"><?php echo $post['subject']; ?></a>
 		<?php if($post['comment_count'] > 0): ?>
-			<span class="badge"><?php echo $post['comment_count']; ?></span>
+			<span class="gr-badge"><?php echo $post['comment_count']; ?></span>
 		<?php endif; ?>	
 	</td>
 	<td class="name"><?php echo $post['name']; ?></td>
@@ -98,40 +98,40 @@ if(isset($option)) {
 ?>
 
 <footer>
-	<ul class="pagination">
+	<ul class="gr-pagination">
 		<?php if($boardNowBlock > 1): ?>
-			<li><a href="<?php echo $prevLink; ?>" class="prevPage">Prev</a></li>
+			<li><a href="<?php echo $prevLink; ?>">Prev</a></li>
 		<?php endif; ?>
 
 		<?php foreach($boardPaging as &$pageNo): ?>
-			<li><span class="pageNo"><a href="<?php echo $pageLink . $pageNo; ?>"><?php echo $pageNo; ?></a></span></li>
+			<li><a href="<?php echo $pageLink . $pageNo; ?>"><?php echo $pageNo; ?></a></li>
 		<?php endforeach; unset($pageNo); ?>
 
 		<?php if($boardNowBlock < $boardTotalBlock): ?>
-			<li><a href="<?php echo $nextLink; ?>" class="prevPage">Next</a></li>
+			<li><a href="<?php echo $nextLink; ?>">Next</a></li>
 		<?php endif; ?>
 	</ul>
 
 	<ul class="buttons">
 		
-		<li><a href="<?php echo $boardLink; ?>/write" class="btn btn-primary">Write</a></li>
+		<li><a href="<?php echo $boardLink; ?>/write" class="gr-btn gr-btn-primary">Write</a></li>
 		<?php if($Common->getSessionKey() == 0): ?>
-			<li><a href="<?php echo $boardLink; ?>/login" class="btn btn-default">Login</a></li>
-			<li><a href="<?php echo $boardLink; ?>/join" class="btn btn-default">Join</a></li>
+			<li><a href="<?php echo $boardLink; ?>/login" class="gr-btn gr-btn-default">Login</a></li>
+			<li><a href="<?php echo $boardLink; ?>/join" class="gr-btn gr-btn-default">Join</a></li>
 		<?php endif; if($Common->getSessionKey() > 0): ?>
-			<li><a href="<?php echo $boardLink; ?>/memo" class="btn btn-default">Message</a></li>
-			<li><a href="<?php echo $boardLink; ?>/logout" class="btn btn-default">Logout</a></li>
+			<li><a href="<?php echo $boardLink; ?>/memo" class="gr-btn gr-btn-default">Message</a></li>
+			<li><a href="<?php echo $boardLink; ?>/logout" class="gr-btn gr-btn-default">Logout</a></li>
 		<?php endif; ?>
-		<li><a href="<?php echo $boardLink; ?>/list/1" class="btn btn-default">List</a></li>
+		<li><a href="<?php echo $boardLink; ?>/list/1" class="gr-btn gr-btn-default">List</a></li>
 		<?php if($Common->getSessionKey() == 1): ?>
-			<li><a href="/<?php echo $grboard; ?>/board/admin/modify2board/<?php echo $boardInfo['no']; ?>" class="btn btn-info">Admin</a></li>
+			<li><a href="/<?php echo $grboard; ?>/board/admin/modify2board/<?php echo $boardInfo['no']; ?>" class="gr-btn gr-btn-info">Admin</a></li>
 		<?php endif; ?>
 
 	</ul>
 	
 	<div class="searchBox">
 		<div class="searchInput">
-			<form id="gr2searchForm" method="get" action="./" class="form">
+			<form id="gr2searchForm" method="get" action="./" class="gr-form">
 				<div class="hiddenInputs">
 					<input type="hidden" name="boardId" value="<?php echo $ext_id; ?>" />
 					<input type="hidden" name="page" value="<?php echo $ext_page; ?>" />
@@ -142,8 +142,8 @@ if(isset($option)) {
 					<option value="tag" <?php echo (isset($option) && $option == 'tag') ? 'selected="true"':''; ?>>Tag</option>
 					<option value="name" <?php echo (isset($option) && $option == 'name') ? 'selected="true"':''; ?>>Name</option>
 				</select>
-				<input type="search" name="value" class="form-control" value="<?php echo (isset($value)) ? $value:''; ?>" />
-				<input type="submit" value="Search" class="btn btn-default" />
+				<input type="search" name="value" value="<?php echo (isset($value)) ? $value:''; ?>" />
+				<input type="submit" value="Search" class="gr-btn gr-btn-default" />
 			</form>
 		</div>
 	</div>

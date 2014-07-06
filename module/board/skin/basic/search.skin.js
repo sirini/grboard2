@@ -1,7 +1,8 @@
 $(function(){
+	var grboard = '';
    $("#gr2searchForm").submit(function(event){
        event.preventDefault();
-       var grboard = $("#GRBOARD2").attr("rel");
+       grboard = $("#GRBOARD2").attr("rel");
        var id = $("#gr2searchForm input[name=boardId]").val();
        var option = $("#gr2searchForm select[name=option]").val();
        var value = $("#gr2searchForm input[name=value]").val();
