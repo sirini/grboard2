@@ -25,6 +25,11 @@ class Model {
 		$this->db->free($que);
 		return $result;
 	}
+	
+	public function getUserId($userKey) {
+		$result = $this->getData('{0}', (int)$userKey, 'get_user_id');
+		return $result['id'];
+	}
 
 	public function getBoardInfo($id) {
 		$queStr = str_replace('{0}', $id, $this->queArr['get_board_info']);

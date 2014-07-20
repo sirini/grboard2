@@ -1,6 +1,7 @@
 <?php
 $query = array(
 	'get_user_info' => 'select * from ' . $db_prefix_board . 'member_list where no = {0}' ,
+	'get_user_id' => 'select id from ' . $db_prefix_board . 'member_list where no = {0} limit 1' ,
 	'get_board_info' => 'select * from ' . $db_prefix_board . 'board_list where id = \'{0}\'' ,
 	'get_board_category' => 'select category from ' . $db_prefix_board . 'board_list where id = \'{0}\'' ,
 	'get_reply_list' => 'select * from ' . $db_prefix_board . 'comment_{0} where board_no = {1} order by family_no asc, no asc' ,

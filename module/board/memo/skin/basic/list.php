@@ -30,7 +30,7 @@
 					$content = '<span class="text-muted">' . $content . '</span>';
 					$from = '<span class="text-muted">' . $from . '</span>';
 					$date = '<span class="text-muted">' . $date . '</span>';
-					$status = '<span class="text-primary">' . $status . '</span>';
+					$status = '<span class="text-primary">sent</span>';
 				endif;
 		?>
 		<tr>

@@ -1,6 +1,10 @@
 <?php if(!defined('GR_BOARD_2')) exit(); ?>
 
-<div id="GRBOARD2" rel="<?php echo $grboard; ?>" data-board-id="<?php echo $ext_id; ?>">
+<div id="GRBOARD2" rel="<?php echo $grboard; ?>" 
+	data-board-id="<?php echo $ext_id; ?>"
+	data-board-no="<?php echo $boardPost['no']; ?>"
+	data-push-userkey="<?php echo (isset($userInfo['id']))?$userInfo['id']:''; ?>"
+	data-push-roomid="<?php echo $_SERVER['HTTP_HOST']; ?>">
 
 <?php if(isset($boardCategory[0])): ?>
 <header>
@@ -23,7 +27,7 @@
 </h2>
 
 <div class="info">
-	&nbsp;&nbsp;&middot; <?php echo $boardPost['name']; ?> (<?php echo $boardPost['writer_id']; ?>)
+	&nbsp;&nbsp;&middot; <?php echo $boardPost['name']; ?> (<span id="gr2userId"><?php echo $boardPost['writer_id']; ?></span>)
 	<ul class="info">
 		<?php if($boardPost['homepage']): ?><li>&middot; <a href="<?php echo $boardPost['homepage']; ?>" onclick="window.open(this.href, '_blank'); return false">homepage</a></li><?php endif; ?>
 		<li>&middot; <?php echo date('Y.m.d H:i:s', $boardPost['signdate']); ?></li>
@@ -32,9 +36,7 @@
 	</ul>
 </div>
 
-<div id="gr2viewContent" class="content"
-	data-push-userkey="<?php echo (isset($userInfo['id']))?$userInfo['id']:''; ?>"
-	data-push-roomid="<?php echo $_SERVER['HTTP_HOST']; ?>">
+<div id="gr2viewContent" class="content">
 	<?php if($fileList != false): ?>
 	<ul class="fileList">
 		<?php foreach($fileList as &$file): ?>

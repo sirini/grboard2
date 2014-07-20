@@ -15,10 +15,10 @@
 			<li><input type="email" name="email" placeholder="이메일" class="gr-form-input" /> &middot;&middot;&middot; email</li>
 			<li><input type="url" name="homepage" placeholder="웹사이트" class="gr-form-input" /> &middot;&middot;&middot; homepage</li>
 			<?php endif; ?>
-			<li><input type="checkbox" name="secret" value="1" /> &middot;&middot;&middot; Secret (비밀글일 시 체크)</li>
+			<li><input type="checkbox" name="secret" value="1" /> &middot;&middot;&middot; Secret</li>
 
 			<li><textarea name="content" placeholder="답글 입력" class="gr-form-input"></textarea></li>
-			<li><input type="submit" value="Send" class="gr-btn gr-btn-primary" /></li>
+			<li><input id="gr2sendComment" type="submit" value="Send" class="gr-btn gr-btn-primary" /></li>
 		</ul>
 	</form>
 
