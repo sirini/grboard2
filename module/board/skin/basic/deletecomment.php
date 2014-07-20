@@ -1,8 +1,4 @@
-<?php 
-if(!defined('GR_BOARD_2')) exit(); 
-
-$deleteTarget = (int)$_GET['commentNo'];
-?>
+<?php if(!defined('GR_BOARD_2')) exit(); ?>
 
 <div id="GRBOARD2">
 
@@ -11,7 +7,7 @@ $deleteTarget = (int)$_GET['commentNo'];
 <div class="boardDelete">
 	
 	<div class="boardDeleteBox">
-	<form id="boardDeleteForm" method="post" action="<?php echo $boardLink; ?>/deletecomment/<?php echo $deleteTarget; ?>">
+	<form id="boardDeleteForm" method="post" action="<?php echo $boardLink; ?>/deletecomment/<?php echo $comment; ?>">
 		<div>
 			<input type="hidden" name="deleteProceed" value="yes" />
 			<input type="hidden" name="postUID" value="<?php echo $postUID; ?>" />

@@ -29,7 +29,8 @@ function isPermitted($db_key, $now_session) {
 }
 
 if($boardPost['is_secret'] && !isPermitted($boardPost['member_key'], $Common->getSessionKey())) {
-	$boardPost['content'] = '<p class="red">비밀글 입니다.</p>';	
+	$boardPost['name'] = 'Hidden';
+	$boardPost['content'] = '<p class="red">Secret post.</p>';	
 }
 
 include 'skin/' . $boardInfo['theme'] . '/index.php';

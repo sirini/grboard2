@@ -156,9 +156,7 @@
 }
 
 #GRBOARD2 form.gr-form {
-	padding: 10px 15px;
-	margin-top: 8px;
-	margin-bottom: 8px;
+	margin: 8px 10px 8px 10px;
 	border-top: 1px solid transparent;
 	border-bottom: 1px solid transparent;	
 }
@@ -175,7 +173,7 @@
 }
 
 #GRBOARD2 form.gr-form .gr-form-input {
-	margin-bottom: 3px; 
+	margin: 0 0 5px 0; 
 	padding: 5px;
 	font-size: 14px;
 	line-height: 1.42;
@@ -423,12 +421,9 @@ and (max-device-width: 650px) {
 }
 
 #GRBOARD2 ul.inputs textarea {
-	border: #ddd 1px solid;
-	padding: 5px;
-	font-size: 12px;
+	font-size: 11px;
 	width: 100%;
 	height: 100px;
-	margin: 10px 0 10px 0;
 }
 
 #GRBOARD2 ul.inputs li input[type=submit] {

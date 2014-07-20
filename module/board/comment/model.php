@@ -69,5 +69,18 @@ class Model {
 		$this->db->query($queIncStr);
 		return $result;
 	}
+
+	public function modifyComment($id, $content, $coID, $isSecret) {
+		$content = $this->escape($content);
+		$sessionKey = $this->common->getSessionKey();
+		if($sessionKey != 1) {
+			$content = htmlspecialchars($content);
+		}
+		$content = str_replace(array("\r\n", "\r", "\n"), '<br />', $content);
+		$modifyStr = 'content = \''.$content.'\', is_secret = ' . (int)$isSecret;
+		$queStr = str_replace(array('{0}', '{1}', '{2}'), array($id, $modifyStr, $coID), $this->queArr['modify_comment']);
+		$result = $this->db->query($queStr);
+		return $result;
+	}
 }
 ?>
