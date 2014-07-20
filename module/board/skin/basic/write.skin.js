@@ -10,6 +10,7 @@ $(function(){
 		boardId: $("#boardId"),
 		jDropzone: $("#gr2dndUpload"),
 		writeForm: $("#boardWriteForm").get(0),
+		writeCancel: $("#gr2writeCancelBtn"),
 
 		previewImage: function(file) {
 		    var imgTag = "<img class=\"preview\" src=\"" + file + "\" border=\"0\" title=\"더블 클릭 시 삭제\" />";
@@ -110,6 +111,14 @@ $(function(){
 		e.preventDefault();
 		gr2write.readFile(e.dataTransfer.files);
 	};
+	
+	gr2write.writeCancel.click(function(){
+		if(gr2write.content.html() != '' || tinymce.activeEditor.getContent() != '') {
+			if(!confirm('정말로 글 작성을 취소 하시겠습니까?')) {
+				return false;
+			}
+		}
+	});
 	
 	var winWidth = $(window).width();
 	if(winWidth > 640) {

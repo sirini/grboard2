@@ -76,7 +76,7 @@ endif;
 		
 		<div class="text-right">
 			<input type="submit" value="Submit" class="gr-btn gr-btn-primary" />
-			<a href="<?php echo $boardLink; ?>/list/1" class="gr-btn gr-btn-danger">Cancel</a>
+			<a href="<?php echo $boardLink; ?>/list/1" id="gr2writeCancelBtn" class="gr-btn gr-btn-danger">Cancel</a>
 		</div>
 		
 	</form>
