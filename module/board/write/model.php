@@ -68,64 +68,58 @@ class Model {
 		return $result;
 	}
 	
-	public function writePost($id, $post, $files, $target) {
-		if( !strlen(trim($post['gr2subject'])) || !strlen(trim($post['gr2content'])) ) {
-			return false;
-		}
-		
+	private function makeDirectoryByYmd($id) {
 		if(!is_dir('data/board/'.$id)) mkdir('data/board/'.$id, 0707);
 		if(!is_dir('data/board/'.$id.date('/Y'))) mkdir('data/board/'.$id.date('/Y'), 0707);
 		if(!is_dir('data/board/'.$id.date('/Y/m'))) mkdir('data/board/'.$id.date('/Y/m'), 0707);
 		if(!is_dir('data/board/'.$id.date('/Y/m/d'))) mkdir('data/board/'.$id.date('/Y/m/d'), 0707);
-						
-		$sessionKey = $this->common->getSessionKey();
-		if($target > 0) {
-			$oldData = $this->getOldData($id, $target);
-			if ($sessionKey > 0) {
-				$post['gr2name'] = $oldData['name'];
-				$post['gr2email'] = $oldData['email'];
-				$post['gr2homepage'] = $oldData['homepage'];
-				$post['gr2password'] = $oldData['password'];
-			} else {
-				if(strlen(trim($post['gr2name'])) == 0) return false;
-				if(strlen(trim($post['gr2password'])) == 0) return false;
-				$post['gr2password'] = md5($post['gr2password']);
-			}
+	}
+	
+	private function prepareModifyPost($id, $target, &$post, &$oldData, $sessionKey) {
+		if ($sessionKey > 0) {
+			$post['gr2name'] = $oldData['name'];
+			$post['gr2email'] = $oldData['email'];
+			$post['gr2homepage'] = $oldData['homepage'];
+			$post['gr2password'] = $oldData['password'];
 		} else {
-			if ($sessionKey > 0) {
-				$queWriterStr = str_replace(array('{0}', '{1}'), array('nickname, email, homepage, password', $sessionKey), 
-					$this->queArr['get_writer_info']);
-				$queWriter = $this->db->query($queWriterStr);
-				$writer = $this->db->fetch($queWriter);
-				$this->db->free($queWriter);
-				$post['gr2name'] = $writer['nickname'];
-				$post['gr2email'] = $writer['email'];
-				$post['gr2homepage'] = $writer['homepage'];
-				$post['gr2password'] = $writer['password'];
-			} else {
-				if(strlen(trim($post['gr2name'])) == 0) return false;
-				if(strlen(trim($post['gr2password'])) == 0) return false;
-				$post['gr2password'] = md5($post['gr2password']);
-			}
+			if(strlen(trim($post['gr2name'])) == 0) return false;
+			if(strlen(trim($post['gr2password'])) == 0) return false;
+			$post['gr2password'] = md5($post['gr2password']);
 		}
-		
+		return $oldData;
+	}
+
+	private function getWriterInfo($sessionKey) {
+		if($sessionKey < 1) return array();
+		$queWriterStr = str_replace(array('{0}', '{1}'), array('nickname, email, homepage, password', $sessionKey), 
+		$this->queArr['get_writer_info']);
+		$writer = $this->db->getData($queWriterStr);
+		return $writer;
+	}
+
+	private function prepareNewPost($id, $target, $sessionKey, &$post, &$writer) {
+		if ($sessionKey > 0) {
+			$post['gr2name'] = $writer['nickname'];
+			$post['gr2email'] = $writer['email'];
+			$post['gr2homepage'] = $writer['homepage'];
+			$post['gr2password'] = $writer['password'];
+		} else {
+			if(strlen(trim($post['gr2name'])) == 0) return false;
+			if(strlen(trim($post['gr2password'])) == 0) return false;
+			$post['gr2password'] = md5($post['gr2password']);
+		}
+	}
+	
+	private function isCorrectPassword($target, $sessionKey, &$post, &$oldData) {
 		if($target > 0 && $sessionKey != 1) {		
 			if(strlen(trim($post['gr2password'])) > 0 && ($post['gr2password'] != $oldData['password'])) {
 				return false;
 			}
 		}
+		return true;
+	}
 	
-		if( $sessionKey == 1 && array_key_exists('isNotice', $post) ) $isNotice = 1; else $isNotice = 0;
-		if( array_key_exists('isSecret', $post) ) $isSecret = 1; else $isSecret = 0;
-		if( array_key_exists('isReplyable', $post) ) $isReplyable = 1; else $isReplyable = 0;
-		if( array_key_exists('hashfiles', $post) ) $isDndUploaded = 1; else $isDndUploaded = 0;
-
-		$tempDir = '__gr2_dnd_temp__/';
-		$originalDir = $id . date('/Y/m/d/');
-		$oldDir = '/' . $post['grboard'] . '/data/board/' . $tempDir;
-		$moveDir = '/' . $post['grboard'] . '/data/board/' . $originalDir;
-		$renameDir = 'data/board/' . $originalDir;
-
+	private function makeValidParameters(&$post, $sessionKey, $oldDir, $tempDir, $moveDir, $originalDir) {
 		$post['gr2name'] = $this->escape(htmlspecialchars($post['gr2name']));
 		$post['gr2email'] = $this->escape(htmlspecialchars($post['gr2email']));
 		$post['gr2homepage'] = $this->escape(htmlspecialchars($post['gr2homepage']));
@@ -144,73 +138,104 @@ class Model {
 		$post['gr2subject'] = $this->escape($post['gr2subject']);
 		$post['gr2content'] = $this->escape($post['gr2content']);
 		$post['gr2tag'] = $this->escape(strip_tags($post['gr2tag']));
+	}
 
-		$queWriterStr = str_replace(array('{0}', '{1}'), array('id', $sessionKey), $this->queArr['get_writer_info']);
-		$queWriter = $this->db->query($queWriterStr);
-		$writer = $this->db->fetch($queWriter);
-		$this->db->free($queWriter);
+	private function writingModifiedPost($id, &$post, $isNotice, $isSecret, $target) {
+		if(array_key_exists('deleteFileList', $post)) {
+			foreach($post['deleteFileList'] as &$fid) {
+				$queDelFilePath = str_replace('{0}', $fid, $this->queArr['get_delete_file_path']);
+				$queDelFile = $this->db->query($queDelFilePath);
+				$fetDelFile = $this->db->fetch($queDelFile);
+				$delPath = str_replace('/' . $post['grboard'] . '/', '', $fetDelFile['hash_name']);
+				if(file_exists($delPath)) unlink($delPath);
+				$queDelFileDB = str_replace('{0}', $fid, $this->queArr['delete_file']);
+				$this->db->query($queDelFileDB);
+				$this->db->free($queDelFile);
+			}
+		}				
+		$valueStr = 'name = \'' . $post['gr2name'] . '\', email = \''.$post['gr2email'].'\', homepage = \'' . $post['gr2homepage'] . 
+			'\', is_notice = \'' . $isNotice . '\', is_secret = \'' . $isSecret . '\', category = \'' . $post['gr2category'] . 
+			'\', subject = \'' . $post['gr2subject'] . '\', content = \'' . $post['gr2content'] . '\', tag = \'' . $post['gr2tag'] . '\'';
+		$quePostStr = str_replace(array('{0}', '{1}', '{2}'), array($id, $valueStr, $target), $this->queArr['modify_post']);
+		$result = $this->db->query($quePostStr);		
+		return $target;
+	}
 
-		if($target > 0) {
-			if(array_key_exists('deleteFileList', $post)) {
-				foreach($post['deleteFileList'] as &$fid) {
-					$queDelFilePath = str_replace('{0}', $fid, $this->queArr['get_delete_file_path']);
-					$queDelFile = $this->db->query($queDelFilePath);
-					$fetDelFile = $this->db->fetch($queDelFile);
-					$delPath = str_replace('/' . $post['grboard'] . '/', '', $fetDelFile['hash_name']);
-					if(file_exists($delPath)) unlink($delPath);
-					$queDelFileDB = str_replace('{0}', $fid, $this->queArr['delete_file']);
-					$this->db->query($queDelFileDB);
-					$this->db->free($queDelFile);
+	private function writingNewPost($id, &$post, $isNotice, $isSecret, $sessionKey) {
+		$valueStr = '\'\',' . $sessionKey . ',\'' . $post['gr2name'] . '\',\'' . $post['gr2password'] . '\',\'' . 
+		$post['gr2email'] . '\',\'' . $post['gr2homepage'] . '\',\'' . $_SERVER['REMOTE_ADDR'] . '\',' . time() . 
+			',0,0,0,' . $isNotice . ',' . $isSecret . ', \'' . $post['gr2category'] . '\',\''  . $post['gr2subject'] . 
+			'\',\'' . $post['gr2content'] . '\',\'' . $post['gr2tag'] . '\'';
+		$quePostStr = str_replace(array('{0}', '{1}'), array($id, $valueStr), $this->queArr['write_post']);
+		$result = $this->db->query($quePostStr);
+		return $this->db->getInsertID();		
+	}
+	
+	private function uploadDroppedFiles($id, $insertID, $sessionKey, &$post, $oldDir, $renameDir, $moveDir) {
+		$fileCount = count($post['hashfiles']);						
+		for($i=0; $i<$fileCount; $i++) {
+			rename(str_replace('/' . $post['grboard'] . '/', '', $post['hashfiles'][$i]), 
+				str_replace($oldDir, $renameDir, $post['hashfiles'][$i]));
+			$real = str_replace($oldDir, $moveDir, $post['realfiles'][$i]);
+			$hash = str_replace($oldDir, $moveDir, $post['hashfiles'][$i]);
+			$fileValueStr = '\'\',\'' . $id . '\',' . $insertID . ',' . $sessionKey . ',\'' . $real . '\',\'' . $hash . '\',' . time() . ',0';
+			$queFileStr = str_replace('{0}', $fileValueStr, $this->queArr['file_update']);
+			$this->db->query($queFileStr);
+		}		
+	}
+	
+	private function uploadFiles($id, $insertID, $sessionKey, &$post, &$files, $moveDir) {
+		foreach($files['gr2files']['error'] as $key => $error) {
+			if($files['gr2files']['size'][$key] > $this->getMaxUploadSize()) {
+				return -1;
+			}
+			if($error == UPLOAD_ERR_OK) {
+				$tmpName = $files['gr2files']['tmp_name'][$key];
+				$name = str_replace(' ', '_', $files['gr2files']['name'][$key]);
+				$real = $moveDir . $name;
+				$hash = md5($name . time());
+				if(move_uploaded_file($tmpName, 'data/board/' . $id . date('/Y/m/d/') . $hash)) {
+					$hash = $moveDir . $hash;
+					$fileValueStr = '\'\',\'' . $id . '\',' . $insertID . ',' . $sessionKey . ',\'' . $real . '\',\'' . $hash . '\',' . time() . ',0';
+					$queFileStr = str_replace('{0}', $fileValueStr, $this->queArr['file_update']);
+					$this->db->query($queFileStr);	
 				}
-			}				
-			$valueStr = 'name = \'' . $post['gr2name'] . '\', email = \''.$post['gr2email'].'\', homepage = \'' . $post['gr2homepage'] . 
-				'\', is_notice = \'' . $isNotice . '\', is_secret = \'' . $isSecret . '\', category = \'' . $post['gr2category'] . 
-				'\', subject = \'' . $post['gr2subject'] . '\', content = \'' . $post['gr2content'] . '\', tag = \'' . $post['gr2tag'] . '\'';
-			$quePostStr = str_replace(array('{0}', '{1}', '{2}'), array($id, $valueStr, $target), $this->queArr['modify_post']);
-			$result = $this->db->query($quePostStr);
-			$insertID = $target;
-		} else {
-			$valueStr = '\'\',' . $sessionKey . ',\'' . $post['gr2name'] . '\',\'' . $post['gr2password'] . '\',\'' . 
-				$post['gr2email'] . '\',\'' . $post['gr2homepage'] . '\',\'' . $_SERVER['REMOTE_ADDR'] . '\',' . time() . 
-				',0,0,0,' . $isNotice . ',' . $isSecret . ', \'' . $post['gr2category'] . '\',\''  . $post['gr2subject'] . 
-				'\',\'' . $post['gr2content'] . '\',\'' . $post['gr2tag'] . '\'';
-			$quePostStr = str_replace(array('{0}', '{1}'), array($id, $valueStr), $this->queArr['write_post']);
-			$result = $this->db->query($quePostStr);
-			$insertID = $this->db->getInsertID();						
-		}
+			}
+		}		
+	}
+	
+	public function writePost($id, $post, $files, $target) {
+		if( !strlen(trim($post['gr2subject'])) || !strlen(trim($post['gr2content']))) return false;
+		if($post['writingInMobile'] == 'yes') $post['gr2content'] = nl2br($post['gr2content']);
 		
-		if($isDndUploaded) {
-			$fileCount = count($post['hashfiles']);						
-			for($i=0; $i<$fileCount; $i++) {
-				rename(str_replace('/' . $post['grboard'] . '/', '', $post['hashfiles'][$i]), 
-					str_replace($oldDir, $renameDir, $post['hashfiles'][$i]));
-				$real = str_replace($oldDir, $moveDir, $post['realfiles'][$i]);
-				$hash = str_replace($oldDir, $moveDir, $post['hashfiles'][$i]);
-				$fileValueStr = '\'\',\'' . $id . '\',' . $insertID . ',' . $sessionKey . ',\'' . $real . '\',\'' . $hash . '\',' . time() . ',0';
-				$queFileStr = str_replace('{0}', $fileValueStr, $this->queArr['file_update']);
-				$this->db->query($queFileStr);
-			}
-		}
-				
-		if(strlen($files['gr2files']['name'][0]) > 0) {		
-			foreach($files['gr2files']['error'] as $key => $error) {
-				if($files['gr2files']['size'][$key] > $this->getMaxUploadSize()) {
-					return -1;
-				}
-				if($error == UPLOAD_ERR_OK) {
-					$tmpName = $files['gr2files']['tmp_name'][$key];
-					$name = str_replace(' ', '_', $files['gr2files']['name'][$key]);
-					$real = $moveDir . $name;
-					$hash = md5($name . time());
-					if(move_uploaded_file($tmpName, 'data/board/' . $id . date('/Y/m/d/') . $hash)) {
-						$hash = $moveDir . $hash;
-						$fileValueStr = '\'\',\'' . $id . '\',' . $insertID . ',' . $sessionKey . ',\'' . $real . '\',\'' . $hash . '\',' . time() . ',0';
-						$queFileStr = str_replace('{0}', $fileValueStr, $this->queArr['file_update']);
-						$this->db->query($queFileStr);	
-					}
-				}
-			}
-		}
+		$this->makeDirectoryByYmd($id);
+		$sessionKey = $this->common->getSessionKey();
+		$oldData = $this->getOldData($id, $target);
+		$writer = $this->getWriterInfo($sessionKey);
+		
+		if($target > 0) $this->prepareModifyPost($id, $target, $post, $oldData, $sessionKey);
+		else $this->prepareNewPost($id, $target, $sessionKey, $post, $writer);
+		
+		if(!$this->isCorrectPassword($target, $sessionKey, $post, $oldData)) return false;	
+		if( $sessionKey == 1 && isset($post['isNotice']) ) $isNotice = 1; else $isNotice = 0;
+		if( isset($post['isSecret']) ) $isSecret = 1; else $isSecret = 0;
+		if( isset($post['isReplyable']) ) $isReplyable = 1; else $isReplyable = 0;
+		if( isset($post['hashfiles']) ) $isDndUploaded = 1; else $isDndUploaded = 0;
+		if(strlen($files['gr2files']['name'][0]) > 0) $isAttachedFiles = 1; else $isAttachedFiles = 0;
+
+		$tempDir = '__gr2_dnd_temp__/';
+		$originalDir = $id . date('/Y/m/d/');
+		$oldDir = '/' . $post['grboard'] . '/data/board/' . $tempDir;
+		$moveDir = '/' . $post['grboard'] . '/data/board/' . $originalDir;
+		$renameDir = 'data/board/' . $originalDir;
+
+		$this->makeValidParameters($post, $sessionKey, $oldDir, $tempDir, $moveDir, $originalDir);
+
+		if($target > 0) $insertID = $this->writingModifiedPost($id, $post, $isNotice, $isSecret, $target);
+		else $insertID = $this->writingNewPost($id, $post, $isNotice, $isSecret, $sessionKey);
+		
+		if($isDndUploaded) $this->uploadDroppedFiles($id, $insertID, $sessionKey, $post, $oldDir, $renameDir, $moveDir);				
+		if($isAttachedFiles) $this->uploadFiles($id, $insertID, $sessionKey, $post, $files, $moveDir);
 		
 		return $insertID;
 	}

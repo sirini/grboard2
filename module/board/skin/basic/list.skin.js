@@ -12,4 +12,24 @@ $(function(){
 		}       
 		location.href = "/" + grboard + "/board-" + id + "/" + option + "/:" + value + "/" + page;
 	});  
+	
+	$("#checkAllPost").click(function(){
+		$(".list .check input[type=checkbox]").each(function(){
+			this.checked = !this.checked;
+		});
+	});
+	
+	$("#managePosts").click(function(){
+		var isChecked = false;
+		$(".list .check input[type=checkbox]").each(function(){
+			if(!!this.checked == true) isChecked = true;
+		});
+		
+		if(!isChecked) {
+			alert("관리할 게시글을 하나 이상 선택해 주세요!");
+			return;
+		}
+		
+		$("#managePostForm").submit();
+	});
 });

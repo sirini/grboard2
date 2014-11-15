@@ -6,3 +6,4 @@ $error = array(
 	'confirm_comment_delete' => '아래의 댓글을 정말로 삭제 하시겠습니까?' ,
 	'confirm_post_delete' => '글 삭제 시 첨부 파일 및 댓글까지 모두 삭제 됩니다. 정말로 아래의 글을 삭제 하시겠습니까?'
 );
+?>

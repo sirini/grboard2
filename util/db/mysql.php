@@ -24,6 +24,12 @@ class MySQL {
 	public function query($que) { return $this->mysqli->query($que); }
 	public function fetch($result) { return $result->fetch_array(MYSQLI_ASSOC); }
 	public function free($result) { $result->free(); }
+	public function getData($que) {
+		$result = $this->mysqli->query($que);
+		$data = $result->fetch_array(MYSQLI_ASSOC);
+		$result->free();
+		return $data;
+	}
 	public function getInsertID() { return $this->mysqli->insert_id; }
 }
 ?>

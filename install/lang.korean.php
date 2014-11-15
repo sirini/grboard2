@@ -7,7 +7,9 @@ $lang = array(
 							' 2014년 1월 v2.0.0 이후 부터는 완전한 HTML5 기반으로 새롭게 재작성 되어 배포 되고 있습니다. 주요 특징은 아래와 같습니다.</p>' ,
 	'install_feature' => '<ul><li>HTML5 기반으로 작성된 오픈소스 게시판 엔진</li>' .
 							'<li>Apache 2 mod_rewrite 를 이용한 단순하고 강력한 URL 포맷팅</li>' .
-							'<li>빠르게 동작하며 서버 부하를 최소화 하도록 설계됨</li></ul>' ,
+							'<li>빠르게 동작하며 서버 부하를 최소화 하도록 설계됨</li>' .
+							'<li>확장 가능한 스킨 시스템을 통하여 쇼핑몰, 포럼, 뉴스 페이지 등 자유롭게 구성 가능</li>' .
+							'<li>기본으로 제공되는 모든 기능들은 영원히 무료!</li></ul>' ,
 	'install_license' => '라이센스는 GPL v2 (<a href="http://www.gnu.org/licenses/gpl-2.0.html">' . 
 							'http://www.gnu.org/licenses/gpl-2.0.html</a>) 를 사용 하고 있습니다.' ,
 	'install_notice' => '설치를 계속 진행 하기 위해 아래의 항목들을 빠짐없이 입력 하신 후 Submit 버튼을 클릭 하셔야 합니다. ' .
@@ -17,6 +19,6 @@ $lang = array(
 	'install_dbpasswd' => 'DB 계정 비밀번호를 입력해 주세요. (모를 시 서버 관리자/웹호스팅 업체에 문의 필요)' ,
 	'install_dbname' => '사용할 DB 이름을 입력해 주세요. (보통 계정 ID 와 동일)' ,
 	'install_dbprefix' => '중복 설치 시 필요한 테이블 구분자 지정 (기본값 권장)' ,
-	'install_admin_info' => 'GR Board 관리자 아이디와 비밀번호를 지정해 주세요.'
+	'install_admin_info' => 'GR Board 관리자 아이디와 비밀번호를 지정해 주세요.' 
 );
 ?>

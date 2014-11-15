@@ -49,8 +49,9 @@ if(!is_dir('../data/blog/')) mkdir('../data/blog', 0707);
 if(!is_dir('../data/board/')) mkdir('../data/board', 0707);
 if(!is_dir('../session/')) mkdir('../session', 0707);
 
-$msg = '<p>설치가 완료 되었습니다! <a href="/'.$grboard.'/board-test/login">여기를 클릭 하여 로그인 하세요!</a></p>' . 
-		'<p>Installation has been completed! <a href="/'.$grboard.'/board-test/login">Please go to the login page now! (Click this)</a></p>';
+
+$msg = file_get_contents('../page/info/install_complete.txt');
+$msg = str_replace('{grboard}', $grboard, $msg);
 $moveBackPath = '/' . $grboard . '/board-test/login';
 include '../message.php';
 ?>

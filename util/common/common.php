@@ -29,6 +29,10 @@ class Common {
 		if( !strlen($moveBackPath) && array_key_exists('HTTP_REFERER', $_SERVER) ) $moveBackPath = $_SERVER['HTTP_REFERER'];
 		if( !strlen($moveBackPath) ) $moveBackPath = 'http://' . $_SERVER['HTTP_HOST'];
 		$grboard = $this->grboard;
+		if(strstr($msg, '@page/')) {
+			$path = str_replace('@page/', 'page/', $msg) . '.txt';
+			$msg = file_get_contents($path);
+		}
 		include $type . '.php';
 		exit();
 	}

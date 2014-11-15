@@ -1,4 +1,8 @@
-<?php if(!defined('GR_BOARD_2')) exit(); ?>
+<?php 
+if(!defined('GR_BOARD_2')) exit(); 
+$isAdmin = (($Common->getSessionKey() == 1) ? true : false);
+$isMember = (($Common->getSessionKey() > 0) ? true : false);
+?>
 
 <div id="GRBOARD2" rel="<?php echo $grboard; ?>" class="container">
 
@@ -16,8 +20,13 @@
 <?php endif; ?>
 
 <div class="table-responsive">
+<form id="managePostForm" method="post" action="<?php echo $boardLink; ?>/managepost">
+<div class="hiddenInputs">
+	<input type="hidden" name="boardLink" value="<?php echo $boardLink; ?>" />
+</div>
 <table rules="none" class="gr-table">
 <colgroup>
+	<?php if($isAdmin): ?><col class="check" /><?php endif; ?>
 	<col class="no" />
 	<col class="subject" />
 	<col class="name" />
@@ -26,6 +35,7 @@
 </colgroup>
 <thead>
 <tr>
+	<?php if($isAdmin): ?><th class="check"><input type="checkbox" id="checkAllPost" /></th><?php endif; ?>
 	<th class="no">no</th>
 	<th class="subject">subject</th>
 	<th class="name">name</th>
@@ -42,7 +52,7 @@ if(isset($boardNotice[0]['no'])):
 ?>
 <tr class="notice">
 	<td class="no"><?php echo $notice['no']; ?></td>
-	<td class="subject"><a href="<?php echo $link; ?>"><?php echo $notice['subject']; ?></a> 
+	<td class="subject" <?php if($isAdmin): echo 'colspan="2"'; endif; ?>><a href="<?php echo $link; ?>"><?php echo $notice['subject']; ?></a> 
 		<?php if($notice['comment_count'] > 0): ?>
 			<span class="gr-badge"><?php echo $notice['comment_count']; ?></span>
 		<?php endif; ?>
@@ -63,6 +73,11 @@ if(isset($boardPost[0]['no'])):
 		$link = $boardLink . '/view/' . $post['no'];
 ?>
 <tr class="list">
+	<?php if($isAdmin): ?>
+	<td class="check">
+		<input type="checkbox" name="checkedArticle[]" value="<?php echo $post['no']; ?>" />
+	</td>
+	<?php endif; ?>
 	<td class="no"><?php echo $post['no']; ?></td>
 	<td class="subject">
 		<?php if(strlen($post['category']) > 0): ?>
@@ -84,6 +99,7 @@ endif;
 ?>
 </tbody>
 </table>
+</form>
 </div>
 
 <?php
@@ -114,17 +130,18 @@ if(isset($option)) {
 
 	<ul class="buttons">
 		
-		<li><a href="<?php echo $boardLink; ?>/write" class="gr-btn gr-btn-primary">Write</a></li>
-		<?php if($Common->getSessionKey() == 0): ?>
-			<li><a href="<?php echo $boardLink; ?>/login" class="gr-btn gr-btn-default">Login</a></li>
-			<li><a href="<?php echo $boardLink; ?>/join" class="gr-btn gr-btn-default">Join</a></li>
-		<?php endif; if($Common->getSessionKey() > 0): ?>
-			<li><a href="<?php echo $boardLink; ?>/memo" class="gr-btn gr-btn-default">Message</a></li>
-			<li><a href="<?php echo $boardLink; ?>/logout" class="gr-btn gr-btn-default">Logout</a></li>
+		<li><a href="<?php echo $boardLink; ?>/write" class="gr-btn gr-btn-primary" title="새로운 글을 작성 합니다">Write</a></li>
+		<?php if(!$isMember): ?>
+			<li><a href="<?php echo $boardLink; ?>/login" class="gr-btn gr-btn-default" title="로그인을 합니다">Login</a></li>
+			<li><a href="<?php echo $boardLink; ?>/join" class="gr-btn gr-btn-default" title="신규 회원으로 가입 합니다">Join</a></li>
+		<?php else: ?>
+			<li><a href="<?php echo $boardLink; ?>/memo" class="gr-btn gr-btn-default" title="쪽지함으로 갑니다">Message</a></li>
+			<li><a href="<?php echo $boardLink; ?>/logout" class="gr-btn gr-btn-default" title="로그 아웃 합니다">Logout</a></li>
 		<?php endif; ?>
-		<li><a href="<?php echo $boardLink; ?>/list/1" class="gr-btn gr-btn-default">List</a></li>
-		<?php if($Common->getSessionKey() == 1): ?>
-			<li><a href="/<?php echo $grboard; ?>/board/admin/modify2board/<?php echo $boardInfo['no']; ?>" class="gr-btn gr-btn-info">Admin</a></li>
+		<li><a href="<?php echo $boardLink; ?>/list/1" class="gr-btn gr-btn-default" title="목록을 봅니다">List</a></li>
+		<?php if($isAdmin): ?>
+			<li><a href="#managePostForm" id="managePosts" class="gr-btn gr-btn-info" title="선택한 게시글들을 관리 합니다">Posts</a></li>
+			<li><a href="/<?php echo $grboard; ?>/board/admin/modify2board/<?php echo $boardInfo['no']; ?>" class="gr-btn gr-btn-info" title="게시판 설정을 관리 합니다">Board</a></li>
 		<?php endif; ?>
 
 	</ul>

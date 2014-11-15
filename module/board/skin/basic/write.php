@@ -19,6 +19,7 @@ endif;
 		<input type="hidden" name="writeProceed" value="yes" />
 		<input type="hidden" name="boardId" id="boardId" value="<?php echo $ext_id; ?>" />
 		<input type="hidden" name="MAX_FILE_SIZE" value="<?php echo $Model->getMaxUploadSize(); ?>" />
+		<input type="hidden" name="writingInMobile" value="no" />
 	</div>
 		<ul class="zero-gap">
 			<li>
@@ -70,7 +71,7 @@ endif;
 				</ul>
 				<?php endif; ?>
 			</li>			
-			<li><textarea id="gr2content" class="gr-form-input"><?php echo $oldData['content']; ?></textarea></li>
+			<li><textarea id="gr2content" name="gr2content" class="gr-form-input"><?php echo $oldData['content']; ?></textarea></li>
 			<li><input type="text" name="gr2tag" value="<?php echo $oldData['tag']; ?>" placeholder="글의 핵심 단어들을 태킹 (쉼표로 구분: 공지,감사합니다,사랑)" class="gr-form-input longWidth" /></li>
 		</ul>
 		

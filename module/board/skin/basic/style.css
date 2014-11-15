@@ -231,26 +231,12 @@ and (max-device-width: 640px) {
 	border: 0 none;
 }
 
-#GRBOARD2 col.no {
-	width: 45px;
-}
-
-#GRBOARD2 col.name {
-	width: 85px;
-}
-
-#GRBOARD2 col.date {
-	width: 80px;
-}
-
-#GRBOARD2 col.hit {
-	width: 45px;
-}
-
-#GRBOARD2 tr.notice td {
-	background-color: #ffffe7;
-}
-
+#GRBOARD2 col.check { width: 40px; }
+#GRBOARD2 col.no { width: 45px; }
+#GRBOARD2 col.name { width: 85px; }
+#GRBOARD2 col.date { width: 80px; }
+#GRBOARD2 col.hit { width: 45px; }
+#GRBOARD2 tr.notice td { background-color: #ffffe7; }
 #GRBOARD2 td.no,
 #GRBOARD2 td.date,
 #GRBOARD2 td.hit {
@@ -258,9 +244,7 @@ and (max-device-width: 640px) {
 	color: #777;
 }
 
-#GRBOARD2 table.gr-table td.subject {
-	text-align: left;
-}
+#GRBOARD2 table.gr-table td.subject { text-align: left; }
 
 #GRBOARD2 span.category {
 	color: #999;
@@ -268,19 +252,17 @@ and (max-device-width: 640px) {
 	margin-right: 10px;
 }
 
-#GRBOARD2 footer {
-	position: relative;
-}
+#GRBOARD2 footer { position: relative; }
 
 #GRBOARD2 ul.buttons {
 	margin: 0;
-	padding: 10px 5px;
 	text-align: right;
 }
 
 #GRBOARD2 ul.buttons li {
 	list-style: none;
 	display: inline;
+	margin: 10px 3px 0 0;
 }
 
 #GRBOARD2 .searchBox {
@@ -288,9 +270,7 @@ and (max-device-width: 640px) {
 	text-align: center;
 }
 
-#GRBOARD2 .searchInput {
-	margin: auto;
-}
+#GRBOARD2 .searchInput { margin: auto; }
 
 #GRBOARD2 .searchInput input[type=search] {
 	width: 200px;
@@ -319,12 +299,20 @@ and (max-device-width: 640px) {
 
 @media only screen 
 and (max-device-width: 650px) {
+	#GRBOARD2 .searchBox {
+		padding: 10px 0 10px 0;
+	}
 	#GRBOARD2 .searchInput select {
-		padding: 3px 6px;
+		padding: 3px;
 	}
 	#GRBOARD2 .searchInput input[type=search] {
-		width: 100px;
-		padding: 3px 6px;
+		width: 80px;
+		padding: 3px;
+	}
+	#GRBOARD2 ul.buttons li {
+		list-style: none;
+		display: block;
+		margin: 10px 0 10px 0;
 	}
 }
 
@@ -378,7 +366,9 @@ and (max-device-width: 650px) {
 
 #GRBOARD2 ul.fileList li a {
 	font-family: Tahoma, sans-serif;
-	font-size: 12px;
+	font-size: 11px;
+	margin: 2px;
+	padding: 2px;
 }
 
 #GRBOARD2 div.content img.download {
@@ -436,6 +426,14 @@ and (max-device-width: 650px) {
 and (max-device-width: 480px) {
 	#GRBOARD2 ul.info {
 		display: none;
+	}
+}
+
+@media only screen 
+and (max-device-width: 650px) {
+	#GRBOARD2 ul.viewBottoms li {
+		display: block;
+		margin: 10px 0 10px 0;
 	}
 }
 
@@ -523,6 +521,17 @@ and (max-device-width: 480px) {
 	line-height: 160%;
 	border-radius: 4px;
 	box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+}
+
+/* MANAGE */
+
+#GRBOARD2 .manageOptionBox li {
+	list-style: none;
+	padding: 3px 0 3px 0;
+}
+
+#GRBOARD2 .manageOptionBox li label {
+	cursor: pointer;
 }
 
 /* COMMON CLASS */
