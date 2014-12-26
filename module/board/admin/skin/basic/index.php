@@ -52,9 +52,6 @@
 								<span class="glyphicon glyphicon-th-large"></span> Group</a></li>
 						</ul>
 					</li>
-					<li><a href="/<?php echo $grboard; ?>/board/admin/advanced/terminal" title="<?php echo $lang['advanced_terminal_info']; ?>">
-						<span class="glyphicon glyphicon-wrench"></span> Terminal
-					</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="http://grboard.com" title="Build GR Board 2 better, together."> 

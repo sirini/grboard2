@@ -45,8 +45,6 @@
 	
 	<script src="/<?php echo $grboard; ?>/lib/jquery.js"></script>
 	<script src="/<?php echo $grboard; ?>/lib/bootstrap/js/bootstrap.min.js"></script>
-	<script src="http://grboard2.mooo.com/socket.io/socket.io.js"></script>
-	<script src="/<?php echo $grboard; ?>/lib/gritter/js/jquery.gritter.min.js"></script>
 	<script src="<?php echo $skinResourcePath; ?>/memo.js"></script>
 	
 	</body>

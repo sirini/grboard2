@@ -311,8 +311,10 @@ and (max-device-width: 650px) {
 	}
 	#GRBOARD2 ul.buttons li {
 		list-style: none;
-		display: block;
 		margin: 10px 0 10px 0;
+	}
+	#GRBOARD2 ul.buttons a {
+		margin: 5px 0;
 	}
 }
 
@@ -432,8 +434,10 @@ and (max-device-width: 480px) {
 @media only screen 
 and (max-device-width: 650px) {
 	#GRBOARD2 ul.viewBottoms li {
-		display: block;
 		margin: 10px 0 10px 0;
+	}
+	#GRBOARD2 ul.viewBottoms a {
+		margin: 5px 0;
 	}
 }
 
