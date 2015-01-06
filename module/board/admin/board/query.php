@@ -7,7 +7,7 @@ $query = array(
 	'get_old_data' => 'select * from ' . $db_prefix_board . 'board_list where no = {0} limit 1' ,
 	'is_board_exist' => 'select no from ' . $db_prefix_board . 'board_list where id = \'{0}\' limit 1' ,
 	'insert_new_board' => 'insert into ' . $db_prefix_board . 'board_list (no,id,head_file,foot_file,head_form,foot_form,category,' .
-		'make_time,page_num,page_per_list,enter_level,master,theme,comment_page_num,comment_page_per_list,num_file,view_level,' .
+		'make_time,page_num,page_per_list,enter_level,master,theme,theme_mobile,comment_page_num,comment_page_per_list,num_file,view_level,' .
 		'write_level,comment_write_level,cut_subject,group_no,comment_sort,name,down_level,down_point) values ({0})' ,
 	'create_new_board' => 'CREATE TABLE IF NOT EXISTS `' . $db_prefix_board . 'bbs_{0}` (' .
   		'`no` int(11) NOT NULL AUTO_INCREMENT, `member_key` int(11) NOT NULL DEFAULT \'0\', `name` varchar(20) NOT NULL DEFAULT \'\',' .

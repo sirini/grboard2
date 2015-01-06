@@ -76,7 +76,7 @@ class Model {
 			$strModify = 'head_file=\''.$post['head_file'].'\',foot_file=\''.$post['foot_file'].'\',head_form=\''.$post['head_form'].'\','.
 				'foot_form=\''.$post['foot_form'].'\',category=\''.$post['category'].'\',page_num=\''.$post['page_num'].'\','.
 				'page_per_list=\''.$post['page_per_list'].'\',enter_level=\''.$post['enter_level'].'\','.
-				'master=\''.$post['master'].'\',theme=\''.$post['theme'].'\',comment_page_num=\''.$post['comment_page_num'].'\','.
+				'master=\''.$post['master'].'\',theme=\''.$post['theme'].'\',theme_mobile=\''.$post['theme_mobile'].'\',comment_page_num=\''.$post['comment_page_num'].'\','.
 				'comment_page_per_list=\''.$post['comment_page_per_list'].'\',num_file=\''.$post['num_file'].'\','.
 				'view_level=\''.$post['view_level'].'\',write_level=\''.$post['write_level'].'\','.
 				'comment_write_level=\''.$post['comment_write_level'].'\',cut_subject=\''.$post['cut_subject'].'\','.

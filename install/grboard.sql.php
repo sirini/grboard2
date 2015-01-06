@@ -67,6 +67,7 @@ $queBoardArr[] = 'CREATE TABLE `'.$db_prefix_board.'board_list` (
   `enter_level` tinyint(4) NOT NULL DEFAULT \'1\',
   `master` varchar(255) NOT NULL DEFAULT \'\',
   `theme` varchar(100) NOT NULL DEFAULT \'\',
+  `theme_mobile` varchar(100) NOT NULL DEFAULT \'\',
   `comment_page_num` tinyint(4) NOT NULL DEFAULT \'50\',
   `comment_page_per_list` tinyint(4) NOT NULL DEFAULT \'5\',
   `num_file` tinyint(4) DEFAULT \'0\',
@@ -148,14 +149,14 @@ $queBoardArr[] = 'CREATE TABLE `'.$db_prefix_board.'message_box` (
 ) DEFAULT CHARSET=utf8';
 $queBoardArr[] = 'INSERT INTO `'.$db_prefix_board.'board_list` (
 	`no`,`id`,`head_file`,`foot_file`,`head_form`,`foot_form`,`category`,`make_time`,`page_num`,`page_per_list`,`enter_level`,
-	`master`,`theme`,`comment_page_num`,`comment_page_per_list`,`num_file`,`view_level`,`write_level`,`comment_write_level`,
+	`master`,`theme`,`theme_mobile`,`comment_page_num`,`comment_page_per_list`,`num_file`,`view_level`,`write_level`,`comment_write_level`,
 	`cut_subject`,`group_no`,`comment_sort`,`name`,`down_level`,`down_point` ) VALUES (
 	NULL , \'test\', \'\', \'\', \'<!doctype html><head><meta charset="utf-8" /><title>GR Board 2 Board Page</title>
 	<link rel="stylesheet" type="text/css" href="/'.$grboard.'/module/board/skin/[grboard2skinname]/style.css" />
 	<script src="/'.$grboard.'/lib/jquery.js"></script>
 	<script src="/'.$grboard.'/module/board/skin/[grboard2skinname]/[grboard2action].skin.js"></script>
 	</head><body style="text-align: center"><div style="width: 650px; margin: auto">\', \'</div></body></html>\', 
-	NULL , '.time().', \'20\', \'10\', \'1\', \'\', \'basic\', \'50\', \'5\', \'10\', \'1\', \'1\', \'1\', \'0\', 
+	NULL , '.time().', \'20\', \'10\', \'1\', \'\', \'basic\', \'basic\', \'50\', \'5\', \'10\', \'1\', \'1\', \'1\', \'0\', 
 	\'1\', \'1\', \'Test board\', \'0\', \'0\')';
 $queBoardArr[] = 'INSERT INTO `'.$db_prefix_board.'member_list` (`no`, `id`, `password`, `nickname`, `realname`, `email`, 
 	`homepage`, `make_time`, `level`, `point`, `self_info`, `photo`, `nametag`, `group_no`, `icon`, `lastlogin`, `blocks`

@@ -65,6 +65,25 @@
 </div>
 
 <div class="form-group">
+	<label for="theme" class="col-md-2 control-label">Mobile Skin</label>
+	<div class="col-md-3">
+		<select name="theme" class="form-control">
+		<?php
+		$skinpath = 'module/board/mobile/skin/'; 
+		$od = opendir($skinpath);
+		while($rd = readdir($od)) {
+			if($rd == '.' || $rd == '..') continue;
+			if(is_dir($skinpath . $rd)) {
+				echo '<option value="'.$rd.'" '.(($rd == $oldData['theme'])?'selected="true"':'').'>'.$rd.'</option>';
+			}
+		}
+		?>
+		</select>
+	</div>
+	<span class="help-block col-md-7"><?php echo $lang['board_add_theme']; ?></span>
+</div>
+
+<div class="form-group">
 	<label for="page_num" class="col-md-2 control-label">Page count</label>
 	<div class="col-md-3">
 		<input type="text" class="form-control" name="page_num" class="short" value="<?php echo $oldData['page_num']; ?>" />
