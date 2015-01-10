@@ -67,7 +67,7 @@
 <div class="form-group">
 	<label for="theme" class="col-md-2 control-label">Mobile Skin</label>
 	<div class="col-md-3">
-		<select name="theme" class="form-control">
+		<select name="theme_mobile" class="form-control">
 		<?php
 		$skinpath = 'module/board/mobile/skin/'; 
 		$od = opendir($skinpath);

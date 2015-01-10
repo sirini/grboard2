@@ -1,1 +1,6 @@
-TODO! list/write/read/other pages for mobile phone.
+<?php
+if(!defined('GR_BOARD_2')) exit();
+include $skinPath . '/header.php';
+include $skinPath . '/' . $mobileAction . '.php';
+include $skinPath . '/footer.php';
+?>

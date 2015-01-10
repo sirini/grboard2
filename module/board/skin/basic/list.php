@@ -11,7 +11,7 @@ $isMember = (($Common->getSessionKey() > 0) ? true : false);
 	<div class="category">
 
 	<?php foreach($boardCategory as &$category): ?>
-		<a href="<?php echo $boardLink; ?>/category/<?php echo $category; ?>/1">
+		<a href="<?php echo $boardLink; ?>/category/:<?php echo $category; ?>/1">
 		<?php echo $category; ?></a> <span>|</span>
 	<?php endforeach; unset($category); ?>
 	

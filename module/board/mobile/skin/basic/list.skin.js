@@ -10,7 +10,7 @@ $(function(){
 			alert("검색어가 비어 있습니다. 다시 확인해 주세요!");
 			return;
 		}       
-		location.href = "/" + grboard + "/board-" + id + "/search/" + option + "/:" + value + "/" + page;
+		location.href = "/" + grboard + "/board-" + id + "/mobile/" + option + "/:" + value + "/" + page;
 	});  
 	
 	$("#checkAllPost").click(function(){
@@ -32,4 +32,7 @@ $(function(){
 		
 		$("#managePostForm").submit();
 	});
+	
+	var searchInputSize = $(window).width() - 190;
+	$("#gr2searchForm input[type=search]").css("width", searchInputSize + "px");
 });

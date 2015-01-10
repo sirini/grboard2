@@ -1,31 +1,22 @@
 <?php
 if(!defined('GR_BOARD_2')) exit();
 
-include 'mobile/query.php';
-include 'mobile/model.php';
-include 'mobile/error.php';
-include 'util/common/paging.php';
-
-$Model = new Model($DB, $query, $grboard);
-$boardTotalRecord = $Model->getBoardPostCount($ext_id);
-$boardInfo = $Model->getBoardInfo($ext_id);
-$userInfo = $Model->getUserInfo($Common->getSessionKey());
-if($userInfo['level'] < $boardInfo['enter_level']) {
-	$Common->error($error['msg_no_permission']);
+$mobileAction = 'list';
+if(isset($_GET['view'])) {
+	$mobileAction = 'view';
+	$ext_articleNo = $_GET['view'];
 }
-$Paging = new Paging($boardInfo['page_num'], $boardInfo['page_per_list'], $ext_page, $boardTotalRecord);
-$boardPost = $Model->getBoardPost($ext_id, $Paging->getStartRecord(), $boardInfo['page_num']);
-$boardNotice = $Model->getBoardNotice($ext_id);
-$boardCategory = $Model->getBoardCategory($ext_id);
-$skinResourcePath = '/' . $grboard . '/module/board/skin/' . $boardInfo['theme'];
-$skinPath = 'module/board/skin/' . $boardInfo['theme'];
-$boardPaging = $Paging->getPaging();
-$boardTotalPage = $Paging->getTotalPage();
-$boardTotalBlock = $Paging->getTotalBlock();
-$boardNowBlock = $Paging->getNowBlock();
-$boardLink = '/' . $grboard . '/board-' . $ext_id;
+elseif(isset($_GET['write'])) {
+	$mobileAction = 'write';
+	$articleNo = $_GET['write'];
+}
+elseif(isset($_GET['option']) && isset($_GET['value'])) {
+	$mobileAction = 'search';
+}
 
-include 'mobile/skin/' . $boardInfo['theme'] . '/index.php';
-
-unset($Model, $boardTotalRecord, $Paging, $boardPost, $boardInfo, $skinResourcePath, $skinPath, $boardPaging, $boardTotalBlock, $boardNowBlock, $query);
+$isAdmin = (($Common->getSessionKey() == 1) ? true : false);
+$isMember = (($Common->getSessionKey() > 0) ? true : false);
+$mobilePath = 'module/board';
+include 'mobile/' . $mobileAction . '.php';
+unset($mobilePath, $mobileAction);
 ?>
