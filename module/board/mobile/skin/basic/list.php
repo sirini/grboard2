@@ -3,7 +3,7 @@
 <div id="GRBOARD2" rel="<?php echo $grboard; ?>">
 	
 <div>
-<form id="managePostForm" method="post" action="<?php echo $boardLink; ?>/managepost">
+<form id="managePostForm" method="post" action="<?php echo $boardLink; ?>/managepost/0">
 <div class="hiddenInputs">
 	<input type="hidden" name="boardLink" value="<?php echo $boardLink; ?>" />
 </div>
@@ -32,11 +32,15 @@ if(isset($boardPost[0]['no'])):
 		$link = $boardLink . '/view/' . $post['no'];
 ?>
 	<a href="<?php echo $link; ?>" class="list-group-item">
-		<?php if(strlen($post['category']) > 0): ?>
-			<span class="category">[<?php echo $post['category']; ?>]</span>
+		<?php if($isAdmin): ?>
+			<input type="checkbox" class="checkedPost" name="checkedArticle[]" value="<?php echo $post['no']; ?>" />
+		<?php endif; 
+		
+		if(isset($boardCategory[0]) && strlen($post['category']) > 0): ?>
+			<span class="text-primary">[<?php echo $post['category']; ?>]</span>
 		<?php endif;
 		
-		echo $post['subject']; 
+		echo $post['subject'] . ' <span class="text-info"> / ' . $post['name'] . '</span>'; 
 		
 		if($post['comment_count'] > 0): ?>
 			<span class="badge"><?php echo $post['comment_count']; ?></span>

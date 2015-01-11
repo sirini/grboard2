@@ -1,5 +1,9 @@
 <?php
 if(!defined('GR_BOARD_2')) exit();
+if(!isset($skinResourcePrefix)) $skinResourcePrefix = '/' . $grboard . '/module/board/skin/';
+if(!isset($skinPathPrefix)) $skinPathPrefix = 'module/board/skin/';
+if(!isset($skinIncludePrefix)) $skinIncludePrefix = 'skin/';
+if(!isset($boardLink)) $boardLink = '/' . $grboard . '/board-' . $ext_id;
 
 include 'manage/model.php';
 include 'manage/query.php';
@@ -9,9 +13,8 @@ if($Common->getSessionKey() == 0) $Common->error($error['msg_no_permission']);
 
 $Model = new Model($DB, $query, $grboard, $Common);
 $boardInfo = $Model->getBoardInfo($ext_id);
-$boardLink = '/' . $grboard . '/board-' . $ext_id;
-$skinResourcePath = '/' . $grboard . '/module/board/skin/' . $boardInfo['theme'];
-$skinPath = 'module/board/skin/' . $boardInfo['theme'];
+$skinResourcePath = $skinResourcePrefix . $boardInfo['theme'];
+$skinPath = $skinPathPrefix . $boardInfo['theme'];
 
 if(isset($_POST['manageProceed']) && isset($_SESSION['ISREADY2MANAGE']) ) {
 	if(!isset($_POST['manageAction'])) $Common->error($error['msg_no_action'], $boardLink . '/list/1');
@@ -40,6 +43,6 @@ if(isset($_POST['manageProceed']) && isset($_SESSION['ISREADY2MANAGE']) ) {
 	
 } else {		
 	$_SESSION['ISREADY2MANAGE'] = true;	
-	include 'skin/' . $boardInfo['theme'] . '/index.php';
+	include $skinIncludePrefix . $boardInfo['theme'] . '/index.php';
 }
 ?>

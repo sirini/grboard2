@@ -1,5 +1,9 @@
 <?php
 if(!defined('GR_BOARD_2')) exit();
+if(!isset($skinResourcePrefix)) $skinResourcePrefix = '/' . $grboard . '/module/board/skin/';
+if(!isset($skinPathPrefix)) $skinPathPrefix = 'module/board/skin/';
+if(!isset($skinIncludePrefix)) $skinIncludePrefix = 'skin/';
+if(!isset($boardLink)) $boardLink = '/' . $grboard . '/board-' . $ext_id;
 
 include 'view/query.php';
 include 'view/model.php';
@@ -15,9 +19,8 @@ $boardCategory = $Model->getBoardCategory($ext_id);
 $Model->updateHit($ext_id, $ext_articleNo);
 $boardPost = $Model->getPost($ext_id, $ext_articleNo);
 $replyList = $Model->getReplyList($ext_id, $ext_articleNo);
-$skinResourcePath = '/' . $grboard . '/module/board/skin/' . $boardInfo['theme'];
-$skinPath = 'module/board/skin/' . $boardInfo['theme'];
-$boardLink = '/' . $grboard . '/board-' . $ext_id;
+$skinResourcePath = $skinResourcePrefix . $boardInfo['theme_mobile'];
+$skinPath = $skinPathPrefix . $boardInfo['theme_mobile'];
 $simplelock = substr(md5($boardPost['no'] . 'GR_BOARD_2' . date('YmdH')), -4);
 $fileList = $Model->getFileList($ext_id, $ext_articleNo);
 
@@ -28,12 +31,19 @@ function isPermitted($db_key, $now_session) {
 	else return false;
 }
 
+function isImageFile($filename) {
+	if(preg_match('/\.(gif|jpg|png|bmp)$/i', $filename)) {
+		return true;
+	}
+	return false;
+}
+
 if($boardPost['is_secret'] && !isPermitted($boardPost['member_key'], $Common->getSessionKey())) {
 	$boardPost['name'] = 'Hidden';
 	$boardPost['content'] = '<p class="red">Secret post.</p>';	
 }
 
-include 'skin/' . $boardInfo['theme'] . '/index.php';
+include $skinIncludePrefix . $boardInfo['theme'] . '/index.php';
 
 unset($Model, $error, $boardTotalRecord, $Paging, $boardPost, $boardInfo, $skinResourcePath, $skinPath, $boardPaging, $boardTotalBlock, $boardNowBlock, $query, $fileList);
 ?>

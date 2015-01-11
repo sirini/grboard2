@@ -207,15 +207,15 @@ class Model {
 	public function writePost($id, $post, $files, $target) {
 		if( !strlen(trim($post['gr2subject'])) || !strlen(trim($post['gr2content']))) return false;
 		if($post['writingInMobile'] == 'yes') $post['gr2content'] = nl2br($post['gr2content']);
-		
+
 		$this->makeDirectoryByYmd($id);
 		$sessionKey = $this->common->getSessionKey();
 		$oldData = $this->getOldData($id, $target);
 		$writer = $this->getWriterInfo($sessionKey);
-		
+
 		if($target > 0) $this->prepareModifyPost($id, $target, $post, $oldData, $sessionKey);
 		else $this->prepareNewPost($id, $target, $sessionKey, $post, $writer);
-		
+
 		if(!$this->isCorrectPassword($target, $sessionKey, $post, $oldData)) return false;	
 		if( $sessionKey == 1 && isset($post['isNotice']) ) $isNotice = 1; else $isNotice = 0;
 		if( isset($post['isSecret']) ) $isSecret = 1; else $isSecret = 0;
@@ -233,10 +233,10 @@ class Model {
 
 		if($target > 0) $insertID = $this->writingModifiedPost($id, $post, $isNotice, $isSecret, $target);
 		else $insertID = $this->writingNewPost($id, $post, $isNotice, $isSecret, $sessionKey);
-		
+
 		if($isDndUploaded) $this->uploadDroppedFiles($id, $insertID, $sessionKey, $post, $oldDir, $renameDir, $moveDir);				
 		if($isAttachedFiles) $this->uploadFiles($id, $insertID, $sessionKey, $post, $files, $moveDir);
-		
+
 		return $insertID;
 	}
 

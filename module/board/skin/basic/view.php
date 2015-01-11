@@ -1,17 +1,13 @@
 <?php if(!defined('GR_BOARD_2')) exit(); ?>
 
-<div id="GRBOARD2" rel="<?php echo $grboard; ?>" 
-	data-board-id="<?php echo $ext_id; ?>"
-	data-board-no="<?php echo $boardPost['no']; ?>"
-	data-push-userkey="<?php echo (isset($userInfo['id']))?$userInfo['id']:''; ?>"
-	data-push-roomid="<?php echo $_SERVER['HTTP_HOST']; ?>">
+<div id="GRBOARD2" rel="<?php echo $grboard; ?>">
 
 <?php if(isset($boardCategory[0])): ?>
 <header>
 	<div class="category">
 
 	<?php foreach($boardCategory as &$category): ?>
-		<a href="<?php echo $boardLink; ?>/category/<?php echo $category; ?>/1">
+		<a href="<?php echo $boardLink; ?>/search/category/:<?php echo $category; ?>/1">
 		<?php echo $category; ?></a> <span>|</span>
 	<?php endforeach; unset($category); ?>
 	
@@ -40,8 +36,7 @@
 	<?php if($fileList != false): ?>
 	<ul class="fileList">
 		<?php foreach($fileList as &$file): ?>
-			<li>&middot; <?php echo $file['real_name']; ?>
-				&nbsp; <a href="/<?php echo $grboard; ?>/board/download/<?php echo $file['uid']; ?>" class="gr-btn gr-btn-info gr-btn-sm" title="클릭 하시면 파일을 내려 받습니다">Download</a></li>
+			<li><a href="/<?php echo $grboard; ?>/board/download/<?php echo $file['uid']; ?>" class="gr-btn gr-btn-info gr-btn-sm" title="클릭 하시면 파일을 내려 받습니다">Download</a> <?php echo $file['real_name']; ?></li>
 		<?php endforeach; unset($file); ?>
 	</ul>
 	<?php endif; ?>

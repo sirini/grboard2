@@ -2,6 +2,10 @@
 if(!defined('GR_BOARD_2')) exit();
 if(!isset($searchOption)) $searchOption = '';
 if(!isset($searchValue)) $searchValue = '';
+if(!isset($skinResourcePrefix)) $skinResourcePrefix = '/' . $grboard . '/module/board/skin/';
+if(!isset($skinPathPrefix)) $skinPathPrefix = 'module/board/skin/';
+if(!isset($skinIncludePrefix)) $skinIncludePrefix = 'skin/';
+if(!isset($boardLink)) $boardLink = '/' . $grboard . '/board-' . $ext_id;
 
 include 'list/query.php';
 include 'list/model.php';
@@ -19,15 +23,14 @@ $Paging = new Paging($boardInfo['page_num'], $boardInfo['page_per_list'], $ext_p
 $boardPost = $Model->getBoardPost($ext_id, $Paging->getStartRecord(), $boardInfo['page_num'], $searchOption, $searchValue);
 $boardNotice = $Model->getBoardNotice($ext_id);
 $boardCategory = $Model->getBoardCategory($ext_id);
-$skinResourcePath = '/' . $grboard . '/module/board/skin/' . $boardInfo['theme'];
-$skinPath = 'module/board/skin/' . $boardInfo['theme'];
+$skinResourcePath = $skinResourcePrefix . $boardInfo['theme'];
+$skinPath = $skinPathPrefix . $boardInfo['theme'];
 $boardPaging = $Paging->getPaging();
 $boardTotalPage = $Paging->getTotalPage();
 $boardTotalBlock = $Paging->getTotalBlock();
 $boardNowBlock = $Paging->getNowBlock();
-$boardLink = '/' . $grboard . '/board-' . $ext_id;
 
-include 'skin/' . $boardInfo['theme'] . '/index.php';
+include $skinIncludePrefix . $boardInfo['theme'] . '/index.php';
 
 unset($Model, $boardTotalRecord, $Paging, $boardPost, $boardInfo, $skinResourcePath, $skinPath, $boardPaging, $boardTotalBlock, $boardNowBlock, $query);
 ?>

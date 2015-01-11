@@ -26,15 +26,21 @@
 				
 				<div class="collapse navbar-collapse">
 				    <ul class="nav navbar-nav">
-						<li><a href="<?php echo $boardLink; ?>/mobile/write/0"><span class="glyphicon glyphicon-pencil"></span> Write</a></li>
-						<?php if(!$isMember): ?>
-							<li><a href="<?php echo $boardLink; ?>/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-							<li><a href="<?php echo $boardLink; ?>/join"><span class="glyphicon glyphicon-user"></span> Join</a></li>
+						<li><a href="<?php echo $boardLink; ?>/write/0"><span class="glyphicon glyphicon-pencil"></span> Write</a></li>
+						<?php if(isset($boardPost['member_key']) && isPermitted($boardPost['member_key'], $Common->getSessionKey())): ?>
+							<li><a href="<?php echo $boardLink; ?>/write/<?php echo $boardPost['no']; ?>">
+								<span class="glyphicon glyphicon-edit"></span> Modify</a></li>
+							<li><a href="<?php echo $boardLink; ?>/deletepost/<?php echo $boardPost['no']; ?>">
+								<span class="glyphicon glyphicon-trash"></span> Delete</a></li>
+						<?php endif; 
+						if(!$isMember): ?>
+							<li><a href="/<?php echo $grboard; ?>/board-<?php echo $ext_id; ?>/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+							<li><a href="/<?php echo $grboard; ?>/board-<?php echo $ext_id; ?>/join"><span class="glyphicon glyphicon-user"></span> Join</a></li>
 						<?php else: ?>
-							<li><a href="<?php echo $boardLink; ?>/memo"><span class="glyphicon glyphicon-envelope"></span> Message</a></li>
-							<li><a href="<?php echo $boardLink; ?>/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+							<li><a href="/<?php echo $grboard; ?>/board-<?php echo $ext_id; ?>/memo"><span class="glyphicon glyphicon-envelope"></span> Message</a></li>
+							<li><a href="/<?php echo $grboard; ?>/board-<?php echo $ext_id; ?>/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
 						<?php endif; ?>
-							<li><a href="<?php echo $boardLink; ?>/mobile/list/1"><span class="glyphicon glyphicon-list-alt"></span> List</a></li>
+							<li><a href="<?php echo $boardLink; ?>/list/1"><span class="glyphicon glyphicon-list-alt"></span> List</a></li>
 						<?php if($isAdmin): ?>
 							<li><a href="#managePostForm" id="managePosts">
 								<span class="glyphicon glyphicon-trash"></span> Posts</a>
@@ -74,7 +80,7 @@
 					<button class="btn btn-sm btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="true">
 					Category <span class="caret"></span>
 					</button>
-					<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+					<ul class="dropdown-menu" role="menu">
 					<?php foreach($boardCategory as &$category): ?>
 						<li role="presentation">
 							<a role="menuitem" tabindex="-1" 

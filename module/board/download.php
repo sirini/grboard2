@@ -1,5 +1,6 @@
 <?php
 if(!defined('GR_BOARD_2')) exit();
+if(!isset($boardLink)) $boardLink = '/' . $grboard . '/board-' . $fileInfo['board_id'];
 
 include 'download/query.php';
 include 'download/model.php';
@@ -14,7 +15,7 @@ $Model = new Model($DB, $query, $grboard);
 $fileInfo = $Model->getFileStore($target);
 $boardInfo = $Model->getBoardInfo($fileInfo['board_id']);
 $userInfo = $Model->getUserInfo($Common->getSessionKey());
-$boardLink = '/' . $grboard . '/board-' . $fileInfo['board_id'];
+
 if($userInfo['level'] < $boardInfo['view_level']) {
 	$Common->error($error['msg_no_permission'], $boardLink . '/list/1');
 }

@@ -138,7 +138,7 @@ class Model {
 				$f['hash_name']);			
 			$oldHashName = $f['hash_name'];
 			
-			$newHashName = substr($newHashName, 0, -32) . md5('GRBOARD2' . time());
+			$newHashName = substr($newHashName, 0, -32) . md5('GRBOARD2' . $f['uid'] . time());
 			$f['board_id'] = $destID;
 			$f['board_no'] = $destTarget; 
 			$f['real_name'] = $newRealName;

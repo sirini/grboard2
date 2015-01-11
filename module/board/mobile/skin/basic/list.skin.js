@@ -12,16 +12,10 @@ $(function(){
 		}       
 		location.href = "/" + grboard + "/board-" + id + "/mobile/" + option + "/:" + value + "/" + page;
 	});  
-	
-	$("#checkAllPost").click(function(){
-		$(".list .check input[type=checkbox]").each(function(){
-			this.checked = !this.checked;
-		});
-	});
-	
+		
 	$("#managePosts").click(function(){
 		var isChecked = false;
-		$(".list .check input[type=checkbox]").each(function(){
+		$(".checkedPost").each(function(){
 			if(!!this.checked == true) isChecked = true;
 		});
 		

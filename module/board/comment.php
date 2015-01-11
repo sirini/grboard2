@@ -6,7 +6,7 @@ include 'comment/model.php';
 include 'comment/error.php';
 
 $Model = new Model($DB, $query, $grboard, $Common);
-$boardLink = '/' . $grboard . '/board-' . $ext_id;
+if(!isset($boardLink)) $boardLink = '/' . $grboard . '/board-' . $ext_id;
 $simplelock = substr(md5('GR_BOARD_2' . date('YmdH')), -4);
 
 if(isset($_POST['commentProceed'])) {

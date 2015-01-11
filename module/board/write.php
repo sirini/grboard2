@@ -1,12 +1,15 @@
 <?php
 if(!defined('GR_BOARD_2')) exit();
+if(!isset($skinResourcePrefix)) $skinResourcePrefix = '/' . $grboard . '/module/board/skin/';
+if(!isset($skinPathPrefix)) $skinPathPrefix = 'module/board/skin/';
+if(!isset($skinIncludePrefix)) $skinIncludePrefix = 'skin/';
+if(!isset($boardLink)) $boardLink = '/' . $grboard . '/board-' . $ext_id;
 
 include 'write/query.php';
 include 'write/model.php';
 include 'write/error.php';
 
 $Model = new Model($DB, $query, $grboard, $Common);
-$boardLink = '/' . $grboard . '/board-' . $ext_id;
 
 function isPermitted($db_key, $now_session) {
 	if($now_session == 1) return true;
@@ -36,8 +39,8 @@ $simplelock = substr(md5('GR_BOARD_2' . date('YmdHis') . $_SERVER['HTTP_HOST']),
 $_SESSION['ANTISPAM'] = $simplelock; 
 $boardInfo = $Model->getBoardInfo($ext_id);
 $userInfo = $Model->getUserInfo($Common->getSessionKey());
-$skinResourcePath = '/' . $grboard . '/module/' . $ext_module . '/skin/' . $boardInfo['theme'];
-$skinPath = 'module/board/skin/' . $boardInfo['theme'];
+$skinResourcePath = $skinResourcePrefix . $boardInfo['theme'];
+$skinPath = $skinPathPrefix . $boardInfo['theme'];
 $postTarget = 0;
 $oldFile = array(array());
 
@@ -45,7 +48,7 @@ if($userInfo['level'] < $boardInfo['write_level']) {
 	$Common->error($error['msg_no_permission'], $boardLink . '/list/1');
 }
 
-if(array_key_exists('articleNo', $_GET)) {
+if(isset($_GET['articleNo'])) {
 	$postTarget = $_GET['articleNo'];
 	$oldData = $Model->getOldData($ext_id, $postTarget);
 	$oldFile = $Model->getOldFileList($ext_id, $postTarget);
@@ -53,9 +56,10 @@ if(array_key_exists('articleNo', $_GET)) {
 	if($oldData['is_secret'] && !isPermitted($oldData['member_key'], $Common->getSessionKey())) {
 		$oldData['content'] = '<p class="red">Secret post.</p>';	
 	}
+	$oldData['content'] = str_replace('<br />', "\n", $oldData['content']);
 }
 
-include 'skin/' . $boardInfo['theme'] . '/index.php';
+include $skinIncludePrefix . $boardInfo['theme'] . '/index.php';
 
 unset($Model, $query, $error, $boardInfo, $userInfo, $skinResourcePath, $skinPath, $oldData, $oldFile, $simplelock, $target);
 ?>

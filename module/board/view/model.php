@@ -91,6 +91,7 @@ class Model {
 			$fname = $fArr[ count($fArr) - 1 ];
 			$result[$index]['uid'] = $f['uid'];
 			$result[$index]['real_name'] = $fname;
+			$result[$index]['hash_name'] = $f['hash_name'];
 			$index++;
 		}
 		$this->db->free($que);

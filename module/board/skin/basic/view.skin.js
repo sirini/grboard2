@@ -1,5 +1,4 @@
 $(function(){
-
 	$("div.replyBox a.checkReply").each(function(index){
 		$(this).click(function(){
 			var uid = $(this).attr("rel");
