@@ -1,5 +1,6 @@
 <?php
 if(!defined('GR_BOARD_2')) exit();
+if(!isset($boardLink)) $boardLink = '/' . $grboard . '/board-' . $ext_id;
 
 include 'login/error.php';
 

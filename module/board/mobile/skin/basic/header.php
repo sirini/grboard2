@@ -34,11 +34,11 @@
 								<span class="glyphicon glyphicon-trash"></span> Delete</a></li>
 						<?php endif; 
 						if(!$isMember): ?>
-							<li><a href="/<?php echo $grboard; ?>/board-<?php echo $ext_id; ?>/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+							<li><a href="<?php echo $boardLink; ?>/login/0"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
 							<li><a href="/<?php echo $grboard; ?>/board-<?php echo $ext_id; ?>/join"><span class="glyphicon glyphicon-user"></span> Join</a></li>
 						<?php else: ?>
 							<li><a href="/<?php echo $grboard; ?>/board-<?php echo $ext_id; ?>/memo"><span class="glyphicon glyphicon-envelope"></span> Message</a></li>
-							<li><a href="/<?php echo $grboard; ?>/board-<?php echo $ext_id; ?>/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+							<li><a href="<?php echo $boardLink; ?>/logout/0"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
 						<?php endif; ?>
 							<li><a href="<?php echo $boardLink; ?>/list/1"><span class="glyphicon glyphicon-list-alt"></span> List</a></li>
 						<?php if($isAdmin): ?>

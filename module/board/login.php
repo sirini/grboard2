@@ -10,11 +10,10 @@ if( $Common->getSessionKey() > 0 ) $Common->error($error['msg_already_logged']);
 $Model = new Model($DB, $query, $grboard, $Common);
 if(!isset($ext_id)) {
 	$moveBackPath = '/';
-	$prePath = '/' . $grboard . '/board';
-}
-else {
-	$moveBackPath = '/' . $grboard . '/board-' . $ext_id . '/list/1';
-	$prePath = '/' . $grboard . '/board-' . $ext_id;
+	$prePath = '/' . $grboard . '/board/login';
+} else {
+	if(!isset($moveBackPath)) $moveBackPath = '/' . $grboard . '/board-' . $ext_id;
+	if(!isset($prePath)) $prePath = '/' . $grboard . '/board-' . $ext_id;
 }
 
 if( array_key_exists('loginProceed', $_POST) ) {

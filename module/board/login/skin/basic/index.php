@@ -28,7 +28,7 @@
 						<span class="glyphicon glyphicon-home"></span> Home</a></li>
 					<li><a href="<?php echo $moveBackPath; ?>" title="이전 화면으로 이동 합니다">
 						<span class="glyphicon glyphicon-arrow-left"></span> Back</a></li>
-					<li><a href="<?php echo $prePath; ?>/join" title="계정이 없을 경우 여기를 클릭하여 회원 가입을 하실 수 있습니다"> 
+					<li><a href="<?php echo $prePath; ?>/join/0" title="계정이 없을 경우 여기를 클릭하여 회원 가입을 하실 수 있습니다"> 
 						<span class="glyphicon glyphicon-user"></span> Join</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
@@ -40,7 +40,7 @@
 	</nav>			
 	
 	<div class="container">
-		<form id="boardLoginForm" method="post" action="<?php echo $prePath; ?>/login" class="form-signin" role="form">
+		<form id="boardLoginForm" method="post" action="<?php echo $prePath; ?>/login/0" class="form-signin" role="form">
 			<div class="hiddenInputs">
 				<input type="hidden" name="loginProceed" value="true" />
 			</div>

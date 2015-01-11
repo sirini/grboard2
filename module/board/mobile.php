@@ -30,6 +30,17 @@ elseif(isset($_GET['deletecomment'])) {
 elseif(isset($_GET['managepost'])) {
 	$mobileAction = 'managepost';
 }
+elseif(isset($_GET['login'])) {
+	$mobileAction = 'login';
+	$moveBackPath = '/' . $grboard . '/board-' . $ext_id . '/mobile/list/1';
+	$prePath = '/' . $grboard . '/board-' . $ext_id . '/mobile';
+}
+elseif(isset($_GET['logout'])) {
+	$mobileAction = 'logout';
+}
+elseif(isset($_GET['join'])) {
+	$mobileAction = 'join';
+}
 elseif(isset($_GET['option']) && isset($_GET['value'])) {
 	$mobileAction = 'search';
 }

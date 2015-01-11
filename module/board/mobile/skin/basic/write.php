@@ -84,8 +84,8 @@ endif;
 				<input type="text" name="gr2tag" value="<?php echo $oldData['tag']; ?>" placeholder="글의 핵심 단어들을 태킹 (쉼표로 구분: 공지,감사합니다,사랑)" class="form-control" /></li>
 			</ul>
 			
-			<li class="list-group-item"><input type="submit" value="Submit" class="btn btn-success gr-width-full" /></li>
-			<li class="list-group-item"><a href="<?php echo $boardLink; ?>/list/1" id="gr2writeCancelBtn" class="btn btn-danger gr-width-full">Cancel</a></li>
+			<li class="list-group-item"><input type="submit" value="Submit" class="btn btn-primary gr-width-full" /></li>
+			<li class="list-group-item"><a href="<?php echo $boardLink; ?>/list/1" id="gr2writeCancelBtn" class="btn btn-default gr-width-full">Cancel</a></li>
 		</div>	
 					
 	</form>
