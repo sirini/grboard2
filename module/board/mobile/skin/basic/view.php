@@ -1,4 +1,7 @@
-<?php if(!defined('GR_BOARD_2')) exit(); ?>
+<?php 
+if(!defined('GR_BOARD_2')) exit(); 
+include 'util/common/image.resize.php';
+?>
 
 <div id="GRBOARD2" rel="<?php echo $grboard; ?>">
 	
@@ -16,9 +19,12 @@
 			<?php 
 			if($fileList != false): 
 				foreach($fileList as &$file): 
-					if(isImageFile($file['real_name'])): ?>
+					if(isImageFile($file['real_name'])):
+						$resized = gr2ResizeImage($file['real_name'], '..' . $file['hash_name'], 660, 900);
+						$resized = str_replace('../', '/', $resized); 
+			?>
 						<li class="list-group-item">
-							<img src="<?php echo $file['hash_name']; ?>" alt="<?php echo $file['real_name']; ?>" />
+							<img src="<?php echo $resized; ?>" alt="<?php echo $file['real_name']; ?>" />
 						</li>
 			<?php
 					endif; 

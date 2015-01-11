@@ -4,11 +4,8 @@ if(!isset($searchOption)) $searchOption = '';
 if(!isset($searchValue)) $searchValue = '';
 
 $mobileAction = 'list';
-if(isset($_GET['view'])) {
-	$mobileAction = 'view';
-	$ext_articleNo = $_GET['view'];
-}
-elseif(isset($_GET['write'])) {
+if(isset($_GET['view'])) { $mobileAction = 'view'; $ext_articleNo = $_GET['view']; }
+elseif(isset($_GET['write'])) { 
 	$mobileAction = 'write';
 	$_GET['articleNo'] = $_GET['write'];
 	if(isset($_POST['gr2content'])) {
@@ -27,23 +24,15 @@ elseif(isset($_GET['deletecomment'])) {
 	$mobileAction = 'deletecomment';
 	$_GET['commentNo'] = $_GET['deletecomment'];
 }
-elseif(isset($_GET['managepost'])) {
-	$mobileAction = 'managepost';
-}
 elseif(isset($_GET['login'])) {
 	$mobileAction = 'login';
 	$moveBackPath = '/' . $grboard . '/board-' . $ext_id . '/mobile/list/1';
 	$prePath = '/' . $grboard . '/board-' . $ext_id . '/mobile';
 }
-elseif(isset($_GET['logout'])) {
-	$mobileAction = 'logout';
-}
-elseif(isset($_GET['join'])) {
-	$mobileAction = 'join';
-}
-elseif(isset($_GET['option']) && isset($_GET['value'])) {
-	$mobileAction = 'search';
-}
+elseif(isset($_GET['logout'])) $mobileAction = 'logout';
+elseif(isset($_GET['join'])) $mobileAction = 'join';
+elseif(isset($_GET['managepost'])) $mobileAction = 'managepost';
+elseif(isset($_GET['option']) && isset($_GET['value'])) $mobileAction = 'search';
 
 $isAdmin = (($Common->getSessionKey() == 1) ? true : false);
 $isMember = (($Common->getSessionKey() > 0) ? true : false);
