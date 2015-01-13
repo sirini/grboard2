@@ -74,7 +74,7 @@
 		while($rd = readdir($od)) {
 			if($rd == '.' || $rd == '..') continue;
 			if(is_dir($skinpath . $rd)) {
-				echo '<option value="'.$rd.'" '.(($rd == $oldData['theme'])?'selected="true"':'').'>'.$rd.'</option>';
+				echo '<option value="'.$rd.'" '.(($rd == $oldData['theme_mobile'])?'selected="true"':'').'>'.$rd.'</option>';
 			}
 		}
 		?>

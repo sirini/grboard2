@@ -22,7 +22,7 @@
 		<tr>
 			<td>Link</td>
 			<td>				
-				<a href="/<?php echo $grboard; ?>/board-<?php echo $boardId; ?>/list"><span><?php echo $lang['board_save_link']; ?></span></a></td>
+				<a href="/<?php echo $grboard; ?>/board-<?php echo $boardId; ?>/list/1"><span><?php echo $lang['board_save_link']; ?></span></a></td>
 		</tr>
 		<tr>
 			<td>Modify</td>

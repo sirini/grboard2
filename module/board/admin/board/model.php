@@ -61,7 +61,7 @@ class Model {
 			$strInsert = 'NULL,\''.$boardId.'\',\''.$post['head_file'].'\',\''.$post['foot_file'].'\',\''.$post['head_form'].'\',\''.
 				$post['foot_form'].'\',\''.$post['category'].'\',\''.time().'\',\''.$post['page_num'].'\',\''.
 				$post['page_per_list'].'\',\''.$post['enter_level'].'\',\''.$post['master'].'\',\''.$post['theme'].'\',\''.
-				$post['comment_page_num'].'\',\''.$post['comment_page_per_list'].'\',\''.$post['num_file'].'\',\''.
+				$post['theme_mobile'].'\',\''.$post['comment_page_num'].'\',\''.$post['comment_page_per_list'].'\',\''.$post['num_file'].'\',\''.
 				$post['view_level'].'\',\''.$post['write_level'].'\',\''.$post['comment_write_level'].'\',\''.$post['cut_subject'].'\',\''.
 				$post['group_no'].'\',\''.$post['comment_sort'].'\',\''.$post['name'].'\',\''.$post['down_level'].'\',\''.
 				$post['down_point'].'\'';   
