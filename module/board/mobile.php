@@ -3,8 +3,8 @@ if(!defined('GR_BOARD_2')) exit();
 if(!isset($searchOption)) $searchOption = '';
 if(!isset($searchValue)) $searchValue = '';
 
-$mobileAction = 'list';
-if(isset($_GET['view'])) { $mobileAction = 'view'; $ext_articleNo = $_GET['view']; }
+if(isset($_GET['list'])) { $mobileAction = 'list'; $ext_page = $_GET['list']; }
+elseif(isset($_GET['view'])) { $mobileAction = 'view'; $ext_articleNo = $_GET['view']; }
 elseif(isset($_GET['write'])) { 
 	$mobileAction = 'write';
 	$_GET['articleNo'] = $_GET['write'];
@@ -12,18 +12,9 @@ elseif(isset($_GET['write'])) {
 		$_POST['gr2content'] = nl2br($_POST['gr2content']);
 	}
 }
-elseif(isset($_GET['comment'])) {
-	$mobileAction = 'comment';
-	$_GET['commentNo'] = $_GET['comment'];
-}
-elseif(isset($_GET['modifycomment'])) {
-	$mobileAction = 'modifycomment';
-	$_GET['commentNo'] = $_GET['modifycomment'];
-}
-elseif(isset($_GET['deletecomment'])) {
-	$mobileAction = 'deletecomment';
-	$_GET['commentNo'] = $_GET['deletecomment'];
-}
+elseif(isset($_GET['comment'])) { $mobileAction = 'comment'; $_GET['commentNo'] = $_GET['comment']; }
+elseif(isset($_GET['modifycomment'])) { $mobileAction = 'modifycomment'; $_GET['commentNo'] = $_GET['modifycomment']; }
+elseif(isset($_GET['deletecomment'])) { $mobileAction = 'deletecomment'; $_GET['commentNo'] = $_GET['deletecomment']; }
 elseif(isset($_GET['login'])) {
 	$mobileAction = 'login';
 	$moveBackPath = '/' . $grboard . '/board-' . $ext_id . '/mobile/list/1';

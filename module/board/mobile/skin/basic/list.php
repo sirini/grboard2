@@ -72,13 +72,14 @@ if(isset($option)) {
 </div>
 
 <footer>
-	<ul class="pagination">
+	<ul class="pagination pagination-sm">
 		<?php if($boardNowBlock > 1): ?>
 			<li><a href="<?php echo $prevLink; ?>" aria-label="Previous">&laquo;</a></li>
 		<?php endif; ?>
 
 		<?php foreach($boardPaging as &$pageNo): ?>
-			<li <?php echo ($pageNo == $ext_page)?'class="active"':''; ?>><a href="<?php echo $pageLink . $pageNo; ?>"><?php echo $pageNo; ?></a></li>
+			<li <?php echo ($pageNo == $ext_page)?'class="active"':''; ?>>
+				<a href="<?php echo $pageLink . $pageNo; ?>"><?php echo $pageNo; ?></a></li>
 		<?php endforeach; unset($pageNo); ?>
 
 		<?php if($boardNowBlock < $boardTotalBlock): ?>

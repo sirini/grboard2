@@ -33,7 +33,7 @@ $(function(){
 		$("#managePostForm").submit();
 	});
 	
-	if('ontouchstart' in document.documentElement) {
+	if($(window).width() < 500) {
 		$("#showForMobile").fadeIn();
 	}
 });

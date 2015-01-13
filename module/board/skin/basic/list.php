@@ -164,7 +164,7 @@ if(isset($option)) {
 			</form>
 		</div>
 	</div>
-	
+
 	<div id="showForMobile" class="hidden">
 		<a href="<?php echo $boardLink; ?>/mobile/list/<?php echo $ext_page; ?>" class="gr-btn gr-btn-default zero-gap width-full">Mobile view</a>
 	</div>
