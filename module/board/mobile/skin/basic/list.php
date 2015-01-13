@@ -67,6 +67,10 @@ if(isset($option)) {
 }
 ?>
 
+<div id="showForPC" class="gr-hidden">
+	<a href="/<?php echo $grboard; ?>/board-<?php echo $ext_id; ?>/list/<?php echo $ext_page; ?>" class="btn btn-default gr-width-full">PC view</a>
+</div>
+
 <footer>
 	<ul class="pagination">
 		<?php if($boardNowBlock > 1): ?>
@@ -74,7 +78,7 @@ if(isset($option)) {
 		<?php endif; ?>
 
 		<?php foreach($boardPaging as &$pageNo): ?>
-			<li><a href="<?php echo $pageLink . $pageNo; ?>"><?php echo $pageNo; ?></a></li>
+			<li <?php echo ($pageNo == $ext_page)?'class="active"':''; ?>><a href="<?php echo $pageLink . $pageNo; ?>"><?php echo $pageNo; ?></a></li>
 		<?php endforeach; unset($pageNo); ?>
 
 		<?php if($boardNowBlock < $boardTotalBlock): ?>

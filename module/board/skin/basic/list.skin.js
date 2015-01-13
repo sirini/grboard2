@@ -32,4 +32,8 @@ $(function(){
 		
 		$("#managePostForm").submit();
 	});
+	
+	if('ontouchstart' in document.documentElement) {
+		$("#showForMobile").fadeIn();
+	}
 });
