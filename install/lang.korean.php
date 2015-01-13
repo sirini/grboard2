@@ -1,14 +1,14 @@
 <?php
 $lang = array(
 	'home_info' => '첫 화면으로 이동 합니다' ,
-	'install_warning' => '현재 설치된 GR Board <sup>2</sup> 는 정식 버전이 아닌 개발자용 테스트 버전 입니다. 테스트에 도움을 주셔서 감사 드립니다.' ,
+	'install_warning' => '현재 설치된 GR Board <sup>2</sup> 는 정식 버전 직전에 개발자용으로 제공되는 버전 입니다.' ,
 	'install_db_type' => 'GR Board <sup>2</sup> 는 현재 MySQL 만 지원 되며, 추후 MariaDB 가 지원될 예정 입니다.' ,
 	'install_welcome' => '<strong>환영 합니다!</strong><p>GR Board <sup>2</sup> 는 작고 빠른 설치형 게시판 엔진 입니다. 2005년 10월 국내에선 거의 처음으로 웹표준 기반으로 제작 되었으며,' .
 							' 2014년 1월 v2.0.0 이후 부터는 완전한 HTML5 기반으로 새롭게 재작성 되어 배포 되고 있습니다. 주요 특징은 아래와 같습니다.</p>' ,
-	'install_feature' => '<ul><li>HTML5 기반으로 작성된 오픈소스 게시판 엔진</li>' .
-							'<li>Apache 2 mod_rewrite 를 이용한 단순하고 강력한 URL 포맷팅</li>' .
-							'<li>빠르게 동작하며 서버 부하를 최소화 하도록 설계됨</li>' .
-							'<li>확장 가능한 스킨 시스템을 통하여 쇼핑몰, 포럼, 뉴스 페이지 등 자유롭게 구성 가능</li>' .
+	'install_feature' => '<ul><li>HTML5 기반으로 작성된 완전한 오픈소스 게시판 엔진!</li>' .
+							'<li>Mobile First 로 작성된 UI 디자인! (via bootstrap)</li>' .
+							'<li>최소한의 서버 환경에서도 빠르게!</li>' .
+							'<li>확장 가능한 스킨 시스템을 통하여 쇼핑몰, 포럼, 뉴스 페이지 등 자유롭게 구성 가능!</li>' .
 							'<li>기본으로 제공되는 모든 기능들은 영원히 무료!</li></ul>' ,
 	'install_license' => '라이센스는 GPL v2 (<a href="http://www.gnu.org/licenses/gpl-2.0.html">' . 
 							'http://www.gnu.org/licenses/gpl-2.0.html</a>) 를 사용 하고 있습니다.' ,

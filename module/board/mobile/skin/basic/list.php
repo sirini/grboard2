@@ -57,20 +57,20 @@ endif;
 </div>
 
 <?php
-$prevLink = $boardLink . '/mobile/list/' . ($ext_page - $boardInfo['page_per_list']);
-$nextLink = $boardLink . '/mobile/list/' . ($ext_page + $boardInfo['page_per_list']);
-$pageLink = $boardLink . '/mobile/list/';
+$prevLink = $boardLink . '/list/' . ($ext_page - $boardInfo['page_per_list']);
+$nextLink = $boardLink . '/list/' . ($ext_page + $boardInfo['page_per_list']);
+$pageLink = $boardLink . '/list/';
 if(isset($option)) {
-	$prevLink = $boardLink . '/mobile/' . $option . '/' . $value . '/' . ($ext_page - $boardInfo['page_per_list']);
-	$nextLink = $boardLink . '/mobile/' . $option . '/' . $value . '/' . ($ext_page + $boardInfo['page_per_list']);
-	$pageLink = $boardLink . '/mobile/' . $option . '/' . $value . '/';
+	$prevLink = $boardLink . '/' . $option . '/' . $value . '/' . ($ext_page - $boardInfo['page_per_list']);
+	$nextLink = $boardLink . '/' . $option . '/' . $value . '/' . ($ext_page + $boardInfo['page_per_list']);
+	$pageLink = $boardLink . '/' . $option . '/' . $value . '/';
 }
 ?>
 
 <footer>
 	<ul class="pagination">
 		<?php if($boardNowBlock > 1): ?>
-			<li><a href="<?php echo $prevLink; ?>">Prev</a></li>
+			<li><a href="<?php echo $prevLink; ?>" aria-label="Previous">&laquo;</a></li>
 		<?php endif; ?>
 
 		<?php foreach($boardPaging as &$pageNo): ?>
@@ -78,7 +78,7 @@ if(isset($option)) {
 		<?php endforeach; unset($pageNo); ?>
 
 		<?php if($boardNowBlock < $boardTotalBlock): ?>
-			<li><a href="<?php echo $nextLink; ?>">Next</a></li>
+			<li><a href="<?php echo $nextLink; ?>" aria-label="Next">&raquo;</a></li>
 		<?php endif; ?>
 	</ul>
 </footer>

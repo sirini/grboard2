@@ -8,5 +8,5 @@ if( !$Common->getSessionKey() ) $Common->error($error['msg_not_logged']);
 
 session_destroy();
 
-header('Location: /' . $grboard . '/board-' . $ext_id . '/list');
+header('Location: ' . $boardLink . '/list/1');
 ?>

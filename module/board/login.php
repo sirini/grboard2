@@ -1,5 +1,7 @@
 <?php
 if(!defined('GR_BOARD_2')) exit();
+if(!isset($moveBackPath)) $moveBackPath = '/' . $grboard . '/board-' . $ext_id . '/list/1';
+if(!isset($prePath)) $prePath = '/' . $grboard . '/board-' . $ext_id;
 
 include 'login/query.php';
 include 'login/model.php';
@@ -11,12 +13,9 @@ $Model = new Model($DB, $query, $grboard, $Common);
 if(!isset($ext_id)) {
 	$moveBackPath = '/';
 	$prePath = '/' . $grboard . '/board/login';
-} else {
-	if(!isset($moveBackPath)) $moveBackPath = '/' . $grboard . '/board-' . $ext_id;
-	if(!isset($prePath)) $prePath = '/' . $grboard . '/board-' . $ext_id;
 }
 
-if( array_key_exists('loginProceed', $_POST) ) {
+if(isset($_POST['loginProceed'])) {
 	if( $Model->login($_POST['userid'], $_POST['passwd']) ) {
 		header('Location: ' . $moveBackPath);
 		exit();
