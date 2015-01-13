@@ -49,6 +49,8 @@
 								<span class="glyphicon glyphicon-cog"></span> Board</a>
 							</li>
 						<?php endif; ?>
+							<li><a href="/<?php echo $grboard; ?>/board-<?php echo $ext_id; ?>/list/<?php echo $ext_page; ?>">
+								<span class="glyphicon glyphicon-th-large"></span> PC view</a></li>
 					</ul>
 					<form id="gr2searchForm" method="get" action="mobile/" class="navbar-form navbar-left" role="search">
 						<div class="form-group">

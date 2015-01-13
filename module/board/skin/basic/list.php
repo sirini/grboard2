@@ -143,6 +143,7 @@ if(isset($option)) {
 			<li><a href="#managePostForm" id="managePosts" class="gr-btn gr-btn-info" title="선택한 게시글들을 관리 합니다">Posts</a></li>
 			<li><a href="/<?php echo $grboard; ?>/board/admin/modify2board/<?php echo $boardInfo['no']; ?>" class="gr-btn gr-btn-info" title="게시판 설정을 관리 합니다">Board</a></li>
 		<?php endif; ?>
+		<li><a href="<?php echo $boardLink; ?>/mobile/list/<?php echo $ext_page; ?>" class="gr-btn gr-btn-default" title="모바일 폰에서 봅니다">Mobile</a></li>
 
 	</ul>
 	
@@ -163,10 +164,6 @@ if(isset($option)) {
 				<input type="submit" value="Search" class="gr-btn gr-btn-default" />
 			</form>
 		</div>
-	</div>
-
-	<div id="showForMobile" class="hidden">
-		<a href="<?php echo $boardLink; ?>/mobile/list/<?php echo $ext_page; ?>" class="gr-btn gr-btn-default zero-gap width-full">Mobile view</a>
 	</div>
 	
 </footer>

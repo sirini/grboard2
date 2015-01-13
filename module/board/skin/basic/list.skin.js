@@ -32,8 +32,4 @@ $(function(){
 		
 		$("#managePostForm").submit();
 	});
-	
-	if($(window).width() < 500) {
-		$("#showForMobile").fadeIn();
-	}
 });

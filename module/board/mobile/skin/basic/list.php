@@ -67,10 +67,6 @@ if(isset($option)) {
 }
 ?>
 
-<div id="showForPC" class="gr-hidden">
-	<a href="/<?php echo $grboard; ?>/board-<?php echo $ext_id; ?>/list/<?php echo $ext_page; ?>" class="btn btn-default gr-width-full">PC view</a>
-</div>
-
 <footer>
 	<ul class="pagination pagination-sm">
 		<?php if($boardNowBlock > 1): ?>
