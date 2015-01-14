@@ -68,7 +68,7 @@ if(isset($option)) {
 ?>
 
 <footer>
-	<ul class="pagination pagination-sm">
+	<ul class="pagination">
 		<?php if($boardNowBlock > 1): ?>
 			<li><a href="<?php echo $prevLink; ?>" aria-label="Previous">&laquo;</a></li>
 		<?php endif; ?>

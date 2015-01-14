@@ -39,7 +39,7 @@ include 'util/common/image.resize.php';
 		<ul class="list-group">
 			<?php foreach($fileList as &$file): ?>
 				<li class="list-group-item">
-					<a href="/<?php echo $grboard; ?>/board/download/<?php echo $file['uid']; ?>" class="btn btn-info btn-sm">
+					<a href="/<?php echo $grboard; ?>/board-<?php echo $ext_id; ?>/download/<?php echo $file['uid']; ?>" class="btn btn-info btn-sm">
 						<span class="glyphicon glyphicon-download-alt"></span>
 					</a> <?php echo $file['real_name']; ?></li>
 			<?php endforeach; unset($file); ?>

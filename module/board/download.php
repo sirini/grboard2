@@ -1,13 +1,13 @@
 <?php
 if(!defined('GR_BOARD_2')) exit();
-if(!isset($boardLink)) $boardLink = '/' . $grboard . '/board-' . $fileInfo['board_id'];
+if(!isset($boardLink)) $boardLink = '/' . $grboard . '/board-' . $ext_id;
 
 include 'download/query.php';
 include 'download/model.php';
 include 'download/error.php';
 
-if(array_key_exists('target', $_GET)) {
-	$target = (int)$_GET['target'];
+if(isset($_GET['articleNo'])) {
+	$target = (int)$_GET['articleNo'];
 } else {
 	$Common->error($error['msg_wrong_access'], $boardLink . '/list/1');
 }
