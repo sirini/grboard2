@@ -8,5 +8,9 @@ $(function(){
 			$('form#blogCommentForm input[type="submit"]').attr("value", "Reply");
 		});
 	});
+	
+	$("#blogPost .panel-body img").each(function(index){
+		$(this).addClass("img-responsive").addClass("img-rounded").addClass("center-block");
+	});
 
 });

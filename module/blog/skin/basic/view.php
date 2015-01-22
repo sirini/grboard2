@@ -17,7 +17,8 @@
 					<div class="panel-body size-text-normal overflow-hidden">
 						<?php echo $blogPost['content']; ?>
 						<hr />
-						<div class="blogPostInfo">Tag: <?php echo $blogPost['tag']; ?> 
+						<div class="blogPostInfo">Tag: <?php echo $blogPost['tag']; ?>, 
+							Date: <?php echo date('Y-m-d', $blogPost['signdate']); ?> 
 							<span class="badge"><?php echo $blogPost['comment_count']; ?></span> Responses </div>
 						<?php if($Common->getSessionKey() == 1): ?>
 							<div class="blogAdmin">
