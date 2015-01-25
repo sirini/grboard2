@@ -52,7 +52,7 @@ endif;
 if(isset($boardPost[0]['no'])): 
 	foreach($boardPost as &$post): 
 		$link = $boardLink . '/view/' . $post['no'];
-		$thumbnail = getThumbnailPath($Model, $ext_id, $post['no'], 150, 150);
+		$thumbnail = getThumbnailPath($Model, $ext_id, $post['no'], 200, 200);
 ?>
 	<div class="gr-thumbnail">
 	<a href="<?php echo $link; ?>">

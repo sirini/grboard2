@@ -28,14 +28,23 @@ $(function(){
 	});
 	
 	var resizeSearch = function(){
-		var searchInputSize = $(window).width() - 200;
+		var searchInputSize = $(window).width();
+		if(searchInputSize > 750) searchInputSize -= 250;
+		else if(searchInputSize > 500) searchInputSize -= 200;
+		else if(searchInputSize > 350) searchInputSize -= 190;
+		else searchInputSize -= 190;
 		$("#gr2searchForm input[type=search]").css("width", searchInputSize + "px");
 	};
 	
 	resizeSearch();
 	$(window).resize(resizeSearch);
 	
-	var thumbWidth = ($(window).width() / 3) - 15;
-	$(".gr-thumbnail").css("width", thumbWidth);
-	$(".gr-thumbnail img").css("width", thumbWidth);
+	var thumbWidth = ($(window).width() / 3);
+	if(thumbWidth > 340) thumbWidth -= 35;
+	else if(thumbWidth > 245) thumbWidth -= 22;
+	else if(thumbWidth > 165) thumbWidth -= 18;
+	else if(thumbWidth > 115) thumbWidth -= 15;
+	else thumbWidth -= 15;
+	$(".gr-thumbnail").css("width", thumbWidth).css("height", thumbWidth + 20);
+	$(".gr-thumbnail img").css("width", thumbWidth).css("height", thumbWidth);
 });
