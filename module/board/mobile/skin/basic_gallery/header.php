@@ -63,7 +63,7 @@
 								<option value="name" <?php echo (isset($option) && $option == 'name')?'selected="true"':''; ?>>Name</option>
 							</select>
 							<input type="search" name="value" value="<?php echo (isset($value)) ? $value:''; ?>" placeholder="search for..." class="form-control gr-inline" aria-label="...">
-							<button class="btn btn-default" type="submit">Find</button>
+							<button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span></button>
 						</div>
 					</form>
 				</div>
