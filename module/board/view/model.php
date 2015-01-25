@@ -88,9 +88,10 @@ class Model {
 		$index = 0;
 		while($f = $this->db->fetch($que)) {
 			$fArr = explode('/', $f['real_name']);
-			$fname = $fArr[ count($fArr) - 1 ];
+			$fname = end($fArr);
 			$result[$index]['uid'] = $f['uid'];
-			$result[$index]['real_name'] = $fname;
+			$result[$index]['file_name'] = $fname;
+			$result[$index]['real_name'] = $f['real_name'];
 			$result[$index]['hash_name'] = $f['hash_name'];
 			$index++;
 		}

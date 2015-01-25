@@ -20,11 +20,11 @@ include 'util/common/image.resize.php';
 			if($fileList != false): 
 				foreach($fileList as &$file): 
 					if(isImageFile($file['real_name'])):
-						$resized = gr2ResizeImage($file['real_name'], '..' . $file['hash_name'], 620, 500);
+						$resized = gr2ResizeImage('..' . $file['real_name'], '..' . $file['hash_name'], 620, 500);
 						$resized = str_replace('../', '/', $resized); 
 			?>
 						<li class="list-group-item">
-							<img src="<?php echo $resized; ?>" alt="<?php echo $file['real_name']; ?>" class="img-responsive img-rounded center-block" />
+							<img src="<?php echo $resized; ?>" alt="<?php echo $file['file_name']; ?>" class="img-responsive img-rounded center-block" />
 						</li>
 			<?php
 					endif; 
@@ -41,7 +41,7 @@ include 'util/common/image.resize.php';
 				<li class="list-group-item">
 					<a href="/<?php echo $grboard; ?>/board-<?php echo $ext_id; ?>/download/<?php echo $file['uid']; ?>" class="btn btn-info btn-sm">
 						<span class="glyphicon glyphicon-download-alt"></span>
-					</a> <?php echo $file['real_name']; ?></li>
+					</a> <?php echo $file['file_name']; ?></li>
 			<?php endforeach; unset($file); ?>
 		</ul>
 		<?php endif; ?>
