@@ -121,7 +121,7 @@ function smart_resize_image($file, $string = null, $width = 0, $height = 0, $pro
 	return true;
 }
 
-function gr2ResizeImage($realname, $hashname, $width, $height) {
+function gr2ResizeImage($realname, $hashname, $width, $height, $rename='__resized__') {
 	list($w, $h, $t, $a) = getimagesize($hashname);
 	if($width > $w && $height > $h) {
 		return $hashname;
@@ -134,7 +134,7 @@ function gr2ResizeImage($realname, $hashname, $width, $height) {
 	array_pop($hashPathArr);
 	$path = implode('/', $hashPathArr);
 	
-	$output = str_replace('.' . $fileExt, '__resized__.' . $fileExt, $realname);
+	$output = str_replace('.' . $fileExt, $rename . '.' . $fileExt, $realname);
 	$input = $hashname;
 	if(!file_exists($output)) {
 		smart_resize_image($input, null, $width, $height, true, $output, false, false, 100);	

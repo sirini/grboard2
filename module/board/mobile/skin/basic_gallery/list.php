@@ -10,7 +10,7 @@ function getThumbnailPath($Model, $id, $no, $width, $height) {
 		$pathArr = explode('.', $firstAttach['real_name']);
 		$ext = end($pathArr);
 		if(preg_match('/(jpg|png|gif|bmp)/i', $ext)) {
-			$resized = gr2ResizeImage('..' . $firstAttach['real_name'], '..' . $firstAttach['hash_name'], $width, $height);
+			$resized = gr2ResizeImage('..' . $firstAttach['real_name'], '..' . $firstAttach['hash_name'], $width, $height, '__gallery__');
 			$resized = str_replace('../', '/', $resized); 
 		}
 	}
