@@ -62,7 +62,7 @@
 							
 							<?php if (!$Common->getSessionKey()): ?>
 							<div class="form-group">
-								<label class="col-md-3 control-label" for="simplelock"><span class="glyphicon glyphicon-asterisk"></span> Spam</label>		
+								<label class="col-md-3 control-label" for="simplelock">Spam</label>		
 								<div class="col-md-3">
 									<input id="simplelock" name="simplelock" type="text" placeholder="(필수) 우측의 4자리 키 값 입력!" required="true" class="form-control input-md" />
 								</div>
@@ -70,31 +70,15 @@
 							</div>
 							
 							<div class="form-group">
-								<label class="col-md-3 control-label" for="password"><span class="glyphicon glyphicon-asterisk"></span> Password</label>		
+								<label class="col-md-3 control-label" for="password">Password</label>		
 								<div class="col-md-3">
 									<input id="password" name="password" type="password" placeholder="(필수) 비밀번호" required="true" class="form-control input-md" />
 								</div>
 								<span class="col-md-6 help-block">비밀번호를 입력해 주세요</span>
 							</div>
-														
+																					
 							<div class="form-group">
-								<label class="col-md-3 control-label" for="email"> E-mail</label>		
-								<div class="col-md-3">
-									<input id="email" name="email" type="email" placeholder="(옵션) 이메일 주소" class="form-control input-md" />
-								</div>
-								<span class="col-md-6 help-block">(선택) 이메일 주소를 입력해 주세요</span>
-							</div>
-							
-							<div class="form-group">
-								<label class="col-md-3 control-label" for="homepage"> Homepage</label>		
-								<div class="col-md-3">
-									<input id="homepage" name="homepage" type="url" placeholder="(옵션) 홈페이지/블로그/트위터/페북 주소" class="form-control input-md" />
-								</div>
-								<span class="col-md-6 help-block">(선택) 블로그 주소를 입력해 주세요</span>
-							</div>						
-							
-							<div class="form-group">
-								<label class="col-md-3 control-label" for="name"><span class="glyphicon glyphicon-asterisk"></span> Name</label>		
+								<label class="col-md-3 control-label" for="name">Name</label>		
 								<div class="col-md-3">
 									<input id="name" name="name" type="text" placeholder="(필수) 이름" required="true" class="form-control input-md" />
 								</div>
@@ -104,7 +88,7 @@
 							<?php endif; ?>
 							
 							<div class="form-group">
-								<label class="col-md-3 control-label" for="content"><span class="glyphicon glyphicon-asterisk"></span> Comment</label>		
+								<label class="col-md-3 control-label" for="content">Comment</label>		
 								<div class="col-md-9">
 									<textarea id="content" name="content" required="true" rows="10" placeholder="이 곳에 댓글을 입력해 주세요" class="form-control textarea-md"></textarea>
 									

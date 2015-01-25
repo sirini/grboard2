@@ -27,6 +27,11 @@ $(function(){
 		$("#managePostForm").submit();
 	});
 	
-	var searchInputSize = $(window).width() - 190;
-	$("#gr2searchForm input[type=search]").css("width", searchInputSize + "px");
+	var resizeSearch = function(){
+		var searchInputSize = $(window).width() - 270;
+		$("#gr2searchForm input[type=search]").css("width", searchInputSize + "px");
+	};
+	
+	resizeSearch();
+	$(window).resize(resizeSearch);
 });

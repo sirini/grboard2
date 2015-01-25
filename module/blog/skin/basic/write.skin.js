@@ -68,7 +68,7 @@ $(function(){
                         }
                     }
                 } 
-            }
+            };
         }
     };
     
@@ -112,7 +112,7 @@ $(function(){
         selector: "textarea#gr2content",
         plugins: [
             "advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker",
-            "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking",
+            "searchreplace visualblocks visualchars code fullscreen insertdatetime media nonbreaking",
             "save table contextmenu directionality emoticons template paste textcolor"      
         ],
         content_css: "/" + gr2write.grboard + "/module/blog/skin/basic/editor.css",

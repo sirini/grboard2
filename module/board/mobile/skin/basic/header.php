@@ -24,7 +24,7 @@
 					<a class="navbar-brand" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>"><span class="glyphicon glyphicon-home"></span></a>					
 				</div>
 				
-				<div class="collapse navbar-collapse">
+				<div class="collapse navbar-collapse col-md-12">
 				    <ul class="nav navbar-nav">
 						<li><a href="<?php echo $boardLink; ?>/write/0"><span class="glyphicon glyphicon-pencil"></span> Write</a></li>
 						<?php if(isset($boardPost['member_key']) && isPermitted($boardPost['member_key'], $Common->getSessionKey())): ?>
@@ -56,7 +56,7 @@
 						<div class="form-group">
 							<input type="hidden" name="boardId" value="<?php echo $ext_id; ?>" />
 							<input type="hidden" name="page" value="<?php echo $ext_page; ?>" />
-							<select name="option">
+							<select name="option" class="gr-select">
 								<option value="subject" <?php echo (isset($option) && $option == 'subject')?'selected="true"':''; ?>>Subject</option>
 								<option value="content" <?php echo (isset($option) && $option == 'content')?'selected="true"':''; ?>>Content</option>
 								<option value="tag" <?php echo (isset($option) && $option == 'tag')?'selected="true"':''; ?>>Tag</option>

@@ -31,7 +31,10 @@ class Model {
 			$reply['secret'] = 0;
 		} else {
 			$reply['password'] = md5($reply['password']);
-			$reply['secret'] = (int)$reply['secret'];
+			if(isset($reply['secret'])) $reply['secret'] = (int)$reply['secret'];
+			else $reply['secret'] = 0;
+			if(!isset($reply['email'])) $reply['email'] = '';
+			if(!isset($reply['homepage'])) $reply['homepage'] = '';	
 		}
 		$valueStr = '\'\',' . ((int)$familyID) . ',' . ((int)$target) . ','.($reply['secret']).',' . ((int)$isReply) . ',';
 		$valueStr .= '\'' . $this->escape(strip_tags($reply['name'])) . '\',';
@@ -60,11 +63,11 @@ class Model {
 			return false;
 		}
 		
-		if( array_key_exists('isNotice', $post) ) $isNotice = 1; else $isNotice = 0;
-		if( array_key_exists('isVisible', $post) ) $isVisible = 1; else $isVisible = 0;
-		if( array_key_exists('isReplyable', $post) ) $isReplyable = 1; else $isReplyable = 0;
-		if( array_key_exists('isRSS', $post) ) $isRSS = 1; else $isRSS = 0;
-		if( array_key_exists('hashfiles', $post) ) $isDndUploaded = 1; else $isDndUploaded = 0;
+		if(isset($post['isNotice'])) $isNotice = 1; else $isNotice = 0;
+		if(isset($post['isVisible'])) $isVisible = 1; else $isVisible = 0;
+		if(isset($post['isReplyable'])) $isReplyable = 1; else $isReplyable = 0;
+		if(isset($post['isRSS'])) $isRSS = 1; else $isRSS = 0;
+		if(isset($post['hashfiles'])) $isDndUploaded = 1; else $isDndUploaded = 0;
 
 		$tempDir = '__gr2_dnd_temp__/';
 		$originalDir = date('/Y/m/d/');
@@ -145,6 +148,8 @@ class Model {
 			$guestbook['password'] = $writer['password'];
 		} else {
 			$guestbook['password'] = md5($guestbook['password']);
+			if(!isset($guestbook['email'])) $guestbook['email'] = '';
+			if(!isset($guestbook['homepage'])) $guestbook['homepage'] = '';
 		}
 		$valueStr = '\'\',';
 		$valueStr .= '\'' . $this->escape(strip_tags($guestbook['name'])) . '\',';
