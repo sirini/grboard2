@@ -11,6 +11,8 @@ include 'view/error.php';
 
 $Model = new Model($DB, $query, $grboard);
 $boardInfo = $Model->getBoardInfo($ext_id);
+if(!isset($mobilePath)) $boardTheme = $boardInfo['theme'];
+else $boardTheme = $boardInfo['theme_mobile'];
 $userInfo = $Model->getUserInfo($Common->getSessionKey());
 if($userInfo['level'] < $boardInfo['view_level']) {
 	$Common->error($error['msg_no_permission'], $boardLink . '/list/1');
@@ -19,8 +21,8 @@ $boardCategory = $Model->getBoardCategory($ext_id);
 $Model->updateHit($ext_id, $ext_articleNo);
 $boardPost = $Model->getPost($ext_id, $ext_articleNo);
 $replyList = $Model->getReplyList($ext_id, $ext_articleNo);
-$skinResourcePath = $skinResourcePrefix . $boardInfo['theme_mobile'];
-$skinPath = $skinPathPrefix . $boardInfo['theme_mobile'];
+$skinResourcePath = $skinResourcePrefix . $boardTheme;
+$skinPath = $skinPathPrefix . $boardTheme;
 $simplelock = substr(md5($boardPost['no'] . 'GR_BOARD_2' . date('YmdH')), -4);
 $fileList = $Model->getFileList($ext_id, $ext_articleNo);
 
@@ -43,7 +45,7 @@ if($boardPost['is_secret'] && !isPermitted($boardPost['member_key'], $Common->ge
 	$boardPost['content'] = '<p class="red">Secret post.</p>';	
 }
 
-include $skinIncludePrefix . $boardInfo['theme'] . '/index.php';
+include $skinIncludePrefix . $boardTheme . '/index.php';
 
-unset($Model, $error, $boardTotalRecord, $Paging, $boardPost, $boardInfo, $skinResourcePath, $skinPath, $boardPaging, $boardTotalBlock, $boardNowBlock, $query, $fileList);
+unset($Model, $error, $boardTotalRecord, $Paging, $boardPost, $boardInfo, $skinResourcePath, $skinPath, $boardPaging, $boardTotalBlock, $boardNowBlock, $query, $fileList, $boardTheme);
 ?>

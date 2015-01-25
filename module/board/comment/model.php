@@ -32,6 +32,8 @@ class Model {
 			$reply['password'] = $writer['password'];
 		} else {
 			$reply['password'] = md5($reply['password']);
+			if(!isset($reply['email'])) $reply['email'] = '';
+			if(!isset($reply['homepage'])) $reply['homepage'] = '';
 		}
 		$thread = 0;
 		if($familyID > 0) {

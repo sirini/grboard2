@@ -84,19 +84,19 @@
 </div>
 
 <div class="form-group">
-	<label for="page_num" class="col-md-2 control-label">Page count</label>
+	<label for="page_num" class="col-md-2 control-label">List count</label>
 	<div class="col-md-3">
 		<input type="text" class="form-control" name="page_num" class="short" value="<?php echo $oldData['page_num']; ?>" />
 	</div> 
-	<span class="help-block col-md-7"><?php echo $lang['board_add_page_num']; ?></span>
+	<span class="help-block col-md-7"><?php echo $lang['board_add_page_per_list']; ?></span>
 </div>
 
 <div class="form-group">
-	<label for="page_per_list" class="col-md-2 control-label">List count</label>
+	<label for="page_per_list" class="col-md-2 control-label">Page count</label>
 	<div class="col-md-3">
 		<input type="text" class="form-control" name="page_per_list" class="short" value="<?php echo $oldData['page_per_list']; ?>" />
 	</div>
-	<span class="help-block col-md-7"><?php echo $lang['board_add_page_per_list']; ?></span>
+	<span class="help-block col-md-7"><?php echo $lang['board_add_page_num']; ?></span>
 </div>
 
 <div class="form-group">
@@ -239,7 +239,7 @@
 	<span class="help-block col-md-8"><?php echo $lang['board_add_down_level']; ?></span>
 </div>
 
-<div class="form-group text-right">
+<div class="form-group text-right col-md-12">
 	<input type="submit" value="Submit" class="btn btn-primary btn-lg" />
 </div>
 </fieldset>

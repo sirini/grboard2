@@ -128,14 +128,13 @@ function gr2ResizeImage($realname, $hashname, $width, $height) {
 	}
 	
 	$fileStrArr = explode('.', $realname);
-	$fileArrSize = count($fileStrArr);
-	$fileExt = $fileStrArr[$fileArrSize - 1];
+	$fileExt = end($fileStrArr);
 	
 	$hashPathArr = explode('/', $hashname);
 	array_pop($hashPathArr);
 	$path = implode('/', $hashPathArr);
 	
-	$output = $path . '/' . str_replace('.' . $fileExt, '__resized__.' . $fileExt, $realname);
+	$output = str_replace('.' . $fileExt, '__resized__.' . $fileExt, $realname);
 	$input = $hashname;
 	if(!file_exists($output)) {
 		smart_resize_image($input, null, $width, $height, true, $output, false, false, 100);	

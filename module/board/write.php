@@ -38,9 +38,11 @@ if(isset($_POST['writeProceed'])) {
 $simplelock = substr(md5('GR_BOARD_2' . date('YmdHis') . $_SERVER['HTTP_HOST']), -5);
 $_SESSION['ANTISPAM'] = $simplelock; 
 $boardInfo = $Model->getBoardInfo($ext_id);
+if(!isset($mobilePath)) $boardTheme = $boardInfo['theme'];
+else $boardTheme = $boardInfo['theme_mobile'];
 $userInfo = $Model->getUserInfo($Common->getSessionKey());
-$skinResourcePath = $skinResourcePrefix . $boardInfo['theme'];
-$skinPath = $skinPathPrefix . $boardInfo['theme'];
+$skinResourcePath = $skinResourcePrefix . $boardTheme;
+$skinPath = $skinPathPrefix . $boardTheme;
 $postTarget = 0;
 $oldFile = array(array());
 
@@ -59,7 +61,7 @@ if(isset($_GET['articleNo'])) {
 	$oldData['content'] = str_replace('<br />', "\n", $oldData['content']);
 }
 
-include $skinIncludePrefix . $boardInfo['theme'] . '/index.php';
+include $skinIncludePrefix . $boardTheme . '/index.php';
 
-unset($Model, $query, $error, $boardInfo, $userInfo, $skinResourcePath, $skinPath, $oldData, $oldFile, $simplelock, $target);
+unset($Model, $query, $error, $boardInfo, $userInfo, $skinResourcePath, $skinPath, $oldData, $oldFile, $simplelock, $target, $boardTheme);
 ?>

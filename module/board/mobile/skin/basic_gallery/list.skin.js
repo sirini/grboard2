@@ -34,4 +34,8 @@ $(function(){
 	
 	resizeSearch();
 	$(window).resize(resizeSearch);
+	
+	var thumbWidth = ($(window).width() / 3) - 15;
+	$(".gr-thumbnail").css("width", thumbWidth);
+	$(".gr-thumbnail img").css("width", thumbWidth);
 });

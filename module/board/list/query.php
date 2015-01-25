@@ -9,6 +9,7 @@ $query = array(
 	'get_board_notice' => 'select * from ' . $db_prefix_board . 'bbs_{0} where is_notice = 1 order by no desc' ,
 	'get_board_category' => 'select category from ' . $db_prefix_board . 'board_list where id = \'{0}\'' ,
 	'get_board_post' => 'select {0} from '. $db_prefix_board . 'bbs_{1} where no between {2} and {3} order by no desc limit {4},{5}',
+	'get_first_attached' => 'select real_name, hash_name from ' . $db_prefix_board . 'file_store where board_id = \'{0}\' and board_no = {1} order by uid asc limit 1',
 	'get_board_post_find' => 'select {0} from '. $db_prefix_board . 'bbs_{1} where no between {2} and {3} and {4} like \'%{5}%\' order by no desc limit {6},{7}'
 );
 ?>

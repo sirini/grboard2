@@ -114,7 +114,7 @@
 	<span class="help-block col-md-7"><?php echo $lang['member_add_blocks']; ?></span>
 </div>	
 
-<div class="form-group text-right">
+<div class="form-group text-right col-md-12">
 	<input type="submit" value="Submit" class="btn btn-lg btn-primary" />
 </div>
 
