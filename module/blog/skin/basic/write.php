@@ -20,6 +20,9 @@ endif;
 	<link rel="stylesheet" type="text/css" href="<?php echo $skinResourcePath; ?>/skin.css" />
 	<link href="/<?php echo $grboard; ?>/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen" />
 	<link href="/<?php echo $grboard; ?>/lib/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet" media="screen" />
+	<script src="/<?php echo $grboard; ?>/lib/jquery.js"></script>
+	<script src="/<?php echo $grboard; ?>/lib/bootstrap/js/bootstrap.min.js"></script>
+	<script src="<?php echo $skinResourcePath . '/' . $ext_action; ?>.skin.js"></script>
 </head>
 <body>
 
@@ -52,7 +55,7 @@ endif;
 
 		<div id="blogMainContent">
 			<div id="blogWrite">
-				<div id="blogWriteBox">
+				<div id="blogWriteBox" class="col-sm-12">
 				
 					<form id="blogWriteForm" method="post" action="<?php echo $formAction; ?>" class="form-horizontal">
 					<div id="hiddenInputs">
@@ -91,7 +94,7 @@ endif;
 						
 						<div class="form-group">		
 							<div class="col-md-12">
-								<textarea id="gr2content" rows="15" placeholder="글 제목을 입력해 주세요" class="form-control textarea-md"><?php echo $blogModify['subject']; ?></textarea>
+								<textarea id="gr2content" rows="15" placeholder="글 제목을 입력해 주세요" class="form-control textarea-md"><?php echo $blogModify['content']; ?></textarea>
 							</div>
 						</div>	
 						
@@ -102,8 +105,11 @@ endif;
 							</div>
 						</div>	
 						
-						<div class="form-group text-right">
-							<input type="submit" class="btn btn-lg btn-primary" role="button" value="Submit" />
+						<div class="form-group">
+							<div class="col-md-12">
+								<input type="submit" class="btn btn-md btn-primary" role="button" value="Save and publish" />
+								<input id="savedraft" type="button" class="btn btn-md btn-default" role="button" value="Save and draft" />
+							</div>
 						</div>
 					
 					</fieldset>

@@ -195,3 +195,8 @@ h6, .h6 {
   background-color: #f9f9f9;
   border-top: 1px solid #e5e5e5;
 }
+
+.draft {
+	font-weight: bold;
+	color: #C03F3A;
+}

@@ -7,7 +7,7 @@ include 'write/error.php';
 
 $Model = new Model($DB, $query, $grboard, $Common);
 
-if( array_key_exists('post', $_GET) ) {
+if(isset($_GET['post'])) {
 	$target = (int)$_GET['post'];
 	$insertID = $Model->writePost($_POST, $target);
 	if($insertID > 0) {

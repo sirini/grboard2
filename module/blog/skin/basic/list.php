@@ -13,8 +13,12 @@
 			<div class="blog-post">				
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<h3 class="panel-title"><a href="/<?php echo $grboard; ?>/blog/view/<?php echo $post['uid']; ?>">
-							<?php echo $post['subject']; ?></a></h3>
+						<h3 class="panel-title">
+							<?php if($post['post_condition'] == 0): ?><span class="draft">[draft]</span><?php endif; ?>
+							<a href="/<?php echo $grboard; ?>/blog/view/<?php echo $post['uid']; ?>">
+								<?php echo $post['subject']; ?>
+							</a>
+						</h3>
 					</div>
 					<div class="panel-body size-text-normal">
 						<?php echo $Common->getSubStr(strip_tags($post['content']), 300); ?>

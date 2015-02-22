@@ -21,14 +21,15 @@ class Model {
 		return $result;
 	}
 
-	public function getBlogPost($preset=0, $count=10, $page=1) {
+	public function getBlogPost($common, $preset=0, $count=10, $page=1) {
 		$count = (int)$count;
 		$queLast = $this->db->query($this->queArr['get_last_uid']);
 		$last = $this->db->fetch($queLast);
 		$this->db->free($queLast);
+		$isAdmin = ($common->getSessionKey() == 1) ? true : false;
 		$queStr = str_replace(
-			array('{0}', '{1}', '{2}', '{3}'), 
-			array(($last['uid'] - ($count * $page * 10)), $last['uid'], (int)$preset, $count), 
+			array('{0}', '{1}', '{2}', '{3}', '{4}'), 
+			array(($last['uid'] - ($count * $page * 10)), $last['uid'], (($isAdmin)?'':'and post_condition > 0'), (int)$preset, $count), 
 			$this->queArr['get_blog_post']
 		);
 		$que = $this->db->query($queStr);

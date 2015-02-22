@@ -7,7 +7,7 @@ include 'write/error.php';
 
 $Model = new Model($DB, $query, $grboard, $Common);
 
-if( array_key_exists('comment', $_GET) ) {
+if(isset($_GET['comment'])) {
 	$postID = (int)$_GET['comment'];
 	$familyID = (int)$_POST['family_uid'];
 	$isReply = 0;
@@ -30,7 +30,7 @@ if( array_key_exists('comment', $_GET) ) {
 	}
 }
 
-if( array_key_exists('post', $_GET) ) {
+if(isset($_GET['post'])) {
 	$insertID = $Model->writePost($_POST);
 	if($insertID > 0) {
 		header('Location: /' . $grboard . '/blog/view/' . $insertID);
@@ -39,7 +39,7 @@ if( array_key_exists('post', $_GET) ) {
 	}
 }
 
-if( array_key_exists('guestbook', $_GET) ) {
+if(isset($_GET['guestbook'])) {
 	$isReply = (int)$_POST['reply_uid'];
 	$isSecret = 0;
 	if( array_key_exists('secret', $_POST) && $_POST['secret'] ) $isSecret = 1;

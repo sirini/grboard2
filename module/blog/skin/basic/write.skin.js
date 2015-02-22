@@ -131,12 +131,20 @@ $(function(){
                     alert("글 내용을 입력해 주세요");
                     return false;
                 }
+                $("#blogWriteForm input[name=isVisible]").prop("checked", true);
                 gr2write.hidden.append("<input type=\"hidden\" name=\"gr2content\" value=\"" + content.replace(/"/g, "[bigquote]") + "\" />");
                 gr2write.writeForm.submit();
                 return false;   
             });
         },
         toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | print preview media fullpage | forecolor backcolor emoticons"
+    });
+    
+    $("#savedraft").click(function(){
+    	var content = tinymce.activeEditor.getContent();
+        $("#blogWriteForm input[name=isVisible]").prop("checked", false);
+        gr2write.hidden.append("<input type=\"hidden\" name=\"gr2content\" value=\"" + content.replace(/"/g, "[bigquote]") + "\" />");
+        $("#blogWriteForm").submit();
     });
     
 });

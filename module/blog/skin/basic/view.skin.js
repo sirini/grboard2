@@ -12,5 +12,6 @@ $(function(){
 	$("#blogPost .panel-body img").each(function(index){
 		$(this).addClass("img-responsive").addClass("img-rounded").addClass("center-block");
 	});
-
+	
+	SyntaxHighlighter.all();
 });

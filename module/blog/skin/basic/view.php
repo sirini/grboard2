@@ -1,4 +1,12 @@
-<?php if(!defined('GR_BOARD_2')) exit(); ?>
+<?php 
+if(!defined('GR_BOARD_2')) exit(); 
+
+function enableSyntaxHighlighter($text) {
+	$text = str_replace('<br />', "\n", $text);
+	$code = preg_replace('/\[(.+)\](.*?)\[\/(.+)\]/si', '<pre class="brush: $1">$2</pre>', $text);
+	return $code;
+}
+?>
 
 <div class="blog-header">
 	<h1 class="blog-title"><?php echo $blogInfo['blog_title']; ?></h1>
@@ -9,13 +17,13 @@
 
 	<div id="blogMainContent" class="col-sm-8 blog-main">
 		<div id="blogPost">
-			<div class="blog-post">				
+			<div class="blog-post">
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<h3 class="panel-title"><?php echo $blogPost['subject']; ?></h3>
 					</div>
 					<div class="panel-body size-text-normal overflow-hidden">
-						<?php echo $blogPost['content']; ?>
+						<?php echo enableSyntaxHighlighter($blogPost['content']); ?>
 						<hr />
 						<div class="blogPostInfo">Tag: <?php echo $blogPost['tag']; ?>, 
 							Date: <?php echo date('Y-m-d', $blogPost['signdate']); ?> 

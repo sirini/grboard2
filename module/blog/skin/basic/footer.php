@@ -9,9 +9,6 @@
 				Powered by <a href="http://grboard.com">GR Board <sup>2</sup></a></p>
 		</div>
 	</div>
-	
-	<script src="/<?php echo $grboard; ?>/lib/jquery.js"></script>
-	<script src="/<?php echo $grboard; ?>/lib/bootstrap/js/bootstrap.min.js"></script>
-	<script src="<?php echo $skinResourcePath . '/' . $ext_action; ?>.skin.js"></script>
+
 </body>
 </html>

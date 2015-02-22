@@ -7,6 +7,25 @@
 	<link rel="stylesheet" type="text/css" href="<?php echo $skinResourcePath; ?>/skin.css" />
 	<link href="/<?php echo $grboard; ?>/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen" />
 	<link href="/<?php echo $grboard; ?>/lib/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet" media="screen" />
+	<link type="text/css" rel="stylesheet" href="/<?php echo $grboard; ?>/lib/syntaxhighlighter/styles/shCore.css">
+	<link type="text/css" rel="stylesheet" href="/<?php echo $grboard; ?>/lib/syntaxhighlighter/styles/shThemeDefault.css">
+	<script src="/<?php echo $grboard; ?>/lib/syntaxhighlighter/scripts/shCore.js"></script>
+	<script src="/<?php echo $grboard; ?>/lib/syntaxhighlighter/scripts/shLegacy.js"></script>
+	<script src="/<?php echo $grboard; ?>/lib/syntaxhighlighter/scripts/shBrushBash.js"></script>
+	<script src="/<?php echo $grboard; ?>/lib/syntaxhighlighter/scripts/shBrushCpp.js"></script>
+	<script src="/<?php echo $grboard; ?>/lib/syntaxhighlighter/scripts/shBrushCSharp.js"></script>
+	<script src="/<?php echo $grboard; ?>/lib/syntaxhighlighter/scripts/shBrushCss.js"></script>
+	<script src="/<?php echo $grboard; ?>/lib/syntaxhighlighter/scripts/shBrushDiff.js"></script>
+	<script src="/<?php echo $grboard; ?>/lib/syntaxhighlighter/scripts/shBrushJava.js"></script>
+	<script src="/<?php echo $grboard; ?>/lib/syntaxhighlighter/scripts/shBrushJScript.js"></script>
+	<script src="/<?php echo $grboard; ?>/lib/syntaxhighlighter/scripts/shBrushPhp.js"></script>
+	<script src="/<?php echo $grboard; ?>/lib/syntaxhighlighter/scripts/shBrushPlain.js"></script>
+	<script src="/<?php echo $grboard; ?>/lib/syntaxhighlighter/scripts/shBrushPython.js"></script>
+	<script src="/<?php echo $grboard; ?>/lib/syntaxhighlighter/scripts/shBrushSql.js"></script>
+	<script src="/<?php echo $grboard; ?>/lib/syntaxhighlighter/scripts/shBrushXml.js"></script>
+	<script src="/<?php echo $grboard; ?>/lib/jquery.js"></script>
+	<script src="/<?php echo $grboard; ?>/lib/bootstrap/js/bootstrap.min.js"></script>
+	<script src="<?php echo $skinResourcePath . '/' . $ext_action; ?>.skin.js"></script>
 </head>
 <body>
 
