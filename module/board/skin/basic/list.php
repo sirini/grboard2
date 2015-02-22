@@ -71,6 +71,9 @@ endif;
 if(isset($boardPost[0]['no'])): 
 	foreach($boardPost as &$post): 
 		$link = $boardLink . '/view/' . $post['no'];
+		if($boardInfo['cut_subject'] > 0):
+			$post['subject'] = mb_strcut($post['subject'], 0, $boardInfo['cut_subject'], 'UTF-8');
+		endif;
 ?>
 <tr class="list">
 	<?php if($isAdmin): ?>

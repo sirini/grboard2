@@ -1,4 +1,18 @@
-<?php if(!defined('GR_BOARD_2')) exit(); ?>
+<?php 
+if(!defined('GR_BOARD_2')) exit(); 
+include 'util/common/image.resize.php';
+
+function makeThumbnailPath($file, $width, $height) {
+	$filenameArr = explode('.', $file['real_name']);
+	$ext = end($filenameArr);
+	$resized = false;
+	if(preg_match('/(jpg|png|gif|bmp)/i', $ext)) {
+		$resized = gr2ResizeImage('..' . $file['real_name'], '..' . $file['hash_name'], $width, $height, '__bbs_preview__');
+		$resized = str_replace('../', '/', $resized); 
+	}
+	return $resized;
+}
+?>
 
 <div id="GRBOARD2" rel="<?php echo $grboard; ?>">
 
@@ -35,8 +49,22 @@
 <div id="gr2viewContent" class="content">
 	<?php if($fileList != false): ?>
 	<ul class="fileList">
-		<?php foreach($fileList as &$file): ?>
-			<li><a href="/<?php echo $grboard; ?>/board/download/<?php echo $file['uid']; ?>" class="gr-btn gr-btn-info gr-btn-sm" title="클릭 하시면 파일을 내려 받습니다">Download</a> <?php echo $file['real_name']; ?></li>
+		<?php 
+		foreach($fileList as &$file): 
+			$filenameArr = explode('/', $file['real_name']);
+			$filename = end($filenameArr);
+			$thumbnail = makeThumbnailPath($file, 200, 200);
+			$down = '/'.$grboard.'/board-'.$ext_id.'/download/'.$file['uid'];
+		?>
+			<li><a href="<?php echo $down; ?>" class="gr-btn gr-btn-info gr-btn-sm" title="클릭 하시면 파일을 내려 받습니다">Download</a> 
+				<?php echo $filename; ?>
+				
+				<?php if($thumbnail): ?>
+				<div class="thumbnailBox">
+					<a href="<?php echo $down; ?>"><img src="<?php echo $thumbnail; ?>" alt="preview" class="gr-img-thumbnail" /></a>
+				</div>	
+				<?php endif; ?>
+			</li>
 		<?php endforeach; unset($file); ?>
 	</ul>
 	<?php endif; ?>

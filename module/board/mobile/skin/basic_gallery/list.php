@@ -57,7 +57,7 @@ if(isset($boardPost[0]['no'])):
 	<div class="gr-thumbnail">
 	<a href="<?php echo $link; ?>">
 
-		<img src="<?php echo $thumbnail; ?>" alt="preview" class="img-thumbnail">
+		<img src="<?php echo $thumbnail; ?>" alt="preview" class="img-thumbnail" />
 		
 		<?php if($isAdmin): ?>
 			<input type="checkbox" class="checkedPost" name="checkedArticle[]" value="<?php echo $post['no']; ?>" />

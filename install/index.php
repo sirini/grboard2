@@ -95,7 +95,7 @@ include 'lang.korean.php';
 			<div class="form-group">
 				<label for="db_dbname" class="col-md-2 control-label">DB name</label>
 				<div class="col-md-3">
-					<input type="text" name="db_dbname" placeholder="사용할 DB 이름 입력" required="true" class="form-control" maxlength="20" value="" /> 
+					<input type="text" name="db_dbname" placeholder="사용할 DB 이름 입력" required="true" class="form-control" maxlength="50" value="" /> 
 				</div>
 				<span class="help-block col-md-7"><?php echo $lang['install_dbname']; ?></span>
 			</div>		

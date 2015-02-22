@@ -212,6 +212,20 @@
 	line-height: 1.6;
 }
 
+#GRBOARD2 img.gr-img-thumbnail {
+	margin: 3px 0;
+	padding: 4px;
+	line-height: 1.428571429;
+	background-color: #fff;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	-webkit-transition: all .2s ease-in-out;
+	transition: all .2s ease-in-out;
+	display: inline-block;
+	max-width: 100%;
+	height: auto;
+}
+
 @media only screen 
 and (min-device-width: 320px) 
 and (max-device-width: 640px) {
@@ -465,6 +479,10 @@ and (max-device-width: 650px) {
 	width: 450px;
 }
 
+#GRBOARD2 div.boardWriteBox ul li.space {
+	padding: 2px 0 10px 0;
+}
+
 #gr2content {
 	width: 500px;
 	height: 300px;
@@ -481,7 +499,6 @@ and (max-device-width: 650px) {
 	border-radius: 10px;
 	margin: 5px 20px 5px 0px;
 	color: #aaa;
-	width: 510px;
 	overflow: auto;
 	background-color: #ffffe7;
 }

@@ -47,6 +47,9 @@ class Model {
 		$que = $this->db->query($queStr);
 		$result = $this->db->fetch($que);
 		$this->db->free($que);
+		$result['subject'] = htmlspecialchars($result['subject']);
+		$result['content'] = htmlspecialchars($result['content']);	
+		
 		return $result;
 	}
 	
@@ -127,12 +130,12 @@ class Model {
 			array($moveDir, '"', $originalDir), $post['gr2content']);
 		$post['gr2content'] = str_replace(array('src="../data/board/', 'src="../lib/tinymce/'), 
 			array('src="../../data/board/', 'src="../../lib/tinymce/'), $post['gr2content']);
-	
+
 		if($sessionKey != 1) {
 			require 'lib/htmlpurifier/HTMLPurifier.auto.php';
 			$puri = new HTMLPurifier();
 			$post['gr2subject'] = htmlspecialchars($post['gr2subject']);
-			$post['gr2content'] = $puri->purify($post['gr2content']);
+			$post['gr2content'] = $puri->purify($post['gr2content']);			
 		}
 		if(isset($post['gr2category'])) $post['gr2category'] = $this->escape($post['gr2category']);
 		$post['gr2subject'] = $this->escape($post['gr2subject']);

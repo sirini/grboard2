@@ -49,8 +49,9 @@ endif;
 					</select>
 				<?php endif; ?>
 				
-				<input type="text" name="gr2subject" required="true" placeholder="글 제목을 여기에 입력해 주세요" class="gr-form-input longWidth" value="<?php echo $oldData['subject']; ?>" /></li>
-			<li>
+				<input type="text" name="gr2subject" required="true" placeholder="글 제목을 여기에 입력해 주세요" class="gr-form-input longWidth" value="<?php echo $oldData['subject']; ?>" />
+			</li>
+			<li class="space">
 				<div id="gr2dndUpload" title="여기에 업로드 할 파일을 끌어다 놓으세요">
 					<div id="gr2dndMsg">이 곳에 업로드 할 파일을 끌어다 놓으세요</div>
 				</div>
@@ -66,7 +67,7 @@ endif;
 					$fnameArr = explode('/', $list['real_name']);
 					$fname = $fnameArr[count($fnameArr) - 1];
 					?>
-					<li><input type="checkbox" name="deleteFileList[]" value="<?php echo $fid; ?>" title="이 첨부파일을 삭제 하고자 할 경우 체크해 주세요" /> <?php echo $fname; ?></li>
+					<li><input type="checkbox" name="deleteFileList[]" value="<?php echo $fid; ?>" title="이 첨부파일을 삭제 하고자 할 경우 체크해 주세요" /> <?php echo $fname; ?> (delete if checked)</li>
 				<?php endforeach; unset($fid, $fnameArr, $fname, $list); ?>
 				</ul>
 				<?php endif; ?>

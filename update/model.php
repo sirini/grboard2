@@ -26,4 +26,30 @@ foreach($updates as &$que) {
 // clean up
 $mysqli->close();
 unset($updates, $mysqli);
+
+// update .htaccess
+if(file_exists('../.htaccess')) {
+	chmod('../.htaccess', 0707);
+	unlink('../.htaccess');
+}
+$grboardArr = explode(DIRECTORY_SEPARATOR, dirname(__FILE__));
+$grboard = $grboardArr[count($grboardArr)-2];
+$htaccess = '<IfModule mod_rewrite.c>' . "\n" .
+	'RewriteBase /'.$grboard. "\n" .
+    'RewriteEngine On'. "\n" .
+    'RewriteCond %{REQUEST_FILENAME} !-d'. "\n" .
+    'RewriteCond %{REQUEST_FILENAME} !-f'. "\n\n" .
+
+    'RewriteRule ^([a-zA-Z0-9]+)$ index.php?module=$1&action=list&page=1'. "\n" .
+    'RewriteRule ^([a-zA-Z0-9]+)\/([a-zA-Z0-9_]+)$ index.php?module=$1&action=$2'. "\n" .
+    'RewriteRule ^([a-zA-Z0-9]+)\/([a-zA-Z0-9_]+)\/([a-zA-Z]+)$ index.php?module=$1&action=$2&$3'. "\n" .
+    'RewriteRule ^([a-zA-Z0-9]+)\/([a-zA-Z0-9_]+)\/([0-9]+)$ index.php?module=$1&action=$2&articleNo=$3&target=$3&page=$3'. "\n" .
+    'RewriteRule ^([a-zA-Z0-9]+)\/([a-zA-Z0-9_]+)\/([a-zA-Z0-9]+)\/([a-zA-Z0-9_]+)$ index.php?module=$1&action=$2&$3=$4'. "\n\n" .
+
+    'RewriteRule ^([a-zA-Z0-9]+)(\-)([a-zA-Z0-9_]+)\/([a-zA-Z0-9]+)$ index.php?module=$1&id=$3&action=$4'. "\n" .
+    'RewriteRule ^([a-zA-Z0-9]+)(\-)([a-zA-Z0-9_]+)\/([a-zA-Z0-9]+)\/([0-9]+)$ index.php?module=$1&id=$3&action=$4&page=$5&articleNo=$5&commentNo=$5'. "\n" .
+    'RewriteRule ^([a-zA-Z0-9]+)(\-)([a-zA-Z0-9_]+)\/([a-zA-Z0-9]+)\/([a-zA-Z]+)\/([0-9]+)$ index.php?module=$1&id=$3&action=$4&$5=$6'. "\n" .
+    'RewriteRule ^([a-zA-Z0-9]+)(\-)([a-zA-Z0-9_]+)\/([a-zA-Z0-9]+)/([a-zA-Z]+)\/(.+)\/([0-9]+)$ index.php?module=$1&id=$3&action=$4&option=$5&value=$6&page=$7'. "\n" .
+'</IfModule>';
+file_put_contents('../.htaccess', $htaccess);
 ?>
