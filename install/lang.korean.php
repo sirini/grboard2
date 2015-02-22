@@ -1,7 +1,8 @@
 <?php
 $lang = array(
 	'home_info' => '첫 화면으로 이동 합니다' ,
-	'install_warning' => '현재 설치된 GR Board <sup>2</sup> 는 정식 버전 직전에 개발자용으로 제공되는 버전 입니다.' ,
+	'install_warning' => '현재 설치된 GR Board <sup>2</sup> 는 곧 공개될 정식 버전을 위한 테스트 버전 입니다.' ,
+	'install_warning_permission' => '설치하신 경로의 퍼미션 (권한) 을 확인해 보세요. grboard2 디렉토리의 권장 퍼미션값은 0707 입니다.' ,
 	'install_db_type' => 'GR Board <sup>2</sup> 는 현재 MySQL 만 지원 되며, 추후 MariaDB 가 지원될 예정 입니다.' ,
 	'install_welcome' => '<strong>환영 합니다!</strong><p>GR Board <sup>2</sup> 는 작고 빠른 설치형 게시판 엔진 입니다. 2005년 10월 국내에선 거의 처음으로 웹표준 기반으로 제작 되었으며,' .
 							' 2014년 1월 v2.0.0 이후 부터는 완전한 HTML5 기반으로 새롭게 재작성 되어 배포 되고 있습니다. 주요 특징은 아래와 같습니다.</p>' ,

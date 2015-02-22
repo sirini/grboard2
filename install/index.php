@@ -48,8 +48,14 @@ include 'lang.korean.php';
 			
 			<div class="alert alert-warning alert-dismissable">
 				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-				<strong>Warning!</strong> <?php echo $lang['install_warning']; ?>
+				<strong>Check!</strong> <?php echo $lang['install_warning']; ?>
 			</div>
+			
+			<?php if(!is_writable('../')) { ?>
+			<div class="alert alert-danger">
+				<strong>Warning!</strong> <?php echo $lang['install_warning_permission']; ?>
+			</div>
+			<?php } ?>
 			
 			<div class="well">
 				<p><?php echo $lang['install_welcome']; ?></p>
@@ -123,7 +129,9 @@ include 'lang.korean.php';
 			</div>	
 			
 			<div class="form-group text-right">
-				<input type="submit" value="Submit" class="btn btn-lg btn-primary" />
+				<div class="col-md-12">
+					<input type="submit" value="Submit" class="btn btn-lg btn-primary" />
+				</div>
 			</div>
 			
 		</fieldset>
