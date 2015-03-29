@@ -2,7 +2,7 @@
 if(!defined('GR_BOARD_2')) exit(); 
 
 if($postTarget == 0):
-	$oldData = array('is_notice'=>0, 'is_secret'=>0, 'name'=>'', 'email'=>'', 'homepage'=>'',  'subject'=>'', 'content'=>'', 'tag'=>'');
+	$oldData = array('is_notice'=>0, 'is_secret'=>0, 'name'=>'', 'email'=>'', 'homepage'=>'',  'subject'=>'', 'content'=>'', 'tag'=>'', 'category'=>'');
 endif;
 ?>
 
@@ -42,7 +42,7 @@ endif;
 				<?php 
 				$category = $Model->getCategoryList($ext_id);
 				if($category != false): ?>
-					<select name="gr2category">
+					<select name="gr2category" class="categoryInput">
 						<?php foreach($category as &$cat): ?>
 							<option name="<?php echo $cat; ?>" <?php echo (($oldData['category']==$cat)?'selected="true"':''); ?>><?php echo $cat; ?></option>
 						<?php endforeach; ?>

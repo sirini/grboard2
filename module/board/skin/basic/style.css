@@ -156,7 +156,6 @@
 }
 
 #GRBOARD2 form.gr-form {
-	margin: 8px 10px 8px 10px;
 	border-top: 1px solid transparent;
 	border-bottom: 1px solid transparent;	
 }
@@ -173,7 +172,7 @@
 }
 
 #GRBOARD2 form.gr-form .gr-form-input {
-	margin: 0 0 5px 0; 
+	margin: 5px 10px 3px 0;
 	padding: 5px;
 	font-size: 14px;
 	line-height: 1.42;
@@ -181,8 +180,22 @@
 	background-color: #fff;
 	border: 1px solid #ccc;
 	border-radius: 4px;
+	vertical-align: middle;
 	box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
 	transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+
+#GRBOARD2 form.gr-form .gr-form-textarea {
+	padding: 0;
+	margin: 5px 5px 5px 0;
+	font-size: 14px;
+	line-height: 1.42;
+	color: #555;
+	background-color: #fff;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+	transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;		
 }
 
 #GRBOARD2 div.gr-panel {
@@ -276,30 +289,28 @@ and (max-device-width: 640px) {
 #GRBOARD2 ul.buttons li {
 	list-style: none;
 	display: inline;
-	margin: 10px 3px 0 0;
+	margin: 10px 0 0 0;
 }
 
 #GRBOARD2 .searchBox {
-	padding: 20px;
+	padding: 50px 0;
 	text-align: center;
 }
 
 #GRBOARD2 .searchInput { margin: auto; }
-
 #GRBOARD2 .searchInput input[type=search] {
-	width: 200px;
 	box-sizing: border-box;
 	vertical-align: middle;
 	height: 34px;
 	padding: 6px 12px;
 	font-size: 14px;
-	line-height: 1.42;
 	color: #555;
 	background-color: #fff;
 	border: 1px solid #ccc;
 	border-radius: 4px;
 	box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
 	transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+	width: 120px;
 }
 
 #GRBOARD2 .searchInput select {
@@ -308,7 +319,7 @@ and (max-device-width: 640px) {
 	border-radius: 4px;
 	box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
 	vertical-align: middle;
-	padding: 6px 12px;
+	padding: 5px;
 }
 
 @media only screen 
@@ -473,6 +484,17 @@ and (max-device-width: 650px) {
 #GRBOARD2 div.boardWriteBox ul li input[type=checkbox] {
 	width: 18px;
 	border: 0 none;
+}
+
+#GRBOARD2 .categoryInput {
+	height: 31px;
+	font-size: 14px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+	vertical-align: middle;
+	padding: 5px;
+	margin: 0 0 -1px 0;
 }
 
 #GRBOARD2 div.boardWriteBox ul li input.longWidth {

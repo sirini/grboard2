@@ -142,11 +142,11 @@ if(isset($option)) {
 			<li><a href="<?php echo $boardLink; ?>/logout" class="gr-btn gr-btn-default" title="로그 아웃 합니다">Logout</a></li>
 		<?php endif; ?>
 		<li><a href="<?php echo $boardLink; ?>/list/1" class="gr-btn gr-btn-default" title="목록을 봅니다">List</a></li>
-		<?php if($isAdmin): ?>
-			<li><a href="#managePostForm" id="managePosts" class="gr-btn gr-btn-info" title="선택한 게시글들을 관리 합니다">Posts</a></li>
-			<li><a href="/<?php echo $grboard; ?>/board/admin/modify2board/<?php echo $boardInfo['no']; ?>" class="gr-btn gr-btn-info" title="게시판 설정을 관리 합니다">Board</a></li>
-		<?php endif; ?>
 		<li><a href="<?php echo $boardLink; ?>/mobile/list/<?php echo $ext_page; ?>" class="gr-btn gr-btn-default" title="모바일 폰에서 봅니다">Mobile</a></li>
+		<?php if($isAdmin): ?>
+			<li><a href="#managePostForm" id="managePosts" class="gr-btn gr-btn-danger" title="선택한 게시글들을 관리 합니다">Posts</a></li>
+			<li><a href="/<?php echo $grboard; ?>/board/admin/modify2board/<?php echo $boardInfo['no']; ?>" class="gr-btn gr-btn-danger" title="게시판 설정을 관리 합니다">Board</a></li>
+		<?php endif; ?>
 
 	</ul>
 	
@@ -157,14 +157,14 @@ if(isset($option)) {
 					<input type="hidden" name="boardId" value="<?php echo $ext_id; ?>" />
 					<input type="hidden" name="page" value="<?php echo $ext_page; ?>" />
 				</div>
-				<select name="option">
+				<select name="option" class="categoryInput">
 					<option value="subject" <?php echo (isset($option) && $option == 'subject') ? 'selected="true"':''; ?>>Subject</option>
 					<option value="content" <?php echo (isset($option) && $option == 'content') ? 'selected="true"':''; ?>>Content</option>
 					<option value="tag" <?php echo (isset($option) && $option == 'tag') ? 'selected="true"':''; ?>>Tag</option>
 					<option value="name" <?php echo (isset($option) && $option == 'name') ? 'selected="true"':''; ?>>Name</option>
 				</select>
 				<input type="search" name="value" value="<?php echo (isset($value)) ? $value:''; ?>" />
-				<input type="submit" value="Search" class="gr-btn gr-btn-default" />
+				<input type="submit" value="Search" class="gr-btn gr-btn-info" />
 			</form>
 		</div>
 	</div>
