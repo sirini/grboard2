@@ -2,9 +2,10 @@
 if(!defined('GR_BOARD_2')) exit(); 
 
 function enableSyntaxHighlighter(&$text) {
-	//preg_match_all('/\[(.+)\](.*?)\[\/(.+)\]/si', $text, $out);
-	//die(print_r($out));
-	// TODO...
+	$text = preg_replace('/\[code=([a-zA-Z]+)\]/i', '<script type="syntaxhighlighter" class="brush: $1"><![CDATA[', $text);
+	$text = str_replace('[/code]', ']]></script>', $text);
+	$text = preg_replace_callback('/<\!\[CDATA\[(.*)\]\]>/i', 
+		create_function('$matches', 'return str_replace(\'<br />\', "\n", $matches[0]);'), $text);
 }
 ?>
 

@@ -33,11 +33,16 @@
 	<?php if(count($oldLink) > 0): foreach($oldLink as &$link): ?>
 	
 	<div class="form-group">
+		<div class="col-md-1">
+			<a href="<?php echo $link['url']; ?>">
+				<button class="btn btn-default"><span class="glyphicon glyphicon-home"></span> Visit</button>
+			</a>
+		</div>
 		<div class="col-md-3">
 			<input type="text" id="name_<?php echo $link['uid']; ?>" required="true" class="form-control" maxlength="20" 
 				value="<?php echo $link['name']; ?>" placeholder="Name" title="<?php echo $lang['link_add_name']; ?>"  /> 
 		</div>
-		<div class="col-md-4">
+		<div class="col-md-3">
 			<input type="url" id="url_<?php echo $link['uid']; ?>" required="true" class="form-control" maxlength="250" 
 				value="<?php echo $link['url']; ?>" placeholder="http://URL" title="<?php echo $lang['link_add_url']; ?>" />
 		</div>
@@ -45,10 +50,8 @@
 			<input type="text" id="info_<?php echo $link['uid']; ?>" class="form-control" maxlength="250" 
 				value="<?php echo $link['info']; ?>" placeholder="Description" title="<?php echo $lang['link_add_description']; ?>" />
 		</div>
-		<div class="col-md-1">
+		<div class="col-md-2">
 			<button class="btn btn-warning update-link" rel="<?php echo $link['uid']; ?>">Update</button>
-		</div>
-		<div class="col-md-1">
 			<button class="btn btn-default delete-link" rel="<?php echo $link['uid']; ?>">Delete</button>
 		</div>	
 	</div>	
