@@ -147,4 +147,10 @@ $(function(){
         $("#blogWriteForm").submit();
     });
     
+    $("#removepost").click(function(){
+    	var uid = $(this).attr("rel");
+    	$("#blogWriteForm input[name=deleteThis]").val(uid);
+    	$("#blogWriteForm").submit();
+    });
+    
 });

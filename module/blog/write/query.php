@@ -9,6 +9,7 @@ $query = array(
 	'modify_post' => 'update ' . $db_prefix_blog . 'post set {0} where uid = {1} limit 1' ,
 	'write_guestbook' => 'insert into ' . $db_prefix_blog . 'guestbook (uid, name, password, homepage, content, is_secret, is_reply, signdate, email) values ({0})' ,
 	'get_blog_post' => 'select {0} from ' . $db_prefix_blog . 'post where uid = {1} limit 1' ,
+	'delete_post' => 'delete from ' . $db_prefix_blog . 'post where uid = {0} limit 1' ,
 	'file_update' => 'insert into ' . $db_prefix_board . 'file_store (uid,board_id,board_no,member_key,real_name,hash_name,signdate,hit) values ({0})'
 );
 ?>

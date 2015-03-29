@@ -177,5 +177,10 @@ class Model {
 		$result['blog_info'] = stripslashes($result['blog_info']);
 		return $result;
 	}
+	
+	public function deletePost($target) {
+		$queStr = str_replace('{0}', (int)$target, $this->queArr['delete_post']);
+		$this->db->query($queStr);
+	}
 }
 ?>

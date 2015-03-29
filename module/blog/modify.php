@@ -8,12 +8,17 @@ include 'write/error.php';
 $Model = new Model($DB, $query, $grboard, $Common);
 
 if(isset($_GET['post'])) {
-	$target = (int)$_GET['post'];
-	$insertID = $Model->writePost($_POST, $target);
-	if($insertID > 0) {
-		header('Location: /' . $grboard . '/blog/view/' . $insertID);
+	if($_POST['deleteThis']) {
+		$Model->deletePost((int)$_POST['deleteThis']);
+		header('Location: /' . $grboard . '/blog');
 	} else {
-		$Common->error($error['msg_modify_fail']);
+		$target = (int)$_GET['post'];
+		$insertID = $Model->writePost($_POST, $target);
+		if($insertID > 0) {
+			header('Location: /' . $grboard . '/blog/view/' . $insertID);
+		} else {
+			$Common->error($error['msg_modify_fail']);
+		}
 	}
 }
 

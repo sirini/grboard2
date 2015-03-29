@@ -36,7 +36,7 @@ if(isset($_GET['post'])) {
 		header('Location: /' . $grboard . '/blog/view/' . $insertID);
 	} else {
 		$Common->error($error['msg_write_fail']);
-	}
+	}		
 }
 
 if(isset($_GET['guestbook'])) {

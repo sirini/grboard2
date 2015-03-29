@@ -60,6 +60,7 @@ endif;
 					<form id="blogWriteForm" method="post" action="<?php echo $formAction; ?>" class="form-horizontal">
 					<div id="hiddenInputs">
 						<input type="hidden" name="grboard" value="<?php echo $grboard; ?>" />
+						<input type="hidden" name="deleteThis" value="" />
 					</div>
 					
 					<fieldset>
@@ -109,6 +110,7 @@ endif;
 							<div class="col-md-12">
 								<input type="submit" class="btn btn-md btn-primary" role="button" value="Save and publish" />
 								<input id="savedraft" type="button" class="btn btn-md btn-default" role="button" value="Save and draft" />
+								<button id="removepost" rel="<?php echo $blogModify['uid']; ?>" class="btn btn-md btn-danger">Delete this post</button>
 							</div>
 						</div>
 					
