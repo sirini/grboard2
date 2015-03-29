@@ -77,7 +77,7 @@ include 'lang.korean.php';
 			<div class="form-group">
 				<label for="db_hostname" class="col-md-2 control-label">Hostname</label>
 				<div class="col-md-3">
-					<input type="text" name="db_hostname" required="true" class="form-control" maxlength="20" value="localhost" /> 
+					<input type="text" name="db_hostname" required="true" class="form-control" maxlength="100" value="localhost" /> 
 				</div>
 				<span class="help-block col-md-7"><?php echo $lang['install_hostname']; ?></span>
 			</div>	
@@ -85,7 +85,7 @@ include 'lang.korean.php';
 			<div class="form-group">
 				<label for="db_username" class="col-md-2 control-label">DB user name</label>
 				<div class="col-md-3">
-					<input type="text" name="db_username" placeholder="DB 계정 아이디 입력" required="true" class="form-control" maxlength="20" value="" /> 
+					<input type="text" name="db_username" placeholder="DB 계정 아이디 입력" required="true" class="form-control" maxlength="100" value="" /> 
 				</div>
 				<span class="help-block col-md-7"><?php echo $lang['install_dbusername']; ?></span>
 			</div>
@@ -93,7 +93,7 @@ include 'lang.korean.php';
 			<div class="form-group">
 				<label for="db_password" class="col-md-2 control-label">DB user password</label>
 				<div class="col-md-3">
-					<input type="password" name="db_password" placeholder="DB 계정 비밀번호 입력" required="true" class="form-control" maxlength="20" value="" /> 
+					<input type="password" name="db_password" placeholder="DB 계정 비밀번호 입력" required="true" class="form-control" maxlength="100" value="" /> 
 				</div>
 				<span class="help-block col-md-7"><?php echo $lang['install_dbpasswd']; ?></span>
 			</div>	
@@ -101,7 +101,7 @@ include 'lang.korean.php';
 			<div class="form-group">
 				<label for="db_dbname" class="col-md-2 control-label">DB name</label>
 				<div class="col-md-3">
-					<input type="text" name="db_dbname" placeholder="사용할 DB 이름 입력" required="true" class="form-control" maxlength="50" value="" /> 
+					<input type="text" name="db_dbname" placeholder="사용할 DB 이름 입력" required="true" class="form-control" maxlength="100" value="" /> 
 				</div>
 				<span class="help-block col-md-7"><?php echo $lang['install_dbname']; ?></span>
 			</div>		
@@ -109,10 +109,10 @@ include 'lang.korean.php';
 			<div class="form-group">
 				<label for="db_prefix_board" class="col-md-2 control-label">DB table prefix</label>
 				<div class="col-md-2">
-					<input type="text" name="db_prefix_board" required="true" class="form-control" maxlength="20" value="gr_" /> 
+					<input type="text" name="db_prefix_board" required="true" class="form-control" maxlength="100" value="gr_" /> 
 				</div>
 				<div class="col-md-2">
-					<input type="text" name="db_prefix_blog" required="true" class="form-control" maxlength="20" value="gbl_" /> 
+					<input type="text" name="db_prefix_blog" required="true" class="form-control" maxlength="100" value="gbl_" /> 
 				</div>
 				<span class="help-block col-md-6"><?php echo $lang['install_dbprefix']; ?></span>
 			</div>	
@@ -120,10 +120,10 @@ include 'lang.korean.php';
 			<div class="form-group">
 				<label for="admin_id" class="col-md-2 control-label">Administrator</label>
 				<div class="col-md-2">
-					<input type="text" name="admin_id" placeholder="관리자 ID 지정" required="true" class="form-control" maxlength="20" value="admin" /> 
+					<input type="text" name="admin_id" placeholder="관리자 ID 지정" required="true" class="form-control" maxlength="100" value="admin" /> 
 				</div>
 				<div class="col-md-2">
-					<input type="password" name="admin_pw" placeholder="관리자 비밀번호 지정" required="true" class="form-control" maxlength="20" value="" /> 
+					<input type="password" name="admin_pw" placeholder="관리자 비밀번호 지정" required="true" class="form-control" maxlength="100" value="" /> 
 				</div>
 				<span class="help-block col-md-6"><?php echo $lang['install_admin_info']; ?></span>
 			</div>	

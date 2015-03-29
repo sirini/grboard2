@@ -14,7 +14,7 @@ class Model {
 	}
 
 	public function escape($str) {
-		$result = addcslashes(addslashes($str), '%');
+		$result = addslashes($str);
 		return $result;
 	}
 
@@ -47,9 +47,17 @@ class Model {
 		$que = $this->db->query($queStr);
 		$result = $this->db->fetch($que);
 		$this->db->free($que);
-		$result['subject'] = htmlspecialchars($result['subject']);
-		$result['content'] = htmlspecialchars($result['content']);	
 		
+		if($this->common->getSessionKey() != 1) {
+			require 'lib/htmlpurifier/HTMLPurifier.auto.php';
+			$puri = new HTMLPurifier();
+			$result['subject'] = $puri->purify($result['subject']);
+			$result['content'] = $puri->purify($result['content']);	
+		} else {
+			$result['subject'] = stripslashes($result['subject']);
+			$result['content'] = stripslashes($result['content']);				
+		}
+			
 		return $result;
 	}
 	
@@ -134,12 +142,13 @@ class Model {
 		if($sessionKey != 1) {
 			require 'lib/htmlpurifier/HTMLPurifier.auto.php';
 			$puri = new HTMLPurifier();
-			$post['gr2subject'] = htmlspecialchars($post['gr2subject']);
+			$post['gr2subject'] = $puri->purify($post['gr2subject']);
 			$post['gr2content'] = $puri->purify($post['gr2content']);			
+		} else {
+			$post['gr2subject'] = $this->escape($post['gr2subject']);
+			$post['gr2content'] = $this->escape($post['gr2content']);	
 		}
 		if(isset($post['gr2category'])) $post['gr2category'] = $this->escape($post['gr2category']);
-		$post['gr2subject'] = $this->escape($post['gr2subject']);
-		$post['gr2content'] = $this->escape($post['gr2content']);
 		$post['gr2tag'] = $this->escape(strip_tags($post['gr2tag']));
 	}
 

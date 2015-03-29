@@ -14,12 +14,12 @@ class Model {
 	}
 
 	public function escape($str) {
-		$result = addcslashes(addslashes($str), '%');
+		$result = addslashes($str);
 		return $result;
 	}
 
 	public function writeComment($reply, $target, $familyID, $isReply) {
-		if ($this->common->getSessionKey() == 1) {
+		if ($this->common->getSessionKey() > 0) {
 			$queWriterStr = str_replace(array('{0}', '{1}'), array('nickname, email, homepage, password', $this->common->getSessionKey()), $this->queArr['get_writer_info']);
 			$queWriter = $this->db->query($queWriterStr);
 			$writer = $this->db->fetch($queWriter);
@@ -29,20 +29,23 @@ class Model {
 			$reply['homepage'] = $writer['homepage'];
 			$reply['password'] = $writer['password'];
 			$reply['secret'] = 0;
-		} else {
+		} else {			
 			$reply['password'] = md5($reply['password']);
 			if(isset($reply['secret'])) $reply['secret'] = (int)$reply['secret'];
 			else $reply['secret'] = 0;
 			if(!isset($reply['email'])) $reply['email'] = '';
 			if(!isset($reply['homepage'])) $reply['homepage'] = '';	
+			$reply['name'] = $this->escape(htmlspecialchars($reply['name']));
+			$reply['email'] = $this->escape(htmlspecialchars($reply['email']));
+			$reply['homepage'] = $this->escape(htmlspecialchars($reply['homepage']));
 		}
 		$valueStr = '\'\',' . ((int)$familyID) . ',' . ((int)$target) . ','.($reply['secret']).',' . ((int)$isReply) . ',';
-		$valueStr .= '\'' . $this->escape(strip_tags($reply['name'])) . '\',';
-		$valueStr .= '\'' . $this->escape(strip_tags($reply['email'])) . '\',';
-		$valueStr .= '\'' . $this->escape(strip_tags($reply['homepage'])) . '\',';
+		$valueStr .= '\'' . $reply['name'] . '\',';
+		$valueStr .= '\'' . $reply['email'] . '\',';
+		$valueStr .= '\'' . $reply['homepage'] . '\',';
 		$valueStr .= '\'' . $_SERVER['REMOTE_ADDR'] . '\',';
 		$valueStr .= '\'' . time() . '\',';
-		$valueStr .= '\'' . $this->escape(strip_tags($reply['content'])) . '\',';
+		$valueStr .= '\'' . $this->escape(htmlspecialchars($reply['content'])) . '\',';
 		$valueStr .= '\'' . $reply['password'] . '\',';
 		$valueStr .= '\'\'';
 		$queStr = str_replace('{0}', $valueStr, $this->queArr['write_comment']);

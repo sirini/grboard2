@@ -44,7 +44,7 @@ endif;
 				if($category != false): ?>
 					<select name="gr2category">
 						<?php foreach($category as &$cat): ?>
-							<option name="<?php echo $cat; ?>"><?php echo $cat; ?></option>
+							<option name="<?php echo $cat; ?>" <?php echo (($oldData['category']==$cat)?'selected="true"':''); ?>><?php echo $cat; ?></option>
 						<?php endforeach; ?>
 					</select>
 				<?php endif; ?>

@@ -1,10 +1,10 @@
 <?php 
 if(!defined('GR_BOARD_2')) exit(); 
 
-function enableSyntaxHighlighter($text) {
-	$text = str_replace('<br />', "\n", $text);
-	$code = preg_replace('/\[(.+)\](.*?)\[\/(.+)\]/si', '<pre class="brush: $1">$2</pre>', $text);
-	return $code;
+function enableSyntaxHighlighter(&$text) {
+	//preg_match_all('/\[(.+)\](.*?)\[\/(.+)\]/si', $text, $out);
+	//die(print_r($out));
+	// TODO...
 }
 ?>
 
@@ -23,7 +23,10 @@ function enableSyntaxHighlighter($text) {
 						<h3 class="panel-title"><?php echo $blogPost['subject']; ?></h3>
 					</div>
 					<div class="panel-body size-text-normal overflow-hidden">
-						<?php echo enableSyntaxHighlighter($blogPost['content']); ?>
+						<?php 
+						enableSyntaxHighlighter($blogPost['content']); 
+						echo $blogPost['content'];
+						?>
 						<hr />
 						<div class="blogPostInfo">Tag: <?php echo $blogPost['tag']; ?>, 
 							Date: <?php echo date('Y-m-d', $blogPost['signdate']); ?> 
@@ -109,7 +112,9 @@ function enableSyntaxHighlighter($text) {
 							</div>
 						
 							<div class="form-group text-right">
-								<input type="submit" class="btn btn-lg btn-primary" role="button" value="Submit" />
+								<div class="col-md-12">
+									<input type="submit" class="btn btn-lg btn-primary" role="button" value="Submit" />
+								</div>
 							</div>
 							
 						</fieldset>
