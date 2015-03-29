@@ -73,10 +73,10 @@ class Model {
 		if(isset($post['hashfiles'])) $isDndUploaded = 1; else $isDndUploaded = 0;
 
 		$tempDir = '__gr2_dnd_temp__/';
-		$originalDir = date('/Y/m/d/');
+		$originalDir = date('Y/m/d/');
 		$oldDir = '/' . $post['grboard'] . '/data/blog/' . $tempDir;
-		$moveDir = '/' . $post['grboard'] . '/data/blog' . $originalDir;
-		$renameDir = 'data/blog' . $originalDir;
+		$moveDir = '/' . $post['grboard'] . '/data/blog/' . $originalDir;
+		$renameDir = 'data/blog/' . $originalDir;
 
 		$post['gr2subject'] = $this->escape($post['gr2subject']);
 		$post['gr2content'] = $this->escape($post['gr2content']);

@@ -43,5 +43,37 @@ class Model {
 		$this->db->free($que);
 		return $result;
 	}
+	
+	public function getBlogLink() {
+		$que = $this->db->query($this->queArr['get_blog_link']);
+		$result = array();
+		while($f = $this->db->fetch($que)) {
+			$result[] = $f; 
+		}
+		$this->db->free($que);
+		return $result;
+	}
+	
+	public function saveBlogLink($post) {
+		if(strlen($post['addName']) == 0 || strlen($post['addUrl']) == 0) {
+			return false;
+		}
+		$queStr = str_replace(array('{0}', '{1}', '{2}'), 
+			array($post['addUrl'], addslashes($post['addName']), htmlspecialchars($post['addInfo'], ENT_QUOTES)), $this->queArr['save_blog_link']);
+		$this->db->query($queStr);
+		return true;
+	}
+
+	public function updateBlogLink($post) {
+		$queStr = str_replace(array('{0}', '{1}', '{2}', '{3}'), 
+			array($post['linkURL'], addslashes($post['linkName']), htmlspecialchars($post['linkInfo'], ENT_QUOTES), (int)$post['linkTarget']),
+			$this->queArr['update_blog_link']);
+		$this->db->query($queStr);
+	}
+	
+	public function deleteBlogLink($post) {
+		$queStr = str_replace('{0}', (int)$post['linkTarget'], $this->queArr['delete_blog_link']);
+		$this->db->query($queStr);
+	}
 }
 ?>

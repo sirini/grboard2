@@ -8,9 +8,9 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link href="/<?php echo $grboard; ?>/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen" />
 		<link href="/<?php echo $grboard; ?>/lib/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet" media="screen" />
-		<link href="/<?php echo $grboard; ?>/<?php echo $skinResourcePath; ?>/index.css" rel="stylesheet" media="screen" />
 		<script src="/<?php echo $grboard; ?>/lib/jquery.js"></script>
 		<script src="/<?php echo $grboard; ?>/lib/bootstrap/js/bootstrap.min.js"></script>
+		<?php if($manage=='link'): ?><script src="/<?php echo $skinResourcePath; ?>/link.js"></script><?php endif; ?>
 	</head>
 	<body>
 		
@@ -30,8 +30,10 @@
 				<ul class="nav navbar-nav">
 					<li><a href="/<?php echo $grboard; ?>/blog" title="<?php echo $lang['home_info']; ?>">
 						<span class="glyphicon glyphicon-home"></span> Home</a></li>
-					<li class="active"><a href="/<?php echo $grboard; ?>/blog/admin" title="<?php echo $lang['config_info']; ?>">
+					<li class="<?php echo (($manage=='config')?'active':''); ?>"><a href="/<?php echo $grboard; ?>/blog/admin/manage/config" title="<?php echo $lang['config_info']; ?>">
 						<span class="glyphicon glyphicon-cog"></span> Configuration</a></li>
+					<li class="<?php echo (($manage=='link')?'active':''); ?>"><a href="/<?php echo $grboard; ?>/blog/admin/manage/link" title="<?php echo $lang['link_info']; ?>">
+						<span class="glyphicon glyphicon-link"></span> Link</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="http://sirini.net/" title="Build GR Board 2 better, together."> 
@@ -42,7 +44,7 @@
 	</nav>			
 	
 	<div class="container">
-		<?php include $skinResourcePath . '/config.php'; ?>
+		<?php include $manage.'.php'; ?>
 	</div>
 
 	</body>

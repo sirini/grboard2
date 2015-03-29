@@ -14,6 +14,10 @@ $lang = array(
 	'config_blog_use_comment' => '댓글 입력을 받도록 할 것인지 지정 합니다' ,
 	'config_blog_use_rss' => 'RSS 피드를 노출할 지 여부를 지정 합니다' ,
 	'config_blog_num_rss_content' => 'RSS 피드에 본문 내용을 몇 자까지 출력 할지 지정 합니다. (기본: 300, 0 이면 전체)' ,
-	'config_blog_num_per_page' => '페이지 하단 페이징 번호 개수를 지정 합니다. (기본: 10)'
+	'config_blog_num_per_page' => '페이지 하단 페이징 번호 개수를 지정 합니다. (기본: 10)',
+	'link_info' => '블로그에 노출할 외부 링크들을 편집 합니다',
+	'link_add_name' => '이 곳에 링크의 이름을 입력 합니다 (예: SIRINI blog)' ,
+	'link_add_url' => '이 곳에 링크의 URL 주소를 입력 합니다 (예: http://sirini.net/grboard2/blog)' ,
+	'link_add_description' => '이 곳에 링크의 설명을 간단히 입력 합니다 (예: 시리니 블로그)'
 );
 ?>
