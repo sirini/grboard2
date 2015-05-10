@@ -1,4 +1,6 @@
 $(function(){
+	
+	$.material.init();
     
     var gr2write = {
         

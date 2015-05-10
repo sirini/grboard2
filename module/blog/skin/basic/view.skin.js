@@ -1,5 +1,5 @@
 $(function(){
-
+	$.material.init();
 	$("div#blogReply a.checkReply").each(function(index){
 		$(this).click(function(){
 			var uid = $(this).attr("rel");

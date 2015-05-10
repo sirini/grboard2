@@ -12,9 +12,9 @@ if(!defined('GR_BOARD_2')) exit();
 	<div id="blogMainContent" class="col-sm-8 blog-main">
 		<div id="blogPost">
 			<div class="blog-post">
-				<div class="panel panel-default">
+				<div class="panel panel-primary">
 					<div class="panel-heading">
-						<h3 class="panel-title"><?php echo $blogPost['subject']; ?></h3>
+						<h3 class="panel-title"><strong><?php echo $blogPost['subject']; ?></strong></h3>
 					</div>
 					<div class="panel-body size-text-normal overflow-hidden">
 						<?php 
@@ -35,16 +35,17 @@ if(!defined('GR_BOARD_2')) exit();
 				
 				<div id="blogReply">
 				<?php if(!empty($blogReply[0]['uid'])): foreach($blogReply as &$reply): ?>
-					<div class="well">
-						<div id="blogContent_<?php echo $reply['uid']; ?>">
-							<?php if($reply['is_reply']): ?><span class="glyphicon glyphicon-chevron-right"></span><?php endif; ?>
-							<small><?php 
-							if($reply['is_secret'] && $Common->getSessionKey() != 1) echo '<span class="text-danger">비밀글 입니다</span>';
-							else echo nl2br(strip_tags($reply['content'])); 
-							?></small>
+					<div class="panel panel-default">
+						<div class="panel-body">
+							<div id="blogContent_<?php echo $reply['uid']; ?>">
+								<?php if($reply['is_reply']): ?><span class="glyphicon glyphicon-chevron-right"></span><?php endif; ?>
+								<small><?php 
+								if($reply['is_secret'] && $Common->getSessionKey() != 1) echo '<span class="text-danger">비밀글 입니다</span>';
+								else echo nl2br(strip_tags($reply['content'])); 
+								?></small>
+							</div>
 						</div>
-						<hr />
-						<div class="blogReplyStatus">
+						<div class="panel-footer">
 							<small>
 							<?php echo $reply['name'] ?>
 							<?php echo ($reply['homepage']) ? ' <a href="'.$reply['homepage'].'">(homepage)</a>' : ''; ?>, 
@@ -62,56 +63,63 @@ if(!defined('GR_BOARD_2')) exit();
 						<div class="hiddenInputs">
 							<input type="hidden" name="family_uid" value="" />
 						</div>
-						<fieldset>
-							<legend><span class="glyphicon glyphicon-edit"></span> Leave a comment here!</legend>
-							
-							<?php if (!$Common->getSessionKey()): ?>
-							<div class="form-group">
-								<label class="col-md-3 control-label" for="simplelock">Spam</label>		
-								<div class="col-md-3">
-									<input id="simplelock" name="simplelock" type="text" placeholder="(필수) 우측의 4자리 키 값 입력!" required="true" class="form-control input-md" />
-								</div>
-								<span class="col-md-6 help-block"><span class="text-danger"><?php echo $simplelock; ?></span></span>
+						
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h3 class="panel-title"><strong>Leave a comment here!</strong></h3>	
 							</div>
 							
-							<div class="form-group">
-								<label class="col-md-3 control-label" for="password">Password</label>		
-								<div class="col-md-3">
-									<input id="password" name="password" type="password" placeholder="(필수) 비밀번호" required="true" class="form-control input-md" />
+							<div class="panel-body">	
+										
+								<?php if (!$Common->getSessionKey()): ?>
+								<div class="form-group">
+									<label class="col-md-3 control-label" for="simplelock">Spam</label>		
+									<div class="col-md-3">
+										<input id="simplelock" name="simplelock" type="text" placeholder="(필수) 우측의 4자리 키 값 입력!" required="true" class="form-control input-md" />
+									</div>
+									<span class="col-md-6 help-block"><span class="text-danger"><?php echo $simplelock; ?></span></span>
 								</div>
-								<span class="col-md-6 help-block">비밀번호를 입력해 주세요</span>
-							</div>
-																					
-							<div class="form-group">
-								<label class="col-md-3 control-label" for="name">Name</label>		
-								<div class="col-md-3">
-									<input id="name" name="name" type="text" placeholder="(필수) 이름" required="true" class="form-control input-md" />
+								
+								<div class="form-group">
+									<label class="col-md-3 control-label" for="password">Password</label>		
+									<div class="col-md-3">
+										<input id="password" name="password" type="password" placeholder="(필수) 비밀번호" required="true" class="form-control input-md" />
+									</div>
+									<span class="col-md-6 help-block">비밀번호를 입력해 주세요</span>
 								</div>
-								<span class="col-md-6 help-block">이름을 입력해 주세요</span>
-							</div>
-							
-							<?php endif; ?>
-							
-							<div class="form-group">
-								<label class="col-md-3 control-label" for="content">Comment</label>		
-								<div class="col-md-9">
-									<textarea id="content" name="content" required="true" rows="10" placeholder="이 곳에 댓글을 입력해 주세요" class="form-control textarea-md"></textarea>
-									
-									<div class="checkbox">
-										<label>
-											<input type="checkbox" name="secret" value="1" title="체크 하시면 비밀글로 입력 됩니다."> Secret
-										</label>
+																						
+								<div class="form-group">
+									<label class="col-md-3 control-label" for="name">Name</label>		
+									<div class="col-md-3">
+										<input id="name" name="name" type="text" placeholder="(필수) 이름" required="true" class="form-control input-md" />
+									</div>
+									<span class="col-md-6 help-block">이름을 입력해 주세요</span>
+								</div>
+								
+								<?php endif; ?>
+								
+								<div class="form-group">
+									<label class="col-md-3 control-label" for="content">Comment</label>		
+									<div class="col-md-9">
+										<textarea id="content" name="content" required="true" rows="5" placeholder="이 곳에 댓글을 입력해 주세요" class="form-control textarea-md"></textarea>
+										
+										<div class="checkbox">
+											<label>
+												<input type="checkbox" name="secret" value="1" title="체크 하시면 비밀글로 입력 됩니다."> Secret
+											</label>
+										</div>
 									</div>
 								</div>
-							</div>
-						
-							<div class="form-group text-right">
-								<div class="col-md-12">
-									<input type="submit" class="btn btn-lg btn-primary" role="button" value="Submit" />
+							
+								<div class="form-group text-right">
+									<div class="col-md-12">
+										<input type="submit" class="btn btn-lg btn-primary" role="button" value="Submit" />
+									</div>
 								</div>
+								
 							</div>
 							
-						</fieldset>
+						</div>
 						
 					</form>
 				</div>			

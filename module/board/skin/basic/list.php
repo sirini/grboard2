@@ -4,7 +4,7 @@ $isAdmin = (($Common->getSessionKey() == 1) ? true : false);
 $isMember = (($Common->getSessionKey() > 0) ? true : false);
 ?>
 
-<div id="GRBOARD2" rel="<?php echo $grboard; ?>" class="container">
+<div id="GRBOARD2" rel="<?php echo $grboard; ?>">
 
 <?php if(isset($boardCategory[0])): ?>
 <header>

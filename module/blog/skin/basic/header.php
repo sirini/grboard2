@@ -6,7 +6,9 @@
 	<title><?php echo $blogInfo['blog_title']; ?></title>
 	<link rel="stylesheet" type="text/css" href="<?php echo $skinResourcePath; ?>/skin.css" />
 	<link href="/<?php echo $grboard; ?>/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen" />
-	<link href="/<?php echo $grboard; ?>/lib/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet" media="screen" />
+	<link href="/<?php echo $grboard; ?>/lib/bootstrap_material_design/css/material.min.css" rel="stylesheet" media="screen" />
+	<link href="/<?php echo $grboard; ?>/lib/bootstrap_material_design/css/ripples.min.css" rel="stylesheet" media="screen" />
+	<link href="/<?php echo $grboard; ?>/lib/bootstrap_material_design/css/roboto.min.css" rel="stylesheet" media="screen" />
 	<link type="text/css" rel="stylesheet" href="/<?php echo $grboard; ?>/lib/syntaxhighlighter/styles/shCore.css">
 	<link type="text/css" rel="stylesheet" href="/<?php echo $grboard; ?>/lib/syntaxhighlighter/styles/shThemeDefault.css">
 	<script src="/<?php echo $grboard; ?>/lib/syntaxhighlighter/scripts/shCore.js"></script>
@@ -25,6 +27,8 @@
 	<script src="/<?php echo $grboard; ?>/lib/syntaxhighlighter/scripts/shBrushXml.js"></script>
 	<script src="/<?php echo $grboard; ?>/lib/jquery.js"></script>
 	<script src="/<?php echo $grboard; ?>/lib/bootstrap/js/bootstrap.min.js"></script>
+	<script src="/<?php echo $grboard; ?>/lib/bootstrap_material_design/js/material.min.js"></script>
+	<script src="/<?php echo $grboard; ?>/lib/bootstrap_material_design/js/ripples.min.js"></script>
 	<script src="<?php echo $skinResourcePath . '/' . $ext_action; ?>.skin.js"></script>
 </head>
 <body>

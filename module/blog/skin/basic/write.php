@@ -6,7 +6,7 @@ endif;
 
 if(!isset($blogModify) && !isset($formAction)):
 	$formAction = '/' . $grboard . '/blog/write/post/1';
-	$blogModify = array('isNotice'=>false, 'isVisible'=>true, 'isReplyable'=>true, 'isRSS'=>true, 'subject'=>'', 'content'=>'', 'tag'=>'');	
+	$blogModify = array('uid'=>0,'isNotice'=>false, 'isVisible'=>true, 'isReplyable'=>true, 'isRSS'=>true, 'subject'=>'', 'content'=>'', 'tag'=>'');	
 else:
 	$formAction = '/' . $grboard . '/blog/modify/post/' . $ext_articleNo;
 endif;
@@ -19,9 +19,13 @@ endif;
 	<title><?php echo $blogInfo['blog_title']; ?></title>
 	<link rel="stylesheet" type="text/css" href="<?php echo $skinResourcePath; ?>/skin.css" />
 	<link href="/<?php echo $grboard; ?>/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen" />
-	<link href="/<?php echo $grboard; ?>/lib/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet" media="screen" />
+	<link href="/<?php echo $grboard; ?>/lib/bootstrap_material_design/css/material.min.css" rel="stylesheet" media="screen" />
+	<link href="/<?php echo $grboard; ?>/lib/bootstrap_material_design/css/ripples.min.css" rel="stylesheet" media="screen" />
+	<link href="/<?php echo $grboard; ?>/lib/bootstrap_material_design/css/roboto.min.css" rel="stylesheet" media="screen" />
 	<script src="/<?php echo $grboard; ?>/lib/jquery.js"></script>
 	<script src="/<?php echo $grboard; ?>/lib/bootstrap/js/bootstrap.min.js"></script>
+	<script src="/<?php echo $grboard; ?>/lib/bootstrap_material_design/js/material.min.js"></script>
+	<script src="/<?php echo $grboard; ?>/lib/bootstrap_material_design/js/ripples.min.js"></script>
 	<script src="<?php echo $skinResourcePath . '/' . $ext_action; ?>.skin.js"></script>
 </head>
 <body>
@@ -67,18 +71,16 @@ endif;
 						<legend><span class="glyphicon glyphicon-edit"></span> Write a post</legend>
 					
 						<div class="form-group">
-							<label class="col-md-2 control-label"><span class="glyphicon glyphicon-asterisk"></span> Options</label>		
-							<div class="col-md-10">
-								<input type="checkbox" name="isNotice" value="1" <?php echo ($blogModify['isNotice']) ? 'checked="checked"' : ''; ?> />notice 
-								<input type="checkbox" name="isVisible" value="1" <?php echo ($blogModify['isVisible']) ? 'checked="checked"' : ''; ?> />visible 
-								<input type="checkbox" name="isReplyable" value="1" <?php echo ($blogModify['isReplyable']) ? 'checked="checked"' : ''; ?> />reply 
-								<input type="checkbox" name="isRSS" value="1" <?php echo ($blogModify['isRSS']) ? 'checked="checked"' : ''; ?> />rss
+							<div id="blogWriteOptions" class="checkbox">
+								<label><input type="checkbox" name="isNotice" value="1" <?php echo ($blogModify['isNotice']) ? 'checked="checked"' : ''; ?> /> notice</label> 
+								<label><input type="checkbox" name="isVisible" value="1" <?php echo ($blogModify['isVisible']) ? 'checked="checked"' : ''; ?> /> visible</label> 
+								<label><input type="checkbox" name="isReplyable" value="1" <?php echo ($blogModify['isReplyable']) ? 'checked="checked"' : ''; ?> /> reply</label> 
+								<label><input type="checkbox" name="isRSS" value="1" <?php echo ($blogModify['isRSS']) ? 'checked="checked"' : ''; ?> /> rss</label>
 							</div>
 						</div>					
 						
-						<div class="form-group">
-							<label class="col-md-2 control-label"><span class="glyphicon glyphicon-asterisk"></span> Subject</label>		
-							<div class="col-md-10">
+						<div class="form-group">	
+							<div class="col-md-12">
 								<input type="text" name="gr2subject" placeholder="글 제목을 입력해 주세요" required="true" autofocus="true" value="<?php echo $blogModify['subject']; ?>" class="form-control input-md" />
 							</div>
 						</div>		
@@ -100,17 +102,18 @@ endif;
 						</div>	
 						
 						<div class="form-group">
-							<label class="col-md-2 control-label" for="gr2tag">Tags</label>		
-							<div class="col-md-10">
-								<input type="text" name="gr2tag" placeholder="글의 핵심 단어들을 태킹해 주세요" value="<?php echo $blogModify['tag']; ?>" class="form-control input-md" />
+							<div class="col-md-12">
+								<input type="text" name="gr2tag" placeholder="글의 핵심 단어들을 콤마로 구분하여 입력해 주세요 (예: 보드,공개,수정사항,주의점,속도개선)" value="<?php echo $blogModify['tag']; ?>" class="form-control input-md" />
 							</div>
 						</div>	
 						
 						<div class="form-group">
 							<div class="col-md-12">
 								<input type="submit" class="btn btn-md btn-primary" role="button" value="Save and publish" />
-								<input id="savedraft" type="button" class="btn btn-md btn-default" role="button" value="Save and draft" />
+								<input id="savedraft" type="button" class="btn btn-md btn-default btn-raised" role="button" value="Save and draft" />
+								<?php if($blogModify['uid'] > 0): ?>
 								<button id="removepost" rel="<?php echo $blogModify['uid']; ?>" class="btn btn-md btn-danger">Delete this post</button>
+								<?php endif; ?>
 							</div>
 						</div>
 					

@@ -6,62 +6,56 @@
 		<div class="hiddenInputs">
 			<input type="hidden" name="reply_uid" value="" />
 		</div>
-		<fieldset>
-			<legend><span class="glyphicon glyphicon-pencil"></span> Guestbook</legend>
-			
-			<?php if (!$Common->getSessionKey()): ?>
-			<div class="form-group">
-				<label class="col-md-3 control-label" for="simplelock">Spam</label>		
-				<div class="col-md-3">
-					<input id="simplelock" name="simplelock" type="text" placeholder="(필수) 우측의 4자리 키 값 입력!" required="true" autofocus="true" class="form-control input-md" />
-				</div>
-				<span class="col-md-6 help-block"><span class="text-danger"><?php echo $simplelock; ?></span></span>
+		
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">Guestbook</h3>
 			</div>
-			
-			<div class="form-group">
-				<label class="col-md-3 control-label" for="password">Password</label>		
-				<div class="col-md-3">
-					<input id="password" name="password" type="password" placeholder="(필수) 비밀번호" required="true" class="form-control input-md" />
+			<div class="panel-body">
+				<?php if (!$Common->getSessionKey()): ?>
+				<div class="form-group">		
+					<div class="col-md-9">
+						<input id="simplelock" name="simplelock" type="text" placeholder="(필수) 우측의 4자리 스팸방지 코드를 적어 주세요" required="true" autofocus="true" class="form-control input-md" />
+					</div>
+					<span class="col-md-3"><?php echo $simplelock; ?></span>
 				</div>
-				<span class="col-md-6 help-block">비밀번호를 입력해 주세요</span>
-			</div>
-			<?php endif; ?>
-			
-			<div class="form-group">
-				<label class="col-md-3 control-label" for="name">Name</label>		
-				<div class="col-md-3">
-					<input id="name" name="name" type="text" placeholder="(필수) 이름" required="true" class="form-control input-md" />
-				</div>
-				<span class="col-md-6 help-block">이름을 입력해 주세요</span>
-			</div>
-			
-			<div class="form-group">
-				<label class="col-md-3 control-label" for="content">Comment</label>		
-				<div class="col-md-9">
-					<textarea id="content" name="content" rows="10" placeholder="이 곳에 댓글을 입력해 주세요" class="form-control textarea-md"></textarea>
-					
-					<div class="checkbox">
-						<label>
-							<input type="checkbox" name="secret" value="1" title="체크 하시면 비밀글로 입력 됩니다."> Secret
-						</label>
+				
+				<div class="form-group">		
+					<div class="col-md-12">
+						<input id="password" name="password" type="password" placeholder="(필수) 비밀번호를 적어 주세요 / 비밀번호는 암호화 되어 저장 됩니다" required="true" class="form-control input-md" />
 					</div>
 				</div>
-			</div>
-			
-			<div class="form-group text-right">
-				<div class="col-md-12">
-					<input type="submit" class="btn btn-lg btn-primary" role="button" value="Submit" />
+								
+				<div class="form-group">		
+					<div class="col-md-12">
+						<input id="name" name="name" type="text" placeholder="(필수) 이 곳에 이름 혹은 닉네임을 남겨 주세요" required="true" class="form-control input-md" />
+					</div>
 				</div>
+				<?php endif; ?>
+				
+				<div class="form-group">
+					<div class="col-md-12">
+						<textarea id="content" name="content" rows="10" placeholder="이 곳에 남기고 싶으신 글을 적어 주세요" class="form-control textarea-md"></textarea>
+						<div class="checkbox">
+							<label><input type="checkbox" name="secret" value="1" title="체크 하시면 비밀글로 입력 됩니다."> Secret</label>
+						</div>
+					</div>
+				</div>
+				
+				<div class="form-group text-right">
+					<div class="col-md-12">
+						<input type="submit" class="btn btn-lg btn-primary" role="button" value="Submit" />
+					</div>
+				</div>				
 			</div>
-			
-		</fieldset>
+		</div>
 		
 	</form>
 	
 	<div id="blogPost">
 		<?php foreach($guestbookList as &$guest): if(isset($guest['uid'])): ?>
 		<div class="blog-post">				
-			<div class="panel panel-default">
+			<div class="panel panel-primary">
 				<div class="panel-heading">
 					<h3 class="panel-title">							
 						<?php echo strip_tags($guest['name']); ?> 
@@ -77,14 +71,13 @@
 					else echo nl2br(strip_tags($guest['content'])); 
 					?>
 					<hr />
-					<div class="blogPostReply">
-						
+					<div class="blogPostReply">						
 						<?php 
 						$replyList = $Model->getGuestbookReplyList($guest['uid'], 20);
 						if(count($replyList[0]) > 0): ?>	
 						<div class="guestbookReply">							
 							<?php foreach($replyList as &$reply): ?>
-							<div id="message<?php echo $reply['uid']; ?>" class="well">
+							<div id="message<?php echo $reply['uid']; ?>" class="blog-guest-reply">
 								<?php echo nl2br(strip_tags($reply['content'])); ?>
 								<hr />
 								<div class="guestReplyBy"><span>by <?php echo stripslashes($reply['name']); ?></span></div>
