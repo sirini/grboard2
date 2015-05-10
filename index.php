@@ -1,11 +1,14 @@
 <?php
 define('GR_BOARD_2', true);
-define('GR2_VERSION_NUM', 2007);
-define('GR2_VERSION_STATE', 'beta4');
+define('GR2_VERSION_NUM', 2008);
+define('GR2_VERSION_STATE', 'beta5');
 define('GR2_VERSION_STR', 'v2.0.0');
 
+$docRootArr = explode('/', $_SERVER['DOCUMENT_ROOT']);
+$root = $docRootArr[count($docRootArr) - 2];
 $grboardArr = explode(DIRECTORY_SEPARATOR, dirname(__FILE__));
 $grboard = end($grboardArr);
+if($root == $grboard) $grboard = '.';
 if(!file_exists('dbinfo.php')) { include 'install/index.php'; die(); }
 
 @session_save_path('session');

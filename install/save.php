@@ -1,8 +1,11 @@
 <?php
 header('Content-type: text/html; charset=utf-8');
 
-$grboardArr = explode(DIRECTORY_SEPARATOR, realpath('../'));
+$docRootArr = explode('/', $_SERVER['DOCUMENT_ROOT']);
+$root = $docRootArr[count($docRootArr) - 2];
+$grboardArr = explode(DIRECTORY_SEPARATOR, dirname('../'));
 $grboard = end($grboardArr);
+if($root == $grboard) $grboard = '.';
 
 if(!isset($_POST['db_hostname'])) die('<h2>Failed</h2> Unknown DB hostname.');
 else $db_hostname = trim($_POST['db_hostname']);

@@ -5,8 +5,15 @@
 		<title>Sign in</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link href="/<?php echo $grboard; ?>/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen" />
-		<link href="/<?php echo $grboard; ?>/lib/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet" media="screen" />
+		<link href="/<?php echo $grboard; ?>/lib/bootstrap_material_design/css/material.min.css" rel="stylesheet" media="screen" />
+		<link href="/<?php echo $grboard; ?>/lib/bootstrap_material_design/css/ripples.min.css" rel="stylesheet" media="screen" />
+		<link href="/<?php echo $grboard; ?>/lib/bootstrap_material_design/css/roboto.min.css" rel="stylesheet" media="screen" />
 		<link href="<?php echo $skinResourcePath; ?>/login.css" rel="stylesheet" media="screen" />
+		<script src="/<?php echo $grboard; ?>/lib/jquery.js"></script>
+		<script src="/<?php echo $grboard; ?>/lib/bootstrap/js/bootstrap.min.js"></script>
+		<script src="/<?php echo $grboard; ?>/lib/bootstrap_material_design/js/material.min.js"></script>
+		<script src="/<?php echo $grboard; ?>/lib/bootstrap_material_design/js/ripples.min.js"></script>
+		<script src="<?php echo $skinResourcePath; ?>/login.js"></script>
 	</head>
 	<body>
 		
@@ -41,18 +48,17 @@
 	
 	<div class="container">
 		<form id="boardLoginForm" method="post" action="<?php echo $prePath; ?>/login/0" class="form-signin" role="form">
-			<div class="hiddenInputs">
-				<input type="hidden" name="loginProceed" value="true" />
+			<div class="well">
+				<div class="hiddenInputs">
+					<input type="hidden" name="loginProceed" value="true" />
+				</div>
+				<h2 class="form-signin-heading">Please sign in</h2>
+				<input type="text" id="userid" name="userid" class="form-control" placeholder="아이디를 입력해 주세요" required="true" autofocus="true" />
+				<input type="password" id="passwd" name="passwd" class="form-control" placeholder="비밀번호를 입력해 주세요" required="true" />
+				<input type="submit" class="btn btn-lg btn-primary btn-block" value="Sign in" />
 			</div>
-			<h2 class="form-signin-heading">Please sign in</h2>
-			<input type="text" id="userid" name="userid" class="form-control" placeholder="아이디를 입력해 주세요" required="true" autofocus="true" />
-			<input type="password" id="passwd" name="passwd" class="form-control" placeholder="비밀번호를 입력해 주세요" required="true" />
-			<input type="submit" class="btn btn-lg btn-primary btn-block" value="Sign in" />
 		</form>
 	</div>
-	
-	<script src="/<?php echo $grboard; ?>/lib/jquery.js"></script>
-	<script src="/<?php echo $grboard; ?>/lib/bootstrap/js/bootstrap.min.js"></script>
 	
 	</body>
 </html>

@@ -1,16 +1,17 @@
 <div class="errorPage">
 
-<h3>축하 합니다! 설치를 마쳤습니다. <span class="label label-info">info</span></h3>
+<h3>축하 합니다! 설치를 마쳤습니다.</h3>
 
-<div class="well">
+<p>
+<br /><br />
 <strong>로그인 페이지로 가기:</strong> <a href="/{grboard}/board-test/login">여기를 클릭해 주세요!</a><br/ >
-<br />
+<br /><br />
 GR Board 2 는 여러분이 선택할 수 있는 한 가장 작고 단순한 기능의 게시판 엔진입니다.<br />
 게시판 프로그램이지만 기본적으로 간단한 블로그 기능도 추가되어 있죠! (웹사이트와 블로그 둘 다 한 번에!)<br />
 관리 페이지에서 추가로 필요한 게시판들을 만들어보고, 스킨을 변경하여 다른 형태의 디자인과 기능으로<br />
 목적에 맞게 활용해 보세요!<br />
 <br />
 GR Board 를 200% 활용 할 수 있는 <a href="http://grboard.com">http://grboard.com</a> 도 잊지 마세요!
-</div>
+</p>
 
 </div>

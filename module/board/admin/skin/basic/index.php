@@ -7,10 +7,14 @@
 		<title>GR Board 2 - Board - Control Center</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link href="/<?php echo $grboard; ?>/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen" />
-		<link href="/<?php echo $grboard; ?>/lib/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet" media="screen" />
+		<link href="/<?php echo $grboard; ?>/lib/bootstrap_material_design/css/material.min.css" rel="stylesheet" media="screen" />
+		<link href="/<?php echo $grboard; ?>/lib/bootstrap_material_design/css/ripples.min.css" rel="stylesheet" media="screen" />
+		<link href="/<?php echo $grboard; ?>/lib/bootstrap_material_design/css/roboto.min.css" rel="stylesheet" media="screen" />
 		<link href="/<?php echo $grboard; ?>/<?php echo $skinResourcePath; ?>/index.css" rel="stylesheet" media="screen" />
 		<script src="/<?php echo $grboard; ?>/lib/jquery.js"></script>
 		<script src="/<?php echo $grboard; ?>/lib/bootstrap/js/bootstrap.min.js"></script>
+		<script src="/<?php echo $grboard; ?>/lib/bootstrap_material_design/js/material.min.js"></script>
+		<script src="/<?php echo $grboard; ?>/lib/bootstrap_material_design/js/ripples.min.js"></script>
 	</head>
 	<body>
 		
@@ -62,7 +66,9 @@
 	</nav>			
 	
 	<div class="container">
-		<?php include 'module/board/admin/' . $panel . '/' . $target . '.php'; ?>
+		<div class="panel panel-default">
+			<?php include 'module/board/admin/' . $panel . '/' . $target . '.php'; ?>
+		</div>
 	</div>
 
 	</body>

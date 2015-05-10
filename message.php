@@ -5,7 +5,18 @@
 		<title>Message</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link href="/<?php echo $grboard; ?>/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen" />
-		<link href="/<?php echo $grboard; ?>/lib/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet" media="screen" />
+		<link href="/<?php echo $grboard; ?>/lib/bootstrap_material_design/css/material.min.css" rel="stylesheet" media="screen" />
+		<link href="/<?php echo $grboard; ?>/lib/bootstrap_material_design/css/ripples.min.css" rel="stylesheet" media="screen" />
+		<link href="/<?php echo $grboard; ?>/lib/bootstrap_material_design/css/roboto.min.css" rel="stylesheet" media="screen" />
+		<script src="/<?php echo $grboard; ?>/lib/jquery.js"></script>
+		<script src="/<?php echo $grboard; ?>/lib/bootstrap/js/bootstrap.min.js"></script>
+		<script src="/<?php echo $grboard; ?>/lib/bootstrap_material_design/js/material.min.js"></script>
+		<script src="/<?php echo $grboard; ?>/lib/bootstrap_material_design/js/ripples.min.js"></script>
+		<script>
+			$(function(){
+				$.material.init();
+			});
+		</script>
 	</head>
 	<body>
 	
@@ -37,7 +48,7 @@
 	</nav>	
 	
 	<div class="container">
-		<div class="panel panel-primary">
+		<div class="panel panel-default">
 			<div class="panel-heading">
 				<h3 class="panel-title">Message</h3>
 			</div>
@@ -45,19 +56,21 @@
 				<?php echo $msg; ?>
 			</div>
 			<div class="panel-footer">
-				<a href="<?php echo $moveBackPath; ?>" title="이전 화면으로 이동 합니다">
-					<span class="glyphicon glyphicon-arrow-left"></span> Move back</a>
+				<div class="col-md-6">
+					<a href="<?php echo $moveBackPath; ?>" title="이전 화면으로 이동 합니다">
+						<span class="glyphicon glyphicon-arrow-left"></span> Move back</a>
+				</div>
+				
+				<div class="col-md-6 text-right">
+					<a href="<?php echo $moveBackPath; ?>" title="테스트 게시판 / 로그인 화면으로 이동 합니다">
+						<span class="glyphicon glyphicon-arrow-right"></span> Go to login</a>
+				</div>	
+				
+				<div style="clear: left"></div>			
+				
 			</div>
 		</div>
 	</div>
-	
-	<script src="/<?php echo $grboard; ?>/lib/jquery.js"></script>
-	<script src="/<?php echo $grboard; ?>/lib/bootstrap/js/bootstrap.min.js"></script>
-	<script>
-		setTimeout(function(){
-			location.href='<?php echo $moveBackPath; ?>';
-		}, <?php echo $delay; ?>);
-	</script>
 	
 	</body>
 </html>

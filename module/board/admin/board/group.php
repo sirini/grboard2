@@ -10,7 +10,7 @@ if(array_key_exists('groupId', $_POST)) {
 	$groupId = (int)$_POST['groupId'];
 	$submit = 'Add';
 }
-if(isset($groupId)) {
+if(isset($groupId) && $groupId > 0) {
 	$oldData = $Model->getBoardGroup($groupId);
 	$submit = 'Modify';
 } 

@@ -11,7 +11,14 @@ include 'lang.korean.php';
 		<title>GR Board 2 Installation</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link href="/<?php echo $grboard; ?>/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen" />
-		<link href="/<?php echo $grboard; ?>/lib/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet" media="screen" />
+		<link href="/<?php echo $grboard; ?>/lib/bootstrap_material_design/css/material.min.css" rel="stylesheet" media="screen" />
+		<link href="/<?php echo $grboard; ?>/lib/bootstrap_material_design/css/ripples.min.css" rel="stylesheet" media="screen" />
+		<link href="/<?php echo $grboard; ?>/lib/bootstrap_material_design/css/roboto.min.css" rel="stylesheet" media="screen" />
+		<script src="/<?php echo $grboard; ?>/lib/jquery.js"></script>
+		<script src="/<?php echo $grboard; ?>/lib/bootstrap/js/bootstrap.min.js"></script>
+		<script src="/<?php echo $grboard; ?>/lib/bootstrap_material_design/js/material.min.js"></script>
+		<script src="/<?php echo $grboard; ?>/lib/bootstrap_material_design/js/ripples.min.js"></script>
+		<script src="/<?php echo $grboard; ?>/install/install.js"></script>
 	</head>
 	<body>
 	
@@ -51,9 +58,12 @@ include 'lang.korean.php';
 				<strong>Check!</strong> <?php echo $lang['install_warning']; ?>
 			</div>
 			
-			<?php if(!is_writable('../')) { ?>
+			<?php
+			$dirPerm = decoct(fileperms('../') - 16384);
+			if($dirPerm != 777 && $dirPerm != 707) { 
+			?>
 			<div class="alert alert-danger">
-				<strong>Warning!</strong> <?php echo $lang['install_warning_permission']; ?>
+				<strong>Warning!</strong> <?php echo $lang['install_warning_permission']; ?> (Permission: <?php echo $dirPerm; ?>)
 			</div>
 			<?php } ?>
 			
@@ -130,7 +140,7 @@ include 'lang.korean.php';
 			
 			<div class="form-group text-right">
 				<div class="col-md-12">
-					<input type="submit" value="Submit" class="btn btn-lg btn-primary" />
+					<input type="submit" value="Submit" class="btn btn-lg btn-primary btn-raised" />
 				</div>
 			</div>
 			
@@ -138,9 +148,6 @@ include 'lang.korean.php';
 		</form>
 
 	</div>
-	
-	<script src="/<?php echo $grboard; ?>/lib/jquery.js"></script>
-	<script src="/<?php echo $grboard; ?>/lib/bootstrap/js/bootstrap.min.js"></script>
 	
 	</body>
 </html>

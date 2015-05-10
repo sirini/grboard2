@@ -1,4 +1,6 @@
 $(function(){
+    $.material.init();
+    
     var userId = $("#userId"); 
     var idInfo = $("#userIdInfo");
     var userPw = $("#userPw");
@@ -6,6 +8,7 @@ $(function(){
     var userReal = $("#userReal");
     var realInfo = $("#userRealInfo");
     var grboard = $("#gr2joinPageBody").attr("rel");
+    
     userId.focusout(function(){
         var id = userId.val();
         if(id.length < 1) return;
@@ -18,11 +21,13 @@ $(function(){
             }
         });
     });
+    
     userPw.focusout(function(){
         var pw = userPw.val();
         if(pw.length < 5) pwInfo.html('<span class="text-danger">비밀번호 길이가 너무 짧습니다.</span>');
-        else pwInfo.html('<span class="text-primary">비밀번호를 잊지 않도록 주의해 주세요.</span>')
+        else pwInfo.html('<span class="text-primary">비밀번호를 잊지 않도록 주의해 주세요.</span>');
     });
+    
     userReal.focusout(function(){
        var real = userReal.val();
        var limit = ['!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '+', '{', '}', '[', ']', '|', ':', ';', '<', '>', '?', '/',

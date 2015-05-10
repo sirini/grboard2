@@ -1,8 +1,10 @@
 <?php if(!defined('GR_BOARD_2')) exit(); ?>
 
-<fieldset>
-<legend><?php echo $title; ?></legend>
+<div class="panel-heading">
+	<h3 class="panel-title"><strong><?php echo $title; ?></strong></h3>
+</div>
 
+<div class="panel-body">
 <form id="boardAddForm" method="post" class="form-horizontal" role="form" action="/<?php echo $grboard; ?>/board/admin/board/save">
 <div class="hiddenInputs">
 	<input type="hidden" name="boardFormSubmitType" value="<?php echo $mode; ?>" />
@@ -242,4 +244,5 @@
 <div class="form-group text-right col-md-12">
 	<input type="submit" value="Submit" class="btn btn-primary btn-lg" />
 </div>
-</fieldset>
+
+</div>
