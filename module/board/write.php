@@ -58,7 +58,6 @@ if(isset($_GET['articleNo'])) {
 	if($oldData['is_secret'] && !isPermitted($oldData['member_key'], $Common->getSessionKey())) {
 		$oldData['content'] = '<p class="red">Secret post.</p>';	
 	}
-	$oldData['content'] = str_replace('<br />', "\n", $oldData['content']);
 }
 
 include $skinIncludePrefix . $boardTheme . '/index.php';

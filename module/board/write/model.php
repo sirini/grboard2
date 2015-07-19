@@ -55,7 +55,7 @@ class Model {
 			$result['content'] = $puri->purify($result['content']);	
 		} else {
 			$result['subject'] = stripslashes($result['subject']);
-			$result['content'] = stripslashes($result['content']);				
+			$result['content'] = stripslashes($result['content']);
 		}
 			
 		return $result;
