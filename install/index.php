@@ -60,7 +60,7 @@ include 'lang.korean.php';
 			
 			<?php
 			$dirPerm = decoct(fileperms('../') - 16384);
-			if($dirPerm != 777 && $dirPerm != 707) { 
+			if($dirPerm != 0777 && $dirPerm != 0707) { 
 			?>
 			<div class="alert alert-danger">
 				<strong>Warning!</strong> <?php echo $lang['install_warning_permission']; ?> (Permission: <?php echo $dirPerm; ?>)
