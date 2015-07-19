@@ -59,7 +59,7 @@ include 'lang.korean.php';
 			</div>
 			
 			<?php
-			$dirPerm = decoct(fileperms('../') - 16384);
+			$dirPerm = decoct(fileperms('../'.$grboard) - 16384);
 			if($dirPerm != 0777 && $dirPerm != 0707) { 
 			?>
 			<div class="alert alert-danger">
