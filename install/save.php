@@ -59,7 +59,6 @@ if(!is_dir('../data/board/')) mkdir('../data/board', 0707);
 if(!is_dir('../session/')) mkdir('../session', 0707);
 
 if(file_exists('../.htaccess')) {
-	chmod('../.htaccess', 0707);
 	unlink('../.htaccess');
 }
 $htaccess = '<IfModule mod_rewrite.c>' . "\n" .

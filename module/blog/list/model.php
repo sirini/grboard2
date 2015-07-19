@@ -32,17 +32,25 @@ class Model {
 			array(($last['uid'] - ($count * $page * 10)), $last['uid'], (($isAdmin)?'':'and post_condition > 0'), (int)$preset, $count), 
 			$this->queArr['get_blog_post']
 		);
-		$que = $this->db->query($queStr);
 		$result = array(array());
-		$index = 0;
 		$colArr = array('uid', 'category', 'signdate', 'subject', 'content', 'post_condition', 'comment_condition', 'trackback', 'open_rss', 'comment_count', 'trackback_count', 'tag', 'writer', 'make_html');
-		while($post = $this->db->fetch($que)) {
-			foreach($colArr as &$col) {
-				$result[$index][$col] = str_replace(array('&amp;', '="data/'), array('&', '="/' . $this->grboard . '/data/blog/'), stripslashes($post[$col]));
+		$que = $this->db->query($queStr);
+		if($que) {
+			$index = 0;
+			while($post = $this->db->fetch($que)) {
+				foreach($colArr as &$col) {
+					$result[$index][$col] = str_replace(array('&amp;', '="data/'), array('&', '="/' . $this->grboard . '/data/blog/'), stripslashes($post[$col]));
+				}
+				$index++;
 			}
-			$index++;
-		}
-		$this->db->free($que);
+			$this->db->free($que);	
+		} else {
+			foreach($colArr as &$col) {
+				$result[0][$col] = '';
+			}
+			$result[0]['subject'] = 'There are no post exist.';
+			$result[0]['content'] = 'Click write button and start writing your first post.';
+		}				
 		return $result;
 	}
 
