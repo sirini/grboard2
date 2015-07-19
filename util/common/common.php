@@ -33,7 +33,9 @@ class Common {
 			$path = str_replace('@page/', 'page/', $msg) . '.txt';
 			$msg = file_get_contents($path);
 		}
-		include $type . '.php';
+		$filepath = $type . '.php';
+		if(file_exists($filepath)) include $filepath;
+		else include '../' . $filepath;
 		exit();
 	}
 	

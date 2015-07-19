@@ -78,7 +78,7 @@ include 'lang.korean.php';
 				<label for="name" class="col-md-2 control-label">DB Type</label>
 				<div class="col-md-3">
 					<select name="db_type" class="form-control">
-						<option value="mysql">MySQL 5</option>
+						<option value="mysql">MySQLi 5</option>
 					</select>
 				</div>
 				<span class="help-block col-md-7"><?php echo $lang['install_db_type']; ?></span>

@@ -1,40 +1,46 @@
 <?php
 header('Content-type: text/html; charset=utf-8');
 
-$docRootArr = explode('/', $_SERVER['DOCUMENT_ROOT']);
-$root = $docRootArr[count($docRootArr) - 2];
-$grboardArr = explode(DIRECTORY_SEPARATOR, dirname('../'));
-$grboard = end($grboardArr);
+$docRootArr = explode(DIRECTORY_SEPARATOR, $_SERVER['DOCUMENT_ROOT']);
+$root = $docRootArr[count($docRootArr) - 1];
+$grboardArr = explode(DIRECTORY_SEPARATOR, dirname(__FILE__));
+$grboard = $grboardArr[count($grboardArr) - 2];
 if($root == $grboard) $grboard = '.';
 
-if(!isset($_POST['db_hostname'])) die('<h2>Failed</h2> Unknown DB hostname.');
+include '../util/common/common.php';
+$common = new Common($grboard);
+
+if(!isset($_POST['db_hostname'])) $common->error('Unknown DB hostname.');
 else $db_hostname = trim($_POST['db_hostname']);
-if(!isset($_POST['db_username'])) die('<h2>Failed</h2> Unknown DB user name.');
+if(!isset($_POST['db_username'])) $common->error('Unknown DB user name.');
 else $db_username = trim($_POST['db_username']);
-if(!isset($_POST['db_password'])) die('<h2>Failed</h2> Unknown DB user password.');
+if(!isset($_POST['db_password'])) $common->error('Unknown DB user password.');
 else $db_password = trim($_POST['db_password']);
-if(!isset($_POST['db_dbname'])) die('<h2>Failed</h2> Unknown DB name.');
+if(!isset($_POST['db_dbname'])) $common->error('Unknown DB name.');
 else $db_dbname = trim($_POST['db_dbname']);
-if(!isset($_POST['db_prefix_board'])) die('<h2>Failed</h2> Unknown db table prefix (board).');
+if(!isset($_POST['db_prefix_board'])) $common->error('Unknown db table prefix (board).');
 else $db_prefix_board = trim($_POST['db_prefix_board']);
-if(!isset($_POST['db_prefix_blog'])) die('<h2>Failed</h2> Unknown db table prefix (blog).');
+if(!isset($_POST['db_prefix_blog'])) $common->error('Unknown db table prefix (blog).');
 else $db_prefix_blog = trim($_POST['db_prefix_blog']);
-if(!isset($_POST['admin_id'])) die('<h2>Failed</h2> Unknown administrator ID.');
+if(!isset($_POST['admin_id'])) $common->error('Unknown administrator ID.');
 else $admin_id = trim($_POST['admin_id']);
-if(!isset($_POST['admin_pw'])) die('<h2>Failed</h2> Unknown administrator password.');
+if(!isset($_POST['admin_pw'])) $common->error('Unknown administrator password.');
 else $admin_pw = trim($_POST['admin_pw']);
 
 include 'grblog.sql.php';
 include 'grboard.sql.php';
 
-$dbLink = mysqli_connect($db_hostname, $db_username, $db_password, $db_dbname) or die('<h2>Failed</h2>' . mysqli_error($dbLink));
+$dbLink = @mysqli_connect($db_hostname, $db_username, $db_password, $db_dbname);
+if(!$dbLink) {
+	$common->error('Failed to connect to MySQLi server. Please check given information. ('.$db_hostname.', '.$db_username.', '.$db_password.', '.$db_dbname.')');
+}
 foreach($queBoardArr as &$que) {
-	mysqli_query($dbLink, $que) or die('<h2>Failed</h2>' . mysqli_error($dbLink));
+	mysqli_query($dbLink, $que);
 }
 foreach($queBlogArr as &$que) {
-	mysqli_query($dbLink, $que) or die('<h2>Failed</h2>' . mysqli_error($dbLink));
+	mysqli_query($dbLink, $que);
 }
-mysqli_close($dbLink);
+mysqli_close($dbLink);	
 
 $dbinfo = '<?php'."\n".
 '$db_hostname = \''.$db_hostname.'\';'."\n".
