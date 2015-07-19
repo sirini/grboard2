@@ -110,9 +110,9 @@ $prevLink = $boardLink . '/list/' . ($ext_page - $boardInfo['page_per_list']);
 $nextLink = $boardLink . '/list/' . ($ext_page + $boardInfo['page_per_list']);
 $pageLink = $boardLink . '/list/';
 if(isset($option)) {
-	$prevLink = $boardLink . '/' . $option . '/' . $value . '/' . ($ext_page - $boardInfo['page_per_list']);
-	$nextLink = $boardLink . '/' . $option . '/' . $value . '/' . ($ext_page + $boardInfo['page_per_list']);
-	$pageLink = $boardLink . '/' . $option . '/' . $value . '/';
+	$prevLink = $boardLink . '/search/' . $option . '/' . $value . '/' . ($ext_page - $boardInfo['page_per_list']);
+	$nextLink = $boardLink . '/search/' . $option . '/' . $value . '/' . ($ext_page + $boardInfo['page_per_list']);
+	$pageLink = $boardLink . '/search/' . $option . '/' . $value . '/';
 }
 ?>
 
