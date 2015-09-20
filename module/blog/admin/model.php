@@ -44,8 +44,32 @@ class Model {
 		return $result;
 	}
 	
-	public function getBlogLink() {
-		$que = $this->db->query($this->queArr['get_blog_link']);
+	public function saveBlogCategory($post) {
+		if(strlen($post['addIndex']) == 0 || strlen($post['addName']) == 0) {
+			return false;
+		}
+		$depth_default = 0;
+		$queStr = str_replace(array('{0}', '{1}', '{2}'), 
+			array($post['addIndex'], addslashes($post['addName']), $depth_default), $this->queArr['save_blog_category']);
+		$this->db->query($queStr);
+		return true;
+	}
+	
+	public function updateBlogCategory($post) {
+		$depth_default = 0;
+		$queStr = str_replace(array('{0}', '{1}', '{2}', '{3}'), 
+			array($post['categoryIndex'], addslashes($post['categoryName']), $depth_default, (int)$post['categoryTarget']),
+			$this->queArr['update_blog_category']);
+		$this->db->query($queStr);	
+	}
+
+	public function deleteBlogCategory($post) {
+		$queStr = str_replace('{0}', (int)$post['categoryTarget'], $this->queArr['delete_blog_category']);
+		$this->db->query($queStr);
+	}
+	
+	public function getBlogCategory() {
+		$que = $this->db->query($this->queArr['get_blog_category']);
 		$result = array();
 		while($f = $this->db->fetch($que)) {
 			$result[] = $f; 
@@ -74,6 +98,16 @@ class Model {
 	public function deleteBlogLink($post) {
 		$queStr = str_replace('{0}', (int)$post['linkTarget'], $this->queArr['delete_blog_link']);
 		$this->db->query($queStr);
+	}
+	
+	public function getBlogLink() {
+		$que = $this->db->query($this->queArr['get_blog_link']);
+		$result = array();
+		while($f = $this->db->fetch($que)) {
+			$result[] = $f; 
+		}
+		$this->db->free($que);
+		return $result;
 	}
 }
 ?>

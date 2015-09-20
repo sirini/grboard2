@@ -71,7 +71,8 @@ class Model {
 		if(isset($post['isReplyable'])) $isReplyable = 1; else $isReplyable = 0;
 		if(isset($post['isRSS'])) $isRSS = 1; else $isRSS = 0;
 		if(isset($post['hashfiles'])) $isDndUploaded = 1; else $isDndUploaded = 0;
-
+		if(isset($post['category'])) $cat = (int)$post['category']; else $cat = 0;
+		
 		$tempDir = '__gr2_dnd_temp__/';
 		$originalDir = date('Y/m/d/');
 		$oldDir = '/' . $post['grboard'] . '/data/blog/' . $tempDir;
@@ -88,20 +89,20 @@ class Model {
 		$postCond = 1;
 		if($isNotice) $postCond = 2;
 		if(!$isVisible) $postCond = 0;
-		
+	
 		$queWriterStr = str_replace(array('{0}', '{1}'), array('id', $this->common->getSessionKey()), $this->queArr['get_writer_info']);
 		$queWriter = $this->db->query($queWriterStr);
 		$writer = $this->db->fetch($queWriter);
 		$this->db->free($queWriter);
 
 		if($target > 0) {
-			$valueStr = 'subject = \'' . $post['gr2subject'] . '\', content = \'' . $post['gr2content'] . '\', post_condition = ' . 
+			$valueStr = 'category = '.$cat.', subject = \'' . $post['gr2subject'] . '\', content = \'' . $post['gr2content'] . '\', post_condition = ' . 
 				$postCond . ', comment_condition = ' . $isReplyable . ', open_rss = ' . $isRSS . ', tag = \'' . $post['gr2tag'] . '\', make_html = 1';
 			$quePostStr = str_replace(array('{0}', '{1}'), array($valueStr, $target), $this->queArr['modify_post']);
 			$result = $this->db->query($quePostStr);
 			$insertID = $target;	
 		} else {
-			$valueStr = '\'\',\'1\',\'' . time() . '\',\'' . $post['gr2subject'] . '\',\'' . $post['gr2content'] . 
+			$valueStr = '\'\','.$cat.',\'' . time() . '\',\'' . $post['gr2subject'] . '\',\'' . $post['gr2content'] . 
 				'\',' . $postCond . ',' . $isReplyable . ',\'\',' . $isRSS . ',0,0,\'' . $post['gr2tag'] . '\',\'' . $writer['id'] . '\',1';
 			$quePostStr = str_replace('{0}', $valueStr, $this->queArr['write_post']);
 			$result = $this->db->query($quePostStr);
@@ -181,6 +182,16 @@ class Model {
 	public function deletePost($target) {
 		$queStr = str_replace('{0}', (int)$target, $this->queArr['delete_post']);
 		$this->db->query($queStr);
+	}
+	
+	public function getBlogCategory() {
+		$que = $this->db->query($this->queArr['get_blog_category']);
+		$result = array();
+		while($f = $this->db->fetch($que)) {
+			$result[] = $f;
+		}
+		$this->db->free($que);
+		return $result;
 	}
 }
 ?>

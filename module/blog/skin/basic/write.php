@@ -59,9 +59,9 @@ endif;
 
 		<div id="blogMainContent">
 			<div id="blogWrite">
-				<div id="blogWriteBox" class="col-sm-12">
-				
-					<form id="blogWriteForm" method="post" action="<?php echo $formAction; ?>" class="form-horizontal">
+				<form id="blogWriteForm" method="post" action="<?php echo $formAction; ?>" class="form-horizontal">
+				<div id="blogWriteBox" class="col-sm-9">				
+					
 					<div id="hiddenInputs">
 						<input type="hidden" name="grboard" value="<?php echo $grboard; ?>" />
 						<input type="hidden" name="deleteThis" value="" />
@@ -100,26 +100,39 @@ endif;
 								<textarea id="gr2content" rows="15" placeholder="글 제목을 입력해 주세요" class="form-control textarea-md"><?php echo $blogModify['content']; ?></textarea>
 							</div>
 						</div>	
-						
-						<div class="form-group">
-							<div class="col-md-12">
-								<input type="text" name="gr2tag" placeholder="글의 핵심 단어들을 콤마로 구분하여 입력해 주세요 (예: 보드,공개,수정사항,주의점,속도개선)" value="<?php echo $blogModify['tag']; ?>" class="form-control input-md" />
-							</div>
-						</div>	
-						
-						<div class="form-group">
-							<div class="col-md-12">
-								<input type="submit" class="btn btn-md btn-primary" role="button" value="Save and publish" />
-								<input id="savedraft" type="button" class="btn btn-md btn-default btn-raised" role="button" value="Save and draft" />
-								<?php if($blogModify['uid'] > 0): ?>
-								<button id="removepost" rel="<?php echo $blogModify['uid']; ?>" class="btn btn-md btn-danger">Delete this post</button>
-								<?php endif; ?>
-							</div>
-						</div>
-					
+				
 					</fieldset>
 						
-					</form>
 				</div>
+				
+				<div id="blogWriteSidebar" class="col-sm-3">
+					<div class="panel">
+						<div class="panel-heading">Category</div>
+						<div class="panel-body">
+							<?php if(count($blogCategory)): foreach($blogCategory as &$cat): ?>
+							<div class="radio">							
+								<label><input type="radio" name="category" <?php echo ($blogModify['category'] == $cat['uid'])?'checked="true"':''; ?> value="<?php echo $cat['uid']; ?>" /> <?php echo stripslashes($cat['name']); ?></label>							
+							</div>
+							<?php endforeach; endif; ?> 
+						</div>	
+					</div>
+					
+					<div class="panel">
+						<div class="panel-heading">Tag</div>
+						<div class="panel-body">
+							<input type="text" name="gr2tag" placeholder="글의 핵심 단어들을 콤마로 구분하여 입력해 주세요 (예: 보드,공개,수정사항,주의점,속도개선)" value="<?php echo $blogModify['tag']; ?>" class="form-control input-md" />
+						</div>	
+					</div>
+					
+					<div id="blogWriteButtons">
+						<input type="submit" class="btn btn-md btn-primary wide-btn" role="button" value="Save and publish" title="글을 저장하고 공개 합니다" />
+						<input id="savedraft" type="button" class="btn btn-md btn-default btn-raised wide-btn" role="button" value="Save and draft" title="글을 저장하고 공개는 하지 않습니다" />
+						<?php if($blogModify['uid'] > 0): ?>
+						<button id="removepost" rel="<?php echo $blogModify['uid']; ?>" class="btn btn-md btn-danger wide-btn" title="글을 삭제 합니다">Delete this post</button>
+						<?php endif; ?>
+					</div>
+				</div>
+				
+				</form>
 			</div>
 		</div>

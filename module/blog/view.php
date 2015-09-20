@@ -22,6 +22,5 @@ function enableSyntaxHighlighter(&$text) {
 }
 
 include 'skin/' . $blogInfo['theme'] . '/index.php';
-
-unset($Model, $blogInfo, $blogPost, $skinResourcePath, $skinPath, $blogLink, $query);
+unset($Model, $blogInfo, $blogPost, $skinResourcePath, $skinPath, $blogLink, $query, $simplelock);
 ?>

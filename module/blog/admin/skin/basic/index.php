@@ -10,6 +10,7 @@
 		<link href="/<?php echo $grboard; ?>/lib/bootstrap_material_design/css/material.min.css" rel="stylesheet" media="screen" />
 		<link href="/<?php echo $grboard; ?>/lib/bootstrap_material_design/css/ripples.min.css" rel="stylesheet" media="screen" />
 		<link href="/<?php echo $grboard; ?>/lib/bootstrap_material_design/css/roboto.min.css" rel="stylesheet" media="screen" />
+		<link href="/<?php echo $skinResourcePath; ?>/style.css" rel="stylesheet" media="screen" />
 		<script src="/<?php echo $grboard; ?>/lib/jquery.js"></script>
 		<script src="/<?php echo $grboard; ?>/lib/bootstrap/js/bootstrap.min.js"></script>
 		<script src="/<?php echo $grboard; ?>/lib/bootstrap_material_design/js/material.min.js"></script>
@@ -19,7 +20,7 @@
 				$.material.init();
 			});
 		</script>
-		<?php if($manage=='link'): ?><script src="/<?php echo $skinResourcePath; ?>/link.js"></script><?php endif; ?>
+		<script src="/<?php echo $skinResourcePath; ?>/<?php echo $manage; ?>.js"></script>
 	</head>
 	<body>
 		
@@ -41,6 +42,8 @@
 						<span class="glyphicon glyphicon-home"></span> Home</a></li>
 					<li class="<?php echo (($manage=='config')?'active':''); ?>"><a href="/<?php echo $grboard; ?>/blog/admin/manage/config" title="<?php echo $lang['config_info']; ?>">
 						<span class="glyphicon glyphicon-cog"></span> Configuration</a></li>
+					<li class="<?php echo (($manage=='category')?'active':''); ?>"><a href="/<?php echo $grboard; ?>/blog/admin/manage/category" title="<?php echo $lang['category_info']; ?>">
+						<span class="glyphicon glyphicon-th-list"></span> Category</a></li>
 					<li class="<?php echo (($manage=='link')?'active':''); ?>"><a href="/<?php echo $grboard; ?>/blog/admin/manage/link" title="<?php echo $lang['link_info']; ?>">
 						<span class="glyphicon glyphicon-link"></span> Link</a></li>
 				</ul>
