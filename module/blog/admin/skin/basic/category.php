@@ -31,12 +31,12 @@
 			
 			<div class="form-group">
 				<div class="col-md-2">
-					<input type="text" id="index_<?php echo $category['id']; ?>" required="true" class="form-control" maxlength="10" 
+					<input type="text" id="index_<?php echo $category['uid']; ?>" required="true" class="form-control" maxlength="10" 
 						value="<?php echo $category['id']; ?>" placeholder="Order index" title="<?php echo $lang['category_add_index']; ?>"  /> 
 				</div>
 				<div class="col-md-7">
-					<input type="text" id="name_<?php echo $category['name']; ?>" required="true" class="form-control" maxlength="250" 
-						value="<?php echo $category['name']; ?>" placeholder="Category name" title="<?php echo $lang['category_add_name']; ?>" />
+					<input type="text" id="name_<?php echo $category['uid']; ?>" required="true" class="form-control" maxlength="250" 
+						value="<?php echo stripslashes($category['name']); ?>" placeholder="Category name" title="<?php echo $lang['category_add_name']; ?>" />
 				</div>
 				<div class="col-md-3 text-center">
 					<button class="btn btn-sm btn-primary update-category" rel="<?php echo $category['uid']; ?>">Update</button>

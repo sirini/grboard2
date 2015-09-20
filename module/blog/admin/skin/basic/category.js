@@ -11,7 +11,7 @@ $(function(){
 		
 		$("#blogConfigForm input[name=blogCategoryAction]").val('update');
 		$("#blogConfigForm input[name=categoryTarget]").val(uid);
-		$("#blogConfigForm input[name=categoryIndex]").val(url);
+		$("#blogConfigForm input[name=categoryIndex]").val(id);
 		$("#blogConfigForm input[name=categoryName]").val(name);
 		$("#blogConfigForm").submit();
 	});
