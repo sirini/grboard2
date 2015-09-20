@@ -61,9 +61,10 @@ if(isset($_GET['guestbook'])) {
 }
 
 $blogInfo = $Model->getBlogInfo('blog_title, blog_info, theme');
+$blogCategory = $Model->getBlogCategory();
 $skinResourcePath = '/' . $grboard . '/module/' . $ext_module . '/skin/' . $blogInfo['theme'];
 $skinPath = 'module/blog/skin/' . $blogInfo['theme'];
 include 'skin/' . $blogInfo['theme'] . '/index.php';
 
-unset($Model, $query, $error, $blogInfo, $skinResourcePath, $skinPath);
+unset($Model, $query, $error, $blogInfo, $skinResourcePath, $blogCategory, $skinPath);
 ?>

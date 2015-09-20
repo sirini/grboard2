@@ -3,6 +3,7 @@ if(!defined('GR_BOARD_2')) exit();
 if($ext_action == 'modify') $ext_action = 'write';
 $isSidebarOpen = ($ext_action != 'login' && $ext_action != 'write');
 if($isSidebarOpen):
+	$blogCategory = $Model->getBlogCategory();
 	$blogNotice = $Model->getBlogNotice(5);
 	$blogRecentReply = $Model->getBlogRecentReply(10);
 	$blogGuestbook = $Model->getBlogGuestbook(10);

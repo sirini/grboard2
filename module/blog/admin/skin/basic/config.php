@@ -36,18 +36,18 @@
 		
 		<div class="form-group">
 			<label for="blog_title" class="col-md-2 control-label">Title</label>
-			<div class="col-md-5">
+			<div class="col-md-3">
 				<input type="text" name="blog_title" required="true" class="form-control" maxlength="250" value="<?php echo $oldData['blog_title']; ?>" />
 			</div>
-			<span class="help-block col-md-5"><?php echo $lang['config_blog_title']; ?></span>
+			<span class="help-block col-md-7"><?php echo $lang['config_blog_title']; ?></span>
 		</div>	
 		
 		<div class="form-group">
 			<label for="blog_info" class="col-md-2 control-label">Information</label>
-			<div class="col-md-5">
+			<div class="col-md-3">
 				<input type="text" name="blog_info" required="true" class="form-control" maxlength="250" value="<?php echo $oldData['blog_info']; ?>" />
 			</div>
-			<span class="help-block col-md-5"><?php echo $lang['config_blog_info']; ?></span>
+			<span class="help-block col-md-7"><?php echo $lang['config_blog_info']; ?></span>
 		</div>	
 		
 		<div class="form-group">
@@ -95,21 +95,21 @@
 		
 		<div class="form-group">
 			<label for="use_comment" class="col-md-2 control-label">Accept reply</label>
-			<div class="col-md-10">
-				<div class="checkbox">
-					<input type="checkbox" name="use_comment" value="1" 
-						<?php echo ($oldData['use_comment'])?'checked="true"':''; ?>" /> <?php echo $lang['config_blog_use_comment']; ?>
-				</div>
+			<div class="col-md-10">				
+					<label class="cursor_pointer">
+						<input type="checkbox" name="use_comment" value="1" 
+							<?php echo ($oldData['use_comment'])?'checked="true"':''; ?>" /> <?php echo $lang['config_blog_use_comment']; ?>
+					</label>				
 			</div>
 		</div>	
 		
 		<div class="form-group">
 			<label for="use_rss" class="col-md-2 control-label">Share RSS</label>
 			<div class="col-md-10">
-				<div class="checkbox">
+				<label class="cursor_pointer">
 					<input type="checkbox" name="use_rss" value="1" 
 						<?php echo ($oldData['use_rss'])?'checked="true"':''; ?>" /> <?php echo $lang['config_blog_use_rss']; ?>
-				</div>
+				</label>
 			</div>
 		</div>
 		

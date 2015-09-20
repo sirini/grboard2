@@ -42,15 +42,15 @@
 					<input type="url" id="url_<?php echo $link['uid']; ?>" required="true" class="form-control" maxlength="250" 
 						value="<?php echo $link['url']; ?>" placeholder="http://URL" title="<?php echo $lang['link_add_url']; ?>" />
 				</div>
-				<div class="col-md-3">
+				<div class="col-md-4">
 					<input type="text" id="info_<?php echo $link['uid']; ?>" class="form-control" maxlength="250" 
 						value="<?php echo $link['info']; ?>" placeholder="Description" title="<?php echo $lang['link_add_description']; ?>" />
 				</div>
-				<div class="col-md-5 text-center">
-					<a href="<?php echo $link['url']; ?>" class="btn btn-default btn-raised">
+				<div class="col-md-4 text-center">
+					<a href="<?php echo $link['url']; ?>" class="btn btn-sm btn-default btn-raised">
 							<span class="glyphicon glyphicon-home"></span> Visit</a>
-					<button class="btn btn-primary update-link" rel="<?php echo $link['uid']; ?>">Update</button>
-					<button class="btn btn-danger delete-link" rel="<?php echo $link['uid']; ?>">Delete</button>
+					<button class="btn btn-sm btn-primary update-link" rel="<?php echo $link['uid']; ?>">Update</button>
+					<button class="btn btn-sm btn-danger delete-link" rel="<?php echo $link['uid']; ?>">Delete</button>
 				</div>	
 			</div>	
 			

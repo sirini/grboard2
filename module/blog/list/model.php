@@ -21,17 +21,22 @@ class Model {
 		return $result;
 	}
 
-	public function getBlogPost($common, $preset=0, $count=10, $page=1) {
+	public function getBlogPost($common, $preset=0, $count=10, $page=1, $cat=0) {
 		$count = (int)$count;
 		$queLast = $this->db->query($this->queArr['get_last_uid']);
 		$last = $this->db->fetch($queLast);
 		$this->db->free($queLast);
 		$isAdmin = ($common->getSessionKey() == 1) ? true : false;
-		$queStr = str_replace(
-			array('{0}', '{1}', '{2}', '{3}', '{4}'), 
-			array(($last['uid'] - ($count * $page * 10)), $last['uid'], (($isAdmin)?'':'and post_condition > 0'), (int)$preset, $count), 
-			$this->queArr['get_blog_post']
-		);
+		if($cat) {
+			$queStr = str_replace(array('{0}', '{1}', '{2}', '{3}'), 
+				array($cat, (($isAdmin)?'':'and post_condition > 0'), 0, $count), 
+				$this->queArr['get_blog_post_by_category']);			
+		} else {
+			$queStr = str_replace(array('{0}', '{1}', '{2}', '{3}', '{4}', '{5}'), 
+				array(($last['uid'] - ($count * $page * 10)), $last['uid'], (($isAdmin)?'':'and post_condition > 0'), (int)$preset, $count, $cat), 
+				$this->queArr['get_blog_post']);
+		}
+		
 		$result = array(array());
 		$colArr = array('uid', 'category', 'signdate', 'subject', 'content', 'post_condition', 'comment_condition', 'trackback', 'open_rss', 'comment_count', 'trackback_count', 'tag', 'writer', 'make_html');
 		$que = $this->db->query($queStr);
@@ -54,8 +59,10 @@ class Model {
 		return $result;
 	}
 
-	public function getBlogPostCount() {
-		$que = $this->db->query($this->queArr['get_blog_post_count']);
+	public function getBlogPostCount($cat=0) {
+		$queStr = $this->queArr['get_blog_post_count'];
+		if($cat) $queStr = str_replace('{0}', $cat, $this->queArr['get_blog_post_count_by_category']);
+		$que = $this->db->query($queStr);
 		$result = $this->db->fetch($que);
 		$this->db->free($que);
 		return $result['total_post'];
@@ -124,6 +131,16 @@ class Model {
 				$result[$index][$col] = str_replace('&amp;', '&', stripslashes($post[$col]));
 			}
 			$index++;
+		}
+		$this->db->free($que);
+		return $result;
+	}
+
+	public function getBlogCategory() {
+		$que = $this->db->query($this->queArr['get_blog_category']);
+		$result = array();
+		while($f = $this->db->fetch($que)) {
+			$result[] = $f;
 		}
 		$this->db->free($que);
 		return $result;

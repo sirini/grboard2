@@ -25,9 +25,10 @@ if(isset($_GET['post'])) {
 $ext_articleNo = (int)$_GET['articleNo'];
 $blogModify = $Model->getBlogPost($ext_articleNo);
 $blogInfo = $Model->getBlogInfo('blog_title, blog_info, theme');
+$blogCategory = $Model->getBlogCategory();
 $skinResourcePath = '/' . $grboard . '/module/blog/skin/' . $blogInfo['theme'];
 $skinPath = 'module/blog/skin/' . $blogInfo['theme'];
 include 'skin/' . $blogInfo['theme'] . '/index.php';
 
-unset($Model, $query, $error, $blogModify, $blogInfo, $skinResourcePath, $skinPath);
+unset($Model, $query, $error, $blogModify, $blogInfo, $blogCategory, $skinResourcePath, $skinPath);
 ?>

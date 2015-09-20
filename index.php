@@ -1,7 +1,7 @@
 <?php
 define('GR_BOARD_2', true);
-define('GR2_VERSION_NUM', 2008);
-define('GR2_VERSION_STATE', 'beta5');
+define('GR2_VERSION_NUM', 2009);
+define('GR2_VERSION_STATE', 'beta6');
 define('GR2_VERSION_STR', 'v2.0.0');
 
 $docRootArr = explode('/', $_SERVER['DOCUMENT_ROOT']);

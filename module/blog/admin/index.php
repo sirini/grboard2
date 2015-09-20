@@ -10,6 +10,21 @@ if(isset($_POST['blogConfigSave'])) {
 	}
 }
 
+if(isset($_POST['blogCategorySave'])) {
+	$action = $_POST['blogCategoryAction'];
+	if($action == 'add') {
+		if($Model->saveBlogCategory($_POST) == false) {
+			$Common->error($error['msg_category_failed'], '/' . $grboard . '/blog/admin/manage/category', 'error');
+		}		
+	} elseif ($action == 'update') {
+		$Model->updateBlogCategory($_POST);
+		
+	} elseif ($action == 'delete') {
+		$Model->deleteBlogCategory($_POST);
+	}
+	header('Location: /' . $grboard . '/blog/admin/manage/category');
+}
+
 if(isset($_POST['blogLinkSave'])) {
 	$action = $_POST['blogLinkAction'];
 	if($action == 'add') {
@@ -25,11 +40,12 @@ if(isset($_POST['blogLinkSave'])) {
 	header('Location: /' . $grboard . '/blog/admin/manage/link');
 }
 
-$oldData = $Model->getBlogConfig();
 $manage = 'config';
+$oldData = $Model->getBlogConfig();
 if(isset($_GET['manage'])) {
 	$manage = $Common->getPlaneText($_GET['manage']);
-	$oldLink = $Model->getBlogLink();
+	if ($manage == 'link') $oldLink = $Model->getBlogLink();
+	elseif ($manage == 'category') $oldCategory = $Model->getBlogCategory();
 }
 
 $skin = 'basic';

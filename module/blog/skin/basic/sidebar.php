@@ -1,6 +1,16 @@
 <?php if(!defined('GR_BOARD_2')) exit(); ?>
 
 	<div id="blogSideContent" class="col-sm-4 blog-sidebar">
+		<div id="blogCategory" class="sidebar-module sidebar-module-inset">
+			<h4>Categories</h4>
+			<ul class="list-unstyled">
+			<?php foreach($blogCategory as &$cat): ?>
+				<li><small><a href="/<?php echo $grboard; ?>/blog/category/<?php echo $cat['uid']; ?>">
+					<?php echo stripslashes($cat['name']); ?></a></small></li>
+			<?php endforeach; unset($cat, $blogCategory); ?>
+			</ul>
+		</div>		
+		
 		<div id="blogRecentReply" class="sidebar-module sidebar-module-inset">
 			<h4>Recent replies</h4>
 			<ul class="list-unstyled">

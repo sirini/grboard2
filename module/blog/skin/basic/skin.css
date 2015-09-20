@@ -41,6 +41,19 @@
 	margin: auto;
 }
 
+#blogWriteSidebar {
+	padding: 145px 0 0 20px;
+}
+
+#blogWriteSidebar .radio {
+	padding: 0;
+	margin: 0;
+}
+
+#blogWriteButtons .wide-btn {
+	width: 260px;
+}
+
 @media (min-width: 1200px) {
   .container {
     width: 970px;
