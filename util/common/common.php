@@ -25,7 +25,15 @@ class Common {
 		return $string[0];
 	}
 
-	public function error($msg, $moveBackPath='', $type='error', $delay=10000) {
+	public function error($msg, $moveBackPath='', $delay=10000) {
+		$this->page($msg, $moveBackPath, 'error', $delay);
+	}
+	
+	public function info($msg, $moveBackPath='', $delay=10000) {
+		$this->page($msg, $moveBackPath, 'message', $delay);
+	}
+	
+	public function page($msg, $moveBackPath='', $type='error', $delay=10000) {
 		if( !strlen($moveBackPath) && array_key_exists('HTTP_REFERER', $_SERVER) ) $moveBackPath = $_SERVER['HTTP_REFERER'];
 		if( !strlen($moveBackPath) ) $moveBackPath = 'http://' . $_SERVER['HTTP_HOST'];
 		$grboard = $this->grboard;

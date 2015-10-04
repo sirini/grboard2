@@ -139,7 +139,8 @@ if(isset($option)) {
 			<li><a href="<?php echo $boardLink; ?>/join" class="gr-btn gr-btn-default" title="신규 회원으로 가입 합니다">Join</a></li>
 		<?php else: ?>
 			<li><a href="<?php echo $boardLink; ?>/memo" class="gr-btn gr-btn-default" title="쪽지함으로 갑니다">Message</a></li>
-			<li><a href="<?php echo $boardLink; ?>/logout" class="gr-btn gr-btn-default" title="로그 아웃 합니다">Logout</a></li>
+			<li><a href="<?php echo $boardLink; ?>/logout" class="gr-btn gr-btn-default" title="로그 아웃 합니다">LogOut</a></li>
+			<li><a href="<?php echo $boardLink; ?>/myinfo" class="gr-btn gr-btn-default" title="내 정보를 수정 합니다">MyInfo</a></li>
 		<?php endif; ?>
 		<li><a href="<?php echo $boardLink; ?>/list/1" class="gr-btn gr-btn-default" title="목록을 봅니다">List</a></li>
 		<li><a href="<?php echo $boardLink; ?>/mobile/list/<?php echo $ext_page; ?>" class="gr-btn gr-btn-default" title="모바일 폰에서 봅니다">Mobile</a></li>

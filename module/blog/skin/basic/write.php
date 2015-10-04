@@ -6,7 +6,7 @@ endif;
 
 if(!isset($blogModify) && !isset($formAction)):
 	$formAction = '/' . $grboard . '/blog/write/post/1';
-	$blogModify = array('uid'=>0,'isNotice'=>false, 'isVisible'=>true, 'isReplyable'=>true, 'isRSS'=>true, 'subject'=>'', 'content'=>'', 'tag'=>'');	
+	$blogModify = array('uid'=>0,'category'=>0,'isNotice'=>false, 'isVisible'=>true, 'isReplyable'=>true, 'isRSS'=>true, 'subject'=>'', 'content'=>'', 'tag'=>'');	
 else:
 	$formAction = '/' . $grboard . '/blog/modify/post/' . $ext_articleNo;
 endif;

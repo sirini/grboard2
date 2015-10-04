@@ -19,7 +19,7 @@ $Model = new Model($DB, $query, $grboard, $Common);
 if(isset($_POST['memoSendProceed'])) {
 	$ret = $Model->sendMemo($userSessionKey, $_POST);
 	if($ret == true) {
-		$Common->error($error['msg_send_success'], $prePath . '/memo', 'message', 3000);
+		$Common->info($error['msg_send_success'], $prePath . '/memo', 3000);
 	} elseif($ret == -1) {
 		$Common->error($error['msg_unknown_id'], $prePath . '/memo');
 	} else {

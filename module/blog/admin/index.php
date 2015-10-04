@@ -4,9 +4,9 @@ if(!defined('GR_BOARD_2')) exit();
 if(isset($_POST['blogConfigSave'])) {
 	$ret = $Model->saveBlogConfig($_POST);
 	if($ret == true) {
-		$Common->error($error['msg_config_saved'], '/' . $grboard . '/blog', 'message');
+		$Common->info($error['msg_config_saved'], '/' . $grboard . '/blog');
 	} else {
-		$Common->error($error['msg_config_failed'], '/' . $grboard . '/blog/admin', 'error');
+		$Common->error($error['msg_config_failed'], '/' . $grboard . '/blog/admin');
 	}
 }
 
@@ -14,13 +14,15 @@ if(isset($_POST['blogCategorySave'])) {
 	$action = $_POST['blogCategoryAction'];
 	if($action == 'add') {
 		if($Model->saveBlogCategory($_POST) == false) {
-			$Common->error($error['msg_category_failed'], '/' . $grboard . '/blog/admin/manage/category', 'error');
+			$Common->error($error['msg_category_failed'], '/' . $grboard . '/blog/admin/manage/category');
 		}		
 	} elseif ($action == 'update') {
 		$Model->updateBlogCategory($_POST);
 		
 	} elseif ($action == 'delete') {
-		$Model->deleteBlogCategory($_POST);
+		if($Model->deleteBlogCategory($_POST) == false) {
+			$Common->error($error['msg_category_minimum_count'], '/' . $grboard . '/blog/admin/manage/category');
+		}
 	}
 	header('Location: /' . $grboard . '/blog/admin/manage/category');
 }
@@ -29,7 +31,7 @@ if(isset($_POST['blogLinkSave'])) {
 	$action = $_POST['blogLinkAction'];
 	if($action == 'add') {
 		if($Model->saveBlogLink($_POST) == false) {
-			$Common->error($error['msg_link_failed'], '/' . $grboard . '/blog/admin/manage/link', 'error');
+			$Common->error($error['msg_link_failed'], '/' . $grboard . '/blog/admin/manage/link');
 		}		
 	} elseif ($action == 'update') {
 		$Model->updateBlogLink($_POST);

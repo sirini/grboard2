@@ -15,9 +15,9 @@ $blogLink = $Model->getBlogLink();
 $simplelock = substr(md5($blogPost['uid'] . 'GR_BOARD_2' . date('YmdH')), -4);
 
 function enableSyntaxHighlighter(&$text) {
-	$text = preg_replace('/\[co'.'de=([a-zA-Z]+)\]/i', '<script type="syntax'.'highlighter" class="brush: $1"><![CD'.'ATA[', $text);
-	$text = str_replace('[/co'.'de]', ']]></s'.'cript>', $text);
-	$text = preg_replace_callback('/<\!\[CDATA\[(.*)\]\]>/i', 
+	$text = preg_replace('/\[code=([a-zA-Z]+)\]/i', '<script type="syntaxhighlighter" class="brush: $1"><![CDATA[', $text);
+	$text = str_replace('[/code]', ']]></script>', $text);
+	$text = preg_replace_callback('/<\!\[CDATA\[(.*)\]\]>/Ui', 
 		create_function('$matches', 'return str_replace(\'<br />\', "\n", $matches[0]);'), $text);
 }
 

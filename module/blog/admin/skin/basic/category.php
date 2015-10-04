@@ -17,7 +17,7 @@
 			
 			<div class="form-group">
 				<div class="col-md-2">
-					<input type="text" name="addIndex" class="form-control" maxlength="10" placeholder="Order index" title="<?php echo $lang['category_add_index']; ?>" />
+					<input type="text" name="addIndex" class="form-control" maxlength="10" placeholder="Order index" title="<?php echo $lang['category_add_index']; ?>" value="0" />
 				</div>
 				<div class="col-md-8">
 					<input type="text" name="addName" class="form-control" maxlength="250" placeholder="Category name" title="<?php echo $lang['category_add_name']; ?>" />

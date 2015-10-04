@@ -48,7 +48,7 @@
 						<span class="glyphicon glyphicon-link"></span> Link</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="http://sirini.net/" title="Build GR Board 2 better, together."> 
+					<li><a href="http://grboard.com" title="Build GR Board 2 better, together."> 
 						<span class="glyphicon glyphicon-link"></span> GR Board <sup>2</sup></a></li>
 				</ul>
 			</div>

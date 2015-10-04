@@ -48,10 +48,18 @@ class Model {
 		if(strlen($post['addIndex']) == 0 || strlen($post['addName']) == 0) {
 			return false;
 		}
+		$queCheckDup = str_replace('{0}', addslashes($post['addName']), $this->queArr['get_exist_category_name']);
+		$checkDup = $this->db->query($queCheckDup);
+		$chkDup = $this->db->fetch($checkDup);
+		if(isset($chkDup['uid'])) {
+			$this->db->free($checkDup);
+			return false;
+		}
 		$depth_default = 0;
 		$queStr = str_replace(array('{0}', '{1}', '{2}'), 
 			array($post['addIndex'], addslashes($post['addName']), $depth_default), $this->queArr['save_blog_category']);
 		$this->db->query($queStr);
+		$this->db->free($checkDup);
 		return true;
 	}
 	
@@ -64,8 +72,19 @@ class Model {
 	}
 
 	public function deleteBlogCategory($post) {
+		$getCatCnt = $this->db->query($this->queArr['get_category_count']);
+		$catCnt = $this->db->fetch($getCatCnt);
+		if($catCnt['cnt'] < 2) {
+			$this->db->free($getCatCnt);
+			return false;
+		}
+		
 		$queStr = str_replace('{0}', (int)$post['categoryTarget'], $this->queArr['delete_blog_category']);
 		$this->db->query($queStr);
+		$mvQueStr = str_replace('{0}', (int)$post['categoryTarget'], $this->queArr['move_category_to_default']);
+		$this->db->query($mvQueStr);
+		$this->db->free($getCatCnt);
+		return true;
 	}
 	
 	public function getBlogCategory() {

@@ -377,7 +377,8 @@ and (max-device-width: 650px) {
 
 #GRBOARD2 div.content {
 	padding: 15px 0 15px 0;
-	line-height: 170%;
+	line-height: 1.65em;
+	font-size: 1.1em;
 	overflow: hidden;
 }
 
