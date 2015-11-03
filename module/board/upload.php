@@ -17,7 +17,7 @@ $uploadPath .= '/' . date('d');
 if(!is_dir($uploadPath)) mkdir($uploadPath, 0707);
 $uploadPath .= '/';
 
-if(array_key_exists('mode', $_POST)) {
+if(isset($_GET['mode'])) {
 	$mode = $_POST['mode'];
 	if ($mode == 'dnd') {
 		$uploadPath = 'data/board/__gr2_dnd_temp__/';
@@ -47,7 +47,7 @@ if(strtolower($_SERVER['REQUEST_METHOD']) == 'post' && !empty($_FILES)) {
 $result = '{"status":"OK", "list":[';
 
 foreach($uploadedList as &$file) {
-	if(!array_key_exists('hash', $file)) continue;
+	if(!isset($_GET['hash'])) continue;
 	$result .= '{"hash":"' .'/'. $grboard .'/'. $uploadPath . $file['hash'] . '", "real":"' .
 		'/'. $grboard .'/'. $uploadPath . $file['real'] . '"},';
 }
