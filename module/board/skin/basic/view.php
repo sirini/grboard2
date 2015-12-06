@@ -51,6 +51,8 @@ function makeThumbnailPath($file, $width, $height) {
 	<ul class="fileList">
 		<?php 
 		foreach($fileList as &$file): 
+			if(!file_exists('..' . $file['hash_name'])) continue;
+
 			$filenameArr = explode('/', $file['real_name']);
 			$filename = end($filenameArr);
 			$thumbnail = makeThumbnailPath($file, 200, 200);

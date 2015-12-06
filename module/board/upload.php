@@ -44,10 +44,10 @@ if(strtolower($_SERVER['REQUEST_METHOD']) == 'post' && !empty($_FILES)) {
 } else {
 	$Common->error('Sorry, wrong access.');
 }
-$result = '{"status":"OK", "list":[';
+$result = '{"status":"OK", "list":[ ';
 
 foreach($uploadedList as &$file) {
-	if(!isset($_GET['hash'])) continue;
+	if(!isset($file['real'])) continue;
 	$result .= '{"hash":"' .'/'. $grboard .'/'. $uploadPath . $file['hash'] . '", "real":"' .
 		'/'. $grboard .'/'. $uploadPath . $file['real'] . '"},';
 }

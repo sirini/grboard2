@@ -23,6 +23,16 @@ endif;
 	</div>
 		<ul class="zero-gap">
 			<li>
+				<?php 
+				$category = $Model->getCategoryList($ext_id);
+				if($category != false): ?>
+					<select name="gr2category" class="categoryInput">
+						<?php foreach($category as &$cat): ?>
+							<option name="<?php echo $cat; ?>" <?php echo (($oldData['category']==$cat)?'selected="true"':''); ?>><?php echo $cat; ?></option>
+						<?php endforeach; ?>
+					</select>
+				<?php endif; ?>
+
 				<?php if($Common->getSessionKey() == 1): ?>
 					<input type="checkbox" name="isNotice" value="1" <?php echo ($oldData['is_notice']) ? 'checked="true"':''; ?> />notice
 				<?php endif; ?>
@@ -39,16 +49,6 @@ endif;
 			<?php endif; ?>
 
 			<li>
-				<?php 
-				$category = $Model->getCategoryList($ext_id);
-				if($category != false): ?>
-					<select name="gr2category" class="categoryInput">
-						<?php foreach($category as &$cat): ?>
-							<option name="<?php echo $cat; ?>" <?php echo (($oldData['category']==$cat)?'selected="true"':''); ?>><?php echo $cat; ?></option>
-						<?php endforeach; ?>
-					</select>
-				<?php endif; ?>
-				
 				<input type="text" name="gr2subject" required="true" placeholder="글 제목을 여기에 입력해 주세요" class="gr-form-input longWidth" value="<?php echo $oldData['subject']; ?>" />
 			</li>
 			<li class="space">
@@ -76,7 +76,7 @@ endif;
 			<li><input type="text" name="gr2tag" value="<?php echo $oldData['tag']; ?>" placeholder="글의 핵심 단어들을 태킹 (쉼표로 구분: 공지,감사합니다,사랑)" class="gr-form-input longWidth" /></li>
 		</ul>
 		
-		<div class="text-right">
+		<div class="text-right margin-top">
 			<input type="submit" value="Submit" class="gr-btn gr-btn-primary" />
 			<a href="<?php echo $boardLink; ?>/list/1" id="gr2writeCancelBtn" class="gr-btn gr-btn-danger">Cancel</a>
 		</div>

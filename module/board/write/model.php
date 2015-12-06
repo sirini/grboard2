@@ -186,8 +186,6 @@ class Model {
 	private function uploadDroppedFiles($id, $insertID, $sessionKey, &$post, $oldDir, $renameDir, $moveDir) {
 		$fileCount = count($post['hashfiles']);						
 		for($i=0; $i<$fileCount; $i++) {
-			rename(str_replace('/' . $post['grboard'] . '/', '', $post['hashfiles'][$i]), 
-				str_replace($oldDir, $renameDir, $post['hashfiles'][$i]));
 			$real = str_replace($oldDir, $moveDir, $post['realfiles'][$i]);
 			$hash = str_replace($oldDir, $moveDir, $post['hashfiles'][$i]);
 			$fileValueStr = '\'\',\'' . $id . '\',' . $insertID . ',' . $sessionKey . ',\'' . $real . '\',\'' . $hash . '\',' . time() . ',0';

@@ -13,12 +13,8 @@ $(function(){
 		writeCancel: $("#gr2writeCancelBtn"),
 
 		previewImage: function(file) {
-		    var imgTag = "<img class=\"preview\" src=\"" + file + "\" border=\"0\" title=\"더블 클릭 시 삭제\" />";
+		    var imgTag = "<img class=\"preview\" src=\"" + file + "\" border=\"0\" title=\"더블 클릭 시 삭제 합니다\" />";
 			gr2write.jDropzone.append(imgTag);
-            var oldContent = gr2write.content.html();
-            oldContent += "<br /><br />" + imgTag + "<br /><br />";
-            gr2write.content.html(oldContent);
-            tinymce.activeEditor.execCommand('mceInsertContent', false, oldContent);
 		},
 		
 		linkFile: function(file) {
@@ -32,9 +28,8 @@ $(function(){
 
 		readFile: function(files) {
 		    var formData = new FormData();
-			for(var i=0; i<files.length; i++) {
+		    for (var i = 0; i < files.length; i++) {
 				formData.append("file[]", files[i]);
-                gr2write.jDropzone.css("padding", "5px").css("height", "90px").css("width", "500px");
 			}
 			
 			var boardId = $("#boardId").val();
@@ -43,9 +38,9 @@ $(function(){
 			formData.append("mode", "dnd");
 			xhr.send(formData);
 			xhr.onreadystatechange = function() {
-			    if(xhr.readyState == 4 && xhr.status == 200) {
+			    if (xhr.readyState == 4 && xhr.status == 200) {
 			        var json = eval('(' + xhr.responseText + ')');
-			        if(json.status == "error") {
+			        if (json.status == "error") {
 			            var err = json.msg;
 			            var msg = "에러 없음";
 			            switch(err) {
@@ -57,7 +52,7 @@ $(function(){
 			            }
 			            alert(msg);
 			        } else {
-			            for(var f in json.list) {
+			            for (var f in json.list) {
 			                var hash = json.list[f].hash;
 			                var real = json.list[f].real;
 			                var ext = real.match(/[^\\]*\.(\w+)$/);
@@ -158,4 +153,8 @@ $(function(){
 	} else {
 		$("input[name=writingInMobile]").val("yes");
 	}
+
+	var contentWidth = $("#GRBOARD2").width();
+	$("#gr2dndUpload").width(contentWidth - 2);
+	$("#boardWriteForm .gr-form-input").width(contentWidth - 12);
 });
