@@ -1,4 +1,8 @@
-<?php if(!defined('GR_BOARD_2')) exit(); ?>
+<?php 
+if(!defined('GR_BOARD_2')) exit(); 
+$pagingPrefix = '/' . $grboard . '/blog/list/page/';
+if(strlen($searchValue) > 0) $pagingPrefix = '/' . $grboard . '/blog/search/all/' . $searchValue . '/';
+?>
 
 <div class="blog-header">
 	<h1 class="blog-title"><?php echo $blogInfo['blog_title']; ?></h1>
@@ -34,15 +38,15 @@
 		
 		<ul id="blogPage" class="pagination">		
 			<li class="<?php echo ($blogNowBlock < 2)?'disabled':''; ?>">
-				<a href="/<?php echo $grboard; ?>/blog/list/page/<?php echo ($blogNowBlock > 1)?$ext_page-$blogInfo['num_per_page']:'1'; ?>">&laquo;</a></li>
+				<a href="<?php echo $pagingPrefix; echo ($blogNowBlock > 1)?$ext_page-$blogInfo['num_per_page']:'1'; ?>">&laquo;</a></li>
 	
 			<?php foreach($blogPaging as &$pageNo): ?>
 				<li class="<?php echo ($pageNo==$ext_page)?'active':''; ?>">
-					<a href="/<?php echo $grboard; ?>/blog/list/page/<?php echo $pageNo; ?>"><?php echo $pageNo; ?></a></li>
+					<a href="<?php echo $pagingPrefix; echo $pageNo; ?>"><?php echo $pageNo; ?></a></li>
 			<?php endforeach; unset($pageNo, $blogPaging); ?>
 	
 			<li class="<?php echo ($blogNowBlock >= $blogTotalBlock)?'disabled':''; ?>">
-				<a href="/<?php echo $grboard; ?>/blog/list/page/<?php echo ($ext_page + $blogInfo['num_per_page']); ?>">&raquo;</a></li>
+				<a href="<?php echo $pagingPrefix; echo ($ext_page + $blogInfo['num_per_page']); ?>">&raquo;</a></li>
 		</ul>	
 	</div>
 	

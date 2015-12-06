@@ -1,11 +1,11 @@
-$(function(){
+ï»¿$(function () {
     $.material.init();
 
     $("#blogSearchForm").submit(function (e) {
         e.preventDefault();
         var value = $("#blogSearchText").val();
         if ($.trim(value) == "") {
-            alert("°Ë»ö¾î°¡ ºñ¾î ÀÖ½À´Ï´Ù. ´Ù½Ã È®ÀÎÇØ ÁÖ¼¼¿ä!");
+            alert("ê²€ìƒ‰ì–´ê°€ ë¹„ì–´ ìˆìŠµë‹ˆë‹¤. ë‹¤ì‹œ í™•ì¸í•´ ì£¼ì„¸ìš”!");
             return false;
         }
         var grboard = $(this).attr("rel");

@@ -21,7 +21,7 @@ class Model {
 		return $result;
 	}
 
-	public function getBlogPost($common, $preset=0, $count=10, $page=1, $cat=0) {
+	public function getBlogPost($common, $preset=0, $count=10, $page=1, $cat=0, $searchValue='') {
 		$count = (int)$count;
 		$queLast = $this->db->query($this->queArr['get_last_uid']);
 		$last = $this->db->fetch($queLast);
@@ -30,7 +30,11 @@ class Model {
 		if($cat) {
 			$queStr = str_replace(array('{0}', '{1}', '{2}', '{3}'), 
 				array($cat, (($isAdmin)?'':'and post_condition > 0'), 0, $count), 
-				$this->queArr['get_blog_post_by_category']);			
+				$this->queArr['get_blog_post_by_category']);	
+		} elseif(strlen($searchValue) > 0) {
+			$queStr = str_replace(array('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}'), 
+				array(($last['uid'] - ($count * $page * 10)), $last['uid'], (($isAdmin)?'':'and post_condition > 0'), $searchValue, (int)$preset, $count, $cat), 
+				$this->queArr['get_blog_post_by_search']);
 		} else {
 			$queStr = str_replace(array('{0}', '{1}', '{2}', '{3}', '{4}', '{5}'), 
 				array(($last['uid'] - ($count * $page * 10)), $last['uid'], (($isAdmin)?'':'and post_condition > 0'), (int)$preset, $count, $cat), 
@@ -59,9 +63,10 @@ class Model {
 		return $result;
 	}
 
-	public function getBlogPostCount($cat=0) {
+	public function getBlogPostCount($cat=0, $searchValue='') {
 		$queStr = $this->queArr['get_blog_post_count'];
 		if($cat) $queStr = str_replace('{0}', $cat, $this->queArr['get_blog_post_count_by_category']);
+		if(strlen($searchValue) > 0) $queStr = str_replace('{0}', $searchValue, $this->queArr['get_blog_post_count_by_search']);
 		$que = $this->db->query($queStr);
 		$result = $this->db->fetch($que);
 		$this->db->free($que);

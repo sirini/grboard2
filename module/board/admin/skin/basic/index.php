@@ -15,6 +15,7 @@
 		<script src="/<?php echo $grboard; ?>/lib/bootstrap/js/bootstrap.min.js"></script>
 		<script src="/<?php echo $grboard; ?>/lib/bootstrap_material_design/js/material.min.js"></script>
 		<script src="/<?php echo $grboard; ?>/lib/bootstrap_material_design/js/ripples.min.js"></script>
+		<script> $(function(){ $.material.init(); });</script>
 	</head>
 	<body>
 		

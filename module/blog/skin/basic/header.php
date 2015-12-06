@@ -72,6 +72,13 @@
 							<span class="glyphicon glyphicon-cog"></span> Admin</a></li>
 						<?php endif; ?>
 					</ul>
+						
+					<form id="blogSearchForm" class="navbar-form navbar-right" method="post" action="/" rel="<?php echo $grboard; ?>">
+						<div class="form-group is-empty">
+							<input id="blogSearchText" type="text" class="form-control col-md-8" placeholder="Search">
+							<span class="material-input"></span>
+						</div>
+					</form>
 				</div>
 			</div>
 		</nav>	

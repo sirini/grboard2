@@ -154,5 +154,4 @@ $(function(){
     	$("#blogWriteForm input[name=deleteThis]").val(uid);
     	$("#blogWriteForm").submit();
     });
-    
 });
