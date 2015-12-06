@@ -37,7 +37,7 @@ function makeThumbnailPath($file, $width, $height) {
 </h2>
 
 <div class="info">
-	&nbsp;&nbsp;&middot; <?php echo $boardPost['name']; ?> (<span id="gr2userId"><?php echo $boardPost['writer_id']; ?></span>)
+	&middot; <?php echo $boardPost['name']; ?> (<span id="gr2userId"><?php echo $boardPost['writer_id']; ?></span>)
 	<ul class="info">
 		<?php if($boardPost['homepage']): ?><li>&middot; <a href="<?php echo $boardPost['homepage']; ?>" onclick="window.open(this.href, '_blank'); return false">homepage</a></li><?php endif; ?>
 		<li>&middot; <?php echo date('Y.m.d H:i:s', $boardPost['signdate']); ?></li>

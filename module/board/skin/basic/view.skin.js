@@ -14,5 +14,8 @@ $(function(){
 	        window.open(path, '_blank');
 	        return false;
 	    });
-	});    
+	});
+
+	var contentWidth = $("#gr2viewContent").width();
+	$("#gr2CommentForm").width(contentWidth - 12);
 });

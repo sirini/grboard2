@@ -25,7 +25,7 @@
 #GRBOARD2 .gr-btn {
 	display: inline-block;
 	padding: 6px 12px;
-	font-size: 14px;
+	font-size: 12px;
 	font-weight: 400;
 	line-height: 1.42;
 	text-align: center;
@@ -33,13 +33,12 @@
 	vertical-align: middle;
 	cursor: pointer;
 	border: 1px solid transparent;
-	border-radius: 4px;
 }
 
 #GRBOARD2 .gr-btn-default {
 	color: #333;
 	background-color: #fff;
-	border-color: #ccc;
+	border-color: #eee;
 }
 
 #GRBOARD2 .gr-btn-default:hover {
@@ -85,10 +84,11 @@
 #GRBOARD2 table.gr-table thead tr th {
 	padding: 8px;
 	line-height: 1.42;
-	border-bottom: 2px solid #ddd;
-	vertical-align: bottom;
+	border-top: 1px solid #aaa;
+	background-color: #fafafa;
+	vertical-align: middle;
 	text-align: center;
-	font-size: 14px;
+	font-size: 11px;
 	font-weight: 700;
 }
 
@@ -96,7 +96,7 @@
 	padding: 8px;
 	line-height: 1.42;
 	vertical-align: top;
-	border-bottom: 1px solid #ddd;
+	border-bottom: 1px solid #eee;
 	text-align: center;
 }
 
@@ -121,7 +121,6 @@
 	display: inline-block;
 	padding-left: 0;
 	margin: 20px 0;
-	border-radius: 4px;
 }
 
 #GRBOARD2 ul.gr-pagination li {
@@ -131,10 +130,9 @@
 #GRBOARD2 ul.gr-pagination li a {
 	position: relative;
 	float: left;
-	padding: 6px 12px;
+	padding: 4px 8px;
 	margin-left: -1px;
-	line-height: 1.42;
-	color: #428bca;
+	line-height: 1.2;
 	text-decoration: none;
 	background-color: #fff;
 	border: 1px solid #ddd;
@@ -186,14 +184,13 @@
 }
 
 #GRBOARD2 form.gr-form .gr-form-textarea {
-	padding: 0;
-	margin: 5px 5px 5px 0;
-	font-size: 14px;
+	padding: 5px;
+	margin: 15px 0px 15px 0px;
+	font-size: 12px;
 	line-height: 1.42;
 	color: #555;
 	background-color: #fff;
-	border: 1px solid #ccc;
-	border-radius: 4px;
+	border: 1px solid #eee;
 	box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
 	transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;		
 }
@@ -256,6 +253,7 @@ and (max-device-width: 640px) {
 #GRBOARD2 table {
 	width: 100%;
 	border: 0 none;
+	table-layout: fixed;
 }
 
 #GRBOARD2 col.check { width: 40px; }
@@ -267,8 +265,9 @@ and (max-device-width: 640px) {
 #GRBOARD2 td.no,
 #GRBOARD2 td.date,
 #GRBOARD2 td.hit {
-	font-family: tahoma, sans-serif;
-	color: #777;
+	font-family: Verdana, tahoma, sans-serif;
+	color: #666;
+	font-size: 10px;
 }
 
 #GRBOARD2 table.gr-table td.subject { text-align: left; }
@@ -293,7 +292,7 @@ and (max-device-width: 640px) {
 }
 
 #GRBOARD2 .searchBox {
-	padding: 50px 0;
+	padding: 30px 0;
 	text-align: center;
 }
 
@@ -303,11 +302,10 @@ and (max-device-width: 640px) {
 	vertical-align: middle;
 	height: 34px;
 	padding: 6px 12px;
-	font-size: 14px;
+	font-size: 12px;
 	color: #555;
 	background-color: #fff;
-	border: 1px solid #ccc;
-	border-radius: 4px;
+	border: 1px solid #eee;
 	box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
 	transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
 	width: 120px;
@@ -315,11 +313,11 @@ and (max-device-width: 640px) {
 
 #GRBOARD2 .searchInput select {
 	height: 34px;
-	border: 1px solid #ccc;
-	border-radius: 4px;
+	border: 1px solid #eee;
 	box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
 	vertical-align: middle;
 	padding: 5px;
+	font-size: 12px;
 }
 
 @media only screen 
@@ -346,23 +344,27 @@ and (max-device-width: 650px) {
 /* VIEW */
 
 #GRBOARD2 h2.title {
-	border-bottom: #ddd 2px solid;
-	font-size: 14px;
+	border-bottom: #aaa 1px solid;
+	font-size: 16px;
 	font-weight: 700;
 	padding: 15px;
+	margin: 0;
 }
 
 #GRBOARD2 div.info {
 	border-bottom: #ddd 1px solid;
 	position: relative;
-	height: 28px;
+	padding: 10px;
+	background-color: #f7f7f7;
+	font-size: 11px;
+	font-family: Verdana, tahoma, sans-serif;
 }
 
 #GRBOARD2 ul.info {
 	position: absolute;
 	width: 400px;
 	margin: 0;
-	padding: 0;
+	padding: 8px 0;
 	top: 0;
 	right: 0;
 	text-align: right;
@@ -377,8 +379,8 @@ and (max-device-width: 650px) {
 
 #GRBOARD2 div.content {
 	padding: 15px 0 15px 0;
-	line-height: 1.65em;
-	font-size: 1.1em;
+	line-height: 1.8em;
+	font-size: 1.15em;
 	overflow: hidden;
 }
 
@@ -440,13 +442,12 @@ and (max-device-width: 650px) {
 }
 
 #GRBOARD2 ul.inputs textarea {
-	font-size: 11px;
-	width: 100%;
+	font-size: 12px;
 	height: 100px;
 }
 
 #GRBOARD2 ul.inputs li input[type=submit] {
-	font-size: 14px;
+	font-size: 12px;
 	font-weight: 400;
 	width: 100%;
 }
@@ -491,8 +492,7 @@ and (max-device-width: 650px) {
 #GRBOARD2 .categoryInput {
 	height: 31px;
 	font-size: 14px;
-	border: 1px solid #ccc;
-	border-radius: 4px;
+	border: 1px solid #eee;
 	box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
 	vertical-align: middle;
 	padding: 5px;

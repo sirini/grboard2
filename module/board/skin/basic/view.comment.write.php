@@ -17,7 +17,7 @@
 			<?php endif; ?>
 			<li><input type="checkbox" name="secret" value="1" /> &middot;&middot;&middot; Secret</li>
 
-			<li><textarea name="content" placeholder="답글 입력" class="gr-form-textarea"></textarea></li>
+			<li><textarea id="gr2CommentForm" name="content" placeholder="답글 입력" class="gr-form-textarea"></textarea></li>
 			<li><input id="gr2sendComment" type="submit" value="Send" class="gr-btn gr-btn-primary" /></li>
 		</ul>
 	</form>
