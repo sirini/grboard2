@@ -10,21 +10,21 @@ if($root == $grboard) $grboard = '.';
 include '../util/common/common.php';
 $common = new Common($grboard);
 
-if(!isset($_POST['db_hostname'])) $common->error('Unknown DB hostname.');
+if(!isset($_POST['db_hostname'])) $common->error('Unknown DB hostname - DB 호스트네임 값이 넘어오지 않았습니다');
 else $db_hostname = trim($_POST['db_hostname']);
-if(!isset($_POST['db_username'])) $common->error('Unknown DB user name.');
+if(!isset($_POST['db_username'])) $common->error('Unknown DB user name - DB 사용자명 값이 넘어오지 않았습니다');
 else $db_username = trim($_POST['db_username']);
-if(!isset($_POST['db_password'])) $common->error('Unknown DB user password.');
+if(!isset($_POST['db_password'])) $common->error('Unknown DB user password - DB 사용자 비밀번호 값이 넘어오지 않았습니다');
 else $db_password = trim($_POST['db_password']);
-if(!isset($_POST['db_dbname'])) $common->error('Unknown DB name.');
+if(!isset($_POST['db_dbname'])) $common->error('Unknown DB name - DB 이름 값이 넘어오지 않았습니다');
 else $db_dbname = trim($_POST['db_dbname']);
-if(!isset($_POST['db_prefix_board'])) $common->error('Unknown db table prefix (board).');
+if(!isset($_POST['db_prefix_board'])) $common->error('Unknown db table prefix (board) - DB 테이블 앞에 공통으로 들어가는 문자열이 넘어오지 않았습니다');
 else $db_prefix_board = trim($_POST['db_prefix_board']);
-if(!isset($_POST['db_prefix_blog'])) $common->error('Unknown db table prefix (blog).');
+if(!isset($_POST['db_prefix_blog'])) $common->error('Unknown db table prefix (blog) - DB 테이블 앞에 공통으로 들어가는 문자열이 넘어오지 않았습니다');
 else $db_prefix_blog = trim($_POST['db_prefix_blog']);
-if(!isset($_POST['admin_id'])) $common->error('Unknown administrator ID.');
+if(!isset($_POST['admin_id'])) $common->error('Unknown administrator ID - 관리자 아이디 값이 넘어오지 않았습니다');
 else $admin_id = trim($_POST['admin_id']);
-if(!isset($_POST['admin_pw'])) $common->error('Unknown administrator password.');
+if(!isset($_POST['admin_pw'])) $common->error('Unknown administrator password- 관리자 비밀번호 값이 넘어오지 않았습니다');
 else $admin_pw = trim($_POST['admin_pw']);
 
 include 'grblog.sql.php';
@@ -32,7 +32,7 @@ include 'grboard.sql.php';
 
 $dbLink = @mysqli_connect($db_hostname, $db_username, $db_password, $db_dbname);
 if(!$dbLink) {
-	$common->error('Failed to connect to MySQLi server. Please check given information. ('.$db_hostname.', '.$db_username.', '.$db_password.', '.$db_dbname.')');
+	$common->error('Failed to connect to MySQLi server - MySQL DB서버에 연결 할 수 없습니다 ('.$db_hostname.', '.$db_username.', '.$db_password.', '.$db_dbname.')');
 }
 foreach($queBoardArr as &$que) {
 	mysqli_query($dbLink, $que);

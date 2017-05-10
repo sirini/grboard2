@@ -1,5 +1,5 @@
 <IfModule mod_rewrite.c>
-RewriteBase /grboard2
+RewriteBase /grboard
 RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f

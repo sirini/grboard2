@@ -1,14 +1,18 @@
 <div class="errorPage">
 
-<h3>Q.왜 이 페이지가 열린 건가요? <span class="label label-info">info</span></h3>
+<h3><span class="label label-warning">Q</span> 왜 이 페이지가 열린 건가요?</h3>
 
-<div class="well">A. GR Board 2 인덱스 (첫화면) 페이지는 기본 적으로 파라미터 없이 동작 하지 않습니다.<br />
-파라미터 라 하면, 예를 들어 http://홈페이지주소/grboard2/board-freeboard/list 처럼<br />
-URL 주소창에 뭔가 추가적인 정보를 의미 합니다. (대부분 직접 입력하지 않아도 되는 것들이죠!)<br />
-<br />
-혹시 어디로 이동해야 하는지 모르시겠다면, GR Board 2 가 처음 설치될 때 자동으로 생성되는<br />
-test 게시판으로 이동하는 건 어떨까요?<br />
-더 궁금하신 점이 있으시다면, <a href="http://grboard.com">http://grboard.com</a> (로그인 필요) 에서 문의해 주세요!
+<div>
+<hr />
+<p>
+GR Board 2 인덱스 (첫화면) 페이지는 기본 적으로 파라미터 없이 동작 하지 않습니다.
+파라미터 라 하면, 예를 들어 http://홈페이지주소/grboard2/board-freeboard/list 처럼
+URL 주소창에 뭔가 추가적인 정보를 의미 합니다. (대부분 직접 입력하지 않아도 되는 것들이죠!)
+</p>
+<p>
+혹시 어디로 이동해야 하는지 모르시겠다면, GR Board 2 가 처음 설치될 때 자동으로 생성되는
+test 게시판으로 이동하는 건 어떨까요?
+더 궁금하신 점이 있으시다면, <a href="http://grboard.com">http://grboard.com</a> (로그인 필요) 에서 문의해 주세요!</p>
 </div>
 
 </div>

@@ -6,11 +6,12 @@ $lang = array(
 	'install_db_type' => 'GR Board <sup>2</sup> 는 현재 MySQLi 만 지원 되며, 정식 버전 이후부터 MariaDB 가 지원될 예정 입니다.' ,
 	'install_welcome' => '<strong>환영 합니다!</strong><p>GR Board <sup>2</sup> 는 작고 빠른 설치형 게시판 엔진 입니다. 2005년 10월 국내에선 거의 처음으로 웹표준 기반으로 제작 되었으며,' .
 							' 2014년 1월 v2.0.0 이후 부터는 완전한 HTML5 기반으로 새롭게 재작성 되어 배포 되고 있습니다. 주요 특징은 아래와 같습니다.</p>' ,
-	'install_feature' => '<ul><li>HTML5 기반으로 작성된 완전한 오픈소스 게시판 엔진!</li>' .
-							'<li>Mobile First 로 작성된 UI 디자인! (via bootstrap)</li>' .
-							'<li>최소한의 서버 환경에서도 빠르게!</li>' .
-							'<li>확장 가능한 스킨 시스템을 통하여 쇼핑몰, 포럼, 뉴스 페이지 등 자유롭게 구성 가능!</li>' .
-							'<li>기본으로 제공되는 모든 기능들은 영원히 무료!</li></ul>' ,
+	'install_feature' => '<ul class="list-group">'.
+							'<li class="list-group-item active">HTML5 기반으로 작성된 완전한 오픈소스 게시판 엔진!</li>' .
+							'<li class="list-group-item">Mobile First 로 작성된 UI 디자인! (via bootstrap)</li>' .
+							'<li class="list-group-item">최소한의 서버 환경에서도 빠르게!</li>' .
+							'<li class="list-group-item">확장 가능한 스킨 시스템을 통하여 쇼핑몰, 포럼, 뉴스 페이지 등 자유롭게 구성 가능!</li>' .
+							'<li class="list-group-item">기본으로 제공되는 모든 기능들은 영원히 무료!</li></ul>' ,
 	'install_license' => '라이센스는 GPL v2 (<a href="http://www.gnu.org/licenses/gpl-2.0.html">' . 
 							'http://www.gnu.org/licenses/gpl-2.0.html</a>) 를 사용 하고 있습니다.' ,
 	'install_notice' => '설치를 계속 진행 하기 위해 아래의 항목들을 빠짐없이 입력 하신 후 Submit 버튼을 클릭 하셔야 합니다. ' .

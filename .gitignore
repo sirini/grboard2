@@ -2,3 +2,4 @@ data/
 session/
 dbinfo.php
 upgrade.grboard1.php
+.DS_Store
