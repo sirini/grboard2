@@ -132,43 +132,44 @@ if(isset($option)) {
 	</ul>
 
 	<ul class="buttons">
-		
-		<li><a href="<?php echo $boardLink; ?>/write" class="gr-btn gr-btn-primary" title="새로운 글을 작성 합니다">Write</a></li>
+		<li><a href="<?php echo $boardLink; ?>/write" data-toggle="tooltip" data-placement="bottom" class="btn btn-primary btn-sm" title="새로운 글을 작성 합니다">Write</a></li>
 		<?php if(!$isMember): ?>
-			<li><a href="<?php echo $boardLink; ?>/login" class="gr-btn gr-btn-default" title="로그인을 합니다">Login</a></li>
-			<li><a href="<?php echo $boardLink; ?>/join" class="gr-btn gr-btn-default" title="신규 회원으로 가입 합니다">Join</a></li>
+			<li><a href="<?php echo $boardLink; ?>/login" data-toggle="tooltip" data-placement="bottom" class="btn btn-primary btn-sm" title="로그인을 합니다">Login</a></li>
+			<li><a href="<?php echo $boardLink; ?>/join" data-toggle="tooltip" data-placement="bottom" class="btn btn-primary btn-sm" title="신규 회원으로 가입 합니다">Join</a></li>
 		<?php else: ?>
-			<li><a href="<?php echo $boardLink; ?>/memo" class="gr-btn gr-btn-default" title="쪽지함으로 갑니다">Message</a></li>
-			<li><a href="<?php echo $boardLink; ?>/logout" class="gr-btn gr-btn-default" title="로그 아웃 합니다">LogOut</a></li>
-			<li><a href="<?php echo $boardLink; ?>/myinfo" class="gr-btn gr-btn-default" title="내 정보를 수정 합니다">MyInfo</a></li>
+			<li><a href="<?php echo $boardLink; ?>/memo" data-toggle="tooltip" data-placement="bottom" class="btn btn-primary btn-sm" title="쪽지함으로 갑니다">Message</a></li>
+			<li><a href="<?php echo $boardLink; ?>/logout" data-toggle="tooltip" data-placement="bottom" class="btn btn-primary btn-sm" title="로그 아웃 합니다">LogOut</a></li>
+			<li><a href="<?php echo $boardLink; ?>/myinfo" data-toggle="tooltip" data-placement="bottom" class="btn btn-primary btn-sm" title="내 정보를 수정 합니다">MyInfo</a></li>
 		<?php endif; ?>
-		<li><a href="<?php echo $boardLink; ?>/list/1" class="gr-btn gr-btn-default" title="목록을 봅니다">List</a></li>
-		<li><a href="<?php echo $boardLink; ?>/mobile/list/<?php echo $ext_page; ?>" class="gr-btn gr-btn-default" title="모바일 폰에서 봅니다">Mobile</a></li>
+		<li><a href="<?php echo $boardLink; ?>/list/1" data-toggle="tooltip" data-placement="bottom" class="btn btn-primary btn-sm" title="목록을 봅니다">List</a></li>
+		<li><a href="<?php echo $boardLink; ?>/mobile/list/<?php echo $ext_page; ?>" data-toggle="tooltip" data-placement="bottom" class="btn btn-primary btn-sm" title="모바일 폰에서 봅니다">Mobile</a></li>
 		<?php if($isAdmin): ?>
-			<li><a href="#managePostForm" id="managePosts" class="gr-btn gr-btn-danger" title="선택한 게시글들을 관리 합니다">Posts</a></li>
-			<li><a href="/<?php echo $grboard; ?>/board/admin/modify2board/<?php echo $boardInfo['no']; ?>" class="gr-btn gr-btn-danger" title="게시판 설정을 관리 합니다">Board</a></li>
+			<li><a href="#managePostForm" id="managePosts" data-toggle="tooltip" data-placement="bottom" class="btn btn-primary btn-sm btn-outline-danger" title="선택한 게시글들을 관리 합니다">Posts</a></li>
+			<li><a href="/<?php echo $grboard; ?>/board/admin/modify2board/<?php echo $boardInfo['no']; ?>" data-toggle="tooltip" data-placement="bottom" class="btn btn-primary btn-sm btn-outline-danger" title="게시판 설정을 관리 합니다">Board</a></li>
 		<?php endif; ?>
-
 	</ul>
 	
-	<div class="searchBox">
-		<div class="searchInput">
-			<form id="gr2searchForm" method="get" action="./" class="gr-form">
+
+				
+		<div class="searchBox">
+			<form id="gr2searchForm" method="get" action="./" class="form-inline">
 				<div class="hiddenInputs">
 					<input type="hidden" name="boardId" value="<?php echo $ext_id; ?>" />
 					<input type="hidden" name="page" value="<?php echo $ext_page; ?>" />
 				</div>
-				<select name="option" class="categoryInput">
-					<option value="subject" <?php echo (isset($option) && $option == 'subject') ? 'selected="true"':''; ?>>Subject</option>
-					<option value="content" <?php echo (isset($option) && $option == 'content') ? 'selected="true"':''; ?>>Content</option>
-					<option value="tag" <?php echo (isset($option) && $option == 'tag') ? 'selected="true"':''; ?>>Tag</option>
-					<option value="name" <?php echo (isset($option) && $option == 'name') ? 'selected="true"':''; ?>>Name</option>
-				</select>
-				<input type="search" name="value" value="<?php echo (isset($value)) ? $value:''; ?>" />
-				<input type="submit" value="Search" class="gr-btn gr-btn-info" />
+				<div class="form-group">	
+					<select name="option" class="form-control" data-toggle="tooltip" data-placement="bottom" title="검색하고자 하는 대상을 선택 합니다">
+						<option value="subject" <?php echo (isset($option) && $option == 'subject') ? 'selected="true"':''; ?>>Subject</option>
+						<option value="content" <?php echo (isset($option) && $option == 'content') ? 'selected="true"':''; ?>>Content</option>
+						<option value="tag" <?php echo (isset($option) && $option == 'tag') ? 'selected="true"':''; ?>>Tag</option>
+						<option value="name" <?php echo (isset($option) && $option == 'name') ? 'selected="true"':''; ?>>Name</option>
+					</select>
+					<input type="search" name="value" data-toggle="tooltip" data-placement="bottom" title="이 곳에 검색어를 입력 합니다" class="form-control mr-sm-2" value="<?php echo (isset($value)) ? $value:''; ?>" />
+					<input type="submit" value="Search" class="btn btn-primary btn-outline-primary my-2 my-sm-0" />
+				</div>
 			</form>
 		</div>
-	</div>
+		
 	
 </footer>
 

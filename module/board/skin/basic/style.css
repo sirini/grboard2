@@ -285,38 +285,21 @@ and (max-device-width: 640px) {
 }
 
 #GRBOARD2 ul.buttons li {
-	list-style: none;
 	display: inline;
 	margin: 10px 0 0 0;
 }
 
 #GRBOARD2 .searchBox {
-	padding: 30px 0;
-	text-align: center;
+	width: 400px;
+	margin: auto;
 }
 
-#GRBOARD2 .searchInput { margin: auto; }
-#GRBOARD2 .searchInput input[type=search] {
-	box-sizing: border-box;
-	vertical-align: middle;
+#GRBOARD2 .searchBox input[type=search] {
 	height: 34px;
-	padding: 6px 12px;
-	font-size: 12px;
-	color: #555;
-	background-color: #fff;
-	border: 1px solid #eee;
-	box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
-	transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-	width: 120px;
 }
 
-#GRBOARD2 .searchInput select {
+#GRBOARD2 .searchBox select {
 	height: 34px;
-	border: 1px solid #eee;
-	box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
-	vertical-align: middle;
-	padding: 5px;
-	font-size: 12px;
 }
 
 @media only screen 

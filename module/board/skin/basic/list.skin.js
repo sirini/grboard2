@@ -28,8 +28,10 @@ $(function(){
 		if(!isChecked) {
 			alert("관리할 게시글을 하나 이상 선택해 주세요!");
 			return;
-		}
-		
+		}		
 		$("#managePostForm").submit();
 	});
+	
+	$("body").bootstrapMaterialDesign();
+	$('[data-toggle="tooltip"]').tooltip();
 });
