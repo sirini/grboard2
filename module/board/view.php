@@ -23,7 +23,6 @@ $boardPost = $Model->getPost($ext_id, $ext_articleNo);
 $replyList = $Model->getReplyList($ext_id, $ext_articleNo);
 $skinResourcePath = $skinResourcePrefix . $boardTheme;
 $skinPath = $skinPathPrefix . $boardTheme;
-$simplelock = substr(md5($boardPost['no'] . 'GR_BOARD_2' . date('YmdH')), -4);
 $fileList = $Model->getFileList($ext_id, $ext_articleNo);
 
 function isPermitted($db_key, $now_session) {
@@ -42,7 +41,7 @@ function isImageFile($filename) {
 
 if($boardPost['is_secret'] && !isPermitted($boardPost['member_key'], $Common->getSessionKey())) {
 	$boardPost['name'] = 'Hidden';
-	$boardPost['content'] = '<p class="red">Secret post.</p>';	
+	$boardPost['content'] = '<div class="alert alert-primary" role="alert">'.$error['msg_secret_post'].'</div>';	
 }
 
 include $skinIncludePrefix . $boardTheme . '/index.php';

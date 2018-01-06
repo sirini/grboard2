@@ -81,6 +81,15 @@ $htaccess = '<IfModule mod_rewrite.c>' . "\n" .
 '</IfModule>';
 file_put_contents('../.htaccess', $htaccess);
 
+$cfgFile = '<?php'."\n".
+	'// Please refer this url: https://www.google.com/recaptcha/ for get your own key.'."\n".
+	'$gr2cfg[\'googleRecaptchaApiUrl\'] = \'https://www.google.com/recaptcha/api.js\';'."\n".
+	'$gr2cfg[\'googleRecaptchaSiteKey\'] = \''.$_POST['google_recaptcha_sitekey_id'].'\';  // Please update this key for your own'."\n".
+	'$gr2cfg[\'googleRecaptchaSecretKey\'] = \''.$_POST['google_recaptcha_secretkey_id'].'\';  // Please update this key for your own (Be sure keep it a secret)'."\n".
+	'$gr2cfg[\'googleRecaptchaRequestUrl\'] = \'https://www.google.com/recaptcha/api/siteverify\';'."\n".
+	'?>';
+file_put_contents('../common.config.php', $cfgFile);
+
 $msg = file_get_contents('../page/info/install_complete.txt');
 $msg = str_replace('{grboard}', $grboard, $msg);
 $moveBackPath = '/' . $grboard . '/board-test/login';

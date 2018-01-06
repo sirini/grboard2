@@ -52,4 +52,14 @@ $htaccess = '<IfModule mod_rewrite.c>' . "\n" .
     'RewriteRule ^([a-zA-Z0-9]+)(\-)([a-zA-Z0-9_]+)\/([a-zA-Z0-9]+)/([a-zA-Z]+)\/(.+)\/([0-9]+)$ index.php?module=$1&id=$3&action=$4&option=$5&value=$6&page=$7'. "\n" .
 '</IfModule>';
 file_put_contents('../.htaccess', $htaccess);
+
+// create common.config.php file if not exist
+$cfgFile = '<?php'."\n".
+	'// Please refer this url: https://www.google.com/recaptcha/ for get your own key.'."\n".
+	'$gr2cfg[\'googleRecaptchaApiUrl\'] = \'https://www.google.com/recaptcha/api.js\';'."\n".
+	'$gr2cfg[\'googleRecaptchaSiteKey\'] = \'\';  // Please update this key for your own'."\n".
+	'$gr2cfg[\'googleRecaptchaSecretKey\'] = \'\';  // Please update this key for your own (Be sure keep it a secret)'."\n".
+	'$gr2cfg[\'googleRecaptchaRequestUrl\'] = \'https://www.google.com/recaptcha/api/siteverify\';'."\n".
+	'?>';
+file_put_contents('../common.config.php', $cfgFile);
 ?>

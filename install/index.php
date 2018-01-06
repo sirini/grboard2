@@ -130,6 +130,20 @@ include 'lang.korean.php';
 				</div>
 				<small id="dbPrefixHelp" class="help-block"><?php echo $lang['install_dbprefix']; ?></small>
 			</div>	
+
+			<div class="form-group">
+				<label for="google_recaptcha_sitekey_id" class="control-label">Google reCAPTCHA <a href="https://www.google.com/recaptcha" title="비회원이 글이나 댓글을 작성할 땐 구글의 reCAPTCHA 테스트를 통과해야 합니다. 여기에서 더 알아보세요!">[site]</a></label>
+
+				<div class="row">
+					<div class="col">
+						<input type="text" id="google_recaptcha_sitekey_id" name="google_recaptcha_sitekey_id" placeholder="Google reCAPTCHA Site Key 등록" aria-describedby="recaptchaInfoHelp" class="form-control" maxlength="200" /> 
+					</div>
+					<div class="col">
+						<input type="text" id="google_recaptcha_secretkey_id" name="google_recaptcha_secretkey_id" placeholder="Google reCAPTCHA Secret Key 등록" aria-describedby="recaptchaInfoHelp" class="form-control" maxlength="200" /> 
+					</div>
+				</div>
+				<small id="recaptchaInfoHelp" class="help-block"><?php echo $lang['install_recaptcha_info']; ?></small>
+			</div>	
 			
 			<div class="form-group">
 				<label for="admin_id" class="control-label">Administrator</label>

@@ -17,6 +17,7 @@ if(!file_exists('dbinfo.php')) { include 'install/index.php'; die(); }
 include 'util/common/common.php';
 include 'dbinfo.php';
 include 'util/db/mysql.php';
+include 'common.config.php';
 $Common = new Common($grboard);
 $DB = new MySQL($db_hostname, $db_username, $db_password, $db_dbname, $db_is_utf8);
 
@@ -26,5 +27,5 @@ $ext_action = $Common->getPlaneText($_GET['action']);
 
 include 'module/' . $ext_module . '/index.php';
 
-unset($grboardArr, $grboard, $Common, $DB, $ext_module, $ext_action, $ext_page, $ext_articleNo);
+unset($grboardArr, $grboard, $Common, $DB, $ext_module, $ext_action, $ext_page, $ext_articleNo, $gr2cfg);
 ?>

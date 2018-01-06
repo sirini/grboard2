@@ -21,6 +21,7 @@ $lang = array(
 	'install_dbpasswd' => 'DB 계정 비밀번호를 입력해 주세요. (모를 시 서버 관리자/웹호스팅 업체에 문의 필요)' ,
 	'install_dbname' => '사용할 DB 이름을 입력해 주세요. (보통 계정 ID 와 동일)' ,
 	'install_dbprefix' => '중복 설치 시 필요한 테이블 구분자 지정 (기본값 권장)' ,
-	'install_admin_info' => 'GR Board 관리자 아이디와 비밀번호를 지정해 주세요.' 
+	'install_admin_info' => 'GR Board 관리자 아이디와 비밀번호를 지정해 주세요.' ,
+	'install_recaptcha_info' => '스팸글 방지를 위한 Google reCAPTCHA 사이트키와 시크릿키를 등록해 주세요',
 );
 ?>

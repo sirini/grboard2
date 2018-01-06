@@ -156,5 +156,8 @@ $(function(){
 
 	var contentWidth = $("#GRBOARD2").width();
 	$("#gr2dndUpload").width(contentWidth - 2);
-	$("#boardWriteForm .gr-form-input").width(contentWidth - 12);
+    $("#boardWriteForm .gr-form-input").width(contentWidth - 12);
+
+    $("body").bootstrapMaterialDesign();
+    $('[data-toggle="tooltip"]').tooltip();
 });

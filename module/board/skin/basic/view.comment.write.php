@@ -2,24 +2,58 @@
 
 <div class="inputReply">
 
-	<form id="boardCommentForm" method="post" action="<?php echo $boardLink; ?>/comment/<?php echo $boardPost['no']; ?>" class="gr-form">
+	<form id="boardCommentForm" method="post" action="<?php echo $boardLink; ?>/comment/<?php echo $boardPost['no']; ?>" class="form">
 		<div>
 			<input type="hidden" name="family_uid" value="" />
 			<input type="hidden" name="commentProceed" value="yes" />
 		</div>
-		<ul class="inputs">
-			<?php if (!$Common->getSessionKey()): ?>
-			<li><input type="text" name="simplelock" placeholder="(필수) 우측의 4자리 키 값 입력!" class="gr-form-input" /> &middot;&middot;&middot; [<strong><?php echo $simplelock; ?></strong>]</li>
-			<li><input type="text" name="name" placeholder="(필수) 이름" class="gr-form-input" /> &middot;&middot;&middot; <strong>Name</strong></li>
-			<li><input type="password" name="password" placeholder="(필수) 비밀번호" class="gr-form-input" /> &middot;&middot;&middot; <strong>Pass</strong></li>
-			<li><input type="email" name="email" placeholder="이메일" class="gr-form-input" /> &middot;&middot;&middot; email</li>
-			<li><input type="url" name="homepage" placeholder="웹사이트" class="gr-form-input" /> &middot;&middot;&middot; homepage</li>
-			<?php endif; ?>
-			<li><input type="checkbox" name="secret" value="1" /> &middot;&middot;&middot; Secret</li>
 
-			<li><textarea id="gr2CommentForm" name="content" placeholder="답글 입력" class="gr-form-textarea"></textarea></li>
-			<li><input id="gr2sendComment" type="submit" value="Send" class="gr-btn gr-btn-primary" /></li>
-		</ul>
+		<?php if (!$Common->getSessionKey()): ?>
+
+		<div class="row">
+			<div class="col">
+				<div class="form-group">
+					<label for="name">Name</label>
+					<input type="text" class="form-control" name="name" aria-describedby="nameHelp" placeholder="Mr. Hong">
+					<small id="nameHelp" class="form-text text-muted">이 곳에 이름(닉네임)을 입력하세요</small>
+				</div>
+				<div class="form-group">
+					<label for="name">Password</label>
+					<input type="password" class="form-control" name="password" aria-describedby="passwordHelp" placeholder="password">
+					<small id="passwordHelp" class="form-text text-muted">이 곳에 글 수정/삭제를 위한 비밀번호를 입력하세요</small>
+				</div>
+			</div>
+			<div class="col">
+				<div class="form-group">
+					<label for="name">Email</label>
+					<input type="email" class="form-control" name="email" aria-describedby="emailHelp" placeholder="example@website.com">
+					<small id="emailHelp" class="form-text text-muted">이 곳에 이메일 주소를 입력하세요 (선택)</small>
+				</div>
+				<div class="form-group">
+					<label for="name">Website</label>
+					<input type="url" class="form-control" name="homepage" aria-describedby="homepageHelp" placeholder="http://example.com">
+					<small id="homepageHelp" class="form-text text-muted">이 곳에 웹사이트 주소를 입력하세요 (선택)</small>
+				</div>
+			</div>
+		</div>
+
+		<!-- for Google reCAPTCHA | Please update your google reCAPTCHA sitekey in common.config.php -->
+		<div class="form-group">			
+			<script src='<?php echo $gr2cfg['googleRecaptchaApiUrl']; ?>'></script>
+			<div class="g-recaptcha" data-sitekey="<?php echo $gr2cfg['googleRecaptchaSiteKey']; ?>"></div>
+		</div>
+
+		<?php endif; ?>
+		
+		<div class="form-group">
+			<label for="gr2CommentForm">Content</label>
+			<textarea class="form-control" id="gr2CommentForm" name="content"></textarea>
+		</div>
+		
+		<div class="form-group">
+			<label for="secret" data-toggle="tooltip" data-placement="bottom" title="체크 하시면 비밀글로 설정 됩니다"><input type="checkbox" name="secret" id="secret" aria-describedby="secretHelp"> check for secret</label>
+			<input id="gr2sendComment" type="submit" value="SEND" class="btn btn-block btn-outline-primary" />
+		</div>
 	</form>
 
 </div>

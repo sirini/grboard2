@@ -4,39 +4,45 @@
 	<head>
 		<meta charset="utf-8" />
 		<title>GR Board 2 Manually Update</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 		<link href="../lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen" />
-		<link href="../lib/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet" media="screen" />
+		<link href="../lib/bootstrap_material_design/css/bootstrap-material-design.min.css" rel="stylesheet" media="screen" />
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
+	    <script src="../lib/jquery.js"></script>
+    	<script src="../lib/popper.js"></script>
+		<script src="../lib/bootstrap_material_design/js/bootstrap-material-design.min.js">   </script>
 	</head>
 	<body>
 	
-	<nav class="navbar navbar-default" role="navigation">
-		<div class="container">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-					<span class="sr-only">Toggle navigation</span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand" href="#"><?php echo $_SERVER['HTTP_HOST']; ?></a>
-			</div>
+	<nav class="navbar navbar-expand-md navbar-dark bg-dark" role="navigation">
+		<a class="navbar-brand" href="#"><?php echo $_SERVER['HTTP_HOST']; ?></a>
 			
-			<div class="navbar-collapse collapse">
-				<ul class="nav navbar-nav">
-					<li class="active"><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>" title="<?php echo $lang['tooltip_go_first_page'] ?>">
-						<span class="glyphicon glyphicon-home"></span> Home</a></li>
-				</ul>
-				<ul class="nav navbar-nav navbar-right">
-					<li><a href="http://sirini.net" title="Powered by GR Board 2 | sirini.net"> 
-						<span class="glyphicon glyphicon-link"></span> GR Board <sup>2</sup></a></li>
-				</ul>
-			</div>
+		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#grboard2TopNav" aria-controls="grboard2TopNav" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggle-icon"></span>
+		</button>		
+		
+		<div id="grboard2TopNav" class="navbar-collapse collapse">
+			<ul class="nav navbar-nav mr-auto">
+				<li class="nav-item active"><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>" data-toggle="tooltip" title="<?php echo $lang['home_info']; ?>" class="nav-link">
+					Home <span class="sr-only">(current)</span></a></li>
+				<li class="nav-item"><a href="http://sirini.net" data-toggle="tooltip" title="Powered by GR Board 2 in GRBOARD.com" class="nav-link"> 
+					GR Board <sup>2</sup></a></li>
+			</ul>
 		</div>
 	</nav>	
 	
 	<div class="container">
-		<div class="well"><?php echo $lang['msg_success']; ?></div>
+
+		<div class="card">
+			<div class="card-body">
+				<h4 class="card-title">GR Board <sup>2</sup> Update Page</h4>
+
+				<p class="card-text">
+					<?php echo $lang['msg_success']; ?>
+				</p>
+			</div>
+		</div>
+
 	</div>
 	
 	</body>

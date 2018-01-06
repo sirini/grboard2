@@ -17,5 +17,8 @@ $(function(){
 	});
 
 	var contentWidth = $("#gr2viewContent").width();
-	$("#gr2CommentForm").width(contentWidth - 12);
+    $("#gr2CommentForm").width(contentWidth - 12);
+
+    $("body").bootstrapMaterialDesign();
+    $('[data-toggle="tooltip"]').tooltip();
 });

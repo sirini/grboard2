@@ -7,7 +7,6 @@ include 'comment/error.php';
 
 $Model = new Model($DB, $query, $grboard, $Common);
 if(!isset($boardLink)) $boardLink = '/' . $grboard . '/board-' . $ext_id;
-$simplelock = substr(md5('GR_BOARD_2' . date('YmdH')), -4);
 
 if(isset($_POST['commentProceed'])) {
 	$postID = (int)$_GET['commentNo'];
@@ -21,8 +20,14 @@ if(isset($_POST['commentProceed'])) {
 		if( !strlen($_POST['name']) || !strlen($_POST['password'])) {
 			$Common->error($error['msg_input_is_empty']);
 		}
-		if(!strlen($_POST['simplelock']) || 
-			$_POST['simplelock'] != substr(md5($postID . 'GR_BOARD_2' . date('YmdH')), -4) ) {
+		if(isset($_POST['g-recaptcha-response'])) {
+			$reCAPTCHA = array('secret'=>$gr2cfg['googleRecaptchaSecretKey'], 'response'=>$_POST['g-recaptcha-response'], 'remoteip'=>$_SERVER['REMOTE_ADDR']);
+			$googleResponse = $Common->getUrlContents($gr2cfg['googleRecaptchaRequestUrl'], $reCAPTCHA);
+			$resp = json_decode($googleResponse, true);
+			if(intval($resp["success"]) !== 1) {
+				$Common->error($error['msg_spam_filter'] . ' >>> ' . $googleResponse);
+			}
+		} else {
 			$Common->error($error['msg_spam_filter']);
 		}
 	}
@@ -45,5 +50,5 @@ if(isset($_POST['commentProceed'])) {
 	}
 }
 
-unset($Model, $query, $error, $simplelock);
+unset($Model, $query, $error);
 ?>

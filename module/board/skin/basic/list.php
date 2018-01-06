@@ -24,7 +24,7 @@ $isMember = (($Common->getSessionKey() > 0) ? true : false);
 <div class="hiddenInputs">
 	<input type="hidden" name="boardLink" value="<?php echo $boardLink; ?>" />
 </div>
-<table rules="none" class="gr-table">
+<table rules="none" class="table">
 <colgroup>
 	<?php if($isAdmin): ?><col class="check" /><?php endif; ?>
 	<col class="no" />
@@ -35,12 +35,12 @@ $isMember = (($Common->getSessionKey() > 0) ? true : false);
 </colgroup>
 <thead>
 <tr>
-	<?php if($isAdmin): ?><th class="check"><input type="checkbox" id="checkAllPost" /></th><?php endif; ?>
-	<th class="no">no</th>
-	<th class="subject">subject</th>
-	<th class="name">name</th>
-	<th class="date">date</th>
-	<th class="hit">hit</th>
+	<?php if($isAdmin): ?><th scope="col" class="check"><input type="checkbox" id="checkAllPost" /></th><?php endif; ?>
+	<th scope="col" class="no">no</th>
+	<th scope="col" class="subject">subject</th>
+	<th scope="col" class="name">name</th>
+	<th scope="col" class="date">date</th>
+	<th scope="col" class="hit">hit</th>
 </tr>
 </thead>
 <tbody>
@@ -51,10 +51,10 @@ if(isset($boardNotice[0]['no'])):
 		$link = $boardLink . '/view/' . $notice['no'];
 ?>
 <tr class="notice">
-	<td class="no"><?php echo $notice['no']; ?></td>
+	<td scope="row" class="no"><?php echo $notice['no']; ?></td>
 	<td class="subject" <?php if($isAdmin): echo 'colspan="2"'; endif; ?>><a href="<?php echo $link; ?>"><?php echo $notice['subject']; ?></a> 
 		<?php if($notice['comment_count'] > 0): ?>
-			<span class="gr-badge"><?php echo $notice['comment_count']; ?></span>
+			<span class="badge"><?php echo $notice['comment_count']; ?></span>
 		<?php endif; ?>
 	</td>
 	<td class="name"><?php echo $notice['name']; ?></td>
@@ -81,14 +81,14 @@ if(isset($boardPost[0]['no'])):
 		<input type="checkbox" name="checkedArticle[]" value="<?php echo $post['no']; ?>" />
 	</td>
 	<?php endif; ?>
-	<td class="no"><?php echo $post['no']; ?></td>
+	<td scope="row" class="no"><?php echo $post['no']; ?></td>
 	<td class="subject">
 		<?php if(strlen($post['category']) > 0): ?>
 			<span class="category">[<?php echo $post['category']; ?>]</span>
 		<?php endif; ?>
 		<a href="<?php echo $link; ?>"><?php echo $post['subject']; ?></a>
 		<?php if($post['comment_count'] > 0): ?>
-			<span class="gr-badge"><?php echo $post['comment_count']; ?></span>
+			<span class="badge"><?php echo $post['comment_count']; ?></span>
 		<?php endif; ?>	
 	</td>
 	<td class="name"><?php echo $post['name']; ?></td>
@@ -117,17 +117,21 @@ if(isset($option)) {
 ?>
 
 <footer>
-	<ul class="gr-pagination">
+	<ul class="pagination">
 		<?php if($boardNowBlock > 1): ?>
-			<li><a href="<?php echo $prevLink; ?>">Prev</a></li>
+			<li class="page-item"><a class="page-link" href="<?php echo $prevLink; ?>" aria-label="Previous">
+				<span aria-hidden="true">&laquo;</span>
+				<span class="sr-only">Prev</span></a></li>
 		<?php endif; ?>
 
 		<?php foreach($boardPaging as &$pageNo): ?>
-			<li><a href="<?php echo $pageLink . $pageNo; ?>"><?php echo $pageNo; ?></a></li>
+			<li class="page-item"><a class="page-link" href="<?php echo $pageLink . $pageNo; ?>"><?php echo $pageNo; ?></a></li>
 		<?php endforeach; unset($pageNo); ?>
 
 		<?php if($boardNowBlock < $boardTotalBlock): ?>
-			<li><a href="<?php echo $nextLink; ?>">Next</a></li>
+			<li class="page-item"><a class="page-link" href="<?php echo $nextLink; ?>" aria-label="Next">
+				<span aria-hidden="true">&raquo;</span>
+				<span class="sr-only">Next</span></a></li>
 		<?php endif; ?>
 	</ul>
 
@@ -148,27 +152,25 @@ if(isset($option)) {
 			<li><a href="/<?php echo $grboard; ?>/board/admin/modify2board/<?php echo $boardInfo['no']; ?>" data-toggle="tooltip" data-placement="bottom" class="btn btn-primary btn-sm btn-outline-danger" title="게시판 설정을 관리 합니다">Board</a></li>
 		<?php endif; ?>
 	</ul>
-	
-
-				
-		<div class="searchBox">
-			<form id="gr2searchForm" method="get" action="./" class="form-inline">
-				<div class="hiddenInputs">
-					<input type="hidden" name="boardId" value="<?php echo $ext_id; ?>" />
-					<input type="hidden" name="page" value="<?php echo $ext_page; ?>" />
-				</div>
-				<div class="form-group">	
-					<select name="option" class="form-control" data-toggle="tooltip" data-placement="bottom" title="검색하고자 하는 대상을 선택 합니다">
-						<option value="subject" <?php echo (isset($option) && $option == 'subject') ? 'selected="true"':''; ?>>Subject</option>
-						<option value="content" <?php echo (isset($option) && $option == 'content') ? 'selected="true"':''; ?>>Content</option>
-						<option value="tag" <?php echo (isset($option) && $option == 'tag') ? 'selected="true"':''; ?>>Tag</option>
-						<option value="name" <?php echo (isset($option) && $option == 'name') ? 'selected="true"':''; ?>>Name</option>
-					</select>
-					<input type="search" name="value" data-toggle="tooltip" data-placement="bottom" title="이 곳에 검색어를 입력 합니다" class="form-control mr-sm-2" value="<?php echo (isset($value)) ? $value:''; ?>" />
-					<input type="submit" value="Search" class="btn btn-primary btn-outline-primary my-2 my-sm-0" />
-				</div>
-			</form>
-		</div>
+					
+	<div class="searchBox">
+		<form id="gr2searchForm" method="get" action="./" class="form-inline">
+			<div class="hiddenInputs">
+				<input type="hidden" name="boardId" value="<?php echo $ext_id; ?>" />
+				<input type="hidden" name="page" value="<?php echo $ext_page; ?>" />
+			</div>
+			<div class="form-group">	
+				<select name="option" class="form-control" data-toggle="tooltip" data-placement="bottom" title="검색하고자 하는 대상을 선택 합니다">
+					<option value="subject" <?php echo (isset($option) && $option == 'subject') ? 'selected="true"':''; ?>>Subject</option>
+					<option value="content" <?php echo (isset($option) && $option == 'content') ? 'selected="true"':''; ?>>Content</option>
+					<option value="tag" <?php echo (isset($option) && $option == 'tag') ? 'selected="true"':''; ?>>Tag</option>
+					<option value="name" <?php echo (isset($option) && $option == 'name') ? 'selected="true"':''; ?>>Name</option>
+				</select>
+				<input type="search" name="value" data-toggle="tooltip" data-placement="bottom" title="이 곳에 검색어를 입력 합니다" class="form-control mr-sm-2" value="<?php echo (isset($value)) ? $value:''; ?>" />
+				<input type="submit" value="Search" class="btn btn-primary btn-outline-primary my-2 my-sm-0" />
+			</div>
+		</form>
+	</div>
 		
 	
 </footer>

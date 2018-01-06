@@ -63,5 +63,37 @@ class Common {
 	public function setSessionKey($no=0) {
 		$_SESSION['GRBOARD2KEY'] = (int)$no;
 	}
-}
+
+	public function getUrlContents($url, $data='') {
+		if($data) $data = http_build_query($data); 
+		$url = parse_url($url); 
+		$result = ''; 
+
+		$host = $url['host']; 
+		$path = $url['path']; 
+		$port = 80;
+
+		if($url['scheme'] == 'https') {
+			$host = 'ssl://'.$host;
+			$port = 443;
+		}
+
+		if($fp = fsockopen($host, $port, $errno, $errstr, 30)) {
+			fputs($fp, "POST $path HTTP/1.1\r\n"); 
+			fputs($fp, "Host: $host\r\n"); 
+			fputs($fp, "Content-type: application/x-www-form-urlencoded\r\n"); 
+			fputs($fp, 'Content-length: '. strlen($data) ."\r\n"); 
+			fputs($fp, "Connection: close\r\n\r\n"); 
+			fputs($fp, $data); 
+			while(!feof($fp)) $result .= fgets($fp, 128);
+			fclose($fp); 
+
+			//$resp = explode("\r\n\r\n", $result, 2); 
+			//$result = $resp[1];
+		} else {
+			$result = 'fsocketopen connection to ' . $host . ':' . $port . ' has filed. ' . $errstr;
+		}
+		return $result;
+	}
+} 
 ?>
