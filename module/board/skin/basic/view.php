@@ -32,17 +32,18 @@ function makeThumbnailPath($file, $width, $height) {
 <h2 class="title">
 	<?php if(strlen($boardPost['category']) > 0): ?>
 		<span class="category">[<?php echo $boardPost['category']; ?>]</span>
-	<?php endif; ?>
-	<?php echo $boardPost['subject']; ?>
+	<?php endif; echo $boardPost['subject']; ?>
 </h2>
 
 <div class="info">
-	&middot; <?php echo $boardPost['name']; ?> (<span id="gr2userId"><?php echo $boardPost['writer_id']; ?></span>)
+	<span id="gr2userId" data-toggle="tooltip" data-placement="bottom" title="<?php echo $boardPost['writer_id']; ?>"><?php echo $boardPost['name']; ?></span>
 	<ul class="info">
-		<?php if($boardPost['homepage']): ?><li>&middot; <a href="<?php echo $boardPost['homepage']; ?>" onclick="window.open(this.href, '_blank'); return false">homepage</a></li><?php endif; ?>
-		<li>&middot; <?php echo date('Y.m.d H:i:s', $boardPost['signdate']); ?></li>
-		<li>&middot; hit (<?php echo $boardPost['hit']; ?>)</li>
-		<li>&middot; good (<?php echo $boardPost['good']; ?>)</li>
+		<?php if($boardPost['homepage']): ?>
+			<li><a href="<?php echo $boardPost['homepage']; ?>" onclick="window.open(this.href, '_blank'); return false">homepage</a></li>
+		<?php endif; ?>
+		<li><?php echo date('Y.m.d H:i:s', $boardPost['signdate']); ?></li>
+		<li>hit: <?php echo $boardPost['hit']; ?></li>
+		<li>good: <?php echo $boardPost['good']; ?></li>
 	</ul>
 </div>
 
@@ -59,9 +60,8 @@ function makeThumbnailPath($file, $width, $height) {
 			$down = '/'.$grboard.'/board-'.$ext_id.'/download/'.$file['uid'];
 		?>
 			<li><a href="<?php echo $down; ?>" class="btn btn-info btn-sm" title="클릭 하시면 파일을 내려 받습니다">Download</a> 
-				<?php echo $filename; ?>
-				
-				<?php if($thumbnail): ?>
+				<?php echo $filename; 
+				if($thumbnail): ?>
 				<div class="thumbnailBox">
 					<a href="<?php echo $down; ?>"><img src="<?php echo $thumbnail; ?>" alt="preview" class="img-thumbnail" /></a>
 				</div>	

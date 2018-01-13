@@ -1,0 +1,16 @@
+{
+	"keywords" : [
+		"W"
+	],
+	"autoload" : {
+		"psr-4" : {
+			"Grboard2project\\" : "src"
+		}
+	},
+	"name" : "heegeun/grboard2project",
+	"type" : "PHP",
+	"license" : "GPL-2.0",
+	"require" : {
+		"php" : ">=7.1"
+	}
+}

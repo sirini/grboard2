@@ -15,9 +15,11 @@ $(function(){
 	        return false;
 	    });
 	});
-
-	var contentWidth = $("#gr2viewContent").width();
-    $("#gr2CommentForm").width(contentWidth - 12);
+	
+	$("#GRBOARD2 .tag").each(function(index){
+		var o = $(this).text();
+		$(this).text('#' + o);
+	});
 
     $("body").bootstrapMaterialDesign();
     $('[data-toggle="tooltip"]').tooltip();

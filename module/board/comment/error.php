@@ -6,6 +6,6 @@ $error = array(
 	'msg_write_fail' => '글 작성에 실패 하였습니다.' ,
 	'msg_no_permission' => '글 작성 권한이 없습니다.' ,
 	'msg_modify_fail' => '글 수정에 실패 하였습니다.' ,
-	'msg_spam_filter' => '스팸 여부 테스트에 실패 하였습니다.',
+    'msg_spam_google_reject' => '구글 스팸 테스트에 실패 하였습니다. 자동 입력 방지를 위해 다시 시도해 주세요.' ,
 );
 ?>

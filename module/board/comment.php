@@ -16,21 +16,16 @@ if(isset($_POST['commentProceed'])) {
 	$isReply = 0;
 	if($familyID) $isReply = 1;
 	if(!$postID) $Common->error($error['msg_wrong_parameter']);
+	
 	if(!$Common->getSessionKey()) {
 		if( !strlen($_POST['name']) || !strlen($_POST['password'])) {
 			$Common->error($error['msg_input_is_empty']);
 		}
-		if(isset($_POST['g-recaptcha-response'])) {
-			$reCAPTCHA = array('secret'=>$gr2cfg['googleRecaptchaSecretKey'], 'response'=>$_POST['g-recaptcha-response'], 'remoteip'=>$_SERVER['REMOTE_ADDR']);
-			$googleResponse = $Common->getUrlContents($gr2cfg['googleRecaptchaRequestUrl'], $reCAPTCHA);
-			$resp = json_decode($googleResponse, true);
-			if(intval($resp["success"]) !== 1) {
-				$Common->error($error['msg_spam_filter'] . ' >>> ' . $googleResponse);
-			}
-		} else {
-			$Common->error($error['msg_spam_filter']);
+	    if(!$Common->postGoogleRecaptcha($_POST['g-recaptcha-response'], $gr2cfg)) {
+		    $Common->error($error['msg_spam_google_reject']);
 		}
 	}
+	
 	if(!strlen($_POST['content'])) $Common->error($error['msg_input_is_empty']);
 	if($Model->writeComment($ext_id, $_POST, $postID, $familyID, $isSecret) === true) {
 		header('Location: ' . $boardLink . '/view/' . $postID);

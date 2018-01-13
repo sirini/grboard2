@@ -63,37 +63,38 @@ class Common {
 	public function setSessionKey($no=0) {
 		$_SESSION['GRBOARD2KEY'] = (int)$no;
 	}
-
-	public function getUrlContents($url, $data='') {
-		if($data) $data = http_build_query($data); 
-		$url = parse_url($url); 
-		$result = ''; 
-
-		$host = $url['host']; 
-		$path = $url['path']; 
-		$port = 80;
-
-		if($url['scheme'] == 'https') {
-			$host = 'ssl://'.$host;
-			$port = 443;
-		}
-
-		if($fp = fsockopen($host, $port, $errno, $errstr, 30)) {
-			fputs($fp, "POST $path HTTP/1.1\r\n"); 
-			fputs($fp, "Host: $host\r\n"); 
-			fputs($fp, "Content-type: application/x-www-form-urlencoded\r\n"); 
-			fputs($fp, 'Content-length: '. strlen($data) ."\r\n"); 
-			fputs($fp, "Connection: close\r\n\r\n"); 
-			fputs($fp, $data); 
-			while(!feof($fp)) $result .= fgets($fp, 128);
-			fclose($fp); 
-
-			//$resp = explode("\r\n\r\n", $result, 2); 
-			//$result = $resp[1];
-		} else {
-			$result = 'fsocketopen connection to ' . $host . ':' . $port . ' has filed. ' . $errstr;
-		}
-		return $result;
+	
+	public function postGoogleRecaptcha($resp, $gr2cfg) {
+	    $fields = array('secret'=>$gr2cfg['googleRecaptchaSecretKey'],
+	        'response'=>$resp,
+	        'remoteip'=>$_SERVER['REMOTE_ADDR']);
+	    $data = http_build_query($fields);	    
+	    $url = parse_url($gr2cfg['googleRecaptchaRequestUrl']);
+	    $host = 'ssl://' . $url['host'];
+	    $path = $url['path'];
+	    $port = 443;
+	    $result = '';
+	    
+	    $fp = fsockopen($host, $port);
+	    if($fp) {
+	        $o = 'POST ' . $path . ' HTTP/1.1' . "\r\n";
+	        $o .= 'Host: ' . $url['host'] . "\r\n";
+	        $o .= 'Content-Type: application/x-www-form-urlencoded' . "\r\n";
+	        $o .= 'Content-Length: ' . strlen($data) . "\r\n";
+	        $o .= 'Connection: Close' . "\r\n\r\n";
+	        fwrite($fp, $o);	        
+	        fwrite($fp, $data);
+	        
+	        while(!feof($fp)) $result .= fgets($fp, 128);
+	        fclose($fp);
+	        
+	        $res = explode("\r\n\r\n", $result);
+	        $json = json_decode($res[1]);
+	        
+	        if(intval($json->{'success'}) !== 1) return false;
+	        else return true;
+	    }
+	    return false;
 	}
 } 
 ?>

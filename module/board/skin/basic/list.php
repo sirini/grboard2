@@ -88,7 +88,7 @@ if(isset($boardPost[0]['no'])):
 		<?php endif; ?>
 		<a href="<?php echo $link; ?>"><?php echo $post['subject']; ?></a>
 		<?php if($post['comment_count'] > 0): ?>
-			<span class="badge"><?php echo $post['comment_count']; ?></span>
+			<span class="badge badge-secondary"><?php echo $post['comment_count']; ?></span>
 		<?php endif; ?>	
 	</td>
 	<td class="name"><?php echo $post['name']; ?></td>
