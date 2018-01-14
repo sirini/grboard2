@@ -116,7 +116,7 @@ $(function(){
 	});
 	
 	var winWidth = $(window).width();
-	if(winWidth > 640) {
+	if(winWidth > 500) {
 	    $("head").append("<script src=\"/" + gr2write.grboard + "/lib/tinymce/tinymce.min.js\"></script>");
 	    tinymce.init({
 	        selector: "textarea#gr2content",
@@ -153,10 +153,6 @@ $(function(){
 	} else {
 		$("input[name=writingInMobile]").val("yes");
 	}
-
-	var contentWidth = $("#GRBOARD2").width();
-	$("#gr2dndUpload").width(contentWidth - 2);
-    $("#boardWriteForm .gr-form-input").width(contentWidth - 12);
 
     $("body").bootstrapMaterialDesign();
     $('[data-toggle="tooltip"]').tooltip();

@@ -37,7 +37,7 @@
 			</div>
 		</div>
 
-		<!-- for Google reCAPTCHA | Please update your google reCAPTCHA sitekey in common.config.php -->
+		<!-- for Google reCAPTCHA | Please update your google reCAPTCHA sitekey/secretkey in common.config.php -->
 		<div class="form-group">			
 			<script src='<?php echo $gr2cfg['googleRecaptchaApiUrl']; ?>'></script>
 			<div class="g-recaptcha" data-sitekey="<?php echo $gr2cfg['googleRecaptchaSiteKey']; ?>"></div>
@@ -51,7 +51,11 @@
 		</div>
 		
 		<div class="form-group">
-			<label for="secret" data-toggle="tooltip" data-placement="bottom" title="체크 하시면 비밀글로 설정 됩니다"><input type="checkbox" name="secret" id="secret" aria-describedby="secretHelp"> check for secret</label>
+			<div class="form-check">
+				<label class="form-check-label" for="secret" data-toggle="tooltip" data-placement="bottom" title="체크 하시면 비밀글로 설정 됩니다"> 
+					<input class="form-check-input" type="checkbox" name="secret" id="secret" aria-describedby="secretHelp"> check for secret
+				</label>
+			</div>
 			<input id="gr2sendComment" type="submit" value="SEND" class="btn btn-block btn-outline-primary" />
 		</div>
 	</form>

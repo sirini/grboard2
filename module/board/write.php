@@ -20,9 +20,9 @@ function isPermitted($db_key, $now_session) {
 
 if(isset($_POST['writeProceed'])) {
 	if(!$Common->getSessionKey()) {
-		if($_SESSION['ANTISPAM'] != $_POST['gr2simplelock']) {
-			$Common->error($error['msg_spam_filter']);
-		}
+	    if(!$Common->postGoogleRecaptcha($_POST['g-recaptcha-response'], $gr2cfg)) {
+	        $Common->error($error['msg_spam_google_reject']);
+	    }
 	}
 	$target = 0;
 	if( array_key_exists('articleNo', $_GET)) {
@@ -35,8 +35,6 @@ if(isset($_POST['writeProceed'])) {
 	else $Common->error($error['msg_write_fail']);
 }
 
-$simplelock = substr(md5('GR_BOARD_2' . date('YmdHis') . $_SERVER['HTTP_HOST']), -5);
-$_SESSION['ANTISPAM'] = $simplelock; 
 $boardInfo = $Model->getBoardInfo($ext_id);
 if(!isset($mobilePath)) $boardTheme = $boardInfo['theme'];
 else $boardTheme = $boardInfo['theme_mobile'];
@@ -62,5 +60,5 @@ if(isset($_GET['articleNo'])) {
 
 include $skinIncludePrefix . $boardTheme . '/index.php';
 
-unset($Model, $query, $error, $boardInfo, $userInfo, $skinResourcePath, $skinPath, $oldData, $oldFile, $simplelock, $target, $boardTheme);
+unset($Model, $query, $error, $boardInfo, $userInfo, $skinResourcePath, $skinPath, $oldData, $oldFile, $target, $boardTheme);
 ?>

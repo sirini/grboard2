@@ -1,6 +1,9 @@
 data/
 session/
 dbinfo.php
+common.config.php
+composer.json
+composer.phar
 upgrade.grboard1.php
 .DS_Store
 /vendor/

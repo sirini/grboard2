@@ -221,28 +221,6 @@ and (max-device-width: 650px) {
 
 /* WRITE */
 
-#GRBOARD2 div.boardWriteBox {
-	margin: 10px 0;
-}
-
-#GRBOARD2 div.boardWriteBox ul li {
-	list-style: none;
-}
-
-#GRBOARD2 ul.gr2fileList {
-	margin: 10px 10px 15px 0px;
-}
-
-#GRBOARD2 ul.gr2fileList li {
-	list-style: none;
-	letter-spacing: -1px;
-}
-
-#GRBOARD2 div.boardWriteBox ul li input[type=checkbox] {
-	width: 18px;
-	border: 0 none;
-}
-
 #GRBOARD2 .categoryInput {
 	font-size: 12px;
 	border: 1px solid #eee;
@@ -252,16 +230,7 @@ and (max-device-width: 650px) {
 	margin: 0 0 -1px 0;
 }
 
-#GRBOARD2 div.boardWriteBox ul li input.longWidth {
-	width: 450px;
-}
-
-#GRBOARD2 div.boardWriteBox ul li.space {
-	padding: 2px 0 10px 0;
-}
-
 #gr2content {
-	width: 500px;
 	height: 300px;
 	padding: 5px;
 	font-size: 12px;
@@ -269,21 +238,13 @@ and (max-device-width: 650px) {
 }
 
 #gr2dndUpload {
-	position: relative;
-	border: #eee 1px dashed;
+	border: #aaa 2px dashed;
 	text-align: center;
 	height: 100px;
-	margin: 5px 20px 10px 0px;
 	color: #aaa;
-	overflow: auto;
+	margin: 0px;
 	background-color: #ffffec;
-}
-
-#gr2dndMsg {
-	position: absolute;
-	top: 5px;
-	right: 5px;
-	color: #999;
+	border-radius: 10px;
 }
 
 #gr2dndUpload img {
