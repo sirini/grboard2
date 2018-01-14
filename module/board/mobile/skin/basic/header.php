@@ -2,95 +2,91 @@
 <html>
 	<head>
 		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 		<title><?php echo $boardInfo['name']; ?></title>
 		<link href="/<?php echo $grboard; ?>/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen" />
-		<link href="/<?php echo $grboard; ?>/lib/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet" media="screen" />
-		<link href="<?php echo $skinResourcePath; ?>/style.css" rel="stylesheet" media="screen" />
-		<script src="/<?php echo $grboard; ?>/lib/jquery.js"></script>
-		<script src="/<?php echo $grboard; ?>/lib/bootstrap/js/bootstrap.min.js"></script>
+		<link href="/<?php echo $grboard; ?>/lib/bootstrap_material_design/css/bootstrap-material-design.min.css" rel="stylesheet" media="screen" />
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
+	    <script src="/<?php echo $grboard; ?>/lib/jquery.js"></script>
+    	<script src="/<?php echo $grboard; ?>/lib/popper.js"></script>
+		<script src="/<?php echo $grboard; ?>/lib/bootstrap_material_design/js/bootstrap-material-design.min.js"></script>	
 		<script src="<?php echo $skinResourcePath; ?>/<?php echo $mobileAction; ?>.skin.js"></script>
+		<script>
+		$(function(){
+			$("body").bootstrapMaterialDesign();
+			$('[data-toggle="tooltip"]').tooltip();
+		});
+		</script>
 	</head>
-	<body>
-		<nav class="navbar navbar-default" role="navigation">
-			<div class="container-fluid">
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
-						<span class="sr-only">Toggle navigation</span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
-					<a class="navbar-brand" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>"><span class="glyphicon glyphicon-home"></span></a>					
-				</div>
-				
-				<div class="collapse navbar-collapse col-md-12">
-				    <ul class="nav navbar-nav">
-						<li><a href="<?php echo $boardLink; ?>/write/0"><span class="glyphicon glyphicon-pencil"></span> Write</a></li>
-						<?php if(isset($boardPost['member_key']) && isPermitted($boardPost['member_key'], $Common->getSessionKey())): ?>
-							<li><a href="<?php echo $boardLink; ?>/write/<?php echo $boardPost['no']; ?>">
-								<span class="glyphicon glyphicon-edit"></span> Modify</a></li>
-							<li><a href="<?php echo $boardLink; ?>/deletepost/<?php echo $boardPost['no']; ?>">
-								<span class="glyphicon glyphicon-trash"></span> Delete</a></li>
-						<?php endif; 
-						if(!$isMember): ?>
-							<li><a href="<?php echo $boardLink; ?>/login/0"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-							<li><a href="/<?php echo $grboard; ?>/board-<?php echo $ext_id; ?>/join"><span class="glyphicon glyphicon-user"></span> Join</a></li>
-						<?php else: ?>
-							<li><a href="/<?php echo $grboard; ?>/board-<?php echo $ext_id; ?>/memo"><span class="glyphicon glyphicon-envelope"></span> Message</a></li>
-							<li><a href="<?php echo $boardLink; ?>/logout/0"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
-						<?php endif; ?>
-							<li><a href="<?php echo $boardLink; ?>/list/1"><span class="glyphicon glyphicon-list-alt"></span> List</a></li>
-						<?php if($isAdmin): ?>
-							<li><a href="#managePostForm" id="managePosts">
-								<span class="glyphicon glyphicon-trash"></span> Posts</a>
-							</li>
-							<li><a href="/<?php echo $grboard; ?>/board/admin/modify2board/<?php echo $boardInfo['no']; ?>">
-								<span class="glyphicon glyphicon-cog"></span> Board</a>
-							</li>
-						<?php endif; ?>
-							<li><a href="/<?php echo $grboard; ?>/board-<?php echo $ext_id; ?>/list/<?php echo $ext_page; ?>">
-								<span class="glyphicon glyphicon-th-large"></span> PC view</a></li>
-					</ul>
-					<form id="gr2searchForm" method="get" action="mobile/" class="navbar-form navbar-left" role="search">
-						<div class="form-group">
-							<input type="hidden" name="boardId" value="<?php echo $ext_id; ?>" />
-							<input type="hidden" name="page" value="<?php echo $ext_page; ?>" />
-							<select name="option" class="gr-select">
-								<option value="subject" <?php echo (isset($option) && $option == 'subject')?'selected="true"':''; ?>>Subject</option>
-								<option value="content" <?php echo (isset($option) && $option == 'content')?'selected="true"':''; ?>>Content</option>
-								<option value="tag" <?php echo (isset($option) && $option == 'tag')?'selected="true"':''; ?>>Tag</option>
-								<option value="name" <?php echo (isset($option) && $option == 'name')?'selected="true"':''; ?>>Name</option>
-							</select>
-							<input type="search" name="value" value="<?php echo (isset($value)) ? $value:''; ?>" placeholder="search for..." class="form-control gr-inline" aria-label="...">
-							<button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span></button>
-						</div>
-					</form>
-				</div>
-				
-			</div>
-		</nav>	
-		
-		<div class="container">	
+	<body>	
+	
+	<nav class="navbar navbar-expand-md navbar-dark bg-dark" role="navigation">
+		<a class="navbar-brand" href="#"><?php echo $_SERVER['HTTP_HOST']; ?></a>
 			
+		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#grboard2TopNav" aria-controls="grboard2TopNav" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggle-icon"></span>
+		</button>		
+		
+		<div id="grboard2TopNav" class="navbar-collapse collapse justify-content-between">
+			<ul class="navbar-nav">
+				<li class="nav-item active"><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>" data-toggle="tooltip" class="nav-link">
+					Home <span class="sr-only">(current)</span></a></li>
+				<li class="nav-item dropdown">
+					<a href="#" class="nav-link dropdown-toggle" id="navDropdownMenus" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">MENU</a>
+					<div class="dropdown-menu" aria-labelledby="navDropdownMenus">
+        				<a class="dropdown-item" href="<?php echo $boardLink; ?>/write/0">Write</a>
+        				<?php if(isset($boardPost['member_key']) && isPermitted($boardPost['member_key'], $Common->getSessionKey())): ?>
+        				<a class="dropdown-item" href="<?php echo $boardLink; ?>/write/<?php echo $boardPost['no']; ?>">Modify</a>
+        				<a class="dropdown-item" href="<?php echo $boardLink; ?>/deletepost/<?php echo $boardPost['no']; ?>">Delete</a>
+        				<?php endif; 
+        				if(!$isMember): ?>
+        				<a class="dropdown-item" href="<?php echo $boardLink; ?>/login/0">Login</a>
+        				<a class="dropdown-item" href="/<?php echo $grboard; ?>/board-<?php echo $ext_id; ?>/join">Join</a>
+        				<?php else: ?>
+        				<a class="dropdown-item" href="/<?php echo $grboard; ?>/board-<?php echo $ext_id; ?>/memo">Message</a>
+        				<a class="dropdown-item" href="<?php echo $boardLink; ?>/logout/0">Logout</a>
+        				<?php endif; ?>
+        				<a class="dropdown-item" href="<?php echo $boardLink; ?>/list/1">List</a>
+        				<?php if($isAdmin): ?>
+        				<a class="dropdown-item" href="#managePostForm" id="managePosts">Posts</a>        				
+        				<a class="dropdown-item" href="/<?php echo $grboard; ?>/board/admin/modify2board/<?php echo $boardInfo['no']; ?>">Board</a>
+        				<?php endif; ?>
+        				<a class="dropdown-item" href="/<?php echo $grboard; ?>/board-<?php echo $ext_id; ?>/list/<?php echo $ext_page; ?>">PC view</a>
+        			</div>
+				</li>
+			</ul>
+			
+	        <form id="gr2searchForm" method="get" action="mobile/" class="form-inline" role="search">
+				<div class="form-group">
+					<input type="hidden" name="boardId" value="<?php echo $ext_id; ?>" />
+					<input type="hidden" name="page" value="<?php echo $ext_page; ?>" />
+					<select name="option" class="custom-select">
+						<option value="subject" <?php echo (isset($option) && $option == 'subject')?'selected="true"':''; ?>>Subject</option>
+						<option value="content" <?php echo (isset($option) && $option == 'content')?'selected="true"':''; ?>>Content</option>
+						<option value="tag" <?php echo (isset($option) && $option == 'tag')?'selected="true"':''; ?>>Tag</option>
+						<option value="name" <?php echo (isset($option) && $option == 'name')?'selected="true"':''; ?>>Name</option>
+					</select>
+					<input type="search" name="value" value="<?php echo (isset($value)) ? $value:''; ?>" placeholder="search for..." class="form-control mr-sm-2" aria-label="...">
+					<input type="submit" class="btn btn-outline-success my-2 my-sm-0" value="submit" />
+				</div>
+			</form>
+
+		</div>
+	</nav>	
+		
+	<div class="container"><!-- #start container (#end is in footer.php file) -->	
 		<ol class="breadcrumb">
-			<li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>">Home</a></li>
-			<li><a href="/<?php echo $grboard; ?>/board-<?php echo $ext_id; ?>/mobile/list/1"><?php echo $boardInfo['name']; ?></a></li>
+			<li class="breadcrumb-item active"><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>">Home</a></li>
+			<li class="breadcrumb-item active"><a href="/<?php echo $grboard; ?>/board-<?php echo $ext_id; ?>/mobile/list/1"><?php echo $boardInfo['name']; ?></a></li>
 			<?php if(isset($boardCategory[0])): ?>
-			<li>
-				<div class="dropdown gr-inline">
-					<button class="btn btn-sm btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="true">
-					Category <span class="caret"></span>
-					</button>
-					<ul class="dropdown-menu" role="menu">
+			<li class="breadcrumb-item active">
+		
+				<a href="#" class="dropdown-toggle" id="navCategoryDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">CATEGORY</a>
+				<div class="dropdown-menu" aria-labelledby="navCategoryDropdown">
 					<?php foreach($boardCategory as &$category): ?>
-						<li role="presentation">
-							<a role="menuitem" tabindex="-1" 
-							href="/<?php echo $grboard; ?>/board-<?php echo $ext_id; ?>/mobile/category/:<?php echo $category; ?>/1">
-							<?php echo $category; ?></a>
-						</li>
+					<a class="dropdown-item" role="menuitem" tabindex="-1" 
+						href="/<?php echo $grboard; ?>/board-<?php echo $ext_id; ?>/mobile/category/:<?php echo $category; ?>/1"><?php echo $category; ?></a>
 					<?php endforeach; unset($category); ?>	
-					</ul>
 				</div>
 			</li>
 			<?php endif; ?>

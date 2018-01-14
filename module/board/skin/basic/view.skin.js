@@ -18,7 +18,12 @@ $(function(){
 	
 	$("#GRBOARD2 .tag").each(function(index){
 		var o = $(this).text();
-		$(this).text('#' + o);
+		var tags = o.split(',');
+		var outStr = '';
+		for (var i=0, len=tags.length; i<len; i++) {
+			outStr += '#' + tags[i] + ' ';
+		}
+		$(this).text(outStr);
 	});
 
     $("body").bootstrapMaterialDesign();

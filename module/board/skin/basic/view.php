@@ -59,7 +59,7 @@ function makeThumbnailPath($file, $width, $height) {
 			$thumbnail = makeThumbnailPath($file, 200, 200);
 			$down = '/'.$grboard.'/board-'.$ext_id.'/download/'.$file['uid'];
 		?>
-			<li><a href="<?php echo $down; ?>" class="btn btn-info btn-sm" title="클릭 하시면 파일을 내려 받습니다">Download</a> 
+			<li><a href="<?php echo $down; ?>" class="btn btn-info btn-sm" data-toggle="tooltip" title="클릭 하시면 파일을 내려 받습니다">Download</a> 
 				<?php echo $filename; 
 				if($thumbnail): ?>
 				<div class="thumbnailBox">

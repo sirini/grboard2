@@ -27,6 +27,7 @@ $(function(){
 		$("#managePostForm").submit();
 	});
 	
+	/*
 	var resizeSearch = function(){
 		var searchInputSize = $(window).width();
 		if(searchInputSize > 750) searchInputSize -= 250;
@@ -38,4 +39,5 @@ $(function(){
 	
 	resizeSearch();
 	$(window).resize(resizeSearch);
+	*/
 });
