@@ -7,16 +7,18 @@
 		<input type="hidden" name="comment_uid" value="<?php echo $comment; ?>" />
 		<input type="hidden" name="modifyProceed" value="yes" />
 	</div>
-	<div class="panel panel-default">
-		<div class="panel-heading">
-			<h3 class="panel-title">Modify a comment</h3>
+	<div class="card bg-light">
+		<h4 class="card-header">Modify a comment</h4>
+		<div class="card-body">
+			<input type="checkbox" name="secret" value="1" <?php echo (($oldData['is_secret'])?'checked="checked"':''); ?> /> Secret
+			<textarea name="content" class="form-control" style="height: 5rem;"><?php echo $content; ?></textarea>
+			<div style="height:1.0rem"></div>
+			<div class="row">
+				<div class="col"><input type="submit" value="Modify" class="btn btn-outline-primary btn-block" /></div>
+				<div class="col"><a href="<?php echo $boardLink; ?>/list/1" class="btn btn-outline-secondary btn-block">Cancel</a></div>
+			</div>
+				
 		</div>
-		
-		<ul class="list-group">
-			<li class="list-group-item"><input type="checkbox" name="secret" value="1" <?php echo (($oldData['is_secret'])?'checked':''); ?> /> &middot;&middot;&middot; Secret</li>
-			<li class="list-group-item"><textarea name="content" placeholder="답글 입력" class="form-control" style="height: 300px;"><?php echo $content; ?></textarea></li>
-			<li class="list-group-item"><input type="submit" value="Modify" class="btn btn-primary gr-width-full" /></li>
-		</ul>
 	</div>
 </form>
 	

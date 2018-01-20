@@ -32,12 +32,10 @@
             if(isset($boardPost[0]['no'])): 
             	foreach($boardPost as &$post): 
             		$link = $boardLink . '/view/' . $post['no'];
-            ?>
-            	<a href="<?php echo $link; ?>" class="list-group-item">
-            		<?php if($isAdmin): ?>
-            			<input type="checkbox" class="checkedPost" name="checkedArticle[]" value="<?php echo $post['no']; ?>" />
-            		<?php endif; 
-            		
+                ?>
+            		<a href="<?php echo $link; ?>" class="list-group-item">
+
+            		<?php 
             		if(isset($boardCategory[0]) && strlen($post['category']) > 0): ?>
             			<span class="text-primary">[<?php echo $post['category']; ?>]</span>
             		<?php endif;
@@ -47,7 +45,7 @@
             		if($post['comment_count'] > 0): ?>
             			<span class="badge badge-light"><?php echo $post['comment_count']; ?></span>
             		<?php endif; ?>
-            	</a>
+            		</a>
             <?php 
             	endforeach; 
             	unset($post); 

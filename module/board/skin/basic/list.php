@@ -148,8 +148,8 @@ if(isset($option)) {
 		<li><a href="<?php echo $boardLink; ?>/list/1" data-toggle="tooltip" data-placement="bottom" class="btn btn-primary btn-sm" title="목록을 봅니다">List</a></li>
 		<li><a href="<?php echo $boardLink; ?>/mobile/list/<?php echo $ext_page; ?>" data-toggle="tooltip" data-placement="bottom" class="btn btn-primary btn-sm" title="모바일 폰에서 봅니다">Mobile</a></li>
 		<?php if($isAdmin): ?>
-			<li><a href="#managePostForm" id="managePosts" data-toggle="tooltip" data-placement="bottom" class="btn btn-primary btn-sm btn-outline-danger" title="선택한 게시글들을 관리 합니다">Posts</a></li>
-			<li><a href="/<?php echo $grboard; ?>/board/admin/modify2board/<?php echo $boardInfo['no']; ?>" data-toggle="tooltip" data-placement="bottom" class="btn btn-primary btn-sm btn-outline-danger" title="게시판 설정을 관리 합니다">Board</a></li>
+			<li><a href="#managePostForm" id="managePosts" data-toggle="tooltip" data-placement="bottom" class="btn btn-primary btn-sm btn-danger" title="선택한 게시글들을 관리 합니다">Posts</a></li>
+			<li><a href="/<?php echo $grboard; ?>/board/admin/modify2board/<?php echo $boardInfo['no']; ?>" data-toggle="tooltip" data-placement="bottom" class="btn btn-primary btn-sm btn-danger" title="게시판 설정을 관리 합니다">Board</a></li>
 		<?php endif; ?>
 	</ul>
 					
@@ -167,11 +167,28 @@ if(isset($option)) {
 					<option value="name" <?php echo (isset($option) && $option == 'name') ? 'selected="true"':''; ?>>Name</option>
 				</select>
 				<input type="search" name="value" data-toggle="tooltip" data-placement="bottom" title="이 곳에 검색어를 입력 합니다" class="form-control mr-sm-2" value="<?php echo (isset($value)) ? $value:''; ?>" />
-				<input type="submit" value="Search" class="btn btn-primary btn-outline-primary my-2 my-sm-0" />
+				<input type="submit" value="Search" class="btn btn-primary btn-outline-primary my-2 my-sm-0" data-toggle="tooltip" data-placement="bottom" title="검색어를 입력 하신 후 클릭 하세요!" />
 			</div>
 		</form>
 	</div>
 		
+	<!-- Modal dialog -->
+	<div class="modal fade" id="modalDlg" tabindex="-1" role="dialog" aria-labelledby="modalDlgLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="modalDlgLabel">Title</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body" id="modalDlgContent">Content</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
 	
 </footer>
 

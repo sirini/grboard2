@@ -114,19 +114,16 @@ endif;
         	
         	<?php if(isset($oldFile[0]['fid'])): ?>
         	<div class="form-group">
-        		<label class="col-sm-2 col-form-label">Attached</label>
-        		<div class="col-sm-10">
-        			<ul class="list-group">
-        	    	<?php foreach($oldFile as &$list): 
-                        $fid = $list['fid'];
-                        $fnameArr = explode('/', $list['real_name']);
-                        $fname = $fnameArr[count($fnameArr) - 1];
-                        ?>
-        				<li class="form-check"><input type="checkbox" id="deleteFile<?php echo $fid; ?>" name="deleteFileList[]" class="form-check-input" value="<?php echo $fid; ?>" /> 
-        					<label for="deleteFile<?php echo $fid; ?>" class="form-check-label" data-toggle="tooltip" title="이 첨부파일을 삭제 하고자 할 경우 체크해 주세요"><?php echo $fname; ?></label></li>
-        			<?php endforeach; ?>	
-        			</ul>
-        		</div>
+    			<ul class="list-group">
+    	    	<?php foreach($oldFile as &$list): 
+                    $fid = $list['fid'];
+                    $fnameArr = explode('/', $list['real_name']);
+                    $fname = $fnameArr[count($fnameArr) - 1];
+                    ?>
+    				<li class="form-check"><input type="checkbox" id="deleteFile<?php echo $fid; ?>" name="deleteFileList[]" class="form-check-input" value="<?php echo $fid; ?>" /> 
+    					<label for="deleteFile<?php echo $fid; ?>" class="form-check-label" data-toggle="tooltip" title="이 첨부파일을 삭제 하고자 할 경우 체크해 주세요"><?php echo $fname; ?></label></li>
+    			<?php endforeach; ?>	
+    			</ul>
         	</div>
         	<?php unset($fid, $fnameArr, $fname, $list); endif; ?>
             	

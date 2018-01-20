@@ -9,7 +9,7 @@ include 'manage/model.php';
 include 'manage/query.php';
 include 'manage/error.php';
 
-if($Common->getSessionKey() == 0) $Common->error($error['msg_no_permission']);
+if($Common->getSessionKey() !== 1) $Common->error($error['msg_no_permission']);
 
 $Model = new Model($DB, $query, $grboard, $Common);
 $boardInfo = $Model->getBoardInfo($ext_id);

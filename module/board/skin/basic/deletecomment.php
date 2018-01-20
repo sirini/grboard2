@@ -1,27 +1,24 @@
 <?php if(!defined('GR_BOARD_2')) exit(); ?>
 
-<div id="GRBOARD2">
+<div id="GRBOARD2" class="card bg-light">
 
-<h2 class="title">Delete a comment</h2>
-
-<div class="boardDelete">
-	
-	<div class="boardDeleteBox">
-	<form id="boardDeleteForm" method="post" action="<?php echo $boardLink; ?>/deletecomment/<?php echo $comment; ?>">
-		<div>
-			<input type="hidden" name="deleteProceed" value="yes" />
-			<input type="hidden" name="postUID" value="<?php echo $postUID; ?>" />
-		</div>
-		<div class="deleteMsg">
-			<?php echo $error['confirm_comment_delete']; ?>
-			<div class="originalMsg"><?php echo $content; ?></div>		
-		</div>
-		
-		<input type="submit" value="OK" class="gr-btn gr-btn-primary" />
-		<a href="<?php echo $boardLink; ?>/list" class="gr-btn gr-btn-danger">Cancel</a>
-	</form>
-	</div>
-
-</div>
+    <h4 class="card-header">Delete a comment</h4>
+    <div class="card-body">
+    	
+    	<form id="boardDeleteForm" method="post" action="<?php echo $boardLink; ?>/deletecomment/<?php echo $comment; ?>">
+    		<div>
+    			<input type="hidden" name="deleteProceed" value="yes" />
+    			<input type="hidden" name="postUID" value="<?php echo $postUID; ?>" />
+    		</div>
+    		<div class="card-text">
+    			<?php echo $error['confirm_comment_delete']; ?>
+    			<div class="originalMsg"><?php echo $content; ?></div>		
+    		</div>
+    		
+    		<input type="submit" value="OK" class="btn btn-outline-primary" />
+    		<a href="<?php echo $boardLink; ?>/list" class="btn btn-outline-danger">Cancel</a>
+    	</form>
+    	
+    </div>
 
 </div>

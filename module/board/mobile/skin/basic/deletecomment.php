@@ -1,27 +1,26 @@
 <?php if(!defined('GR_BOARD_2')) exit(); ?>
 
-<div id="GRBOARD2">
+<div id="GRBOARD2" class="card bg-light">
 	
 	<form id="boardDeleteForm" method="post" action="<?php echo $boardLink; ?>/deletecomment/<?php echo $comment; ?>">
 		<div>
 			<input type="hidden" name="deleteProceed" value="yes" />
 			<input type="hidden" name="postUID" value="<?php echo $postUID; ?>" />
 		</div>
-		<div class="panel panel-danger">
-			<div class="panel-heading">
-				<h3 class="panel-title">Delete a comment</h3>
-			</div>
+		<h4 class="card-header">Delete a comment</h4>
 			
-			<div class="panel-body">				
-				<?php echo $content; ?>
+		<div class="card-body">				
+			<div class="row">
+				<div class="col"><?php echo $content; ?></div>
 			</div>
-			
-			<ul class="list-group">
-				<li class="list-group-item"><input type="submit" value="Delete" class="btn btn-danger gr-width-full" /></li>
-				<li class="list-group-item"><a href="<?php echo $boardLink; ?>/list/1" class="btn btn-default gr-width-full">Cancel</a></li>
-			</ul>
+			<div style="height: 1.0rem"></div>
+			<div class="row">
+				<div class="col"><input type="submit" value="Delete" class="btn btn-outline-danger btn-block" /></div>
+				<div class="col"><a href="<?php echo $boardLink; ?>/list/1" class="btn btn-outline-secondary btn-block">Cancel</a></div>
+			</div>	
 			
 		</div>
+					
 	</form>
 	
 </div>

@@ -47,10 +47,6 @@
         				<a class="dropdown-item" href="<?php echo $boardLink; ?>/logout/0">Logout</a>
         				<?php endif; ?>
         				<a class="dropdown-item" href="<?php echo $boardLink; ?>/list/1">List</a>
-        				<?php if($isAdmin): ?>
-        				<a class="dropdown-item" href="#managePostForm" id="managePosts">Posts</a>        				
-        				<a class="dropdown-item" href="/<?php echo $grboard; ?>/board/admin/modify2board/<?php echo $boardInfo['no']; ?>">Board</a>
-        				<?php endif; ?>
         				<a class="dropdown-item" href="/<?php echo $grboard; ?>/board-<?php echo $ext_id; ?>/list/<?php echo $ext_page; ?>">PC view</a>
         			</div>
 				</li>
