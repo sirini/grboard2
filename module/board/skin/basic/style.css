@@ -31,13 +31,19 @@
 #GRBOARD2 tr.notice td { background-color: #ffffe7; }
 #GRBOARD2 td.no,
 #GRBOARD2 td.date,
-#GRBOARD2 td.hit {
+#GRBOARD2 td.hit,
+#GRBOARD2 th {
 	font-family: Verdana, tahoma, sans-serif;
 	color: #666;
 	font-size: 10px;
+	text-align: center;
 }
-
-#GRBOARD2 table.gr-table td.subject { text-align: left; }
+#GRBOARD2 .bg-pattern { 
+	background: url('images/bbs_bg_pattern.gif');
+	background-repeat: repeat-x; 
+	background-color: transparent; 
+	height: 42px;
+}
 
 #GRBOARD2 span.category {
 	color: #999;
@@ -94,10 +100,9 @@ and (max-device-width: 650px) {
 /* VIEW */
 
 #GRBOARD2 h2.title {
-	border-bottom: #888 1px solid;
 	font-size: 16px;
 	font-weight: 700;
-	padding: 15px;
+	padding: 10px;
 	margin: 0;
 }
 

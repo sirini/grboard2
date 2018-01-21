@@ -29,7 +29,7 @@ function makeThumbnailPath($file, $width, $height) {
 </header>
 <?php endif; ?>
 
-<h2 class="title">
+<h2 class="title bg-pattern">
 	<?php if(strlen($boardPost['category']) > 0): ?>
 		<span class="category">[<?php echo $boardPost['category']; ?>]</span>
 	<?php endif; echo $boardPost['subject']; ?>

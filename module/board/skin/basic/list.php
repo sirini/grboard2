@@ -35,12 +35,12 @@ $isMember = (($Common->getSessionKey() > 0) ? true : false);
 </colgroup>
 <thead>
 <tr>
-	<?php if($isAdmin): ?><th scope="col" class="check"><input type="checkbox" id="checkAllPost" /></th><?php endif; ?>
-	<th scope="col" class="no">no</th>
-	<th scope="col" class="subject">subject</th>
-	<th scope="col" class="name">name</th>
-	<th scope="col" class="date">date</th>
-	<th scope="col" class="hit">hit</th>
+	<?php if($isAdmin): ?><th scope="col" class="check bg-pattern"><input type="checkbox" id="checkAllPost" /></th><?php endif; ?>
+	<th scope="col" class="no bg-pattern">no</th>
+	<th scope="col" class="subject bg-pattern">subject</th>
+	<th scope="col" class="name bg-pattern">name</th>
+	<th scope="col" class="date bg-pattern">date</th>
+	<th scope="col" class="hit bg-pattern">hit</th>
 </tr>
 </thead>
 <tbody>
