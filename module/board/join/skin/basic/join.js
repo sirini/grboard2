@@ -1,6 +1,4 @@
-$(function(){
-    $.material.init();
-    
+$(function(){    
     var userId = $("#userId"); 
     var idInfo = $("#userIdInfo");
     var userPw = $("#userPw");
@@ -42,4 +40,9 @@ $(function(){
        }
        if(ret) realInfo.html('<span class="text-primary">필요 시 실제 이름이 사용 됩니다.</span>');
     });
+    
+	$(function(){
+		$("body").bootstrapMaterialDesign();
+		$('[data-toggle="tooltip"]').tooltip();
+	});
 });

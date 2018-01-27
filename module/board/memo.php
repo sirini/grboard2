@@ -5,6 +5,11 @@ include 'memo/query.php';
 include 'memo/model.php';
 include 'memo/error.php';
 
+if(isset($_GET['autocomplete'])) {
+    include 'memo/auto.complete.php';
+    exit();
+}
+
 $moveBackPath = '/';
 $prePath = '/' . $grboard . '/board';
 if(isset($ext_id)) {

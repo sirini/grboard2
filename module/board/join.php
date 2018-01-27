@@ -18,6 +18,11 @@ else {
 $Model = new Model($DB, $query, $grboard, $Common);
 
 if( array_key_exists('joinProceed', $_POST) ) {
+    
+    if(!$Common->postGoogleRecaptcha($_POST['g-recaptcha-response'], $gr2cfg)) {
+        $Common->error($error['msg_spam_google_reject']);
+    }
+    
 	$ret = $Model->joinUs($_POST);
 	if($ret == true) {
 		header('Location: ' . $moveBackPath);

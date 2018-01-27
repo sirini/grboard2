@@ -141,7 +141,7 @@ if(isset($option)) {
 			<li><a href="<?php echo $boardLink; ?>/login" data-toggle="tooltip" data-placement="bottom" class="btn btn-primary btn-sm" title="로그인을 합니다">Login</a></li>
 			<li><a href="<?php echo $boardLink; ?>/join" data-toggle="tooltip" data-placement="bottom" class="btn btn-primary btn-sm" title="신규 회원으로 가입 합니다">Join</a></li>
 		<?php else: ?>
-			<li><a href="<?php echo $boardLink; ?>/memo" data-toggle="tooltip" data-placement="bottom" class="btn btn-primary btn-sm" title="쪽지함으로 갑니다">Message</a></li>
+			<li><a href="<?php echo $boardLink; ?>/memo" data-toggle="tooltip" data-placement="bottom" class="btn btn-primary btn-sm" title="쪽지함으로 갑니다">Memo</a></li>
 			<li><a href="<?php echo $boardLink; ?>/logout" data-toggle="tooltip" data-placement="bottom" class="btn btn-primary btn-sm" title="로그 아웃 합니다">LogOut</a></li>
 			<li><a href="<?php echo $boardLink; ?>/myinfo" data-toggle="tooltip" data-placement="bottom" class="btn btn-primary btn-sm" title="내 정보를 수정 합니다">MyInfo</a></li>
 		<?php endif; ?>
