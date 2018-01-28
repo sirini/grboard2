@@ -1,65 +1,57 @@
 <?php if(!defined('GR_BOARD_2')) exit(); ?>
 
-<div class="panel-heading">
-	<h3 class="panel-title"><strong>Member list</strong></h3>
-</div>
+<h4 class="card-header">Member list</h4>
 
-<div class="panel-body">
-	<div class="table-responsive">
-	<table rules="none" id="memberList" class="table table-striped table-hover">
-		<colgroup>
-			<col class="col-md-1" />
-			<col class="col-md-2" />
-			<col class="col-md-2" />
-			<col class="col-md-2" />
-			<col class="col-md-1" />
-			<col class="col-md-1" />
-			<col class="col-md-1" />
-			<col class="col-md-1" />
-			<col class="col-md-1" />
-		</colgroup>
+<div class="card-body">
+	<table role="table" id="memberList" class="table table-hover">
 		<thead>
 			<tr>
-				<th>Group</th>
-				<th>ID</th>
-				<th>Nickname (Realname)</th>
-				<th>Lv (Point)</th>
-				<th>Last login</th>
-				<th>Retry</th>
-				<th>Signdate</th>
-				<th>Modify</th>
-				<th>Delete</th>
+				<th scope="col" class="text-center">Group</th>
+				<th scope="col" class="text-center">ID</th>
+				<th scope="col" class="text-center">Nickname (Realname)</th>
+				<th scope="col" class="text-center">Lv (Point)</th>
+				<th scope="col" class="text-center">Last login</th>
+				<th scope="col" class="text-center">Retry</th>
+				<th scope="col" class="text-center">Signdate</th>
+				<th scope="col" class="text-center">Modify</th>
+				<th scope="col" class="text-center">Delete</th>
 			</tr>
 		</thead>
 		<tbody>
 			<?php foreach($memberList as &$member) { ?>
 			<tr>
-				<td><?php echo $member['groupname']; ?></td>
-				<td><?php echo $member['id']; ?></td>
-				<td><?php echo $member['nickname']; ?> (<?php echo $member['realname']; ?>)</td>
-				<td><?php echo $member['level']; ?> (<?php echo $member['point']; ?>)</td>
-				<td><?php echo date('Y.m.d', $member['lastlogin']); ?></td>
-				<td><?php echo $member['blocks']; ?></td>
-				<td><?php echo date('Y.m.d', $member['make_time']); ?></td>
-				<td><a href="/<?php echo $grboard; ?>/board/admin/modify2member/<?php echo $member['no']; ?>" title="<?php echo $lang['member_list_modify']; ?>">modify</a></td>
-				<td><a href="/<?php echo $grboard; ?>/board/admin/delete2member/<?php echo $member['no']; ?>" title="<?php echo $lang['member_list_delete']; ?>">delete</a></td>
+				<td class="text-center"><?php echo $member['groupname']; ?></td>
+				<td class="text-center"><?php echo $member['id']; ?></td>
+				<td class="text-center"><?php echo $member['nickname']; ?> (<?php echo $member['realname']; ?>)</td>
+				<td class="text-center"><?php echo $member['level']; ?> (<?php echo $member['point']; ?>)</td>
+				<td class="text-center"><?php echo date('Y.m.d', $member['lastlogin']); ?></td>
+				<td class="text-center"><?php echo $member['blocks']; ?></td>
+				<td class="text-center"><?php echo date('Y.m.d', $member['make_time']); ?></td>
+				<td class="text-center"><a class="btn btn-primary" href="/<?php echo $grboard; ?>/board/admin/modify2member/<?php echo $member['no']; ?>" data-toggle="tooltip" title="<?php echo $lang['member_list_modify']; ?>">modify</a></td>
+				<td class="text-center"><a class="btn btn-danger" href="/<?php echo $grboard; ?>/board/admin/delete2member/<?php echo $member['no']; ?>" data-toggle="tooltip" title="<?php echo $lang['member_list_delete']; ?>">delete</a></td>
 			</tr>
 			<?php } unset($member); ?>
 		</tbody>
 	</table>
-	</div>
 	
 	<ul class="pagination">
 		<?php if($memberNowBlock > 1): ?>
-			<li><a href="<?php echo $prevLink; ?>">&laquo;</a></li>
+			<li class="page-item"><a class="page-link" href="<?php echo $prevLink; ?>" aria-label="Previous">
+			    <span aria-hidden="true">&laquo;</span>
+    			<span class="sr-only">Prev</span>
+			</a></li>
 		<?php endif; ?>
 	
 		<?php foreach($memberPaging as &$pageNo): ?>
-			<li <?php echo (($pageNo==$page)?'class="active"':''); ?>><a href="<?php echo $pageLink . $pageNo; ?>"><?php echo $pageNo; ?></a></li>
+			<li class="page-item<?php echo (($pageNo==$page)?' active':''); ?>">
+				<a class="page-link" href="<?php echo $pageLink . $pageNo; ?>"><?php echo $pageNo; ?></a></li>
 		<?php endforeach; unset($pageNo); ?>
 	
 		<?php if($memberNowBlock < $memberTotalBlock): ?>
-			<li><a href="<?php echo $nextLink; ?>">&raquo;</a></li>
+			<li class="page-item"><a class="page-link" href="<?php echo $nextLink; ?>" aria-label="Next">
+    			<span aria-hidden="true">&raquo;</span>
+    			<span class="sr-only">Next</span>
+			</a></li>
 		<?php endif; ?>
 	</ul>
 

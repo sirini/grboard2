@@ -1,36 +1,31 @@
 <?php if(!defined('GR_BOARD_2')) exit(); ?>
 
-<div class="panel-heading">
-	<h3 class="panel-title"><strong>Saved</strong></h3>
-</div>
+<h4 class="card-header">Saved</h4>
 
-<div class="panel-body">
-	<table rules="none" id="boardAdd" class="table table-striped">
-		<colgroup>
-			<col class="col-md-3" />
-			<col class="col-md-9" />
-		</colgroup>
+<div class="card-body">
+	<table role="table" id="boardAdd" class="table">
 		<thead>
 			<tr>
-				<th>Item</th>
-				<th>Information</th>
+				<th scope="col" class="text-center">Item</th>
+				<th scope="col" class="text-center">Information</th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr>
-				<td>Status</td>
-				<td>				
-					<span><?php echo $lang['board_save_status']; ?></span></td>
+				<td class="text-center">Status</td>
+				<td class="text-center"><?php echo $lang['board_save_status']; ?></td>
 			</tr>
 			<tr>
-				<td>Link</td>
-				<td>				
-					<a href="/<?php echo $grboard; ?>/board-<?php echo $boardId; ?>/list/1"><span><?php echo $lang['board_save_link']; ?></span></a></td>
+				<td class="text-center">Link</td>
+				<td class="text-center">
+					<a href="/<?php echo $grboard; ?>/board-<?php echo $boardId; ?>/list/1">
+						<?php echo $lang['board_save_link']; ?></a></td>
 			</tr>
 			<tr>
-				<td>Modify</td>
-				<td>				
-					<a href="/<?php echo $grboard; ?>/board/admin/modify2board/<?php echo $boardId; ?>"><span><?php echo $lang['board_save_modify']; ?></span></a></td>
+				<td class="text-center">Modify</td>
+				<td class="text-center">				
+					<a href="/<?php echo $grboard; ?>/board/admin/modify2board/<?php echo $boardId; ?>">
+						<?php echo $lang['board_save_modify']; ?></a></td>
 			</tr>
 		</tbody>
 	</table>

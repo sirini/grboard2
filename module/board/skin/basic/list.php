@@ -24,7 +24,7 @@ $isMember = (($Common->getSessionKey() > 0) ? true : false);
 <div class="hiddenInputs">
 	<input type="hidden" name="boardLink" value="<?php echo $boardLink; ?>" />
 </div>
-<table rules="none" class="table">
+<table role="table" class="table">
 <colgroup>
 	<?php if($isAdmin): ?><col class="check" /><?php endif; ?>
 	<col class="no" />

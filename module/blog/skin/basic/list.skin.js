@@ -1,15 +1,19 @@
 $(function(){
-    $.material.init();
 
     $("#blogSearchForm").submit(function (e) {
         e.preventDefault();
         var value = $("#blogSearchText").val();
         if ($.trim(value) == "") {
-            alert("°Ë»ö¾î°¡ ºñ¾î ÀÖ½À´Ï´Ù. ´Ù½Ã È®ÀÎÇØ ÁÖ¼¼¿ä!");
+            alert("ê²€ìƒ‰ì–´ê°€ ë¹„ì–´ ìžˆìŠµë‹ˆë‹¤!");
             return false;
         }
         var grboard = $(this).attr("rel");
         location.href = "/" + grboard + "/blog/search/all/" + value + "/1";
         return false;
     });
+    
+	$(function(){
+		$("body").bootstrapMaterialDesign();
+		$('[data-toggle="tooltip"]').tooltip();			
+	});
 });

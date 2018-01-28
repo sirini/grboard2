@@ -1,45 +1,37 @@
 <?php if(!defined('GR_BOARD_2')) exit(); ?>
 
-<div class="panel-heading">
-	<h3 class="panel-title"><strong>Delete a board</strong></h3>
-</div>
+<h4 class="card-header">Delete a board</h4>
 
-<div class="panel-body">
+<div class="card-body">
 	<form id="boardDeleteForm" method="post" class="form-horizontal" role="form" action="/<?php echo $grboard; ?>/board/admin/delete2board/<?php echo $boardId; ?>">
 	<div class="hiddenInputs">
 		<input type="hidden" name="boardDeleteId" value="<?php echo $boardInfo['id']; ?>" />
 	</div>
-	<table rules="none" id="boardDelete" class="table table-striped">
-		<colgroup>
-			<col class="col-md-3" />
-			<col class="col-md-9" />
-		</colgroup>
+	<table role="none" id="boardDelete" class="table">
 		<thead>
 			<tr>
-				<th>Item</th>
-				<th>Information</th>
+				<th scope="col">Item</th>
+				<th scope="col">Information</th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr>
 				<td>Delete ID</td>
-				<td>				
-					<a href="/<?php echo $grboard; ?>/board-<?php echo $boardInfo['id']; ?>/list"><span><?php echo $boardInfo['id']; ?></span></a></td>
+				<td><a href="/<?php echo $grboard; ?>/board-<?php echo $boardInfo['id']; ?>/list">
+					<?php echo $boardInfo['id']; ?></a></td>
 			</tr>
 			<tr>
 				<td>Board Name</td>
-				<td>				
-					<span><?php echo $boardInfo['name']; ?></span></td>
+				<td><?php echo $boardInfo['name']; ?></td>
 			</tr>
 			<tr>
 				<td>Message</td>
-				<td>				
-					<span><?php echo $lang['board_delete_message']; ?></span></td>
+				<td><?php echo $lang['board_delete_message']; ?></td>
 			</tr>
 			<tr>
-				<td colspan="2" class="text-right">
+				<td colspan="2" class="text-center">
 					<a href="/<?php echo $grboard; ?>/board/admin/board/list" class="btn btn-lg btn-default">Cancel</a>
-					<input type="submit" value="OK" class="btn btn-lg btn-primary" />					
+					<input type="submit" value="OK" class="btn btn-lg btn-danger" data-toggle="tooltip" title="이 작업은 되돌릴 수 없습니다. 반드시 삭제해야 할 경우에만 클릭 하세요." />					
 				</td>
 			</tr>
 		</tbody>
