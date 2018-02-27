@@ -85,4 +85,7 @@
 		</div>
 	</nav>			
 		
-	<div class="container">
+	<div class="container">	
+		<h4 class="blog-title"><?php echo $blogInfo['blog_title']; ?></h4>
+    	<p class="blog-description"><?php echo $blogInfo['blog_info']; ?></p>
+    	<div class="row">

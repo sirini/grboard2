@@ -1,7 +1,5 @@
 $(function(){
-	
-	$.material.init();
-    
+	    
     var gr2write = {
         
         grboard: $("#hiddenInputs > input[name=grboard]").val(),
@@ -154,4 +152,9 @@ $(function(){
     	$("#blogWriteForm input[name=deleteThis]").val(uid);
     	$("#blogWriteForm").submit();
     });
+    
+	$(function(){
+		$("body").bootstrapMaterialDesign();
+		$('[data-toggle="tooltip"]').tooltip();			
+	});
 });
