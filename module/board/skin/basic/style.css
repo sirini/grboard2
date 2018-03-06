@@ -1,8 +1,16 @@
 #GRBOARD2 {
-	font-size: 12px;
 	color: #555;
-	font-family: Verdana, Arial, "Malgun Gothic", sans-serif;
+	font-family: Roboto, "Malgun Gothic", sans-serif;
 	text-align: left;
+}
+
+#GRBOARD2 a {
+	color: #666;
+}
+
+#GRBOARD2 a:hover {
+	color: #3e3e3e;
+	text-decoration: none;
 }
 
 #GRBOARD2 div.category {
@@ -24,10 +32,10 @@
 }
 
 #GRBOARD2 col.check { width: 40px; }
-#GRBOARD2 col.no { width: 45px; }
-#GRBOARD2 col.name { width: 85px; }
-#GRBOARD2 col.date { width: 80px; }
-#GRBOARD2 col.hit { width: 45px; }
+#GRBOARD2 col.no { width: 55px; }
+#GRBOARD2 col.name { width: 100px; }
+#GRBOARD2 col.date { width: 90px; }
+#GRBOARD2 col.hit { width: 55px; }
 #GRBOARD2 tr.notice td { background-color: #ffffe7; }
 #GRBOARD2 td.no,
 #GRBOARD2 td.date,

@@ -1,5 +1,4 @@
 $(function(){
-	$.material.init();
 	$("div#blogReply a.checkReply").each(function(index){
 		$(this).click(function(){
 			var uid = $(this).attr("rel");
@@ -17,7 +16,7 @@ $(function(){
 	    e.preventDefault();
 	    var value = $("#blogSearchText").val();
 	    if ($.trim(value) == "") {
-	        alert("°Ë»ö¾î°¡ ºñ¾î ÀÖ½À´Ï´Ù. ´Ù½Ã È®ÀÎÇØ ÁÖ¼¼¿ä!");
+	        alert("ï¿½Ë»ï¿½ï¿½î°¡ ï¿½ï¿½ï¿½ ï¿½Ö½ï¿½ï¿½Ï´ï¿½. ï¿½Ù½ï¿½ È®ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¼ï¿½ï¿½ï¿½!");
 	        return false;
 	    }
 	    var grboard = $(this).attr("rel");
@@ -26,4 +25,7 @@ $(function(){
 	});
 		
 	SyntaxHighlighter.all();
+	
+	$("body").bootstrapMaterialDesign();
+	$('[data-toggle="tooltip"]').tooltip();			
 });

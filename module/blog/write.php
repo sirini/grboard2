@@ -7,6 +7,7 @@ include 'write/error.php';
 
 $Model = new Model($DB, $query, $grboard, $Common);
 
+/* for save user comment in board */
 if(isset($_GET['comment'])) {
 	$postID = (int)$_GET['comment'];
 	$familyID = (int)$_POST['family_uid'];
@@ -17,9 +18,8 @@ if(isset($_GET['comment'])) {
 		if( !strlen(trim($_POST['name'])) || !strlen(trim($_POST['password']))) {
 			$Common->error($error['msg_input_is_empty']);
 		}
-		if( !strlen($_POST['simplelock']) || 
-			$_POST['simplelock'] != substr(md5($postID . 'GR_BOARD_2' . date('YmdH')), -4) ) {
-			$Common->error($error['msg_input_is_empty']);
+		if(!$Common->postGoogleRecaptcha($_POST['g-recaptcha-response'], $gr2cfg)) {
+		    $Common->error($error['msg_spam_google_reject']);
 		}
 	}
 	if( !strlen($_POST['content']) ) $Common->error($error['msg_input_is_empty']);
@@ -39,6 +39,7 @@ if(isset($_GET['post'])) {
 	}		
 }
 
+/* for save user comment in guestbook */
 if(isset($_GET['guestbook'])) {
 	$isReply = (int)$_POST['reply_uid'];
 	$isSecret = 0;
@@ -47,9 +48,8 @@ if(isset($_GET['guestbook'])) {
 		if( !strlen($_POST['name']) || !strlen($_POST['password'])) {
 			$Common->error($error['msg_input_is_empty']);
 		}
-		if( !strlen($_POST['simplelock']) || 
-			$_POST['simplelock'] != substr(md5('GR_BOARD_2' . date('YmdH') . 'GUESTBOOK'), -4) ) {
-			$Common->error($error['msg_input_is_empty']);
+		if(!$Common->postGoogleRecaptcha($_POST['g-recaptcha-response'], $gr2cfg)) {
+		    $Common->error($error['msg_spam_google_reject']);
 		}
 	}
 	if( !strlen($_POST['content']) ) $Common->error($error['msg_input_is_empty']);

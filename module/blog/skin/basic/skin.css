@@ -79,6 +79,10 @@ body > * {
 	margin-bottom: 15px;
 }
 
+#blogReply > div {
+	margin-top: 15px;
+}
+
 .blog-title {
   margin-top: 20px;
   margin-bottom: 0;
@@ -93,8 +97,7 @@ body > * {
 }
 
 .blog-main {
-  font-size: 18px;
-  line-height: 1.5;
+  line-height: 1.6;
 }
 
 .blog-footer {

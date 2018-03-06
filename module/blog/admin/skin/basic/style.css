@@ -1,3 +1,13 @@
+body > * {
+	font-family: Roboto, "Malgun Gothic", sans-serif;
+	line-height: 1.6;
+}
+
+#categoryLists > div,
+#linkLists > div {
+	margin-top: 15px;	
+}
+
 .padding-zero { padding: 0; }
 .margin-zero { margin: 0; }
 .cursor_pointer {cursor: pointer;}

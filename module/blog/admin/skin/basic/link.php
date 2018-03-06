@@ -1,60 +1,87 @@
 <?php if(!defined('GR_BOARD_2')) exit(); ?>
 
-<div class="panel panel-default">
-	<div class="panel-heading">
-		<h3 class="panel-title"><strong>Link management</strong></h3>
-	</div>
-	<div class="panel-body">
+<form id="blogConfigForm" method="post" class="form-horizontal" role="form" action="/<?php echo $grboard; ?>/blog/admin">
+<div class="card">
+	<h5 class="card-header">Link management</h5>
+	<div class="card-body">
+		
+		<div class="hiddenInputs">
+			<input type="hidden" name="blogLinkSave" value="true" />
+			<input type="hidden" name="blogLinkAction" value="add" />
+			<input type="hidden" name="linkTarget" value="" />
+			<input type="hidden" name="linkName" value="" />
+			<input type="hidden" name="linkURL" value="" />
+			<input type="hidden" name="linkInfo" value="" />
+		</div>
 
-		<form id="blogConfigForm" method="post" class="form-horizontal" role="form" action="/<?php echo $grboard; ?>/blog/admin">
-			<div class="hiddenInputs">
-				<input type="hidden" name="blogLinkSave" value="true" />
-				<input type="hidden" name="blogLinkAction" value="add" />
-				<input type="hidden" name="linkTarget" value="" />
-				<input type="hidden" name="linkName" value="" />
-				<input type="hidden" name="linkURL" value="" />
-				<input type="hidden" name="linkInfo" value="" />
+		<div class="row">
+			<div class="col">
+                <div class="form-group">
+                	<label for="addName" class="control-label">Link Name</label>
+                	<input type="text" class="form-control" name="addName" id="addName" maxlength="250" value="" />
+                	<small class="form-text text-muted"><?php echo $lang['link_add_name']; ?></small>
+                </div>
 			</div>
-			
-			<div class="form-group">
-				<div class="col-md-3">
-					<input type="text" name="addName" class="form-control" maxlength="20" placeholder="Name" title="<?php echo $lang['link_add_name']; ?>" />
-				</div>
-				<div class="col-md-4">
-					<input type="url" name="addUrl" required="true" class="form-control" maxlength="250" placeholder="http://URL" title="<?php echo $lang['link_add_url']; ?>" />
-				</div>
-				<div class="col-md-3">
-					<input type="text" name="addInfo" class="form-control" maxlength="250" placeholder="Description" title="<?php echo $lang['link_add_description']; ?>" />
-				</div>	
-				<div class="col-md-2 text-center">
-					<button class="btn btn-primary add-link">Add</button>
-				</div>
+			<div class="col">
+                <div class="form-group">
+                	<label for="addUrl" class="control-label">Link Url</label>
+                	<input type="url" class="form-control" name="addUrl" id="addUrl" placeholder="http://URL" maxlength="250" value="" />
+                	<small class="form-text text-muted"><?php echo $lang['link_add_url']; ?></small>
+                </div>
 			</div>
+			<div class="col">
+                <div class="form-group">
+                	<label for="addInfo" class="control-label">Link Description</label>
+                	<input type="text" class="form-control" name="addInfo" id="addInfo" maxlength="250" value="" />
+                	<small class="form-text text-muted"><?php echo $lang['link_add_description']; ?></small>
+                </div>
+			</div>
+		</div>
 		
-			<?php if(count($oldLink) > 0): foreach($oldLink as &$link): ?>
-			
-			<div class="form-group">
-				<div class="col-md-2">
-					<input type="text" id="name_<?php echo $link['uid']; ?>" required="true" class="form-control" maxlength="20" 
-						value="<?php echo $link['name']; ?>" placeholder="Name" title="<?php echo $lang['link_add_name']; ?>"  /> 
-				</div>
-				<div class="col-md-2">
-					<input type="url" id="url_<?php echo $link['uid']; ?>" required="true" class="form-control" maxlength="250" 
-						value="<?php echo $link['url']; ?>" placeholder="http://URL" title="<?php echo $lang['link_add_url']; ?>" />
-				</div>
-				<div class="col-md-4">
-					<input type="text" id="info_<?php echo $link['uid']; ?>" class="form-control" maxlength="250" 
-						value="<?php echo $link['info']; ?>" placeholder="Description" title="<?php echo $lang['link_add_description']; ?>" />
-				</div>
-				<div class="col-md-4 text-center">
-					<a href="<?php echo $link['url']; ?>" class="btn btn-sm btn-default btn-raised">
-							<span class="glyphicon glyphicon-home"></span> Visit</a>
-					<button class="btn btn-sm btn-primary update-link" rel="<?php echo $link['uid']; ?>">Update</button>
-					<button class="btn btn-sm btn-danger delete-link" rel="<?php echo $link['uid']; ?>">Delete</button>
-				</div>	
-			</div>	
-			
-			<?php endforeach; endif; ?>
+		<div class="form-group">
+        	<input type="submit" value="Submit" class="btn btn-primary btn-lg btn-block" />
+        </div>   
 		
-		</form>
 	</div>
+</div>
+		
+
+<div id="linkLists">
+    <?php if(count($oldLink) > 0): foreach($oldLink as &$link): ?>
+    <div class="card bg-light">
+    	<div class="card-body">
+        	<div class="row">
+            	<div class="col-3">
+                    <div class="form-group">
+                    	<label for="addName" class="control-label">Link Name</label>
+                    	<input type="text" class="form-control" name="name_<?php echo $link['uid']; ?>" id="name_<?php echo $link['uid']; ?>" maxlength="250" value="<?php echo $link['name']; ?>" />
+                    	<small class="form-text text-muted"><?php echo $lang['link_add_name']; ?></small>
+                    </div>
+            	</div>
+            	<div class="col-3">
+                    <div class="form-group">
+                    	<label for="addUrl" class="control-label">Link Url</label>
+                    	<input type="url" class="form-control" name="url_<?php echo $link['uid']; ?>" id="url_<?php echo $link['uid']; ?>" maxlength="250" value="<?php echo $link['url']; ?>" />
+                    	<small class="form-text text-muted"><?php echo $lang['link_add_url']; ?></small>
+                    </div>
+            	</div>
+            	<div class="col-4">
+                    <div class="form-group">
+                    	<label for="addInfo" class="control-label">Link Description</label>
+                    	<input type="text" class="form-control" name="info_<?php echo $link['uid']; ?>" id="info_<?php echo $link['uid']; ?>" maxlength="250" value="<?php echo $link['info']; ?>" />
+                    	<small class="form-text text-muted"><?php echo $lang['link_add_description']; ?></small>
+                    </div>
+            	</div>
+            	<div class="col-2">
+                    <div class="form-group">
+            			<button class="btn btn-md btn-primary btn-block update-link" rel="<?php echo $link['uid']; ?>">Update</button>
+            			<button class="btn btn-md btn-danger btn-block delete-link" rel="<?php echo $link['uid']; ?>">Delete</button>
+                    </div>  
+            	</div>
+            </div>
+    	</div>
+    </div>
+    <?php endforeach; endif; ?>
+</div>
+		
+</form>

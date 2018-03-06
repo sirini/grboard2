@@ -25,4 +25,7 @@ $(function(){
 		$("#blogConfigForm input[name=linkTarget]").val(uid);
 		$("#blogConfigForm").submit();		
 	});
+	
+	$("body").bootstrapMaterialDesign();
+	$('[data-toggle="tooltip"]').tooltip();		
 });

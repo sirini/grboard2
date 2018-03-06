@@ -23,4 +23,7 @@ $(function(){
 		$("#blogConfigForm input[name=categoryTarget]").val(uid);
 		$("#blogConfigForm").submit();		
 	});
+	
+	$("body").bootstrapMaterialDesign();
+	$('[data-toggle="tooltip"]').tooltip();		
 });

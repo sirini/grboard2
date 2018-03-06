@@ -13,37 +13,47 @@ if(!defined('GR_BOARD_2')) exit();
         	echo $blogPost['content'];
         	?>
         	</p>
-        	<hr />
-        	<small>Tag: <?php echo $blogPost['tag']; ?>, 
-        	Date: <?php echo date('Y-m-d', $blogPost['signdate']); ?> 
-        	<?php echo $blogPost['comment_count']; ?> Responses </small>
-        	
-        	<?php if($Common->getSessionKey() == 1): /* for admin only */ ?>
-       			<a class="card-link" href="/<?php echo $grboard; ?>/blog/modify/<?php echo $blogPost['uid']?>">Modify this post</a>
-        	<?php endif; ?>
+        </div>
+        <div class="card-footer">
+            <div class="row">
+            	<div class="col text-muted">
+                	Tag: <?php echo $blogPost['tag']; ?>, 
+                	Date: <?php echo date('Y-m-d', $blogPost['signdate']); ?>, 
+                	<?php echo $blogPost['comment_count']; ?> Responses
+            	</div>
+            	
+            	<?php if($Common->getSessionKey() == 1): /* for admin only */ ?>
+           		<div class="col text-right">
+           			<a class="btn btn-md btn-primary" data-toggle="tooltip" title="이 글을 수정 합니다." href="/<?php echo $grboard; ?>/blog/modify/<?php echo $blogPost['uid']?>">Modify</a>
+           		</div>
+            	<?php endif; ?>
+            </div>
     	</div>
     </div>
     
     <div id="blogReply">
     <?php if(!empty($blogReply[0]['uid'])): foreach($blogReply as &$reply): ?>
-    	<div class="panel panel-default">
-    		<div class="panel-body">
-    			<div id="blogContent_<?php echo $reply['uid']; ?>">
-    				<?php if($reply['is_reply']): ?><span class="glyphicon glyphicon-chevron-right"></span><?php endif; ?>
-    				<small><?php 
+    	<div class="card bg-light">
+    		<div class="card-body">
+    			<div id="blogContent_<?php echo $reply['uid']; ?>" <?php if($reply['is_reply']) echo 'style="padding-left: 50px"'; ?>>    				
+    				<?php 
     				if($reply['is_secret'] && $Common->getSessionKey() != 1) echo '<span class="text-danger">비밀글 입니다</span>';
     				else echo nl2br(strip_tags($reply['content'])); 
-    				?></small>
+    				?>
     			</div>
     		</div>
-    		<div class="panel-footer">
-    			<small>
-    			<?php echo $reply['name'] ?>
-    			<?php echo ($reply['homepage']) ? ' <a href="'.$reply['homepage'].'">(homepage)</a>' : ''; ?>, 
-    			<?php echo date('Y-m-d H:i:s', $reply['signdate']); ?>
-    			<?php echo (!$reply['is_reply']) ? ', <a href="#blogLeaveReply" class="checkReply" rel="' . $reply['uid'] . '">(reply)</a>' : ''; ?>
-    			<?php echo ($Common->getSessionKey() == 1) ? ', <a href="/' . $grboard . '/blog/delete/comment/' . $reply['uid'] . '" class="red">-delete</a>' : ''; ?>
-    			</small>
+    		<div class="card-footer bg-light">
+    			<div class="row">
+    				<div class="col text-muted">
+            			<?php echo $reply['name'] ?>
+            			<?php echo ($reply['homepage']) ? ' <a href="'.$reply['homepage'].'">(homepage)</a>' : ''; ?>, 
+            			<?php echo date('Y-m-d H:i:s', $reply['signdate']); ?>
+    				</div>
+    				<div class="col text-right">
+            			<?php echo (!$reply['is_reply']) ? '<a href="#blogLeaveReply" data-toggle="tooltip" title="이 댓글에 답글을 답니다." class="checkReply btn btn-sm btn-primary" rel="' . $reply['uid'] . '">reply</a>' : ''; ?>
+            			<?php echo ($Common->getSessionKey() == 1) ? '<a href="/' . $grboard . '/blog/delete/comment/' . $reply['uid'] . '" class="btn btn-sm btn-danger">delete</a>' : ''; ?>
+    				</div>
+    			</div>
     		</div>
     	</div>
     <?php endforeach; endif; unset($reply); ?>
@@ -106,11 +116,8 @@ if(!defined('GR_BOARD_2')) exit();
             				</label>
             			</div>
             			<input type="submit" value="SEND" class="btn btn-block btn-outline-primary" />
-            		</div>    				
-
-    				
+            		</div>    		    				
     			</div>
-    			
     		</div>
     		
     	</form>

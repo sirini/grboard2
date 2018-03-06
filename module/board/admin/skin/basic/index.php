@@ -23,7 +23,7 @@
 	<body>
 	
 	<nav class="navbar navbar-expand-md navbar-dark bg-dark" role="navigation">
-		<a class="navbar-brand" href="#"><?php echo $_SERVER['HTTP_HOST']; ?></a>
+		<a class="navbar-brand" href="#">Administrator's Page</a>
 			
 		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#grboard2TopNav" aria-controls="grboard2TopNav" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggle-icon"></span>

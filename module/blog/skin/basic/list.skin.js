@@ -12,8 +12,6 @@ $(function(){
         return false;
     });
     
-	$(function(){
-		$("body").bootstrapMaterialDesign();
-		$('[data-toggle="tooltip"]').tooltip();			
-	});
+	$("body").bootstrapMaterialDesign();
+	$('[data-toggle="tooltip"]').tooltip();			
 });
