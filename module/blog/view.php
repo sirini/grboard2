@@ -12,7 +12,6 @@ $blogReply = $Model->getBlogReply($ext_articleNo);
 $skinResourcePath = '/' . $grboard . '/module/' . $ext_module . '/skin/' . $blogInfo['theme'];
 $skinPath = 'module/blog/skin/' . $blogInfo['theme'];
 $blogLink = $Model->getBlogLink();
-$simplelock = substr(md5($blogPost['uid'] . 'GR_BOARD_2' . date('YmdH')), -4);
 
 function enableSyntaxHighlighter(&$text) {
 	$text = preg_replace('/\[code=([a-zA-Z]+)\]/i', '<script type="syntaxhighlighter" class="brush: $1"><![CDATA[', $text);
@@ -22,5 +21,5 @@ function enableSyntaxHighlighter(&$text) {
 }
 
 include 'skin/' . $blogInfo['theme'] . '/index.php';
-unset($Model, $blogInfo, $blogPost, $skinResourcePath, $skinPath, $blogLink, $query, $simplelock);
+unset($Model, $blogInfo, $blogPost, $skinResourcePath, $skinPath, $blogLink, $query);
 ?>

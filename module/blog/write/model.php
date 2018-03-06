@@ -193,5 +193,38 @@ class Model {
 		$this->db->free($que);
 		return $result;
 	}
+	
+	public function getBlogNotice($count=5) {
+	    $queStr = str_replace('{0}', (int)$count, $this->queArr['get_blog_notice']);
+	    $que = $this->db->query($queStr);
+	    $result = array();
+	    while($notice = $this->db->fetch($que)) {
+	        $result[$notice['uid']] = stripslashes($notice['subject']);
+	    }
+	    $this->db->free($que);
+	    return $result;
+	}
+	
+	public function getBlogGuestbook($count=5) {
+	    $queStr = str_replace('{0}', (int)$count, $this->queArr['get_blog_guestbook']);
+	    $que = $this->db->query($queStr);
+	    $result = array();
+	    while($notice = $this->db->fetch($que)) {
+	        $result[$notice['uid']] = stripslashes($notice['content']);
+	    }
+	    $this->db->free($que);
+	    return $result;
+	}
+	
+	public function getBlogRecentReply($count=5) {
+	    $queStr = str_replace('{0}', (int)$count, $this->queArr['get_blog_recent_reply']);
+	    $que = $this->db->query($queStr);
+	    $result = array();
+	    while($re = $this->db->fetch($que)) {
+	        $result[$re['uid']] = $re;
+	    }
+	    $this->db->free($que);
+	    return $result;
+	}
 }
 ?>

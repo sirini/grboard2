@@ -9,6 +9,7 @@ $query = array(
 	'get_blog_recent_reply' => 'select uid, post_uid, content from ' . $db_prefix_blog . 'comment order by uid desc limit {0}' ,
 	'get_blog_guestbook' => 'select uid, content from ' . $db_prefix_blog . 'guestbook order by uid desc limit {0}' ,
 	'get_blog_link' => 'select url, name from ' . $db_prefix_blog . 'link order by uid asc' ,
-	'get_blog_reply' => 'select * from ' . $db_prefix_blog . 'comment where post_uid = {0} and is_secret = 0 order by family_uid asc, uid asc'
+	'get_blog_reply' => 'select * from ' . $db_prefix_blog . 'comment where post_uid = {0} and is_secret = 0 order by family_uid asc, uid asc',
+    'get_blog_category' => 'select * from ' . $db_prefix_blog . 'category order by id asc',
 );
 ?>

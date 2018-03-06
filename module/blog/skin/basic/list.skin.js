@@ -1,5 +1,4 @@
 $(function(){
-
     $("#blogSearchForm").submit(function (e) {
         e.preventDefault();
         var value = $("#blogSearchText").val();
@@ -8,7 +7,7 @@ $(function(){
             return false;
         }
         var grboard = $(this).attr("rel");
-        location.href = "/" + grboard + "/blog/search/all/" + value + "/1";
+        location.href = "/" + grboard + "/blog-text/search/all/" + value + "/1";
         return false;
     });
     

@@ -67,6 +67,16 @@ class Model {
 		$this->db->free($que);
 		return $result['total_guestbook'];
 	}
+	
+	public function getBlogCategory() {
+	    $que = $this->db->query($this->queArr['get_blog_category']);
+	    $result = array();
+	    while($f = $this->db->fetch($que)) {
+	        $result[] = $f;
+	    }
+	    $this->db->free($que);
+	    return $result;
+	}
 
 	public function getBlogNotice($count=5) {
 		$queStr = str_replace('{0}', (int)$count, $this->queArr['get_blog_notice']);

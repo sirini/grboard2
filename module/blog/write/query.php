@@ -11,6 +11,9 @@ $query = array(
 	'get_blog_post' => 'select {0} from ' . $db_prefix_blog . 'post where uid = {1} limit 1' ,
 	'delete_post' => 'delete from ' . $db_prefix_blog . 'post where uid = {0} limit 1' ,
 	'file_update' => 'insert into ' . $db_prefix_board . 'file_store (uid,board_id,board_no,member_key,real_name,hash_name,signdate,hit) values ({0})',
-	'get_blog_category' => 'select * from ' . $db_prefix_blog . 'category order by id asc'
+	'get_blog_category' => 'select * from ' . $db_prefix_blog . 'category order by id asc',
+    'get_blog_notice' => 'select uid, subject from ' . $db_prefix_blog . 'post where post_condition = 2 order by uid desc limit {0}' ,
+    'get_blog_recent_reply' => 'select uid, post_uid, content from ' . $db_prefix_blog . 'comment order by uid desc limit {0}' ,
+    'get_blog_guestbook' => 'select uid, content from ' . $db_prefix_blog . 'guestbook order by uid desc limit {0}' ,
 );
 ?>

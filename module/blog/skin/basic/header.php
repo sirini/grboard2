@@ -78,7 +78,7 @@
 			</ul>
 			
 			<form id="blogSearchForm" class="form-inline my-2 my-lg-0" method="post" action="/" rel="<?php echo $grboard; ?>">
-				<input id="blogSearchText" type="text" class="form-control mr-sm-2" placeholder="Search" aria-label="Search">
+				<input id="blogSearchText" type="text" class="form-control mr-sm-2 text-white" placeholder="Search" aria-label="Search">
 				<button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
 			</form>
 			

@@ -146,7 +146,6 @@ endif;
     				<div class="card-body">
     					<?php if(count($blogCategory)): foreach($blogCategory as &$cat): ?>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
                             <label class="form-check-label" for="cat<?php echo $cat['uid']; ?>">
                                 <input type="radio" id="cat<?php echo $cat['uid']; ?>" name="category" <?php echo ($blogModify['category'] == $cat['uid'])?'checked="true"':''; ?> value="<?php echo $cat['uid']; ?>" /> 
                                 	<?php echo stripslashes($cat['name']); ?>
@@ -159,7 +158,7 @@ endif;
     			<div class="card text-white bg-dark">
     				<h6 class="card-header bg-dark">Tag</h6>
     				<div class="card-body">
-    					<input type="text" name="gr2tag" data-toggle="tooltip" title="글의 핵심 단어들을 콤마로 구분하여 입력해 주세요 (예: 보드,공개,수정사항,주의점,속도개선)" value="<?php echo $blogModify['tag']; ?>" class="form-control input-md" />
+    					<input type="text" name="gr2tag" data-toggle="tooltip" title="글의 핵심 단어들을 콤마로 구분하여 입력해 주세요 (예: 보드,공개,수정사항,주의점,속도개선)" value="<?php echo $blogModify['tag']; ?>" class="form-control input-md text-white" />
     				</div>	
     			</div>
     			
