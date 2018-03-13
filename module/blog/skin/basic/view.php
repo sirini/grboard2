@@ -7,7 +7,7 @@ if(!defined('GR_BOARD_2')) exit();
     <div class="card">
     	<h5 class="card-header"><strong><?php echo $blogPost['subject']; ?></strong></h5>
     	<div class="card-body">
-    		<p class="card-text">
+    		<p class="card-text line">
         	<?php 
         	enableSyntaxHighlighter($blogPost['content']); 
         	echo $blogPost['content'];
@@ -33,9 +33,9 @@ if(!defined('GR_BOARD_2')) exit();
     
     <div id="blogReply">
     <?php if(!empty($blogReply[0]['uid'])): foreach($blogReply as &$reply): ?>
-    	<div class="card bg-light">
+    	<div class="card bg-light" <?php if($reply['is_reply']) echo 'style="margin-left: 50px"'; ?>>
     		<div class="card-body">
-    			<div id="blogContent_<?php echo $reply['uid']; ?>" <?php if($reply['is_reply']) echo 'style="padding-left: 50px"'; ?>>    				
+    			<div id="blogContent_<?php echo $reply['uid']; ?>" class="line">    				
     				<?php 
     				if($reply['is_secret'] && $Common->getSessionKey() != 1) echo '<span class="text-danger">비밀글 입니다</span>';
     				else echo nl2br(strip_tags($reply['content'])); 
